@@ -1,0 +1,298 @@
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+  text-decoration: none;
+  font-display: swap; /* or optional if swap doesn't work as expected */
+  text-transform: none;
+}
+
+.each-input.full {
+  width: 100%;
+  font-weight: lighter;
+}
+
+/* @media screen and (min-width: 991px) {
+  .navigation-cover,
+  .navigation-cover.active {
+    display: none;
+  }
+} */
+
+.nav-inner-list.pages.active {
+  height: 330px;
+}
+
+@media screen and (max-width: 479px) {
+  .nav-list.landing {
+    display: none;
+  }
+}
+
+.nav-pag {
+  margin-top: 20px;
+}
+
+.nav-link.nuxt-link-exact-active.landing.nuxt-link-active {
+  color: white;
+}
+
+.green.no.spinner {
+  margin-right: 5px;
+}
+
+.tb-filter-head .left {
+  margin-right: auto;
+}
+
+.response.error.center {
+  text-align: center;
+}
+
+.nav-inner-list.prod {
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.alert-body.active {
+  height: 100vh;
+  position: fixed;
+}
+
+.white.spinner.center {
+  position: absolute;
+  font-size: 40px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.nav-inner-list.prod.active {
+  height: 100px;
+}
+
+.nav-inner-list,
+.navigation-cover,
+.vertical-navigation {
+  transition: all 0.3s;
+}
+
+.vertical-navigation,
+.filter-div {
+  min-width: 50px;
+}
+
+.filter-div {
+  width: 50px;
+}
+
+.dash-greeting.opac {
+  opacity: 0;
+  overflow: visible;
+  z-index: -1;
+  min-width: 250px;
+}
+
+.nav-inner-list.transact.active {
+  height: 275px;
+}
+
+.material-symbols-outlined.right {
+  margin-left: auto;
+}
+
+.material-symbols-outlined.orange {
+  color: #fc9135;
+}
+
+.navigation-cover.active {
+  z-index: 99999;
+}
+
+span.flex-link {
+  cursor: pointer;
+}
+
+.main-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.material-symbols-outlined.sm {
+  font-size: 20px;
+}
+
+.material-symbols-outlined.bg {
+  font-size: 50px;
+}
+
+label.response.error {
+  text-align: left;
+}
+
+.material-symbols-outlined.green {
+  color: #4eb92d;
+}
+
+.icon-wrap.nav.foot {
+  background: #fc9135;
+}
+
+.icon-wrap.nav {
+  cursor: pointer;
+}
+
+.check-box {
+  min-width: 15px;
+}
+
+.custom-btn.edge {
+  align-items: center;
+}
+
+.material-symbols-outlined.white {
+  color: #ffffff;
+}
+
+.color-flex.widt {
+  flex-wrap: wrap;
+}
+
+.label.colo {
+  width: 100%;
+}
+
+.color-in {
+  width: 70px;
+}
+
+.actions-foot {
+  margin-left: 30px;
+}
+
+.state-price {
+  cursor: pointer;
+}
+
+a.footer-icon-wrap.w-inline-block,
+.icon-wrap.nav.w-inline-block {
+  text-decoration: none;
+}
+
+.nav-link.nuxt-link-exact-active.nuxt-link-active {
+  color: #4eb92d;
+}
+
+.nav-link.nuxt-link-exact-active.nuxt-link-active.log {
+  color: #ffffff;
+}
+
+textarea.report {
+  margin-top: 25px;
+}
+
+.tb-filter-head {
+  min-width: 150px;
+}
+
+.table-head.foot {
+  flex-wrap: wrap;
+}
+
+.confirm-btns {
+  margin-top: 20px;
+  display: flex;
+}
+
+.tb-filter-list.active {
+  z-index: 999;
+}
+
+.response.error {
+  text-align: center;
+}
+
+.grace {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-footer {
+  margin-top: auto;
+}
+
+@media screen and (max-width: 767px) {
+  .textarea.each-input.half {
+    width: 100%;
+  }
+}
+
+.close.right {
+  color: #4eb92d;
+  background-color: #e6ffde;
+}
+
+.main-flex {
+  overflow: clip;
+  width: 100%;
+}
+
+.ck.ck-editor {
+  width: 100%;
+}
+
+/* Apply the animation to the circle element */
+.spinner {
+  animation: spin 1.5s linear infinite;
+  margin-right: 5px;
+}
+
+.nav-link.btn.color {
+  background: #fc9135;
+  margin: 0 5px;
+  width: auto;
+}
+
+.nav-link.btn {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 479px) {
+  .custom-container.cover {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+.navigation-cover {
+  transition: 0.4s all;
+}
+
+.table {
+  margin-bottom: 15px;
+}
+
+.table .item-img.prod {
+  min-height: 100px;
+}
+
+.rating-view {
+  margin-top: auto;
+}
+
+.price-flex.center {
+  justify-content: center;
+}
+
+.footer-nav {
+  z-index: 99991;
+}
