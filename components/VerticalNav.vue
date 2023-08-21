@@ -84,7 +84,7 @@
         </div>
       </div>
     </div>
-    <home-vertical-nav v-if="!showVerticalNav" />
+    <!-- <home-vertical-nav v-if="!showVerticalNav" /> -->
     <dashboard-nav v-if="showVerticalNav" />
     <admin-nav v-if="showVerticalNav" />
   </div>

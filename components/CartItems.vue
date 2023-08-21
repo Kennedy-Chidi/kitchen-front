@@ -79,7 +79,11 @@
 export default {
   methods: {
     hideCart() {
-      this.$store.commit("productStore/HIDE_CART");
+      if (this.user.status == "Staff") {
+        this.$store.commit("settingsStore/HIDE_CART");
+      } else {
+        this.$store.commit("productStore/HIDE_CART");
+      }
     },
 
     makeConfirmation() {
@@ -112,16 +116,29 @@ export default {
     },
 
     removeFromCart(data) {
-      this.$store.commit("productStore/REMOVE_FROM_CART", data);
+      if (this.user.status == "Staff") {
+        this.$store.commit("settingsStore/REMOVE_FROM_CART", data);
+      } else {
+        this.$store.commit("productStore/REMOVE_FROM_CART", data);
+      }
     },
 
     addToCart(data) {
-      this.$store.commit("productStore/ADD_TO_CART", data);
+      if (this.user.status == "Staff") {
+        this.$store.commit("settingsStore/ADD_TO_CART", data);
+      } else {
+        this.$store.commit("productStore/ADD_TO_CART", data);
+      }
     },
 
     clearCart() {
-      this.$store.commit("productStore/CLEAR_CART");
-      this.$store.commit("productStore/HIDE_CART");
+      if (this.user.status == "Staff") {
+        this.$store.commit("settingsStore/CLEAR_CART");
+        this.$store.commit("settingsStore/HIDE_CART");
+      } else {
+        this.$store.commit("productStore/CLEAR_CART");
+        this.$store.commit("productStore/HIDE_CART");
+      }
     },
 
     formatNumber(number) {
@@ -132,17 +149,24 @@ export default {
       return number.toLocaleString("en-US", options);
     },
   },
+
   computed: {
     cartProducts() {
-      return this.$store.state.productStore.cartProducts;
+      return this.user.status == "Staff"
+        ? this.$store.state.settingsStore.cartProducts
+        : this.$store.state.productStore.cartProducts;
     },
 
     showCart() {
-      return this.$store.state.productStore.isShowingCart;
+      return this.user.status == "Staff"
+        ? this.$store.state.settingsStore.isShowingCart
+        : this.$store.state.productStore.isShowingCart;
     },
 
     cartProperties() {
-      return this.$store.state.productStore.purchaseProperties;
+      return this.user.status == "Staff"
+        ? this.$store.state.settingsStore.purchaseProperties
+        : this.$store.state.productStore.purchaseProperties;
     },
 
     isAuthenticated() {

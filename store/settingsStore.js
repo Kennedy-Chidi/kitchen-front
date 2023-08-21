@@ -16,10 +16,23 @@ export const state = () => ({
   orders: [],
   orderLength: 0,
 
+  showConfirmBox: false,
+  confirmBoxMsg: "",
+  confirmBoxId: "",
   products: [],
   selectedProducts: [],
   productLength: 0,
   isProductsChecked: false,
+  isShowingCart: false,
+  selectedProduct: "",
+  selectedProductSettings: [],
+  selectedObject: "",
+  cartProducts: [],
+  purchaseProperties: {
+    totalQuantity: 0,
+    totalAmount: 0,
+    categories: [],
+  },
 
   usersArray: [],
   staffArray: [],
@@ -353,8 +366,8 @@ export const mutations = {
 
     let index = null;
 
-    for (let i = 0; i < state.productArray.length; i++) {
-      if (state.productArray[i].productName == data.productName) {
+    for (let i = 0; i < state.products.length; i++) {
+      if (state.products[i].productName == data.productName) {
         index = i;
       }
     }
@@ -362,62 +375,18 @@ export const mutations = {
     if (existingItem) {
       existingItem.quantity++;
       existingItem.cartNumber++;
-      state.productArray[index] = setProductPrice(
-        existingItem,
-        state.userState
-      );
     } else {
-      data = setProductPrice(data, state.userState);
       data.quantity = 1;
       state.cartProducts.push(data);
-      state.productArray[index] = data;
+      state.products[index] = data;
     }
 
     state.purchaseProperties.totalQuantity++;
-    state.purchaseProperties.totalAmount += data.productSellingPrice * 1;
+    state.purchaseProperties.totalAmount += data.productBuyingPrice * 1;
     if (data.productCategories) {
       data.productCategories.forEach((el) => {
         state.purchaseProperties.categories.push(el);
       });
-    }
-  },
-
-  REMOVE_FROM_PURCHASE(state, data) {
-    let index = null;
-
-    for (let i = 0; i < state.productArray.length; i++) {
-      if (state.productArray[i].productName == data.productName) {
-        index = i;
-      }
-    }
-
-    for (let i = 0; i < state.cartProducts.length; i++) {
-      if (state.cartProducts[i].productName == data.productName) {
-        if (state.cartProducts[i].quantity > 1) {
-          state.cartProducts[i].quantity--;
-          state.productArray[index] = state.cartProducts[i];
-        } else {
-          state.cartProducts[i].quantity = 0;
-          state.productArray[index] = state.cartProducts[i];
-          state.cartProducts.splice(i, 1);
-        }
-        state.purchaseProperties.totalQuantity--;
-        state.purchaseProperties.totalAmount -= data.productSellingPrice;
-
-        const list = state.purchaseProperties.categories;
-
-        data.productCategories = Array.isArray(data.productCategories)
-          ? data.productCategories
-          : [data.productCategories];
-
-        data.productCategories.forEach((el) => {
-          for (let i = 0; i < list.length; i++) {
-            if (el == list[i]) {
-              list.splice(i, 1);
-            }
-          }
-        });
-      }
     }
   },
 
@@ -465,6 +434,70 @@ export const mutations = {
     }
 
     state.products = newArray;
+  },
+
+  REMOVE_FROM_PURCHASE(state, data) {
+    let index = null;
+
+    for (let i = 0; i < state.products.length; i++) {
+      if (state.products[i].productName == data.productName) {
+        index = i;
+      }
+    }
+
+    for (let i = 0; i < state.cartProducts.length; i++) {
+      if (state.cartProducts[i].productName == data.productName) {
+        if (state.cartProducts[i].quantity > 1) {
+          state.cartProducts[i].quantity--;
+          state.products[index] = state.cartProducts[i];
+        } else {
+          state.cartProducts[i].quantity = 0;
+          state.products[index] = state.cartProducts[i];
+          state.cartProducts.splice(i, 1);
+        }
+        state.purchaseProperties.totalQuantity--;
+        state.purchaseProperties.totalAmount -= data.productBuyingPrice;
+
+        const list = state.purchaseProperties.categories;
+
+        data.productCategories = Array.isArray(data.productCategories)
+          ? data.productCategories
+          : [data.productCategories];
+
+        data.productCategories.forEach((el) => {
+          for (let i = 0; i < list.length; i++) {
+            if (el == list[i]) {
+              list.splice(i, 1);
+            }
+          }
+        });
+      }
+    }
+  },
+
+  CLEAR_CART(state) {
+    state.cartProducts = [];
+    state.purchaseProperties.totalQuantity = 0;
+    state.purchaseProperties.totalAmount = 0;
+
+    const products = state.products;
+    const items = [];
+    for (let x = 0; x < products.length; x++) {
+      products[x].check = false;
+      products[x].cartNumber = 0;
+      products[x].quantity = 0;
+      items.push(products[x]);
+    }
+
+    state.products = items;
+  },
+
+  SHOW_CART(state) {
+    state.isShowingCart = !state.isShowingCart;
+  },
+
+  HIDE_CART(state) {
+    state.isShowingCart = false;
   },
 };
 

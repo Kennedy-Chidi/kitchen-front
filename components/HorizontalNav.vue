@@ -152,7 +152,11 @@ export default {
   components: { NotificationSound },
   methods: {
     showCartItems() {
-      this.$store.commit("productStore/SHOW_CART");
+      if (this.user.status == "Staff") {
+        this.$store.commit("settingsStore/SHOW_CART");
+      } else {
+        this.$store.commit("productStore/SHOW_CART");
+      }
     },
 
     afterOrder(msg, status) {
@@ -260,7 +264,9 @@ export default {
 
   computed: {
     cartProducts() {
-      return this.$store.state.productStore.cartProducts;
+      return this.user.status == "Staff"
+        ? this.$store.state.settingsStore.cartProducts
+        : this.$store.state.productStore.cartProducts;
     },
 
     notifications() {
@@ -272,7 +278,9 @@ export default {
     },
 
     cartProperties() {
-      return this.$store.state.productStore.purchaseProperties;
+      return this.user.status == "Staff"
+        ? this.$store.state.settingsStore.purchaseProperties
+        : this.$store.state.productStore.purchaseProperties;
     },
 
     isAuthenticated() {

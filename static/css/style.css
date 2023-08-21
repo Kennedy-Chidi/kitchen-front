@@ -2260,19 +2260,10 @@ textarea.w-select {
   display: block;
 }
 
-.grace.product-detail {
-  display: none;
-}
-
 .grace.main-blog,
 .grace.blog-page,
 .grace.about-page {
   display: block;
-}
-
-.grace.contact-page,
-.grace.faq-page {
-  display: none;
 }
 
 .grace.homepae {
@@ -5988,7 +5979,6 @@ textarea.w-select {
     width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.2);
-    display: none;
     position: fixed;
     top: 0%;
     bottom: 0%;

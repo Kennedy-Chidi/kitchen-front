@@ -1,5 +1,8 @@
 <template>
   <div class="grace purchase">
+    <cart-items />
+    <alert-box />
+    <alert-confirmation />
     <div class="main-body">
       <vertical-nav />
       <div class="main-flex">
@@ -123,9 +126,19 @@
                       <div class="c20 times">
                         <div class="inner-label">Position:</div>
                         <div class="action-holder tb">
-                          <div class="action-btn"><div>-</div></div>
-                          <div>0</div>
-                          <div class="action-btn"><div>+</div></div>
+                          <div
+                            @click="removeProductPurchase(product)"
+                            class="action-btn"
+                          >
+                            <div>-</div>
+                          </div>
+                          <div>{{ product.quantity }}</div>
+                          <div
+                            @click="addProductPurchase(product)"
+                            class="action-btn"
+                          >
+                            <div>+</div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -165,9 +178,6 @@
                       </ul>
                     </div>
                   </div>
-                  <div class="table-head admin pro">
-                    <div class="tb-filter-head"><div>Anonimous</div></div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -181,6 +191,9 @@
 </template>
 
 <script>
+import AlertBox from "../../components/AlertBox.vue";
+import AlertConfirmation from "../../components/AlertConfirmation.vue";
+import CartItems from "../../components/CartItems.vue";
 import CompanyAds from "../../components/CompanyAds.vue";
 import FooterComponent from "../../components/FooterComponent.vue";
 import HorizontalNav from "../../components/HorizontalNav";
@@ -210,6 +223,14 @@ export default {
       const options = { style: "decimal", maximumFractionDigits: 0 };
       return number.toLocaleString("en-US", options);
     },
+
+    addProductPurchase(product) {
+      this.$store.commit("settingsStore/ADD_TO_PURCHASE", product);
+    },
+
+    removeProductPurchase(product) {
+      this.$store.commit("settingsStore/REMOVE_FROM_PURCHASE", product);
+    },
   },
   computed: {
     products() {
@@ -226,6 +247,9 @@ export default {
     HorizontalNav,
     VerticalNav,
     MobileBottomNav,
+    CartItems,
+    AlertBox,
+    AlertConfirmation,
   },
 };
 </script>
