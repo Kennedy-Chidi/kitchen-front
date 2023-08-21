@@ -255,10 +255,18 @@ export default {
       }
     });
 
-    socket.on("approvedOrder", (data) => {
-      // this.$store.commit("HIDE_CONFIRM_BOX");
-
-      console.log(data);
+    socket.on("purchasedGoods", (data) => {
+      if (this.user.username == data.username) {
+        this.$store.commit("settingsStore/HIDE_CONFIRM_BOX");
+        this.$store.commit("settingsStore/TOGGLE_LOADING");
+        this.$store.commit("settingsStore/SET_PRODUCTS", data.products);
+        const msg = "The purchase was made successfully";
+        const status = false;
+        this.$store.commit("settingsStore/SHOW_ALERT_BOX", {
+          msg,
+          status,
+        });
+      }
     });
   },
 

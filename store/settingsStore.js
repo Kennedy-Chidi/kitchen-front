@@ -11,11 +11,17 @@ export const state = () => ({
   selectedNotifications: [],
   isNotificationChecked: false,
 
+  transactionLength: 0,
+  transactions: [],
+
   countries: [],
 
   orders: [],
   orderLength: 0,
 
+  confirmType: "",
+  confirmData: "",
+  isLoading: false,
   showConfirmBox: false,
   confirmBoxMsg: "",
   confirmBoxId: "",
@@ -33,6 +39,10 @@ export const state = () => ({
     totalAmount: 0,
     categories: [],
   },
+
+  showAlertBox: false,
+  alertMsg: "",
+  alertStatus: "",
 
   usersArray: [],
   staffArray: [],
@@ -83,6 +93,27 @@ export const mutations = {
     state.promotions = array;
     state.isPromotionChecked = false;
     state.selectedPromotions = [];
+  },
+
+  SET_ORDERS(state, data) {
+    state.orderLength = data.length;
+    let array = [];
+    data.results.forEach((el) => {
+      el.checked = false;
+      array.push(el);
+    });
+    state.orders = array;
+  },
+
+  SET_TRANSACTIONS(state, data) {
+    state.transactionLength = data.length;
+    let array = [];
+    data.results.forEach((el) => {
+      el.checked = false;
+      array.push(el);
+    });
+    state.transactions = array;
+    console.log(state.transactions);
   },
 
   SET_COUNTRIES(stat, data) {
@@ -357,6 +388,9 @@ export const mutations = {
     }
     state.products = items;
     state.selectedProducts = [];
+    state.cartProducts = [];
+    state.purchaseProperties.totalAmount = 0;
+    state.purchaseProperties.totalQuantity = 0;
   },
 
   ADD_TO_PURCHASE(state, data) {
@@ -496,8 +530,43 @@ export const mutations = {
     state.isShowingCart = !state.isShowingCart;
   },
 
+  TOGGLE_LOADING(state) {
+    state.isLoading = !state.isLoading;
+  },
+
   HIDE_CART(state) {
     state.isShowingCart = false;
+  },
+
+  HIDE_CONFIRM_BOX(state) {
+    state.showConfirmBox = false;
+    state.confirmId = "";
+    state.confirmType = "";
+    state.confirmMsg = "";
+    state.confirmData = "";
+    state.isLoading = false;
+  },
+
+  SHOW_CONFIRM_BOX(state, payload) {
+    const { msg, id, type, data } = payload;
+    state.showConfirmBox = true;
+    state.confirmId = id;
+    state.confirmType = type;
+    state.confirmMsg = msg;
+    state.confirmData = data;
+  },
+
+  SHOW_ALERT_BOX(state, payload) {
+    const { msg, status } = payload;
+    state.showAlertBox = true;
+    state.alertMsg = msg;
+    state.alertStatus = status;
+  },
+
+  HIDE_ALERT_BOX(state) {
+    state.showAlertBox = false;
+    state.alertMsg = "";
+    state.alertStatus = false;
   },
 };
 
@@ -629,6 +698,15 @@ export const actions = {
     }
   },
 
+  async GET_TRANSACTIONS({ commit }, query) {
+    try {
+      const result = await this.$axios.get(`/transactions/${query}`);
+      commit("SET_TRANSACTIONS", result.data);
+    } catch (err) {
+      console.log(err.response);
+    }
+  },
+
   async UPDATE_PRODUCT({ commit }, payload) {
     const { id, form, query } = payload;
     try {
@@ -654,7 +732,24 @@ export const actions = {
     }
   },
 
-  async nuxtServerInit({ commit }) {
+  async PROCEED_CONFIRMATION({ commit }, payload) {
+    const socket = this.$socket;
+    const user = this.$auth.user;
+
+    const { confirmData, confirmId, confirmType } = payload;
+    if (confirmType == "Purchase") {
+      confirmData.transactionType = "Purchase";
+      confirmData.query = {
+        limit: 10,
+        username: user.username,
+        state: user.state,
+        sort: `productName`,
+      };
+      socket.emit("purchaseGoods", confirmData);
+    }
+  },
+
+  async GET_SETTINGS(commit) {
     const user = this.$auth.user;
     let username = "";
     let status = "";
@@ -673,7 +768,37 @@ export const actions = {
       commit("SET_USERS", response.data.users);
       commit("SET_STAFFS", response.data.staffs);
       commit("SET_PRODUCTS", response.data.products);
+      commit("SET_TRANSACTIONS", response.data.transactions);
+
       // commit("SET_ORDERS", response.data.orders);
+      // commit("SET_PROMOTIONS", response.data.promotions);
+      // commit("SET_SALES", response.data.sales);
+    } catch (err) {
+      console.log(err.response);
+    }
+  },
+
+  async nuxtServerInit({ commit }) {
+    const user = this.$auth.user;
+    let username = "";
+    let status = "";
+    if (user) {
+      username = user.username;
+      status = user.status;
+    }
+
+    try {
+      const response = await this.$axios.get(
+        `/company/all/settings/?username=${username}&status=${status}&state=${user.state}`
+      );
+      commit("TOGGLE_INITIAL", true);
+      commit("SET_COUNTRIES", response.data.countries);
+      commit("SET_NOTIFICATIONS", response.data.notifications);
+      commit("SET_USERS", response.data.users);
+      commit("SET_STAFFS", response.data.staffs);
+      commit("SET_PRODUCTS", response.data.products);
+      commit("SET_TRANSACTIONS", response.data.transactions);
+      commit("SET_ORDERS", response.data.orders);
       // commit("SET_PROMOTIONS", response.data.promotions);
       // commit("SET_SALES", response.data.sales);
     } catch (err) {

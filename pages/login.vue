@@ -235,6 +235,8 @@ export default {
         this.$store.commit("productStore/SET_USER_STATE");
         if (user.status == "User") {
           this.$store.dispatch("userStore/GET_USER_PROPERTIES");
+        } else {
+          this.$store.dispatch("userStore/GET_USER_PROPERTIES");
         }
         this.$store.commit("SHOW_NAV");
         if (user.status == "Staff") {

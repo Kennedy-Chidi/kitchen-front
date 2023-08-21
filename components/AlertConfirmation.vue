@@ -22,37 +22,66 @@
 export default {
   methods: {
     hideConfirmBox() {
-      this.$store.commit("HIDE_CONFIRM_BOX");
+      if (this.user.status == "Staff") {
+        this.$store.commit("settingsStore/HIDE_CONFIRM_BOX");
+      } else {
+        this.$store.commit("HIDE_CONFIRM_BOX");
+      }
     },
 
     proceedConfirmation() {
-      const properties = this.confirmProperties;
-      if (
-        properties.confirmType == "Buy" &&
-        (this.user.address == "" || this.user.address == undefined)
-      ) {
-        const status = true;
-        const msg = "Please setup your residential address in your profile";
-        this.$store.commit(`SHOW_ALERT_BOX`, { msg, status });
-        this.$store.commit("HIDE_CONFIRM_BOX");
-        return;
+      if (this.user.status == "Staff") {
+        const properties = this.confirmProperties;
+        this.$store.dispatch("settingsStore/PROCEED_CONFIRMATION", properties);
+        this.$store.commit("settingsStore/TOGGLE_LOADING");
+      } else {
+        const properties = this.confirmProperties;
+        if (
+          properties.confirmType == "Buy" &&
+          (this.user.address == "" || this.user.address == undefined)
+        ) {
+          const status = true;
+          const msg = "Please setup your residential address in your profile";
+          this.$store.commit(`SHOW_ALERT_BOX`, { msg, status });
+          this.$store.commit("HIDE_CONFIRM_BOX");
+          return;
+        }
+        this.$store.dispatch("PROCEED_CONFIRMATION", properties);
+        this.$store.commit("TOGGLE_LOADING");
       }
-      this.$store.dispatch("PROCEED_CONFIRMATION", properties);
-      this.$store.commit("TOGGLE_LOADING");
     },
   },
+
   computed: {
     confirmProperties() {
       return {
-        showConfirmBox: this.$store.state.showConfirmBox,
-        confirmBoxMsg: this.$store.state.confirmMsg,
-        confirmId: this.$store.state.confirmId,
-        confirmType: this.$store.state.confirmType,
-        confirmData: this.$store.state.confirmData,
+        showConfirmBox:
+          this.user.status == "Staff"
+            ? this.$store.state.settingsStore.showConfirmBox
+            : this.$store.state.showConfirmBox,
+        confirmBoxMsg:
+          this.user.status == "Staff"
+            ? this.$store.state.settingsStore.confirmMsg
+            : this.$store.state.confirmMsg,
+        confirmId:
+          this.user.status == "Staff"
+            ? this.$store.state.settingsStore.confirmId
+            : this.$store.state.confirmId,
+        confirmType:
+          this.user.status == "Staff"
+            ? this.$store.state.settingsStore.confirmType
+            : this.$store.state.confirmType,
+        confirmData:
+          this.user.status == "Staff"
+            ? this.$store.state.settingsStore.confirmData
+            : this.$store.state.confirmData,
       };
     },
+
     loading() {
-      return this.$store.state.isLoading;
+      return this.user.status == "Staff"
+        ? this.$store.state.settingsStore.isLoading
+        : this.$store.state.isLoading;
     },
 
     user() {

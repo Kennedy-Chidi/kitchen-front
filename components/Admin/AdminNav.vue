@@ -146,12 +146,7 @@
         @click="toggleTransact"
         class="flex-link w-inline-block"
         ><div class="icon-wrap">
-          <img
-            src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6d38612ddf087a955f4de_user.svg"
-            loading="lazy"
-            alt=""
-            class="nav-icon cart"
-          />
+          <i class="material-symbols-outlined green sm">payments</i>
         </div>
         <div>Transactions</div>
         <i
@@ -166,27 +161,30 @@
         :class="{ active: isTransact }"
       >
         <li>
+          <nuxt-link to="/admin/transactions" class="flex-link w-inline-block"
+            ><div class="icon-wrap">
+              <i class="material-symbols-outlined green sm"
+                >add_shopping_cart</i
+              >
+            </div>
+            <div>General</div></nuxt-link
+          >
           <nuxt-link to="/admin/sales" class="flex-link w-inline-block"
             ><div class="icon-wrap">
-              <img
-                src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6d38612ddf087a955f4de_user.svg"
-                loading="lazy"
-                alt=""
-                class="nav-icon cart"
-              />
+              <i class="material-symbols-outlined green sm">shopping_cart</i>
             </div>
             <div>Sales</div></nuxt-link
-          ><nuxt-link to="/admin/orders" class="flex-link w-inline-block"
+          >
+          <nuxt-link to="/admin/orders" class="flex-link w-inline-block"
             ><div class="icon-wrap">
-              <img
-                src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6d38612ddf087a955f4de_user.svg"
-                loading="lazy"
-                alt=""
-                class="nav-icon cart"
-              />
+              <i class="material-symbols-outlined green sm"
+                >add_shopping_cart</i
+              >
             </div>
             <div>Online Orders</div></nuxt-link
-          ><nuxt-link to="/admin/purchase" class="flex-link w-inline-block"
+          >
+
+          <nuxt-link to="/admin/purchase" class="flex-link w-inline-block"
             ><div class="icon-wrap">
               <img
                 src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6d38612ddf087a955f4de_user.svg"

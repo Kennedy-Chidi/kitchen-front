@@ -99,10 +99,10 @@ export default {
     },
 
     orders() {
-      return this.$store.state.userStore.orders;
+      return this.$store.state.settingsStore.orders;
     },
     resultLength() {
-      return this.$store.state.userStore.orderLength;
+      return this.$store.state.settingsStore.orderLength;
     },
   },
   components: {

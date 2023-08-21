@@ -109,7 +109,7 @@
                       <div class="c20 pro">
                         <div class="inner-label">Price:</div>
                         <div>
-                          N{{ formatNumber(product.productSellingPrice) }}
+                          N{{ formatNumber(product.productBuyingPrice) }}
                         </div>
                       </div>
                       <div v-if="product.remaining" class="c20 pro">
@@ -124,7 +124,6 @@
                         </div>
                       </div>
                       <div class="c20 times">
-                        <div class="inner-label">Position:</div>
                         <div class="action-holder tb">
                           <div
                             @click="removeProductPurchase(product)"

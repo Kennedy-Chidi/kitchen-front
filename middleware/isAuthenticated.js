@@ -27,6 +27,10 @@ export default function ({ store, redirect, route }) {
         return redirect("/dashboard/profile");
       }
     }
+
+    if (route.name == "dashboard") {
+      return redirect("/");
+    }
   }
 
   if (!store.state.auth.loggedIn) {

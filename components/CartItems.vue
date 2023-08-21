@@ -23,12 +23,18 @@
             <div class="cart-flex">
               <div class="quant">{{ cart.quantity }}</div>
               <div class="quant-times">X</div>
-              <div class="product-price">
+              <div v-if="user.status == 'User'" class="product-price">
                 N{{ formatNumber(cart.productSellingPrice) }}
               </div>
+              <div v-else class="product-price">
+                N{{ formatNumber(cart.productBuyingPrice) }}
+              </div>
               <div class="quant-times">=</div>
-              <div class="product-price total">
+              <div v-if="user.status == 'User'" class="product-price total">
                 N{{ formatNumber(cart.quantity * cart.productSellingPrice) }}
+              </div>
+              <div v-else class="product-price total">
+                N{{ formatNumber(cart.quantity * cart.productBuyingPrice) }}
               </div>
             </div>
             <div class="action-holder sm">
@@ -48,13 +54,15 @@
         <div class="cart-total total">
           Total = N{{ formatNumber(cartProperties.totalAmount) }}
         </div>
-        <div class="cart-total">Delivery = N400</div>
-        <div v-if="user" class="cart-total credit">
+        <div v-if="user.status == 'User'" class="cart-total">
+          Delivery = N400
+        </div>
+        <div v-if="user.status == 'User'" class="cart-total credit">
           Credit = N{{ formatNumber(user.creditBonus) }}
         </div>
       </div>
-      <div class="check-out-btns">
-        <div v-if="user" class="cart-total total balance">
+      <div v-if="user.status == 'User'" class="check-out-btns">
+        <div class="cart-total total balance">
           Balance = N{{
             formatNumber(
               cartProperties.totalAmount * 1 - user.creditBonus * 1 + 400
@@ -87,24 +95,30 @@ export default {
     },
 
     makeConfirmation() {
-      if (this.isAuthenticated) {
-        const msg = `Are you sure you want to order the goods worth N${this.formatNumber(
-          this.cartProperties.totalAmount
-        )}`;
-        const id = "";
+      const msg = `Are you sure you want to order the goods worth N${this.formatNumber(
+        this.cartProperties.totalAmount
+      )}`;
+      const id = "";
+      const data = {
+        cartProducts: this.cartProducts,
+        totalAmount: this.cartProperties.totalAmount,
+        totalQuatity: this.cartProperties.totalQuatity,
+        creditBonus: this.user.creditBonus,
+        deliveryFee: 400,
+        time: new Date().getTime(),
+        user: this.user,
+      };
+      if (this.user.status == "User") {
         const type = "Buy";
-        const data = {
-          cartProducts: this.cartProducts,
-          totalAmount: this.cartProperties.totalAmount,
-          totalQuatity: this.cartProperties.totalQuatity,
-          creditBonus: this.user.creditBonus,
-          deliveryFee: 400,
-          time: new Date().getTime(),
-          user: this.user,
-        };
         this.$store.commit("SHOW_CONFIRM_BOX", { msg, id, type, data });
       } else {
-        this.authConfirmation();
+        const type = "Purchase";
+        this.$store.commit("settingsStore/SHOW_CONFIRM_BOX", {
+          msg,
+          id,
+          type,
+          data,
+        });
       }
       this.hideCart();
     },

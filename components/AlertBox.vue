@@ -28,7 +28,11 @@
 export default {
   methods: {
     hideAlertBox() {
-      this.$store.commit("HIDE_ALERT_BOX");
+      if (this.user.status == "User") {
+        this.$store.commit("HIDE_ALERT_BOX");
+      } else {
+        this.$store.commit("settingsStore/HIDE_ALERT_BOX");
+      }
 
       if (this.passwordChanged) {
         this.$store.commit("SET_PASSWORD_CHANGED");
@@ -44,14 +48,27 @@ export default {
   computed: {
     alertProperties() {
       return {
-        showAlertBox: this.$store.state.showAlertBox,
-        alertBoxStatus: this.$store.state.alertStatus,
-        alertBoxMsg: this.$store.state.alertMsg,
+        showAlertBox:
+          this.user.status == "Staff"
+            ? this.$store.state.settingsStore.showAlertBox
+            : this.$store.state.showAlertBox,
+        alertBoxStatus:
+          this.user.status == "Staff"
+            ? this.$store.state.settingsStore.alertStatus
+            : this.$store.state.alertStatus,
+        alertBoxMsg:
+          this.user.status == "Staff"
+            ? this.$store.state.settingsStore.alertMsg
+            : this.$store.state.alertMsg,
       };
     },
 
     passwordChanged() {
       return this.$store.state.isPasswordChanged;
+    },
+
+    user() {
+      return this.$store.state.auth.user;
     },
   },
 };
