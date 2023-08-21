@@ -113,7 +113,6 @@ export const mutations = {
       array.push(el);
     });
     state.transactions = array;
-    console.log(state.transactions);
   },
 
   SET_COUNTRIES(stat, data) {
@@ -770,7 +769,8 @@ export const actions = {
       commit("SET_PRODUCTS", response.data.products);
       commit("SET_TRANSACTIONS", response.data.transactions);
 
-      // commit("SET_ORDERS", response.data.orders);
+      commit("SET_ORDERS", response.data.orders);
+
       // commit("SET_PROMOTIONS", response.data.promotions);
       // commit("SET_SALES", response.data.sales);
     } catch (err) {

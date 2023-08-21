@@ -36,12 +36,14 @@
             authUser.username
           }}</label>
         </div>
+
         <div class="each-input">
           <label for="name-3" class="label">Email</label
           ><label for="name-3" class="custom-input no">{{
             authUser.email
           }}</label>
         </div>
+
         <div class="each-input">
           <label for="name-3" class="label">Phone Number</label
           ><input
@@ -52,6 +54,7 @@
             placeholder="Please set your phone number"
           />
         </div>
+
         <div class="each-input full pad">
           <label for="phone-4" class="label">State of Residence</label>
           <div class="table-filter part">
@@ -83,6 +86,11 @@
           <label for="phone-4" class="label">LGA of Residence</label>
           <div class="table-filter part">
             <div @click="showLGA = !showLGA" class="tb-filter-head">
+              <i
+                v-if="onStateRequest"
+                class="material-symbols-outlined green no spinner"
+                >motion_photos_on</i
+              >
               <div>{{ lgaDefault }}</div>
               <i class="material-symbols-outlined orange"
                 >keyboard_arrow_down</i
@@ -191,6 +199,7 @@ export default {
       isError: false,
       showResponse: false,
       onRequest: false,
+      onStateRequest: false,
       onPasswordRequest: false,
 
       phoneError: false,
@@ -201,13 +210,16 @@ export default {
   },
 
   methods: {
-    selectState(state) {
+    async selectState(state) {
       this.stateDefault = state.name;
       this.showStates = false;
       this.showUnits = false;
       this.unitDefault = "Select Unit";
-      const query = `?limit=100&state=${state.name}`;
-      this.$store.dispatch("SET_LGA", query);
+      const query = `?limit=100&state=${state.name}&sort=name`;
+      const response = await this.$store.dispatch("SET_LGA", query);
+      if (response) {
+        this.onStateRequest = false;
+      }
     },
 
     selectLGA(lga) {
@@ -217,6 +229,7 @@ export default {
       this.showLGA = false;
       this.unitDefault = "Select Unit";
       const query = ``;
+
       const form = {
         units: lga.units,
         query,

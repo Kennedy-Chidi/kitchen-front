@@ -231,8 +231,16 @@ export const actions = {
     }
   },
 
-  async SET_UNIT({ commit }, units) {
+  async SET_UNIT({ commit }, form) {
+    const units = form.units;
     commit("SET_UNIT", units);
+    // try {
+    //   const response = await this.$axios.patch(`/places/lga`, query);
+    //   commit("SET_LGA", response.data.data);
+    //   return response.data.data;
+    // } catch (error) {
+    //   return error;
+    // }
   },
 
   async PROCEED_CONFIRMATION({ commit }, payload) {
@@ -251,7 +259,7 @@ export const actions = {
 
   async nuxtServerInit({ commit }) {
     try {
-      const query = `?limit=40&country=Nigeria`;
+      const query = `?limit=40&country=Nigeria&sort=name`;
       const response = await this.$axios.get(`/places/state/${query}`);
       commit("SET_STATES", response.data.data);
       return response;
