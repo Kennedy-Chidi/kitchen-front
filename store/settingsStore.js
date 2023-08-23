@@ -745,6 +745,8 @@ export const actions = {
         sort: `productName`,
       };
       socket.emit("purchaseGoods", confirmData);
+    } else if (confirmType == "ApproveOrder") {
+      socket.emit("approveOrder", confirmData);
     }
   },
 

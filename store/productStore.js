@@ -29,24 +29,26 @@ export const getters = {
   },
 };
 
-function setProductPrice(product, userState) {
-  if (
-    product.productStatePrice == undefined ||
-    product.productStatePrice.length == 0 ||
-    userState == undefined ||
-    userState == ""
-  ) {
-    return product;
-  } else {
-    const array = product.productStatePrice;
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].state == userState) {
-        product.productSellingPrice = array[i].price;
-      }
-    }
-
-    return product;
+function resetCart(products, userState) {
+  const items = [];
+  const homeItems = [];
+  for (let x = 0; x < products.length; x++) {
+    products[x].check = false;
+    products[x].cartNumber = 0;
+    products[x].quantity = 0;
+    items.push(products[x]);
   }
+
+  if (products.length >= 10) {
+    for (let x = 0; x < 10; x++) {
+      products[x].check = false;
+      products[x].cartNumber = 0;
+      products[x].quantity = 0;
+      homeItems.push(products[x]);
+    }
+  }
+  userState.products = homeItems;
+  userState.productArray = items;
 }
 
 export const mutations = {
@@ -105,12 +107,7 @@ export const mutations = {
     if (existingItem) {
       existingItem.quantity++;
       existingItem.cartNumber++;
-      state.productArray[index] = setProductPrice(
-        existingItem,
-        state.userState
-      );
     } else {
-      data = setProductPrice(data, state.userState);
       data.quantity = 1;
       state.cartProducts.push(data);
       state.productArray[index] = data;
@@ -170,32 +167,24 @@ export const mutations = {
     state.purchaseProperties.totalAmount = 0;
 
     const productArray = state.productArray;
-    const homeProducts = state.homeProducts;
+    const products = state.products;
     const items = [];
     const homeItems = [];
     for (let x = 0; x < productArray.length; x++) {
       productArray[x].check = false;
       productArray[x].cartNumber = 0;
       productArray[x].quantity = 0;
-      if (this.$auth.loggedIn) {
-        items.push(setProductPrice(productArray[x], this.$auth.user.state));
-      } else {
-        items.push(productArray[x]);
-      }
+      items.push(productArray[x]);
     }
 
-    for (let x = 0; x < 12; x++) {
-      homeProducts[x].check = false;
-      homeProducts[x].cartNumber = 0;
-      homeProducts[x].quantity = 0;
-      if (this.$auth.loggedIn) {
-        homeItems.push(setProductPrice(homeProducts[x], this.$auth.user.state));
-      } else {
-        homeItems.push(homeProducts[x]);
-      }
+    for (let x = 0; x < 10; x++) {
+      products[x].check = false;
+      products[x].cartNumber = 0;
+      products[x].quantity = 0;
+      homeItems.push(products[x]);
     }
 
-    state.homeProducts = homeItems;
+    state.products = homeItems;
     state.productArray = items;
   },
 
@@ -216,6 +205,10 @@ export const mutations = {
     }
 
     state.productSettings = newArray;
+  },
+
+  RESET_CART(state) {
+    resetCart(state.productArray, state);
   },
 
   SHOW_CART(state) {

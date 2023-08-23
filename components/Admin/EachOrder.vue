@@ -143,7 +143,7 @@ export default {
     },
 
     showConfirmBox() {
-      this.$store.commit("SHOW_CONFIRM_BOX");
+      this.$store.commit("settingsStore/SHOW_CONFIRM_BOX");
     },
 
     approveOrder(order) {
@@ -152,10 +152,16 @@ export default {
         query: `limit=${this.limit}&page=${this.currentPage}&sort=${this.sort}&status=false&unit=${this.user.unit}&transactionType=Order`,
         transactionType: "ApproveOrder",
       };
+
       const msg = `Are you sure you want to approve this order by ${order.username}?`;
       const id = order._id;
       const type = "ApproveOrder";
-      this.$store.commit("SHOW_CONFIRM_BOX", { msg, id, type, data });
+      this.$store.commit("settingsStore/SHOW_CONFIRM_BOX", {
+        msg,
+        id,
+        type,
+        data,
+      });
     },
 
     cancelOrder(order) {
@@ -178,7 +184,12 @@ export default {
       const msg = `Are you sure you want to cancel this order by ${order.username}?`;
       const id = order._id;
       const type = "CancelledOrder";
-      this.$store.commit("SHOW_CONFIRM_BOX", { msg, id, type, data });
+      this.$store.commit("settingsStore/SHOW_CONFIRM_BOX", {
+        msg,
+        id,
+        type,
+        data,
+      });
     },
   },
   computed: {

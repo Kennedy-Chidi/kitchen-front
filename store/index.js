@@ -252,8 +252,6 @@ export const actions = {
       socket.emit("orderGoods", confirmData);
     } else if (confirmType == "CancelledOrder") {
       socket.emit("cancelOrder", confirmData);
-    } else if (confirmType == "ApproveOrder") {
-      socket.emit("approveOrder", confirmData);
     }
   },
 

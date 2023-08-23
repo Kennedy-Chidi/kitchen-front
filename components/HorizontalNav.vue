@@ -159,11 +159,6 @@ export default {
       }
     },
 
-    afterOrder(msg, status) {
-      this.$store.commit("HIDE_CONFIRM_BOX");
-      this.$store.commit("SHOW_ALERT_BOX", { msg, status });
-    },
-
     playFeedbackSound() {
       this.$refs.audioPlayer.play();
     },
@@ -173,21 +168,19 @@ export default {
     },
 
     userFeedback(data) {
-      if (data.status == 200) {
-        const status = false;
-        const msg = "Your order is being processed, we will call you shortly";
+      const status = data.status;
+      const msg = data.msg;
+      if (status) {
         this.$store.commit("productStore/CLEAR_CART");
         if (this.$route.name != "/dashboard/notifications") {
           this.$store.commit("INCREASE_NOTIFICATION");
         }
-        this.$store.commit("userStore/SET_TRANSACTIONS", data.transactions);
+        // this.$store.commit("userStore/SET_TRANSACTIONS", data.transactions);
         this.$store.commit("userStore/SET_NOTIFICATIONS", data.messages);
-        this.afterOrder(msg, status);
-      } else {
-        const status = true;
-        const msg = "We are sorry, no sales representative at your location";
-        this.afterOrder(msg, status);
       }
+      this.$store.commit("productStore/RESET_CART");
+      this.$store.commit("HIDE_CONFIRM_BOX");
+      this.$store.commit("SHOW_ALERT_BOX", { msg, status });
     },
 
     staffFeedback() {
