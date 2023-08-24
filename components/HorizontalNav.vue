@@ -209,8 +209,9 @@ export default {
     },
 
     userApprovedOrderFeedback(data) {
-      this.setUserUnreadNotifications(data.result.user);
+      this.setUserUnreadNotifications(this.user);
       this.$store.commit("userStore/SET_NOTIFICATIONS", data.messages);
+      this.$store.commit("userStore/SET_PROMOS", data.result.promos);
     },
 
     staffApprovedOrderFeedback(data) {
@@ -219,6 +220,7 @@ export default {
       this.$store.commit("settingsStore/HIDE_CONFIRM_BOX");
       this.$store.commit("settingsStore/SHOW_ALERT_BOX", { msg, status });
       this.$store.commit("settingsStore/SET_ORDERS", data.result.orders);
+      this.$store.commit("settingsStore/SET_PRODUCTS", data.result.products);
       this.$store.commit(
         "settingsStore/SET_TRANSACTIONS",
         data.result.transactions

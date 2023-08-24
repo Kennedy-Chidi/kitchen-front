@@ -11,6 +11,12 @@
         <div class="custom-container">
           <div class="body-flex">
             <div class="content-body">
+              <div class="nav-pag">
+                <nuxt-link to="/" class="home-txt">Home - </nuxt-link
+                ><nuxt-link to="/dashboard/transactions" class="page-txt"
+                  >Transactions</nuxt-link
+                >
+              </div>
               <div class="w-form">
                 <div class="transaction-table">
                   <div v-if="transactionProp.length == 0" class="nothing-div">
@@ -194,9 +200,8 @@ export default {
   },
   data() {
     return {
-      newLimit: 5,
       sort: "-time",
-      limit: 5,
+      limit: 10,
       resultLength: "",
       currentPage: 1,
       pages: function () {
@@ -293,7 +298,7 @@ export default {
     },
 
     async getTransactions() {
-      const query = `?limit=${this.limit}&page=${this.currentPage}&sort=${this.sort}&username=${this.user.username}${this.time}`;
+      const query = `?&status=true&limit=${this.limit}&page=${this.currentPage}&sort=${this.sort}&username=${this.user.username}${this.time}`;
       this.$store.dispatch("userStore/GET_TRANSACTIONS", query);
     },
   },

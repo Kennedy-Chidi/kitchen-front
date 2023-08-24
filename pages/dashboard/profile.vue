@@ -11,6 +11,12 @@
         <div class="custom-container">
           <div class="body-flex">
             <div class="content-body">
+              <div class="nav-pag">
+                <nuxt-link to="/" class="home-txt">Home - </nuxt-link
+                ><nuxt-link to="/dashboard/profile" class="page-txt"
+                  >Profile</nuxt-link
+                >
+              </div>
               <profile-setting />
               <div class="w-form">
                 <div class="profile-flex">

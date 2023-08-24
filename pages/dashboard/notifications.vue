@@ -11,6 +11,12 @@
         <div class="custom-container">
           <div class="body-flex">
             <div class="content-body">
+              <div class="nav-pag">
+                <nuxt-link to="/" class="home-txt">Home - </nuxt-link
+                ><nuxt-link to="/dashboard/notifications" class="page-txt"
+                  >Notifications</nuxt-link
+                >
+              </div>
               <div class="w-form">
                 <div class="transaction-table">
                   <div class="table notify">
@@ -95,7 +101,7 @@ import AlertConfirmation from "../../components/AlertConfirmation";
 import CartItems from "../../components/CartItems";
 import CompanyAds from "../../components/CompanyAds.vue";
 import FooterComponent from "../../components/FooterComponent";
-import HorizontalNav from "../../components/HorizontalNav.vue";
+import HorizontalNav from "../../components/HorizontalNav";
 import MobileBottomNav from "../../components/MobileBottomNav";
 import VerticalNav from "../../components/VerticalNav.vue";
 

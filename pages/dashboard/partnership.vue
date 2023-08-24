@@ -11,6 +11,12 @@
         <div class="custom-container">
           <div class="body-flex">
             <div class="content-body">
+              <div class="nav-pag">
+                <nuxt-link to="/" class="home-txt">Home - </nuxt-link
+                ><nuxt-link to="/dashboard/partnership" class="page-txt"
+                  >Partnership</nuxt-link
+                >
+              </div>
               <div class="w-form">
                 <form
                   id="email-form-2"
@@ -379,7 +385,7 @@ import AlertConfirmation from "../../components/AlertConfirmation.vue";
 import CartItems from "../../components/CartItems.vue";
 import CompanyAds from "../../components/CompanyAds.vue";
 import FooterComponent from "../../components/FooterComponent.vue";
-import HorizontalNav from "../../components/HorizontalNav.vue";
+import HorizontalNav from "../../components/HorizontalNav";
 import MobileBottomNav from "../../components/MobileBottomNav.vue";
 import VerticalNav from "../../components/VerticalNav.vue";
 export default {

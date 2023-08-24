@@ -531,7 +531,7 @@
                       <div
                         v-if="!onRequest"
                         class="custom-btn edge color"
-                        @click="processData"
+                        @click="resetCompany"
                       >
                         <div>Add Announcement</div>
                       </div>
@@ -938,7 +938,7 @@ export default {
 
     async resetCompany() {
       try {
-        await this.$axios.patch("/users/reset");
+        await this.$axios.post("/company/reset");
         this.showResponseMsg("All company data was reset successfully", false);
       } catch (err) {
         this.showResponseMsg(err.response.data.message, true);

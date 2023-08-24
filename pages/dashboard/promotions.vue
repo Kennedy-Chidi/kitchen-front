@@ -12,6 +12,12 @@
           <div class="custom-container">
             <div class="body-flex">
               <div class="content-body">
+                <div class="nav-pag">
+                  <nuxt-link to="/" class="home-txt">Home - </nuxt-link
+                  ><nuxt-link to="/dashboard/promotions" class="page-txt"
+                    >Promotions</nuxt-link
+                  >
+                </div>
                 <div class="w-form">
                   <div class="transaction-table">
                     <div class="table-head admin pro">
@@ -208,6 +214,10 @@ export default {
 
     resultLength() {
       return this.$store.state.userStore.promoLength;
+    },
+
+    user() {
+      return this.$store.state.auth.user;
     },
   },
 
