@@ -746,7 +746,14 @@ export const actions = {
       };
       socket.emit("purchaseGoods", confirmData);
     } else if (confirmType == "ApproveOrder") {
+      confirmData.time = new Date().getTime();
       socket.emit("approveOrder", confirmData);
+    } else if (confirmType == "CancelledOrder") {
+      const body = {
+        data: confirmData,
+        id: confirmId,
+      };
+      socket.emit("cancelOrder", body);
     }
   },
 
@@ -770,7 +777,6 @@ export const actions = {
       commit("SET_STAFFS", response.data.staffs);
       commit("SET_PRODUCTS", response.data.products);
       commit("SET_TRANSACTIONS", response.data.transactions);
-
       commit("SET_ORDERS", response.data.orders);
 
       // commit("SET_PROMOTIONS", response.data.promotions);

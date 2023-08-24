@@ -141,6 +141,7 @@
           </div>
         </div>
         <h3 class="slogan">...Nourishing Homes</h3>
+        <div id="sound"></div>
       </div>
     </div>
   </div>
@@ -159,10 +160,6 @@ export default {
       }
     },
 
-    playFeedbackSound() {
-      this.$refs.audioPlayer.play();
-    },
-
     pauseFeedbackSound() {
       this.$refs.audioPlayer.pause();
     },
@@ -170,23 +167,21 @@ export default {
     userFeedback(data) {
       const status = data.status;
       const msg = data.msg;
-      if (status) {
+      if (!status) {
         this.$store.commit("productStore/CLEAR_CART");
         if (this.$route.name != "/dashboard/notifications") {
           this.$store.commit("INCREASE_NOTIFICATION");
         }
         // this.$store.commit("userStore/SET_TRANSACTIONS", data.transactions);
         this.$store.commit("userStore/SET_NOTIFICATIONS", data.messages);
+        this.$store.commit("productStore/RESET_CART");
       }
-      this.$store.commit("productStore/RESET_CART");
       this.$store.commit("HIDE_CONFIRM_BOX");
       this.$store.commit("SHOW_ALERT_BOX", { msg, status });
     },
 
-    staffFeedback() {
-      if (this.$route.name !== "/dashboard/notifications") {
-        this.playFeedbackSound();
-      }
+    staffFeedback(data) {
+      this.$store.commit("settingsStore/SET_ORDERS", data.result.orders);
     },
 
     setUserUnreadNotifications(user) {
@@ -195,18 +190,39 @@ export default {
       } else {
         const form = { unreadMessages: 0 };
         const id = user._id;
-        const query = `limit-5&page=1&status=User&sort=-dateCreated`;
+        const query = `limit=10&page=1&status=User&sort=-dateCreated`;
         this.$store.dispatch("userStore/UPDATE_USER", { form, id, query });
       }
     },
 
     userCancelledOrderFeedback(data) {
-      this.setUserUnreadNotifications(data.user);
+      this.setUserUnreadNotifications(data.result.user);
       this.$store.commit("userStore/SET_NOTIFICATIONS", data.messages);
     },
 
     staffCancelledOrderFeedback(data) {
-      this.$store.commit("userStore/SET_ORDERS", data.orders);
+      const msg = data.msg;
+      const status = true;
+      this.$store.commit("settingsStore/SET_ORDERS", data.result.orders);
+      this.$store.commit("settingsStore/SHOW_ALERT_BOX", { msg, status });
+      this.$store.commit("settingsStore/HIDE_CONFIRM_BOX");
+    },
+
+    userApprovedOrderFeedback(data) {
+      this.setUserUnreadNotifications(data.result.user);
+      this.$store.commit("userStore/SET_NOTIFICATIONS", data.messages);
+    },
+
+    staffApprovedOrderFeedback(data) {
+      const msg = data.msg;
+      const status = false;
+      this.$store.commit("settingsStore/HIDE_CONFIRM_BOX");
+      this.$store.commit("settingsStore/SHOW_ALERT_BOX", { msg, status });
+      this.$store.commit("settingsStore/SET_ORDERS", data.result.orders);
+      this.$store.commit(
+        "settingsStore/SET_TRANSACTIONS",
+        data.result.transactions
+      );
     },
 
     async logout() {
@@ -228,17 +244,12 @@ export default {
         this.user.status == "Staff" &&
         data.salesRep.username == this.user.username
       ) {
-        this.staffFeedback();
+        this.staffFeedback(data);
       }
     });
 
     socket.on("cancelledOrder", (data) => {
-      this.$store.commit("HIDE_CONFIRM_BOX");
-
-      if (
-        this.user.status == "User" &&
-        this.user.username == data.user.username
-      ) {
+      if (this.user.status == "User" && this.user.username == data.username) {
         this.userCancelledOrderFeedback(data);
       } else if (
         this.user.status == "Staff" &&
@@ -259,6 +270,17 @@ export default {
           msg,
           status,
         });
+      }
+    });
+
+    socket.on("approvedOrder", (data) => {
+      if (this.user.status == "User" && this.user.username == data.username) {
+        this.userApprovedOrderFeedback(data);
+      } else if (
+        this.user.status == "Staff" &&
+        data.salesRep.username == this.user.username
+      ) {
+        this.staffApprovedOrderFeedback(data);
       }
     });
   },

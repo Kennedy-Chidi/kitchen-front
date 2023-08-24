@@ -82,7 +82,7 @@ export const actions = {
     const { form, id, query } = payload;
     try {
       const response = await this.$axios.patch(
-        `/users/update-user/${id}/${query}`,
+        `/users/update-user/${id}/?${query}`,
         form
       );
       commit("SET_USERS", response.data);
@@ -124,7 +124,6 @@ export const actions = {
 
   async GET_USER_PROPERTIES({ commit }) {
     const user = this.$auth.user;
-
     try {
       const response = await this.$axios.post(`/users/all/store`, user);
       commit("SET_TRANSACTIONS", await response.data.transactions);
