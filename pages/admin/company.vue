@@ -488,16 +488,13 @@ export default {
       this.bankAccountNumber = "";
       this.invoiceNumber = "";
       this.announcements = "";
-
+      this.referralPercentage = 0;
+      this.systemEmail = "";
       this.countryDefault = "Select Country";
       this.stateDefault = "Select State";
-      this.lgaDefault = "Select LGA";
-      this.unitDefault = "Select Unit";
-      this.isAllChecked = false;
-      this.selectedCompanies = [];
 
-      this.media = "";
-      this.contact = "";
+      this.media = [];
+      this.contact = [];
       this.editingId = "";
       this.isEditing = false;
     },
@@ -625,6 +622,8 @@ export default {
         systemEmail: this.systemEmail,
         referralPercentage: this.referralPercentage,
         announcements: this.announcements,
+        media: this.media,
+        contact: this.contact,
       };
 
       this.onRequest = true;

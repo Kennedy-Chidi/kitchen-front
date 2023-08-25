@@ -166,6 +166,8 @@ export default {
     CartItems,
     CopyReferral,
   },
+
+  computed: {},
 };
 </script>
 

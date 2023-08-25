@@ -580,6 +580,8 @@ export const mutations = {
       items.push(companies.results[x]);
     }
     state.companyArray = items;
+    state.selectedCompanies = [];
+    state.isCompanyChecked = false;
   },
 
   TOGGLE_COMPANY(state, int) {
@@ -630,7 +632,7 @@ export const actions = {
   async CREATE_COMPANY({ commit }, form) {
     try {
       const response = await this.$axios.post("/company", form);
-      commit("SET_COMPANY_ARRAY", result.data.data);
+      commit("SET_COMPANY", result.data.data);
       return response;
     } catch (error) {
       return error;
@@ -641,7 +643,7 @@ export const actions = {
     const { form, id } = payload;
     try {
       const response = await this.$axios.patch(`/company/${id}`, form);
-      commit("SET_COMPANY_ARRAY", response.data.data);
+      commit("SET_COMPANY", response.data.data);
       return response;
     } catch (error) {
       return error;

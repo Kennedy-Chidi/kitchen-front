@@ -1,5 +1,6 @@
 export const state = () => ({
   initials: false,
+  company: "",
 
   notices: [],
   noticeLength: 0,
@@ -17,6 +18,11 @@ export const getters = {};
 export const mutations = {
   ON_INITIAL(state) {
     state.initials = true;
+  },
+
+  SET_COMPANY(state, company) {
+    console.log(company);
+    state.company = company;
   },
 
   SET_NOTIFICATIONS(state, messages) {
@@ -150,9 +156,8 @@ export const actions = {
       commit("ON_INITIAL");
       commit("SET_NOTIFICATIONS", response.data.messages);
       commit("SET_PROMOS", response.data.promos);
-      commit("SET_ORDERS", response.data.orders);
-      commit("SET_USERS", response.data.users);
-      commit("SET_STAFFS", response.data.staffs);
+      commit("SET_COMPANY", response.data.company);
+      // commit("SET_SALES", response.data.sales);
       // commit("SET_SALES", response.data.sales);
     } catch (err) {
       // console.log(err?.response?.data);

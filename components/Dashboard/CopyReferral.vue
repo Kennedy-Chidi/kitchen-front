@@ -33,12 +33,15 @@ export default {
     },
   },
   mounted() {
-    this.copiedValue = `?ref=${this.user.username}`;
+    this.copiedValue = `${this.company.companyDomain}/?ref=${this.user.username}`;
   },
 
   computed: {
     user() {
       return this.$store.state.auth.user;
+    },
+    company() {
+      return this.$store.state.userStore.company;
     },
   },
 };
