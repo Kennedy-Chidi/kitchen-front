@@ -65,15 +65,7 @@
       </div>
       <div>Promotions</div></nuxt-link
     >
-    <nuxt-link
-      to="/dashboard/partnership"
-      class="flex-link w-inline-block"
-      :class="{ active: route == 'dashboard-partnership' }"
-      ><div class="icon-wrap">
-        <i class="material-symbols-outlined green">partner_exchange</i>
-      </div>
-      <div>Partnership</div></nuxt-link
-    >
+
     <nuxt-link
       to="/dashboard/referrals"
       class="flex-link w-inline-block"
@@ -83,7 +75,15 @@
       </div>
       <div>Referrals</div></nuxt-link
     >
-
+    <nuxt-link
+      to="/dashboard/partnership"
+      class="flex-link w-inline-block"
+      :class="{ active: route == 'dashboard-partnership' }"
+      ><div class="icon-wrap">
+        <i class="material-symbols-outlined green">partner_exchange</i>
+      </div>
+      <div>Partnership</div></nuxt-link
+    >
     <span @click="logout" class="flex-link w-inline-block"
       ><div class="icon-wrap">
         <i class="material-symbols-outlined green">logout</i>

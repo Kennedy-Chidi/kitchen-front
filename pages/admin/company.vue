@@ -57,9 +57,9 @@
                       <div class="tb-image ban"><div>Account</div></div>
                       <div class="c20 ban"><div>Country</div></div>
                       <div class="c20 ban"><div>State</div></div>
-                      <div class="c20 ban"><div>LGA</div></div>
-                      <div class="c20 ban"><div>Unit</div></div>
-                      <div class="tb-image ban"><div>Phone</div></div>
+                      <div class="c20 ban"><div>System Email</div></div>
+                      <div class="c20 ban"><div>Referral</div></div>
+                      <div class="tb-image ban"><div>Phone Number</div></div>
                     </div>
                     <div
                       v-for="(company, int) in companyArray"
@@ -72,7 +72,7 @@
                         <div @click="toggleCompanyCheck(int)" class="check-box">
                           <div
                             class="check"
-                            :class="{ active: company.check }"
+                            :class="{ active: company.checked }"
                           ></div>
                         </div>
                       </div>
@@ -92,13 +92,13 @@
                         <div>{{ company.state }}</div>
                       </div>
                       <div class="c20 ban">
-                        <div class="inner-label">LGA:</div>
-                        <div>{{ company.lga }}</div>
+                        <div class="inner-label">Email:</div>
+                        <div>{{ company.systemEmail }}</div>
                       </div>
                       <div class="c20 ban">
-                        <div class="inner-label">Unit:</div>
+                        <div class="inner-label">Referral:</div>
                         <div class="pro-cart">
-                          <div>{{ company.unit }}</div>
+                          <div>{{ company.referralPercentage }}</div>
                         </div>
                       </div>
                       <div v-if="company.contact[2]" class="tb-image ban act">
@@ -145,24 +145,19 @@
                       ></div>
                     </div>
                     <div class="actions-foot">
-                      <img
-                        src="/images/copy-icon.svg"
-                        loading="lazy"
-                        alt=""
-                        class="action-icons"
+                      <i
                         @click="duplicateCompany()"
-                      /><img
+                        class="material-symbols-outlined orange action-icons"
+                        >content_copy</i
+                      >
+                      <i
                         @click="prepareEditCompany()"
-                        src="/images/edit-icon.svg"
-                        loading="lazy"
-                        alt=""
-                        class="action-icons"
-                      /><img
-                        src="/images/delete-icon.svg"
-                        loading="lazy"
-                        alt=""
-                        class="action-icons h"
-                      />
+                        class="material-symbols-outlined orange action-icons"
+                        >edit</i
+                      >
+                      <i class="material-symbols-outlined orange action-icons"
+                        >delete</i
+                      >
                     </div>
                   </div>
 
@@ -186,8 +181,8 @@
                       />
                     </div>
                     <div class="each-input part">
-                      <label for="name-18" class="label">System Email</label
-                      ><input
+                      <label for="name-18" class="label">System Email</label>
+                      <input
                         type="text"
                         class="custom-input w-input"
                         v-model="systemEmail"
@@ -195,18 +190,16 @@
                       />
                     </div>
                     <div class="each-input half pad">
+                      <label for="name-18" class="label">Select Country</label>
                       <div class="table-filter part">
                         <div
                           class="tb-filter-head"
                           @click="showCountryList = !showCountryList"
                         >
                           <div>{{ countryDefault }}</div>
-                          <img
-                            src="/images/caret-down-icon.svg"
-                            loading="lazy"
-                            alt=""
-                            class="filter-icon left"
-                          />
+                          <i class="material-symbols-outlined orange right"
+                            >expand_more</i
+                          >
                         </div>
                         <ul
                           role="list"
@@ -225,18 +218,16 @@
                       </div>
                     </div>
                     <div class="each-input half pad">
+                      <label for="name-18" class="label">Select State</label>
                       <div class="table-filter part">
                         <div
                           class="tb-filter-head"
                           @click="showStateList = !showStateList"
                         >
                           <div>{{ stateDefault }}</div>
-                          <img
-                            src="/images/caret-down-icon.svg"
-                            loading="lazy"
-                            alt=""
-                            class="filter-icon left"
-                          />
+                          <i class="material-symbols-outlined orange right"
+                            >expand_more</i
+                          >
                         </div>
                         <ul
                           role="list"
@@ -250,67 +241,6 @@
                             class="tb-list"
                           >
                             <div>{{ state.name }}</div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="each-input half pad">
-                      <div class="table-filter part">
-                        <div
-                          class="tb-filter-head"
-                          @click="showLGAList = !showLGAList"
-                        >
-                          <div>{{ lgaDefault }}</div>
-                          <img
-                            src="/images/caret-down-icon.svg"
-                            loading="lazy"
-                            alt=""
-                            class="filter-icon left"
-                          />
-                        </div>
-                        <ul
-                          role="list"
-                          class="tb-filter-list"
-                          :class="{ active: showLGAList }"
-                        >
-                          <li
-                            @click="selectLGA(lga)"
-                            v-for="lga in lgas"
-                            :key="lga._id"
-                            class="tb-list"
-                          >
-                            <div>{{ lga.name }}</div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-
-                    <div class="each-input half pad">
-                      <div class="table-filter part">
-                        <div
-                          class="tb-filter-head"
-                          @click="showUnitList = !showUnitList"
-                        >
-                          <div>{{ unitDefault }}</div>
-                          <img
-                            src="/images/caret-down-icon.svg"
-                            loading="lazy"
-                            alt=""
-                            class="filter-icon left"
-                          />
-                        </div>
-                        <ul
-                          role="list"
-                          class="tb-filter-list"
-                          :class="{ active: showUnitList }"
-                        >
-                          <li
-                            @click="selectUnit(unit)"
-                            v-for="unit in units"
-                            :key="unit"
-                            class="tb-list"
-                          >
-                            <div>{{ unit }}</div>
                           </li>
                         </ul>
                       </div>
@@ -351,142 +281,61 @@
                         placeholder="Enter Invoice Number"
                       />
                     </div>
+                    <div class="each-input part">
+                      <label for="name-18" class="label"
+                        >Referral Percentage</label
+                      ><input
+                        type="number"
+                        class="custom-input w-input"
+                        v-model="referralPercentage"
+                        placeholder="Enter Referral Percentage"
+                      />
+                    </div>
 
                     <div class="each-input part">
-                      <div
-                        v-for="(item, int) in media"
-                        :key="int"
-                        class="media-list b"
+                      <label for="name-18" class="label"
+                        >Social Media Links</label
                       >
-                        <img
-                          :src="item.url"
-                          loading="lazy"
-                          alt=""
-                          class="media-icon b"
-                        />
-                        <div>{{ item.text }}</div>
-                        <img
-                          src="/images/edit-icon.svg"
-                          loading="lazy"
-                          alt=""
-                          class="media-icon"
-                          @click="editList('media', item, int)"
-                        /><img
-                          src="/images/delete-icon.svg"
-                          loading="lazy"
-                          alt=""
-                          class="media-icon h"
-                          @click="removeList('media', int)"
-                        />
-                      </div>
 
+                      <div class="flex-span">
+                        <span
+                          v-for="(item, int) in media"
+                          :key="int"
+                          class="media-list b"
+                        >
+                          <div>{{ item }}</div>
+                        </span>
+                      </div>
                       <div class="color-flex">
-                        <label for="media" class="color-input">
-                          <input
-                            type="file"
-                            class="hidden w-input"
-                            id="media"
-                            @change="setIcon($event, 'media')"
-                          /><img
-                            src="/images/yellow-upload-icon.svg"
-                            loading="lazy"
-                            alt=""
-                            class="icon"
-                          />
-                        </label>
                         <input
                           type="text"
                           class="custom-input w-input"
                           v-model="mediaInput"
-                          placeholder="Enter Social Media"
-                          @focusout="
-                            processIconText(
-                              mediaInput,
-                              mediaFile,
-                              mediaUrl,
-                              mediaEditingIndex,
-                              media
-                            )
-                          "
-                          @keypress.enter="
-                            processIconText(
-                              mediaInput,
-                              mediaFile,
-                              mediaUrl,
-                              mediaEditingIndex,
-                              media
-                            )
-                          "
+                          placeholder="Enter Social Media Links"
+                          @keypress.enter="addMedia"
                         />
                       </div>
                     </div>
 
                     <div class="each-input part">
-                      <div
-                        v-for="(item, int) in contact"
-                        :key="int"
-                        class="media-list b"
-                      >
-                        <img
-                          :src="item.url"
-                          loading="lazy"
-                          alt=""
-                          class="media-icon b"
-                        />
-                        <div>{{ item.text }}</div>
-                        <img
-                          src="/images/edit-icon.svg"
-                          loading="lazy"
-                          alt=""
-                          class="media-icon"
-                          @click="editList('contact', item, int)"
-                        />
-                        <img
-                          src="/images/delete-icon.svg"
-                          loading="lazy"
-                          alt=""
-                          class="media-icon h"
-                          @click="removeList('contact', int)"
-                        />
+                      <label for="name-18" class="label">Contact Info</label>
+                      <div class="flex-span">
+                        <span
+                          v-for="(item, int) in contact"
+                          :key="int"
+                          class="media-list b"
+                        >
+                          <div>{{ item }}</div>
+                        </span>
                       </div>
 
                       <div class="color-flex">
-                        <label for="contact" class="color-input">
-                          <input
-                            type="file"
-                            class="hidden w-input"
-                            id="contact"
-                            @change="setIcon($event, 'contact')"
-                          /><img
-                            src="/images/yellow-upload-icon.svg"
-                            loading="lazy"
-                            alt=""
-                            class="icon"
-                          />
-                        </label>
                         <input
                           type="text"
                           class="custom-input w-input"
                           v-model="contactInput"
                           placeholder="Enter Social Contact"
-                          @focusout="
-                            processIconText(
-                              contactInput,
-                              contactFile,
-                              contactUrl,
-                              contactEditingIndex,
-                              contact
-                            )
-                          "
-                          @keypress.enter="
-                            processIconText(
-                              contactInput,
-                              contactFile,
-                              contactUrl,
-                              contactEditingIndex,
-                              contact
-                            )
-                          "
+                          @keypress.enter="addContact"
                         />
                       </div>
                     </div>
@@ -519,19 +368,16 @@
                     </div>
                     <div class="btn-holder">
                       <div v-if="onRequest" class="custom-btn edge">
-                        <img
-                          src="/images/spinning-icon.svg"
-                          loading="lazy"
-                          alt=""
-                          class="btn-icon spinner"
-                        />
+                        <i class="material-symbols-outlined spinner white"
+                          >expand_more</i
+                        >
                         <div>Processing</div>
                       </div>
 
                       <div
                         v-if="!onRequest"
                         class="custom-btn edge color"
-                        @click="resetCompany"
+                        @click="addAnnouncement"
                       >
                         <div>Add Announcement</div>
                       </div>
@@ -582,16 +428,14 @@ export default {
     CompanyAds,
     AlertConfirmation,
   },
+
   data() {
     return {
       countryDefault: "Select Country",
       stateDefault: "Select State",
-      lgaDefault: "Select LGA",
-      unitDefault: "Select Unit",
+
       media: [],
-      coloredMedia: [],
       contact: [],
-      coloredContact: [],
       companyName: "",
       companyDomain: "",
       announcements: [],
@@ -599,23 +443,16 @@ export default {
       bankName: "",
       bankAccountName: "",
       bankAccountNumber: "",
-      invoiceNumber: "",
+      invoiceNumber: 0,
       systemEmail: "",
+      referralPercentage: 0,
 
       mediaInput: "",
-      mediaFile: "",
-      mediaUrl: "",
-      mediaEditingIndex: "",
-
       contactInput: "",
-      contactFile: "",
-      contactUrl: "",
-      contactEditingIndex: "",
 
       isEditing: false,
       editingId: "",
       editingIndex: "",
-      isAllChecked: false,
 
       response: "",
       isError: false,
@@ -628,14 +465,6 @@ export default {
 
       showStateList: false,
       selectedState: "",
-
-      showLGAList: false,
-      selectedLGA: "",
-
-      showUnitList: false,
-      selectedUnit: "",
-
-      uuid: "",
     };
   },
 
@@ -673,75 +502,14 @@ export default {
       this.isEditing = false;
     },
 
-    processIconText(input, file, url, int, array) {
-      if (file === "") {
-        this.showAlertBox("Please select an image", true);
-        return;
-      }
-      const form = {
-        icon: "",
-        text: "",
-        url: "",
-      };
-      form.icon = file;
-      form.text = input;
-      form.url = url;
-
-      if (int === "") {
-        array.push(form);
-      } else {
-        array[int] = form;
-      }
-
-      this.mediaInput = "";
-      this.mediaFile = "";
-      this.mediaEditingIndex = "";
+    addContact() {
+      this.contact.push(this.contactInput);
       this.contactInput = "";
-      this.contactFile = "";
-      this.contactEditingIndex = "";
     },
 
-    setIcon(e, type) {
-      const file = e.target.files[0];
-      const reader = new FileReader();
-      reader.addEventListener("load", () => {
-        if (type == "media") {
-          this.mediaFile = file;
-          this.mediaUrl = reader.result;
-        } else if (type == "contact") {
-          this.contactFile = file;
-          this.contactUrl = reader.result;
-        }
-      });
-      reader.readAsDataURL(file);
-    },
-
-    editList(type, item, index) {
-      if (type == "media") {
-        this.mediaEditingIndex = index;
-        this.mediaInput = item.text;
-        this.mediaUrl = item.url;
-        this.mediaFile = item.icon;
-      } else if (type == "contact") {
-        this.contactEditingIndex = index;
-        this.contactInput = item.text;
-        this.contactUrl = item.url;
-        this.contactFile = item.icon;
-      }
-    },
-
-    removeList(type, index) {
-      if (type == "media") {
-        this.media.splice(index, 1);
-      } else if (type == "coloredMedia") {
-        this.coloredMedia.splice(index, 1);
-      } else if (type == "contact") {
-        this.coloredContact.splice(index, 1);
-      } else if (type == "coloredContact") {
-        this.coloredContact.splice(index, 1);
-      } else if (type == "announcements") {
-        this.announcements.splice(index, 1);
-      }
+    addMedia() {
+      this.media.push(this.mediaInput);
+      this.mediaInput = "";
     },
 
     addAnnouncement() {
@@ -749,30 +517,16 @@ export default {
       this.announcement = "";
     },
 
-    setImgUrl() {
-      var file = event.target.files[0];
-      var reader = new FileReader();
-
-      reader.onload = function (e) {
-        var previewImage = document.getElementById("previewImage");
-        previewImage.src = e.target.result;
-        previewImage.style.display = "block";
-      };
-
-      reader.readAsDataURL(file);
-    },
-
     showAlertBox(msg, status) {
       this.$store.commit("SHOW_ALERT_BOX", { msg, status });
     },
 
     toggleCompanyCheck(int) {
-      this.$store.commit("companyStore/TOGGLE_COMPANY", int);
+      this.$store.commit("settingsStore/TOGGLE_COMPANY", int);
     },
 
     selectAll() {
-      this.isAllChecked = !this.isAllChecked;
-      this.$store.commit("companyStore/CHECK_ALL_COMPANY", this.isAllChecked);
+      this.$store.commit("settingsStore/CHECK_ALL_COMPANY", this.isAllChecked);
     },
 
     async selectCountry(country) {
@@ -793,33 +547,6 @@ export default {
     async selectState(state) {
       this.showStateList = !this.showStateList;
       this.stateDefault = state.name;
-      this.lgaDefault = "Select LGA";
-      this.unitDefault = "Select Unit";
-      const query = `?limit=40&state=${state.name}`;
-      const lgas = state.lga;
-
-      await this.$store.dispatch("SET_LGA", {
-        query,
-        lgas,
-      });
-    },
-
-    async selectLGA(lga) {
-      this.showLGAList = !this.showLGAList;
-      this.lgaDefault = lga.name;
-      this.unitDefault = "Select Unit";
-      const query = `?limit=40&lga=${lga.name}`;
-      const units = lga.units;
-
-      await this.$store.dispatch("SET_UNIT", {
-        query,
-        units,
-      });
-    },
-
-    async selectUnit(unit) {
-      this.showUnitList = !this.showUnitList;
-      this.unitDefault = unit;
     },
 
     setCompanyData(newCompany) {
@@ -827,8 +554,6 @@ export default {
       this.companyDomain = newCompany.companyDomain;
       this.countryDefault = newCompany.country;
       this.stateDefault = newCompany.state;
-      this.lgaDefault = newCompany.lga;
-      this.unitDefault = newCompany.unit;
       this.bankName = newCompany.bankName;
       this.bankAccountName = newCompany.bankAccountName;
       this.bankAccountNumber = newCompany.bankAccountNumber;
@@ -837,6 +562,7 @@ export default {
       this.contact = newCompany.contact;
       this.announcements = newCompany.announcements;
       this.systemEmail = newCompany.systemEmail;
+      this.referralPercentage = newCompany.referralPercentage;
     },
 
     prepareEditCompany() {
@@ -881,39 +607,27 @@ export default {
     },
 
     async processData() {
-      this.onRequest = true;
-
       // if (response.status == 200) {
       //   this.showAlertBox("The company was set successfully", false);
       // } else {
       //   this.showResponseMsg(response.response.data.message, true);
       // }
 
-      const form = new FormData();
-      form.append("companyName", this.companyName);
-      form.append("companyDomain", this.companyDomain);
-      form.append("bankName", this.bankName);
-      form.append("bankAccountName", this.bankAccountName);
-      form.append("bankAccountNumber", this.bankAccountNumber);
-      form.append("invoiceNumber", this.invoiceNumber);
+      const form = {
+        companyName: this.companyName,
+        companyDomain: this.companyDomain,
+        bankName: this.bankName,
+        bankAccountName: this.bankAccountName,
+        bankAccountNumber: this.bankAccountNumber,
+        invoiceNumber: this.invoiceNumber,
+        country: this.countryDefault,
+        state: this.stateDefault,
+        systemEmail: this.systemEmail,
+        referralPercentage: this.referralPercentage,
+        announcements: this.announcements,
+      };
 
-      form.append("country", this.countryDefault);
-      form.append("state", this.stateDefault);
-      form.append("lga", this.lgaDefault);
-      form.append("unit", this.unitDefault);
-
-      this.announcements.forEach((el) => {
-        form.append("announcements", el);
-      });
-      this.media.forEach((el) => {
-        form.append("mediaText", el.text);
-        form.append("mediaIcon", el.icon);
-      });
-      this.contact.forEach((el) => {
-        form.append("contactText", el.text);
-        form.append("contactIcon", el.icon);
-      });
-
+      this.onRequest = true;
       if (this.isEditing) {
         this.updateCompany(form);
       } else {
@@ -948,7 +662,7 @@ export default {
     async updateCompany(form) {
       const id = this.editingId;
       const response = await this.$store.dispatch(
-        "companyStore/UPDATE_COMPANY",
+        "settingsStore/UPDATE_COMPANY",
         { form, id }
       );
       this.checkResponse(response);
@@ -956,43 +670,37 @@ export default {
 
     async createCompany(form) {
       const response = await this.$store.dispatch(
-        "companyStore/CREATE_COMPANY",
+        "settingsStore/CREATE_COMPANY",
         form
       );
       this.checkResponse(response);
     },
   },
 
-  async asyncData({ store }) {
-    await store.dispatch("companyStore/nuxtServerInit");
-  },
-
   computed: {
     countries() {
       return this.$store.state.countries;
     },
+
     states() {
       return this.$store.state.stateArray;
     },
 
-    lgas() {
-      return this.$store.state.lgas;
-    },
-
-    units() {
-      return this.$store.state.units;
-    },
-
     companyArray() {
-      return this.$store.state.companyStore.companyArray;
+      return this.$store.state.settingsStore.companyArray;
     },
-    selectedCompanies() {
-      return this.$store.state.companyStore.selectedCompanies;
-    },
-  },
 
-  mounted() {
-    // this.getCompany();
+    resultLength() {
+      return this.$store.state.settingsStore.companyLength;
+    },
+
+    selectedCompanies() {
+      return this.$store.state.settingsStore.selectedCompanies;
+    },
+
+    isAllChecked() {
+      return this.$store.state.settingsStore.isCompanyChecked;
+    },
   },
 };
 </script>

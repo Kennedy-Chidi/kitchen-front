@@ -20,26 +20,7 @@
                 </div>
                 <div class="w-form">
                   <div class="transaction-table">
-                    <div class="table-head admin pro">
-                      <div class="order-price link">
-                        Copy and Send your Referral Link
-                      </div>
-                      <div class="newsletter-wrap pro">
-                        <input
-                          type="text"
-                          class="newsletter-input link w-input"
-                          maxlength="256"
-                          name="link-2"
-                          data-name="Link 2"
-                          placeholder="kitchengrace.io?username=Kenny"
-                          id="link-2"
-                        />
-                        <i
-                          class="material-symbols-outlined orange newsletter-img"
-                          >content_copy</i
-                        >
-                      </div>
-                    </div>
+                    <copy-referral />
                     <div class="table">
                       <div class="table-head-row">
                         <div class="tb-sn"><div>S/N</div></div>
@@ -158,6 +139,7 @@ import AlertBox from "../../components/AlertBox.vue";
 import AlertConfirmation from "../../components/AlertConfirmation.vue";
 import CartItems from "../../components/CartItems.vue";
 import CompanyAds from "../../components/CompanyAds.vue";
+import CopyReferral from "../../components/Dashboard/CopyReferral.vue";
 import FooterComponent from "../../components/FooterComponent.vue";
 import HorizontalNav from "../../components/HorizontalNav";
 import MobileBottomNav from "../../components/MobileBottomNav.vue";
@@ -230,6 +212,7 @@ export default {
     CartItems,
     FooterComponent,
     MobileBottomNav,
+    CopyReferral,
   },
 };
 </script>

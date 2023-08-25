@@ -18,36 +18,8 @@
                 >
               </div>
               <div class="w-form">
-                <form
-                  id="email-form-2"
-                  name="email-form-2"
-                  data-name="Email Form 2"
-                  method="get"
-                  class="transaction-table"
-                  data-wf-page-id="64b6be9c94ade9f930694692"
-                  data-wf-element-id="35f48e6a-e296-1679-fbdb-a57132e43173"
-                >
-                  <div class="table-head admin pro">
-                    <div class="order-price link">
-                      Copy and Send your Referral Link
-                    </div>
-                    <div class="newsletter-wrap pro">
-                      <input
-                        type="text"
-                        class="newsletter-input link w-input"
-                        maxlength="256"
-                        name="link"
-                        data-name="link"
-                        placeholder="kitchengrace.io?username=Kenny"
-                        id="link"
-                      /><img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b92e5ec6f83ddafd16c20a_copy.svg"
-                        loading="lazy"
-                        alt=""
-                        class="newsletter-img"
-                      />
-                    </div>
-                  </div>
+                <div class="transaction-table">
+                  <copy-referral />
                   <div class="table">
                     <div class="table-head-row">
                       <div class="tb-sn"><div>S/N</div></div>
@@ -160,14 +132,6 @@
                       </ul>
                     </div>
                   </div>
-                </form>
-                <div class="w-form-done">
-                  <div>Thank you! Your submission has been received!</div>
-                </div>
-                <div class="w-form-fail">
-                  <div>
-                    Oops! Something went wrong while submitting the form.
-                  </div>
                 </div>
               </div>
             </div>
@@ -185,6 +149,7 @@ import AlertBox from "../../components/AlertBox.vue";
 import AlertConfirmation from "../../components/AlertConfirmation.vue";
 import CartItems from "../../components/CartItems.vue";
 import CompanyAds from "../../components/CompanyAds.vue";
+import CopyReferral from "../../components/Dashboard/CopyReferral.vue";
 import FooterComponent from "../../components/FooterComponent.vue";
 import HorizontalNav from "../../components/HorizontalNav";
 import MobileBottomNav from "../../components/MobileBottomNav.vue";
@@ -199,6 +164,7 @@ export default {
     AlertBox,
     AlertConfirmation,
     CartItems,
+    CopyReferral,
   },
 };
 </script>

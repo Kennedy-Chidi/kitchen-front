@@ -1,4 +1,8 @@
 export const state = () => ({
+  companyArray: [],
+  companyLength: 0,
+  selectedCompanies: [],
+  isCompanyChecked: false,
   initials: false,
 
   selectedPromotions: [],
@@ -567,9 +571,83 @@ export const mutations = {
     state.alertMsg = "";
     state.alertStatus = false;
   },
+
+  SET_COMPANY(state, companies) {
+    state.companyLength = companies.length;
+    const items = [];
+    for (let x = 0; x < companies.results.length; x++) {
+      companies.results[x].checked = false;
+      items.push(companies.results[x]);
+    }
+    state.companyArray = items;
+  },
+
+  TOGGLE_COMPANY(state, int) {
+    state.companyArray[int].checked = !state.companyArray[int].checked;
+
+    const company = state.companyArray[int];
+    const exists = state.selectedCompanies.some(
+      (obj) => obj._id === company._id
+    );
+    if (!exists) {
+      state.selectedCompanies.push(company);
+      if (state.selectedCompanies.length == state.companyArray.length) {
+        state.isCompanyChecked = true;
+      }
+    } else {
+      state.selectedCompanies = state.selectedCompanies.filter(
+        (obj) => obj._id !== company._id
+      );
+      if (state.selectedCompanies.length == 0) {
+        state.isCompanyChecked = false;
+        state.selectedCompanies = [];
+      }
+    }
+  },
+
+  CHECK_ALL_COMPANY(state, checked) {
+    const newArray = [];
+    state.isCompanyChecked = !state.isCompanyChecked;
+    if (state.isCompanyChecked) {
+      state.companyArray.forEach((el) => {
+        el.checked = true;
+        newArray.push(el);
+      });
+      state.selectedCompanies = state.companyArray;
+    } else {
+      state.companyArray.forEach((el) => {
+        el.checked = false;
+        newArray.push(el);
+      });
+      state.selectedCompanies = [];
+    }
+
+    state.companyArray = newArray;
+  },
 };
 
 export const actions = {
+  async CREATE_COMPANY({ commit }, form) {
+    try {
+      const response = await this.$axios.post("/company", form);
+      commit("SET_COMPANY_ARRAY", result.data.data);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  },
+
+  async UPDATE_COMPANY({ commit }, payload) {
+    const { form, id } = payload;
+    try {
+      const response = await this.$axios.patch(`/company/${id}`, form);
+      commit("SET_COMPANY_ARRAY", response.data.data);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  },
+
   async CREATE_NOTIFICATION({ commit }, payload) {
     const { query, form } = payload;
     try {
@@ -778,6 +856,7 @@ export const actions = {
       commit("SET_PRODUCTS", response.data.products);
       commit("SET_TRANSACTIONS", response.data.transactions);
       commit("SET_ORDERS", response.data.orders);
+      commit("SET_COMPANY", response.data.companies);
 
       // commit("SET_PROMOTIONS", response.data.promotions);
       // commit("SET_SALES", response.data.sales);
@@ -807,6 +886,7 @@ export const actions = {
       commit("SET_PRODUCTS", response.data.products);
       commit("SET_TRANSACTIONS", response.data.transactions);
       commit("SET_ORDERS", response.data.orders);
+      commit("SET_COMPANY", response.data.companies);
       // commit("SET_PROMOTIONS", response.data.promotions);
       // commit("SET_SALES", response.data.sales);
     } catch (err) {

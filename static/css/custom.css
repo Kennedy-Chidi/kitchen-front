@@ -113,6 +113,17 @@
   color: #fc9135;
 }
 
+span.media-list.b {
+  cursor: pointer;
+  padding: 1px 3px;
+  background: ghostwhite;
+  margin-right: 5px;
+}
+
+.flex-span {
+  display: flex;
+}
+
 .navigation-cover.active {
   z-index: 99999;
 }
