@@ -44,42 +44,51 @@
                       <div class="c20 ban"><div>Subtitle</div></div>
                     </div>
 
-                    <div class="table-head-row body">
+                    <div
+                      v-for="(banner, int) in banners"
+                      :key="int"
+                      class="table-head-row body"
+                    >
                       <div class="tb-sn ban">
                         <div class="inner-label">S/N:</div>
-                        <div>1</div>
-                        <div class="check-box"><div class="check"></div></div>
+                        <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
+                        <div @click="toggleBanner(int)" class="check-box">
+                          <div
+                            class="check"
+                            :class="{ active: banner.checked }"
+                          ></div>
+                        </div>
                       </div>
                       <div class="tb-image ban">
                         <div class="inner-label">Image:</div>
                         <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b79b7b42421ae3cbdb6ff8_ceo.png"
+                          :src="banner.bannerImageUrl"
                           loading="lazy"
                           sizes="110px"
-                          srcset="
-                            https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b79b7b42421ae3cbdb6ff8_ceo-p-500.png 500w,
-                            https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b79b7b42421ae3cbdb6ff8_ceo-p-800.png 800w,
-                            https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b79b7b42421ae3cbdb6ff8_ceo.png       953w
-                          "
+                          :srcset="`
+                            ${banner.bannerImageUrl} 500w,
+                            ${banner.bannerImageUrl} 800w,
+                            ${banner.bannerImageUrl}       953w
+                          `"
                           alt=""
                           class="item-img"
                         />
                       </div>
                       <div class="c30 ban">
                         <div class="inner-label">Page:</div>
-                        <div>Gino Tomato</div>
+                        <div>{{ banner.bannerPage }}</div>
                       </div>
                       <div class="c20 ban">
                         <div class="inner-label">Intro:</div>
-                        <div>N45,000</div>
+                        <div>{{ banner.bannerIntro }}</div>
                       </div>
                       <div class="c20 ban">
                         <div class="inner-label">Title:</div>
-                        <div>N45,000</div>
+                        <div>{{ banner.bannerTitle }}</div>
                       </div>
                       <div class="c20 ban">
                         <div class="inner-label">Subtitle:</div>
-                        <div>N45,000</div>
+                        <div>{{ banner.bannerSubtitle }}</div>
                       </div>
                     </div>
 
@@ -122,25 +131,30 @@
                       </ul>
                     </div>
                   </div>
+
                   <div class="table-head foot">
-                    <div class="check-box all"><div class="check"></div></div>
+                    <div @click="checkAllBanner" class="check-box all">
+                      <div
+                        class="check"
+                        :class="{ active: isAllChecked }"
+                      ></div>
+                    </div>
                     <div class="actions-foot">
-                      <img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b92e5ec6f83ddafd16c20a_copy.svg"
-                        loading="lazy"
-                        alt=""
-                        class="action-icons"
-                      /><img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b8e29972782f01aa826a75_edit.svg"
-                        loading="lazy"
-                        alt=""
-                        class="action-icons"
-                      /><img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b84d212e330d5af9503296_delete.svg"
-                        loading="lazy"
-                        alt=""
-                        class="action-icons h"
-                      />
+                      <i
+                        @click="duplicateBanner"
+                        class="material-symbols-outlined orange action-icons"
+                        >content_copy</i
+                      >
+
+                      <i
+                        @click="prepareBannerEdit"
+                        class="material-symbols-outlined orange action-icons"
+                        >edit</i
+                      >
+
+                      <i class="material-symbols-outlined orange action-icons"
+                        >delete</i
+                      >
                     </div>
                   </div>
 
@@ -150,66 +164,64 @@
                       ><input
                         type="text"
                         class="custom-input w-input"
-                        maxlength="256"
-                        name="name-14"
-                        data-name="Name 14"
-                        placeholder="Enter First Name"
-                        id="name-14"
+                        v-model="bannerTitle"
+                        placeholder="Enter Banner Title"
                       />
                     </div>
                     <div class="each-input part">
-                      <label for="name-15" class="label">Title</label
+                      <label for="name-15" class="label">Subtitle</label
                       ><input
                         type="text"
                         class="custom-input w-input"
-                        maxlength="256"
-                        name="name-14"
-                        data-name="Name 14"
-                        placeholder="Enter First Name"
-                        id="name-14"
+                        v-model="bannerSubtitle"
+                        placeholder="Enter Banner Subtitle"
                       />
                     </div>
                     <div class="each-input part">
-                      <label for="name-15" class="label">Title</label
+                      <label for="name-15" class="label">Intro</label
                       ><input
                         type="text"
                         class="custom-input w-input"
-                        maxlength="256"
-                        name="name-14"
-                        data-name="Name 14"
-                        placeholder="Enter First Name"
-                        id="name-14"
+                        v-model="bannerIntro"
+                        placeholder="Enter Banner Intro"
                       />
                     </div>
                     <div class="each-input part">
-                      <label for="name-15" class="label">Title</label
+                      <label for="name-15" class="label">Page</label
                       ><input
                         type="text"
                         class="custom-input w-input"
-                        maxlength="256"
-                        name="name-14"
-                        data-name="Name 14"
-                        placeholder="Enter First Name"
-                        id="name-14"
+                        v-model="bannerPage"
+                        placeholder="Enter Banner Page"
                       />
                     </div>
                     <div class="btn-holder">
-                      <div class="custom-btn edge color">
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b799b47c0010e65ffca458_loader-icon%201.svg"
-                          loading="lazy"
-                          alt=""
-                          class="btn-icon spinner"
+                      <div v-if="onRequest" class="custom-btn edge color">
+                        <i class="material-symbols-outlined white spinner"
+                          >motion_photos_on</i
+                        >
+                        <div>Processing</div>
+                      </div>
+                      <label for="banner" v-else class="custom-btn edge">
+                        <i class="material-symbols-outlined white"
+                          >upload_file</i
+                        >
+                        <div>Select Banner</div>
+                        <input
+                          @change="setBanner"
+                          type="file"
+                          class="hidden"
+                          id="banner"
                         />
-                        <div>Processingg</div>
-                      </div>
-                      <div class="custom-btn edge color">
-                        <div>Submit Application</div>
-                      </div>
+                      </label>
+                      <label
+                        v-if="!onRequest"
+                        @click="processBanner"
+                        class="custom-btn edge"
+                      >
+                        <div>Submit</div>
+                      </label>
                     </div>
-                    <label for="field-6" class="response error"
-                      >Sorry, something went wrong</label
-                    >
                   </div>
                 </div>
               </div>
@@ -241,6 +253,7 @@ export default {
     VerticalNav,
     MobileBottomNav,
   },
+
   data() {
     return {
       bannerPage: "",
@@ -248,7 +261,7 @@ export default {
       bannerTitle: "",
       bannerSubtitle: "",
       bannerImage: "",
-      banners: [],
+      bannerCategory: "",
 
       editingState: false,
       editingId: "",
@@ -266,8 +279,7 @@ export default {
 
       field: "",
       sort: "-time",
-      limit: 3,
-      resultLength: "",
+      limit: 10,
       currentPage: 1,
       pages: function () {
         let array = [];
@@ -279,6 +291,7 @@ export default {
       },
     };
   },
+
   methods: {
     showResponseMsg(msg, status) {
       this.response = msg;
@@ -293,6 +306,14 @@ export default {
 
     setBanner(event) {
       this.bannerImage = event.target.files[0];
+    },
+
+    toggleBanner(int) {
+      this.$store.commit("settingsStore/TOGGLE_BANNER", int);
+    },
+
+    checkAllBanner() {
+      this.$store.commit("settingsStore/CHECK_ALL_BANNERS");
     },
 
     clearInputs() {
@@ -317,14 +338,26 @@ export default {
       this.confirmStatus = true;
     },
 
+    copyData(data) {
+      this.bannerImage = data.bannerImage;
+      this.bannerIntro = data.bannerIntro;
+      this.bannerTitle = data.bannerTitle;
+      this.bannerSubtitle = data.bannerSubtitle;
+      this.bannerPage = data.bannerPage;
+    },
+
+    duplicateBanner(banner) {
+      this.editingId = "";
+      this.editingState = false;
+      const data = JSON.parse(JSON.stringify(banner));
+      this.copyData(data);
+    },
+
     prepareBannerEdit(banner) {
       this.editingId = banner._id;
       this.editingState = true;
-      this.bannerImage = banner.bannerImage;
-      this.bannerIntro = banner.bannerIntro;
-      this.bannerTitle = banner.bannerTitle;
-      this.bannerSubtitle = banner.bannerSubtitle;
-      this.bannerPage = banner.bannerPage;
+      const data = JSON.parse(JSON.stringify(banner));
+      this.copyData(data);
     },
 
     getField(data) {
@@ -367,11 +400,16 @@ export default {
       form.append("bannerTitle", this.bannerTitle);
       form.append("bannerSubtitle", this.bannerSubtitle);
       form.append("bannerImage", this.bannerImage);
+      form.append("bannerCategory", this.bannerCategory);
       if (this.editingState) {
         this.updateBanner(form);
       } else {
         this.createBanner(form);
       }
+    },
+
+    showAlertBox(msg, status) {
+      this.$store.commit("settingsStore/SHOW_ALERT_BOX", { msg, status });
     },
 
     async updateBanner(form) {
@@ -390,15 +428,12 @@ export default {
     },
 
     async createBanner(form) {
-      const query = `?limit=${this.limit}&page=${this.currentPage}&sort=${this.sort}${this.field}`;
-      try {
-        const result = await this.$axios.post(`/banner/${query}`, form);
-        this.clearInputs();
-        this.banners = result.data.data;
-        this.resultLength = result.data.resultLength;
-      } catch (err) {
-        console.log(err.response.data.message);
-      }
+      const query = `?limit=${this.limit}&page=${this.currentPage}&sort=${this.sort}`;
+      const result = await this.$store.dispatch("settingsStore/CREATE_BANNER", {
+        query,
+        form,
+      });
+      this.checkResponse(result);
     },
 
     async getBanner() {
@@ -417,6 +452,33 @@ export default {
       } catch (err) {
         console.log(err.response.data.message);
       }
+    },
+
+    checkResponse(result) {
+      this.onRequest = false;
+      if (result.status == 200) {
+        const msg = `The banner was set successfully`;
+        const status = false;
+        this.showAlertBox(msg, status);
+      }
+    },
+  },
+
+  computed: {
+    resultLength() {
+      return this.$store.state.settingsStore.bannerLength;
+    },
+
+    banners() {
+      return this.$store.state.settingsStore.banners;
+    },
+
+    isAllChecked() {
+      return this.$store.state.settingsStore.isBannerChecked;
+    },
+
+    user() {
+      return this.$store.state.auth.user;
     },
   },
 };

@@ -163,13 +163,13 @@ export const mutations = {
   },
 
   SET_BANNERS(state, data) {
-    state.bannersLength = data.length;
+    state.bannerLength = data.length;
     let array = [];
     data.results.forEach((el) => {
       el.checked = false;
       array.push(el);
     });
-    state.bannerss = array;
+    state.banners = array;
     state.isBannerChecked = false;
     state.selectedBanners = [];
   },
@@ -1025,6 +1025,17 @@ export const actions = {
     }
   },
 
+  async CREATE_BANNER({ commit }, payload) {
+    const { query, form } = payload;
+    try {
+      const result = await this.$axios.post(`/banner/${query}`, form);
+      commit("SET_BANNER", result.data.data);
+      return result;
+    } catch (err) {
+      return err;
+    }
+  },
+
   async nuxtServerInit({ commit }) {
     const user = this.$auth.user;
     let username = "";
@@ -1049,7 +1060,6 @@ export const actions = {
       commit("SET_COMPANY", response.data.companies);
       commit("SET_EMAILS", response.data.emails);
       commit("SET_BANNERS", response.data.banners);
-
       // commit("SET_PROMOTIONS", response.data.promotions);
       // commit("SET_SALES", response.data.sales);
     } catch (err) {
