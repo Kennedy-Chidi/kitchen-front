@@ -9,7 +9,7 @@
             <div class="content-body">
               <div class="w-form">
                 <div class="nav-pag">
-                  <nuxt-link to="/home" class="home-txt">Home - </nuxt-link
+                  <nuxt-link to="/" class="home-txt">Home - </nuxt-link
                   ><nuxt-link to="/login" class="page-txt">Login</nuxt-link>
                 </div>
                 <div class="profile-flex signing">
@@ -104,7 +104,7 @@ import AlertConfirmation from "../components/AlertConfirmation.vue";
 import CartItems from "../components/CartItems.vue";
 import CompanyAds from "../components/CompanyAds.vue";
 import FooterComponent from "../components/FooterComponent";
-import HomeFooter from "../components/HomeFooter.vue";
+import HomeFooter from "../components/HomeFooter";
 import HorizontalNav from "../components/HorizontalNav";
 import MobileBottomNav from "../components/MobileBottomNav.vue";
 import VerticalNav from "../components/VerticalNav";
@@ -245,7 +245,7 @@ export default {
           if (user.phoneNumber == "" || user.phoneNumber == undefined) {
             this.$router.push("/dashboard/profile");
           } else {
-            this.$router.push("/products");
+            this.$router.push("/dashboard/products");
           }
         }
       } catch (err) {

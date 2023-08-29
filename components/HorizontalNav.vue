@@ -3,7 +3,7 @@
     <div class="custom-container">
       <div class="nav-flex">
         <notification-sound ref="audioPlayer" />
-        <nuxt-link to="/" class="brand w-inline-block"
+        <nuxt-link to="/dashboard" class="brand w-inline-block"
           ><img
             src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6c1ec16b2737439b284fc_logo.png"
             loading="lazy"
@@ -12,12 +12,16 @@
         /></nuxt-link>
         <ul role="list" class="nav-list">
           <li class="nav-link-flex">
-            <nuxt-link to="/" class="nav-link">Home</nuxt-link>
-            <nuxt-link to="/products" class="nav-link">Products</nuxt-link>
-            <nuxt-link to="/about" class="nav-link">About</nuxt-link>
-            <nuxt-link to="/contact" class="nav-link">Contact</nuxt-link>
-            <nuxt-link to="/faq" class="nav-link">FAQ</nuxt-link>
-            <nuxt-link to="/blog" class="nav-link">Blog</nuxt-link>
+            <nuxt-link to="/dashboard" class="nav-link">Home</nuxt-link>
+            <nuxt-link to="/dashboard/products" class="nav-link"
+              >Products</nuxt-link
+            >
+            <nuxt-link to="/dashboard/about" class="nav-link">About</nuxt-link>
+            <nuxt-link to="/dashboard/contact" class="nav-link"
+              >Contact</nuxt-link
+            >
+            <nuxt-link to="/dashboard/faq" class="nav-link">FAQ</nuxt-link>
+            <nuxt-link to="/dashboard/blog" class="nav-link">Blog</nuxt-link>
           </li>
         </ul>
         <div class="nav-logs">

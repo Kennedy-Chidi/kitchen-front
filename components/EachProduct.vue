@@ -24,7 +24,7 @@
     </div>
     <div class="name-flex">
       <nuxt-link
-        :to="`/product-details/${product._id}`"
+        :to="`/dashboard/product-details/${product._id}`"
         class="product-name pro"
         >{{ product.productName }}</nuxt-link
       >

@@ -1,488 +1,699 @@
 <template>
-  <div class="grace homepage">
-    <alert-box />
-    <cart-items />
-    <alert-confirmation />
-    <product-display />
+  <div class="grace landing">
     <div class="main-body">
-      <vertical-nav />
       <div class="main-flex">
-        <company-ads />
-        <horizontal-nav />
-        <div class="custom-container">
-          <div class="cart-items-body">
-            <div class="cart-items-holder vertical">
-              <div class="cart-list">
-                <div class="each-cart-list">
-                  <img
-                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6ee862d3ff71b2a207998_rice-mama-gold.png"
-                    loading="lazy"
-                    alt=""
-                    class="cart-img"
-                  />
-                  <div class="cart-details">
-                    <div class="product-name">Mama Gold Rice</div>
-                    <div class="cart-flex">
-                      <div class="quant">1</div>
-                      <div class="quant-times">X</div>
-                      <div class="product-price">N54,000</div>
-                      <div class="quant-times">=</div>
-                      <div class="product-price total">N54,000</div>
-                    </div>
-                    <div class="action-holder sm">
-                      <div class="action-btn sm"><div>-</div></div>
-                      <div>0</div>
-                      <div class="action-btn sm"><div>+</div></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="each-cart-list even">
-                  <img
-                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6ee862d3ff71b2a207998_rice-mama-gold.png"
-                    loading="lazy"
-                    alt=""
-                    class="cart-img"
-                  />
-                  <div class="cart-details">
-                    <div class="product-name">Mama Gold Rice</div>
-                    <div class="cart-flex">
-                      <div class="quant">1</div>
-                      <div class="quant-times">X</div>
-                      <div class="product-price">N54,000</div>
-                      <div class="quant-times">=</div>
-                      <div class="product-price total">N54,000</div>
-                    </div>
-                    <div class="action-holder sm">
-                      <div class="action-btn sm"><div>-</div></div>
-                      <div>0</div>
-                      <div class="action-btn sm"><div>+</div></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="each-cart-list">
-                  <img
-                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6ee862d3ff71b2a207998_rice-mama-gold.png"
-                    loading="lazy"
-                    alt=""
-                    class="cart-img"
-                  />
-                  <div class="cart-details">
-                    <div class="product-name">Mama Gold Rice</div>
-                    <div class="cart-flex">
-                      <div class="quant">1</div>
-                      <div class="quant-times">X</div>
-                      <div class="product-price">N54,000</div>
-                      <div class="quant-times">=</div>
-                      <div class="product-price total">N54,000</div>
-                    </div>
-                    <div class="action-holder sm">
-                      <div class="action-btn"><div>-</div></div>
-                      <div>44</div>
-                      <div class="action-btn"><div>+</div></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="each-cart-list even">
-                  <img
-                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6ee862d3ff71b2a207998_rice-mama-gold.png"
-                    loading="lazy"
-                    alt=""
-                    class="cart-img"
-                  />
-                  <div class="cart-details">
-                    <div class="product-name">Mama Gold Rice</div>
-                    <div class="cart-flex">
-                      <div class="quant">1</div>
-                      <div class="quant-times">X</div>
-                      <div class="product-price">N54,000</div>
-                      <div class="quant-times">=</div>
-                      <div class="product-price total">N54,000</div>
-                    </div>
-                    <div class="action-holder sm">
-                      <div class="action-btn"><div>-</div></div>
-                      <div>0</div>
-                      <div class="action-btn"><div>+</div></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="check-out-btns">
-                <div class="cart-total">12 Items</div>
-                <div class="cart-total total">Total = N56,000</div>
-                <div class="cart-total">Delivery = N400</div>
-                <div class="cart-total credit">Credit = N400</div>
-              </div>
-              <div class="check-out-btns">
-                <div class="cart-total total balance">Balance = N56,000</div>
-              </div>
-              <div class="check-out-btns">
-                <div class="custom-btn edge"><div>CHECK OUT</div></div>
-                <div class="custom-btn edge color no"><div>CLOSE</div></div>
-                <div class="custom-btn edge"><div>CLEAR</div></div>
-              </div>
-            </div>
+        <div class="display">
+          <div class="custom-container-landing">
+            <img
+              src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6cb8e05358c6b93a96917_ezgif.com-optimize.gif"
+              loading="lazy"
+              alt=""
+              class="display-img"
+            />
           </div>
-          <div class="content-body">
-            <div class="hero-display">
-              <div
-                data-delay="6000"
-                data-animation="slide"
-                class="main-slider w-slider"
-                data-autoplay="true"
-                data-easing="ease-out-cubic"
-                data-hide-arrows="false"
-                data-disable-swipe="false"
-                data-autoplay-limit="0"
-                data-nav-spacing="3"
-                data-duration="1300"
-                data-infinite="true"
-              >
-                <div class="hero-mask w-slider-mask">
-                  <div class="hero-slide w-slide">
-                    <div class="hero-div">
-                      <img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01.jpg"
-                        loading="lazy"
-                        sizes="100vw"
-                        srcset="
-                          https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01-p-500.jpg 500w,
-                          https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01-p-800.jpg 800w,
-                          https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01.jpg       812w
-                        "
-                        alt=""
-                        class="responsive-img"
-                      />
-                      <div class="hero-content">
-                        <h1 class="light-heading">Top Deal</h1>
-                        <h1 class="hero-name">Kitchen Grace</h1>
-                        <h1 class="hero-subtitle">
-                          Get 10% Bonus for your referrals
-                        </h1>
-                        <div class="custom-btn">
-                          <div>Start Shopping</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="hero-slide w-slide">
-                    <div class="hero-div">
-                      <img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01.jpg"
-                        loading="lazy"
-                        sizes="100vw"
-                        srcset="
-                          https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01-p-500.jpg 500w,
-                          https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01-p-800.jpg 800w,
-                          https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01.jpg       812w
-                        "
-                        alt=""
-                        class="responsive-img"
-                      />
-                      <div class="hero-content">
-                        <h1 class="light-heading">Welcome to</h1>
-                        <h1 class="hero-name">Kitchen Grace</h1>
-                        <h1 class="hero-subtitle">
-                          Get 10% Bonus for your referrals
-                        </h1>
-                        <div class="custom-btn">
-                          <div>Start Shopping</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="left-arrow w-slider-arrow-left">
-                  <div class="w-icon-slider-left"></div>
-                </div>
-                <div class="right-arrow w-slider-arrow-right">
-                  <div class="w-icon-slider-right"></div>
-                </div>
-                <div class="hide-dots w-slider-nav w-round w-num"></div>
-              </div>
-              <div class="hero-adds">
-                <img
-                  src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6d7f3aee713bd040bac18_slider_banner02.jpg"
-                  loading="lazy"
-                  alt=""
-                  class="add-img"
-                /><img
-                  src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6d7f3061d808489e05595_slider_banner01.jpg"
-                  loading="lazy"
-                  alt=""
-                  class="add-img"
-                />
-              </div>
-            </div>
-            <div class="categories">
-              <div class="category-flex">
-                <h3 class="section-title">Categories</h3>
-                <div class="each-category">
-                  <div class="category-img">
-                    <img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e36028c62069ce661e52_custard-checkers-paint.jpg"
-                      loading="lazy"
-                      alt=""
-                      class="cat-img"
-                    />
-                  </div>
-                  <a href="#" class="category-name">Noodles</a>
-                </div>
-                <div class="each-category">
-                  <div class="category-img">
-                    <img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e629293b975a500caca1_gelsha-tin.jpg"
-                      loading="lazy"
-                      alt=""
-                      class="cat-img"
-                    />
-                  </div>
-                  <a href="#" class="category-name">Noodles</a>
-                </div>
-                <div class="each-category">
-                  <div class="category-img">
-                    <img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e36028c62069ce661e52_custard-checkers-paint.jpg"
-                      loading="lazy"
-                      alt=""
-                      class="cat-img"
-                    />
-                  </div>
-                  <a href="#" class="category-name">Noodles</a>
-                </div>
-                <div class="each-category">
-                  <div class="category-img">
-                    <img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e640ae6521a154781d4d_quaker-oat-satchet.webp"
-                      loading="lazy"
-                      sizes="100vw"
-                      srcset="
-                        https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e640ae6521a154781d4d_quaker-oat-satchet-p-500.webp   500w,
-                        https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e640ae6521a154781d4d_quaker-oat-satchet-p-800.webp   800w,
-                        https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e640ae6521a154781d4d_quaker-oat-satchet-p-1080.webp 1080w,
-                        https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e640ae6521a154781d4d_quaker-oat-satchet.webp        1200w
-                      "
-                      alt=""
-                      class="cat-img"
-                    />
-                  </div>
-                  <a href="#" class="category-name">Noodles</a>
-                </div>
-                <div class="each-category">
-                  <div class="category-img">
-                    <img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e63995bfffb09c548fb8_quaker-oat-tin.jpg"
-                      loading="lazy"
-                      sizes="100vw"
-                      srcset="
-                        https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e63995bfffb09c548fb8_quaker-oat-tin-p-500.jpg  500w,
-                        https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e63995bfffb09c548fb8_quaker-oat-tin-p-800.jpg  800w,
-                        https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e63995bfffb09c548fb8_quaker-oat-tin.jpg       1080w
-                      "
-                      alt=""
-                      class="cat-img"
-                    />
-                  </div>
-                  <a href="#" class="category-name">Noodles</a>
-                </div>
-              </div>
-            </div>
-            <div class="product-flex">
-              <h3 class="section-title pro">Our Products</h3>
-
-              <each-product
-                v-for="(product, int) in productItems"
-                :product="product"
-                :key="int"
-              />
-            </div>
-            <nuxt-link to="/products" class="response big">View More</nuxt-link>
-            <div class="home-promos">
-              <div class="top-promo-flex">
-                <div class="promo-header-flex">
-                  <h1 class="promo-header">
-                    Running Promos
-                    <span class="promo-lighht">of this week</span>
-                  </h1>
-                  <div>Hurry up and make purchase while the promo is on!</div>
-                </div>
-                <div class="promo-count-flex">
-                  <div class="promo-count-box"><div>00</div></div>
-                  <div class="promo-dots">:</div>
-                  <div class="promo-count-box"><div>00</div></div>
-                  <div class="promo-dots">:</div>
-                  <div class="promo-count-box"><div>00</div></div>
-                  <div class="promo-dots">:</div>
-                  <div class="promo-count-box"><div>00</div></div>
-                </div>
-              </div>
-            </div>
-            <div class="promo-flex">
-              <div class="each-promo">
-                <div class="promo-img">
-                  <img
-                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6ee85c5adf2f23b4de5c8_rice-royal-stallion.png"
-                    loading="lazy"
-                    alt=""
-                  />
-                </div>
-                <div class="promo-footer">
-                  <div class="promo-det">
-                    <a href="#" class="product-name pro sm">Golden Morn</a>
-                    <div class="product-price pro old">N4,000</div>
-                    <a href="#" class="product-name pro">Ester Bonanza</a>
-                    <div class="product-price pro">N4,000</div>
-                  </div>
-                  <div>
-                    <div class="action-btn down"><div>+</div></div>
-                    <div class="action-btn"><div>-</div></div>
-                  </div>
-                </div>
-              </div>
-              <div class="each-promo">
-                <div class="promo-img">
-                  <img
-                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6ee85c5adf2f23b4de5c8_rice-royal-stallion.png"
-                    loading="lazy"
-                    alt=""
-                  />
-                </div>
-                <div class="promo-footer">
-                  <div class="promo-det">
-                    <a href="#" class="product-name pro sm">Golden Morn</a>
-                    <div class="product-price pro old">N4,000</div>
-                    <a href="#" class="product-name pro">Ester Bonanza</a>
-                    <div class="product-price pro">N4,000</div>
-                  </div>
-                  <div>
-                    <div class="action-btn down"><div>+</div></div>
-                    <div class="action-btn"><div>-</div></div>
-                  </div>
-                </div>
-              </div>
-              <div class="each-promo">
-                <div class="promo-img">
-                  <img
-                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6ee85c5adf2f23b4de5c8_rice-royal-stallion.png"
-                    loading="lazy"
-                    alt=""
-                  />
-                </div>
-                <div class="promo-footer">
-                  <div class="promo-det">
-                    <a href="#" class="product-name pro sm">Golden Morn</a>
-                    <div class="product-price pro old">N4,000</div>
-                    <a href="#" class="product-name pro">Ester Bonanza</a>
-                    <div class="product-price pro">N4,000</div>
-                  </div>
-                  <div>
-                    <div class="action-btn down"><div>+</div></div>
-                    <div class="action-btn"><div>-</div></div>
-                  </div>
-                </div>
-              </div>
-              <div class="each-promo">
-                <div class="promo-img">
-                  <img
-                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6ee85c5adf2f23b4de5c8_rice-royal-stallion.png"
-                    loading="lazy"
-                    alt=""
-                  />
-                </div>
-                <div class="promo-footer">
-                  <div class="promo-det">
-                    <a href="#" class="product-name pro sm">Golden Morn</a>
-                    <div class="product-price pro old">N4,000</div>
-                    <a href="#" class="product-name pro">Ester Bonanza</a>
-                    <div class="product-price pro">N4,000</div>
-                  </div>
-                  <div>
-                    <div class="action-btn down"><div>+</div></div>
-                    <div class="action-btn"><div>-</div></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <img
-            src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b73b75e09b37f7e2fc04a8_coupon_banner_bg.jpg"
-            loading="lazy"
-            sizes="100vw"
-            srcset="
-              https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b73b75e09b37f7e2fc04a8_coupon_banner_bg-p-500.jpg   500w,
-              https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b73b75e09b37f7e2fc04a8_coupon_banner_bg-p-800.jpg   800w,
-              https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b73b75e09b37f7e2fc04a8_coupon_banner_bg-p-1080.jpg 1080w,
-              https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b73b75e09b37f7e2fc04a8_coupon_banner_bg.jpg        1310w
-            "
-            alt=""
-            class="bottom-banner"
-          />
         </div>
-        <footer-component />
+        <landing-nav />
+        <div
+          data-delay="8000"
+          data-animation="slide"
+          class="hero-slider w-slider"
+          data-autoplay="true"
+          data-easing="ease-out-cubic"
+          data-hide-arrows="true"
+          data-disable-swipe="false"
+          data-autoplay-limit="0"
+          data-nav-spacing="3"
+          data-duration="1500"
+          data-infinite="true"
+        >
+          <div class="landing-mask w-slider-mask">
+            <div class="landing-slide w-slide">
+              <img
+                src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0c92b1fa08c9e33e7c86b_home-banner1.jpg"
+                loading="lazy"
+                sizes="100vw"
+                srcset="
+                  https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0c92b1fa08c9e33e7c86b_home-banner1-p-500.jpg   500w,
+                  https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0c92b1fa08c9e33e7c86b_home-banner1-p-800.jpg   800w,
+                  https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0c92b1fa08c9e33e7c86b_home-banner1-p-1080.jpg 1080w,
+                  https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0c92b1fa08c9e33e7c86b_home-banner1.jpg        1539w
+                "
+                alt=""
+                class="responsive-img"
+              />
+              <div class="landing-hero-overlay">
+                <div class="custom-container-landing">
+                  <div class="landing-content">
+                    <h1 class="light-heading">Top Deal</h1>
+                    <h1 class="hero-name">Kitchen Grace</h1>
+                    <h1 class="landing-subtitle">
+                      Get 10% Bonus for your referrals
+                    </h1>
+                    <div class="custom-btn"><div>Start Shopping</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="landing-slide w-slide">
+              <img
+                src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0cb5afca9a83bf6445359_home-banner2.jpg"
+                loading="lazy"
+                sizes="100vw"
+                srcset="
+                  https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0cb5afca9a83bf6445359_home-banner2-p-500.jpg   500w,
+                  https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0cb5afca9a83bf6445359_home-banner2-p-800.jpg   800w,
+                  https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0cb5afca9a83bf6445359_home-banner2-p-1080.jpg 1080w,
+                  https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0cb5afca9a83bf6445359_home-banner2.jpg        1539w
+                "
+                alt=""
+                class="responsive-img"
+              />
+              <div class="landing-hero-overlay">
+                <div class="custom-container-landing">
+                  <div class="landing-content">
+                    <h1 class="light-heading">Top Deal</h1>
+                    <h1 class="hero-name">Kitchen Grace</h1>
+                    <h1 class="hero-subtitle">
+                      Get 10% Bonus for your referrals
+                    </h1>
+                    <div class="custom-btn"><div>Start Shopping</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hide-dots w-slider-nav w-round"></div>
+        </div>
+        <div class="custom-container-landing">
+          <div class="content-body">
+            <div class="first-landing-section">
+              <div class="how">
+                <div class="landing-title">HOW WE WORK</div>
+                <div class="each-how">
+                  <img
+                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d19f6c35b16f4e740c24_meal.svg"
+                    loading="lazy"
+                    alt=""
+                    class="how-img"
+                  />
+                  <div class="subtitle">Signup &amp;Login</div>
+                  <div class="how-text">
+                    Choose your favorite meals and order online or by phone.
+                    It&#x27;s easy to customize your order.
+                  </div>
+                </div>
+                <div class="each-how center">
+                  <img
+                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d19f6c35b16f4e740c24_meal.svg"
+                    loading="lazy"
+                    alt=""
+                    class="how-img"
+                  />
+                  <div class="subtitle">Signup &amp;Login</div>
+                  <div class="how-text">
+                    Choose your favorite meals and order online or by phone.
+                    It&#x27;s easy to customize your order.
+                  </div>
+                </div>
+                <div class="each-how">
+                  <img
+                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d19f6c35b16f4e740c24_meal.svg"
+                    loading="lazy"
+                    alt=""
+                    class="how-img"
+                  />
+                  <div class="subtitle">Signup &amp;Login</div>
+                  <div class="how-text">
+                    Choose your favorite meals and order online or by phone.
+                    It&#x27;s easy to customize your order.
+                  </div>
+                </div>
+              </div>
+              <div class="how">
+                <div class="landing-title">WHAT YOU CAN DO</div>
+                <div
+                  data-delay="4000"
+                  data-animation="slide"
+                  class="combo-slider w-slider"
+                  data-autoplay="false"
+                  data-easing="ease"
+                  data-hide-arrows="false"
+                  data-disable-swipe="false"
+                  data-autoplay-limit="0"
+                  data-nav-spacing="3"
+                  data-duration="500"
+                  data-infinite="true"
+                >
+                  <div class="combo-mask w-slider-mask">
+                    <div class="each-combo w-slide">
+                      <div class="combo-container">
+                        <img
+                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d52a6e4ab5692411f6e2_meal.jpeg"
+                          loading="lazy"
+                          alt=""
+                          class="combo-img"
+                        /><a href="#" class="combo-link"
+                          >Native Vegetable Salad</a
+                        >
+                      </div>
+                    </div>
+                    <div class="each-combo w-slide">
+                      <div class="combo-container">
+                        <img
+                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d71b6c35b16f4e77d1e6_meal3.jpeg"
+                          loading="lazy"
+                          alt=""
+                          class="combo-img"
+                        /><a href="#" class="combo-link"
+                          >Native Vegetable Salad</a
+                        >
+                      </div>
+                    </div>
+                    <div class="each-combo w-slide">
+                      <div class="combo-container">
+                        <img
+                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d71d34258b929f630928_meal4.jpeg"
+                          loading="lazy"
+                          alt=""
+                          class="combo-img"
+                        /><a href="#" class="combo-link"
+                          >Native Vegetable Salad</a
+                        >
+                      </div>
+                    </div>
+                    <div class="each-combo w-slide">
+                      <div class="combo-container">
+                        <img
+                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d71b4ada8a57fab05a2b_meal2.jpeg"
+                          loading="lazy"
+                          alt=""
+                          class="combo-img"
+                        /><a href="#" class="combo-link"
+                          >Native Vegetable Salad</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="left-arrow-2 w-slider-arrow-left">
+                    <div class="w-icon-slider-left"></div>
+                  </div>
+                  <div class="right-arrow-2 w-slider-arrow-right">
+                    <div class="w-icon-slider-right"></div>
+                  </div>
+                  <div class="slide-nav w-slider-nav w-round w-num"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="landing-video">
+          <div class="video-cover">
+            <img
+              src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d9e44e16c7caba98acc8_play-btn.svg"
+              loading="lazy"
+              alt=""
+              class="play-btn"
+            />
+            <div class="subtit-intro white">
+              Our faithful services has attracted many positive reviews from our
+              wonderful customers around te
+            </div>
+          </div>
+        </div>
+        <div class="review-section">
+          <div class="custom-container-landing">
+            <div class="first-landing-section">
+              <div class="how">
+                <div class="landing-title">WHAT CUSTOMERS SAY ABOUT US</div>
+                <div class="subtit-intro">
+                  Our faithful services has attracted many positive reviews from
+                  our wonderful customers around te world
+                </div>
+                <div class="review-flex">
+                  <div
+                    data-delay="6000"
+                    data-animation="slide"
+                    class="review-slide w-slider"
+                    data-autoplay="true"
+                    data-easing="ease-in-out-cubic"
+                    data-hide-arrows="true"
+                    data-disable-swipe="false"
+                    data-autoplay-limit="0"
+                    data-nav-spacing="3"
+                    data-duration="1200"
+                    data-infinite="true"
+                  >
+                    <div class="combo-mask w-slider-mask">
+                      <div class="each-review w-slide">
+                        <div class="review-img">
+                          <img
+                            src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d71b4ada8a57fab05a2b_meal2.jpeg"
+                            loading="lazy"
+                            alt=""
+                            class="responsive-img"
+                          />
+                        </div>
+                        <div class="app-text">
+                          Our faithful services has attracted many positive
+                          reviews from our wonderful customers around te world
+                          Our faithful services has attracted many positive
+                          reviews from our wonderful customers around te world
+                        </div>
+                        <div class="review-name">Kenny James</div>
+                        <div class="review-name state">Nigeria</div>
+                      </div>
+                      <div class="each-review w-slide">
+                        <div class="review-img">
+                          <img
+                            src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d52a6e4ab5692411f6e2_meal.jpeg"
+                            loading="lazy"
+                            alt=""
+                            class="responsive-img"
+                          />
+                        </div>
+                        <div class="app-text">
+                          Our faithful services has attracted many positive
+                          reviews from our wonderful customers around te world
+                          Our faithful services has attracted many positive
+                          reviews from our wonderful customers around te world
+                        </div>
+                        <div class="review-name">Kenny James</div>
+                        <div class="review-name state">Nigeria</div>
+                      </div>
+                    </div>
+                    <div class="left-arrow-2 w-slider-arrow-left">
+                      <div class="w-icon-slider-left"></div>
+                    </div>
+                    <div class="right-arrow-2 w-slider-arrow-right">
+                      <div class="w-icon-slider-right"></div>
+                    </div>
+                    <div class="slide-nav w-slider-nav w-round w-num"></div>
+                  </div>
+                  <img
+                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0dd063df2a4e609fd7453_45.png"
+                    loading="lazy"
+                    sizes="(max-width: 479px) 96vw, (max-width: 767px) 92vw, (max-width: 991px) 46vw, (max-width: 1279px) 34vw, 406px"
+                    srcset="
+                      https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0dd063df2a4e609fd7453_45-p-500.png 500w,
+                      https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0dd063df2a4e609fd7453_45-p-800.png 800w,
+                      https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0dd063df2a4e609fd7453_45.png       831w
+                    "
+                    alt=""
+                    class="image"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="landing-blog">
+          <div class="custom-container-landing">
+            <div
+              data-delay="6000"
+              data-animation="slide"
+              class="blog-slider w-slider"
+              data-autoplay="true"
+              data-easing="ease-out-cubic"
+              data-hide-arrows="false"
+              data-disable-swipe="false"
+              data-autoplay-limit="0"
+              data-nav-spacing="3"
+              data-duration="1300"
+              data-infinite="true"
+            >
+              <div class="landing-mask w-slider-mask">
+                <div class="each-blog w-slide">
+                  <div class="each-blog-flex">
+                    <div class="landing-blog-holder">
+                      <img
+                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d71d34258b929f630928_meal4.jpeg"
+                        loading="lazy"
+                        alt=""
+                        class="responsive-img"
+                      />
+                    </div>
+                    <div class="each-blog-body">
+                      <a href="#" class="subtitle blog"
+                        >How to maintain a ood diet in your ome</a
+                      >
+                      <div class="each-blog-date">13 Oct, 2023</div>
+                      <div>
+                        Headings Header one Header two Header three Header four
+                        Header five Header six Blockquotes Single line
+                        blockquote: Stay hungry. Stay foolish. Multi line
+                        blockquote with a cite reference: People think[...]
+                      </div>
+                      <div class="each-blog-footer">
+                        <div>27 Comments</div>
+                        <a href="#" class="more">Read More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="each-blog w-slide">
+                  <div class="each-blog-flex">
+                    <div class="landing-blog-holder">
+                      <img
+                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d71b4ada8a57fab05a2b_meal2.jpeg"
+                        loading="lazy"
+                        alt=""
+                        class="responsive-img"
+                      />
+                    </div>
+                    <div class="each-blog-body">
+                      <a href="#" class="subtitle blog"
+                        >How to maintain a ood diet in your ome</a
+                      >
+                      <div class="each-blog-date">13 Oct, 2023</div>
+                      <div>
+                        Headings Header one Header two Header three Header four
+                        Header five Header six Blockquotes Single line
+                        blockquote: Stay hungry. Stay foolish. Multi line
+                        blockquote with a cite reference: People think[...]
+                      </div>
+                      <div class="each-blog-footer">
+                        <div>27 Comments</div>
+                        <a href="#" class="more">Read More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="each-blog w-slide">
+                  <div class="each-blog-flex">
+                    <div class="landing-blog-holder">
+                      <img
+                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d52a6e4ab5692411f6e2_meal.jpeg"
+                        loading="lazy"
+                        alt=""
+                        class="responsive-img"
+                      />
+                    </div>
+                    <div class="each-blog-body">
+                      <a href="#" class="subtitle blog"
+                        >How to maintain a ood diet in your ome</a
+                      >
+                      <div class="each-blog-date">13 Oct, 2023</div>
+                      <div>
+                        Headings Header one Header two Header three Header four
+                        Header five Header six Blockquotes Single line
+                        blockquote: Stay hungry. Stay foolish. Multi line
+                        blockquote with a cite reference: People think[...]
+                      </div>
+                      <div class="each-blog-footer">
+                        <div>27 Comments</div>
+                        <a href="#" class="more">Read More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="each-blog w-slide">
+                  <div class="each-blog-flex">
+                    <div class="landing-blog-holder">
+                      <img
+                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d52a6e4ab5692411f6e2_meal.jpeg"
+                        loading="lazy"
+                        alt=""
+                        class="responsive-img"
+                      />
+                    </div>
+                    <div class="each-blog-body">
+                      <a href="#" class="subtitle"
+                        >How to maintain a ood diet in your ome</a
+                      >
+                      <div class="each-blog-date">13 Oct, 2023</div>
+                      <div>
+                        Headings Header one Header two Header three Header four
+                        Header five Header six Blockquotes Single line
+                        blockquote: Stay hungry. Stay foolish. Multi line
+                        blockquote with a cite reference: People think[...]
+                      </div>
+                      <div class="each-blog-footer">
+                        <div>27 Comments</div>
+                        <a href="#" class="more">Read More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="each-blog w-slide">
+                  <div class="each-blog-flex">
+                    <div class="landing-blog-holder">
+                      <img
+                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d52a6e4ab5692411f6e2_meal.jpeg"
+                        loading="lazy"
+                        alt=""
+                        class="responsive-img"
+                      />
+                    </div>
+                    <div class="each-blog-body">
+                      <a href="#" class="subtitle"
+                        >How to maintain a ood diet in your ome</a
+                      >
+                      <div class="each-blog-date">13 Oct, 2023</div>
+                      <div>
+                        Headings Header one Header two Header three Header four
+                        Header five Header six Blockquotes Single line
+                        blockquote: Stay hungry. Stay foolish. Multi line
+                        blockquote with a cite reference: People think[...]
+                      </div>
+                      <div class="each-blog-footer">
+                        <div>27 Comments</div>
+                        <a href="#" class="more">Read More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="each-blog w-slide">
+                  <div class="each-blog-flex">
+                    <div class="landing-blog-holder">
+                      <img
+                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d52a6e4ab5692411f6e2_meal.jpeg"
+                        loading="lazy"
+                        alt=""
+                        class="responsive-img"
+                      />
+                    </div>
+                    <div class="each-blog-body">
+                      <a href="#" class="subtitle"
+                        >How to maintain a ood diet in your ome</a
+                      >
+                      <div class="each-blog-date">13 Oct, 2023</div>
+                      <div>
+                        Headings Header one Header two Header three Header four
+                        Header five Header six Blockquotes Single line
+                        blockquote: Stay hungry. Stay foolish. Multi line
+                        blockquote with a cite reference: People think[...]
+                      </div>
+                      <div class="each-blog-footer">
+                        <div>27 Comments</div>
+                        <a href="#" class="more">Read More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="each-blog w-slide">
+                  <div class="each-blog-flex">
+                    <div class="landing-blog-holder">
+                      <img
+                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d52a6e4ab5692411f6e2_meal.jpeg"
+                        loading="lazy"
+                        alt=""
+                        class="responsive-img"
+                      />
+                    </div>
+                    <div class="each-blog-body">
+                      <a href="#" class="subtitle"
+                        >How to maintain a ood diet in your ome</a
+                      >
+                      <div class="each-blog-date">13 Oct, 2023</div>
+                      <div>
+                        Headings Header one Header two Header three Header four
+                        Header five Header six Blockquotes Single line
+                        blockquote: Stay hungry. Stay foolish. Multi line
+                        blockquote with a cite reference: People think[...]
+                      </div>
+                      <div class="each-blog-footer">
+                        <div>27 Comments</div>
+                        <a href="#" class="more">Read More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="each-blog w-slide">
+                  <div class="each-blog-flex">
+                    <div class="landing-blog-holder">
+                      <img
+                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d71d34258b929f630928_meal4.jpeg"
+                        loading="lazy"
+                        alt=""
+                        class="responsive-img"
+                      />
+                    </div>
+                    <div class="each-blog-body">
+                      <a href="#" class="subtitle"
+                        >How to maintain a ood diet in your ome</a
+                      >
+                      <div class="each-blog-date">13 Oct, 2023</div>
+                      <div>
+                        Headings Header one Header two Header three Header four
+                        Header five Header six Blockquotes Single line
+                        blockquote: Stay hungry. Stay foolish. Multi line
+                        blockquote with a cite reference: People think[...]
+                      </div>
+                      <div class="each-blog-footer">
+                        <div>27 Comments</div>
+                        <a href="#" class="more">Read More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="each-blog w-slide">
+                  <div class="each-blog-flex">
+                    <div class="landing-blog-holder">
+                      <img
+                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d71b4ada8a57fab05a2b_meal2.jpeg"
+                        loading="lazy"
+                        alt=""
+                        class="responsive-img"
+                      />
+                    </div>
+                    <div class="each-blog-body">
+                      <a href="#" class="subtitle"
+                        >How to maintain a ood diet in your ome</a
+                      >
+                      <div class="each-blog-date">13 Oct, 2023</div>
+                      <div>
+                        Headings Header one Header two Header three Header four
+                        Header five Header six Blockquotes Single line
+                        blockquote: Stay hungry. Stay foolish. Multi line
+                        blockquote with a cite reference: People think[...]
+                      </div>
+                      <div class="each-blog-footer">
+                        <div>27 Comments</div>
+                        <a href="#" class="more">Read More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="left-arrow w-slider-arrow-left">
+                <div class="w-icon-slider-left"></div>
+              </div>
+              <div class="right-arrow w-slider-arrow-right">
+                <div class="w-icon-slider-right"></div>
+              </div>
+              <div class="hide-dots w-slider-nav w-round"></div>
+            </div>
+          </div>
+        </div>
+        <div class="app-section">
+          <div class="custom-container-landing">
+            <div class="app-flex">
+              <img
+                src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0e804b931a8080bb3f829_mobile-phone-big.png"
+                loading="lazy"
+                alt=""
+                class="app-img"
+              />
+              <div class="app-content">
+                <div class="coming">Mobile App Coming Soon...</div>
+                <div class="app-how">Download. Order. Receive</div>
+                <div class="app-text">
+                  Headings Header one Header two Header three Header four Header
+                  five Header six Blockquotes Single line blockquote: Stay
+                  hungry. Stay foolish. Multi line blockquote with a cite
+                  reference: People think[...]
+                </div>
+                <div class="app-btns">
+                  <a href="#" class="store-img w-inline-block"
+                    ><img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0e80449e674bb29308901_app-store.png"
+                      loading="lazy"
+                      alt="" /></a
+                  ><a href="#" class="store-img w-inline-block"
+                    ><img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0e80014f492b3dfe38026_google-play.png"
+                      loading="lazy"
+                      alt=""
+                  /></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="partner-section">
+          <div class="landing-title">Our Partners</div>
+          <div class="custom-container-landing">
+            <div
+              data-delay="6000"
+              data-animation="slide"
+              class="partner-slider w-slider"
+              data-autoplay="true"
+              data-easing="ease-out-cubic"
+              data-hide-arrows="true"
+              data-disable-swipe="false"
+              data-autoplay-limit="0"
+              data-nav-spacing="3"
+              data-duration="1300"
+              data-infinite="true"
+            >
+              <div class="partner-mask w-slider-mask">
+                <div class="each-partner w-slide">
+                  <a href="#" class="partner-link w-inline-block"
+                    ><img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0ed64fca9a83bf65e1abd_02.png"
+                      loading="lazy"
+                      alt=""
+                      class="partner-img"
+                  /></a>
+                </div>
+                <div class="each-partner w-slide">
+                  <a href="#" class="partner-link w-inline-block"
+                    ><img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0ed667db0bb659bf8c0ea_01.png"
+                      loading="lazy"
+                      alt=""
+                      class="partner-img"
+                  /></a>
+                </div>
+                <div class="each-partner w-slide">
+                  <a href="#" class="partner-link w-inline-block"
+                    ><img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0ed64b87cba886ff8a01b_03.png"
+                      loading="lazy"
+                      alt=""
+                      class="partner-img"
+                  /></a>
+                </div>
+                <div class="each-partner w-slide">
+                  <a href="#" class="partner-link w-inline-block"
+                    ><img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0ed650838e40e676588b3_04.png"
+                      loading="lazy"
+                      alt=""
+                      class="partner-img"
+                  /></a>
+                </div>
+              </div>
+              <div class="left-arrow w-slider-arrow-left">
+                <div class="w-icon-slider-left"></div>
+              </div>
+              <div class="right-arrow w-slider-arrow-right">
+                <div class="w-icon-slider-right"></div>
+              </div>
+              <div class="hide-dots w-slider-nav w-round"></div>
+            </div>
+          </div>
+        </div>
+        <home-footer />
       </div>
     </div>
-    <mobile-bottom-nav />
   </div>
 </template>
-
 <script>
-import AlertBox from "../components/AlertBox.vue";
-import AlertConfirmation from "../components/AlertConfirmation.vue";
-import CartItems from "../components/CartItems.vue";
-import CompanyAds from "../components/CompanyAds.vue";
-import EachProduct from "../components/EachProduct.vue";
-import FooterComponent from "../components/FooterComponent.vue";
-import HorizontalNav from "../components/HorizontalNav";
-import MobileBottomNav from "../components/MobileBottomNav.vue";
-import ProductDisplay from "../components/ProductDisplay.vue";
-import VerticalNav from "../components/VerticalNav";
+import HomeFooter from "../components/HomeFooter";
 export default {
-  computed: {
-    productItems() {
-      return this.$store.state.productStore.products;
-    },
-
-    isAuth() {
-      return this.$store.state.auth;
-    },
-  },
-  methods: {
-    loadScript() {
-      if (!process.server) {
-        let el = document.getElementById("script");
-
-        if (el != undefined) {
-          document.body.removeChild(el);
-        }
-
-        const script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = "/script/client.js";
-        script.async = true;
-        script.id = "script";
-        const app = document.querySelector("#footer");
-        if (app) {
-          app.appendChild(script);
-        } else {
-          console.error("Could not find app node to append script element");
-        }
-      }
-    },
-  },
-  mounted() {
-    // this.loadScript();
-  },
-  components: {
-    AlertBox,
-    CartItems,
-    AlertConfirmation,
-    ProductDisplay,
-    VerticalNav,
-    FooterComponent,
-    MobileBottomNav,
-    HorizontalNav,
-    CompanyAds,
-    EachProduct,
-  },
+  components: { HomeFooter },
 };
 </script>
 

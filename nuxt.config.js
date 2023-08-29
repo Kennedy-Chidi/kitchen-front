@@ -163,8 +163,8 @@ export default {
   },
 
   axios: {
-    baseURL: process.env.API_DEV_URL,
-    // baseURL: "https://kitchen.up.railway.app/api",
+    // baseURL: process.env.API_DEV_URL,
+    baseURL: "https://kitchen.up.railway.app/api",
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

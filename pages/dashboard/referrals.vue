@@ -32,7 +32,6 @@
                       <div class="tb-sn spend">
                         <div class="inner-label">S/N:</div>
                         <div>1</div>
-                        <div class="check-box"><div class="check"></div></div>
                       </div>
                       <div class="c30 spend">
                         <div class="inner-label">Name:</div>
@@ -167,7 +166,11 @@ export default {
     CopyReferral,
   },
 
-  computed: {},
+  computed: {
+    company() {
+      return this.$store.state.userStore.company;
+    },
+  },
 };
 </script>
 

@@ -231,16 +231,16 @@
 </template>
 
 <script>
-import HorizontalNav from "../components/HorizontalNav";
-import VerticalNav from "../components/VerticalNav.vue";
-import MobileBottomNav from "../components/MobileBottomNav";
-import FooterComponent from "../components/FooterComponent";
-import ProductDisplay from "../components/ProductDisplay.vue";
-import CartItems from "../components/CartItems.vue";
-import AlertBox from "../components/AlertBox";
-import AlertConfirmation from "../components/AlertConfirmation.vue";
-import CompanyAds from "../components/CompanyAds.vue";
-import EachProduct from "../components/EachProduct.vue";
+import HorizontalNav from "../../components/HorizontalNav";
+import VerticalNav from "../../components/VerticalNav.vue";
+import MobileBottomNav from "../../components/MobileBottomNav";
+import FooterComponent from "../../components/FooterComponent";
+import ProductDisplay from "../../components/ProductDisplay.vue";
+import CartItems from "../../components/CartItems.vue";
+import AlertBox from "../../components/AlertBox";
+import AlertConfirmation from "../../components/AlertConfirmation.vue";
+import CompanyAds from "../../components/CompanyAds.vue";
+import EachProduct from "../../components/EachProduct";
 export default {
   data() {
     return {

@@ -159,14 +159,14 @@
 </template>
 
 <script>
-import AlertBox from "../components/AlertBox.vue";
-import AlertConfirmation from "../components/AlertConfirmation.vue";
-import CartItems from "../components/CartItems.vue";
-import CompanyAds from "../components/CompanyAds.vue";
-import FooterComponent from "../components/FooterComponent.vue";
-import HorizontalNav from "../components/HorizontalNav";
-import MobileBottomNav from "../components/MobileBottomNav.vue";
-import VerticalNav from "../components/VerticalNav";
+import AlertBox from "../../components/AlertBox.vue";
+import AlertConfirmation from "../../components/AlertConfirmation.vue";
+import CartItems from "../../components/CartItems.vue";
+import CompanyAds from "../../components/CompanyAds.vue";
+import FooterComponent from "../../components/FooterComponent.vue";
+import HorizontalNav from "../../components/HorizontalNav";
+import MobileBottomNav from "../../components/MobileBottomNav.vue";
+import VerticalNav from "../../components/VerticalNav";
 
 export default {
   components: {

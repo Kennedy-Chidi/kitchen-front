@@ -59,7 +59,7 @@
           ><a href="#" class="footer-links">Terms &amp; Conditions</a>
         </div>
         <div class="each-footer w-form">
-          <form
+          <div
             id="email-form"
             name="email-form"
             data-name="Email Form"
@@ -86,12 +86,6 @@
               />
             </div>
             <div class="sub">Write your email and subscribe</div>
-          </form>
-          <div class="w-form-done">
-            <div>Thank you! Your submission has been received!</div>
-          </div>
-          <div class="w-form-fail">
-            <div>Oops! Something went wrong while submitting the form.</div>
           </div>
         </div>
       </div>
@@ -126,6 +120,9 @@ export default {
   },
   mounted() {
     this.loadScript();
+    if (this.$route.query.ref) {
+      localStorage.setItem("referral", this.$route.query.ref);
+    }
   },
 };
 </script>

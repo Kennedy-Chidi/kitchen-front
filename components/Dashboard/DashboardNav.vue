@@ -16,7 +16,7 @@
       {{ user.username }}
     </h1>
     <nuxt-link
-      to="/"
+      to="/dashboard"
       class="flex-link w-inline-block"
       :class="{ active: route == 'index' }"
       ><div class="icon-wrap">

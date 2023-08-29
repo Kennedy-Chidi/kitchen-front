@@ -53,32 +53,6 @@ export const mutations = {
 };
 
 export const actions = {
-  async CREATE_EMAIL({ commit }, payload) {
-    const { form, query } = payload;
-    try {
-      const response = await this.$axios.post(`/emails/${query}`, form);
-      const data = response.data.data;
-      const length = response.data.resultLength;
-      commit("SET_EMAILS", { data, length });
-      return response;
-    } catch (err) {
-      return err;
-    }
-  },
-
-  async UPDATE_EMAIL({ commit }, payload) {
-    const { form, query, id } = payload;
-    try {
-      const response = await this.$axios.patch(`/emails/${id}/${query}`, form);
-      const data = response.data.data;
-      const length = response.data.resultLength;
-      commit("SET_EMAILS", { data, length });
-      return response;
-    } catch (err) {
-      return err;
-    }
-  },
-
   async nuxtServerInit({ commit, app }, context) {
     try {
       const response = await this.$axios.get("/emails");

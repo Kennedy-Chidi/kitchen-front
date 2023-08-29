@@ -21,7 +21,6 @@ export const mutations = {
   },
 
   SET_COMPANY(state, company) {
-    console.log(company);
     state.company = company;
   },
 

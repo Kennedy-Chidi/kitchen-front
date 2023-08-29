@@ -19,7 +19,7 @@
       {{ user.username }}
     </h1>
     <nuxt-link
-      to="/"
+      to="/dashboard"
       class="flex-link w-inline-block"
       :class="{ active: route == 'index' }"
       ><div class="icon-wrap">
@@ -345,32 +345,21 @@
             <div>General</div></nuxt-link
           ><nuxt-link to="/admin/emails" class="flex-link w-inline-block"
             ><div class="icon-wrap">
-              <img
-                src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6d38612ddf087a955f4de_user.svg"
-                loading="lazy"
-                alt=""
-                class="nav-icon cart"
-              />
+              <i class="material-symbols-outlined cart green sm"
+                >attach_email</i
+              >
             </div>
             <div>Emails</div></nuxt-link
           ><nuxt-link to="/admin/notifications" class="flex-link w-inline-block"
             ><div class="icon-wrap">
-              <img
-                src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6d38612ddf087a955f4de_user.svg"
-                loading="lazy"
-                alt=""
-                class="nav-icon cart"
-              />
+              <i class="material-symbols-outlined cart green sm"
+                >edit_notifications</i
+              >
             </div>
             <div>Notifications</div></nuxt-link
           ><nuxt-link to="/admin/sms" class="flex-link w-inline-block"
             ><div class="icon-wrap">
-              <img
-                src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6d38612ddf087a955f4de_user.svg"
-                loading="lazy"
-                alt=""
-                class="nav-icon cart"
-              />
+              <i class="material-symbols-outlined cart green sm">sms</i>
             </div>
             <div>SMS Settings</div></nuxt-link
           >

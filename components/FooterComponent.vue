@@ -111,10 +111,6 @@ export default {
     };
   },
   methods: {
-    setReferral(data) {
-      this.$store.commit("SET_REFERRAL", data);
-    },
-
     hideAlertBox() {
       this.$store.commit("HIDE_ALERT_BOX");
     },
@@ -215,9 +211,7 @@ export default {
       this.$store.dispatch("nuxtServerInit");
     }
 
-    if (this.$route.query.username) {
-      this.setReferral(this.$route.query.username);
-    }
+    localStorage.removeItem("referral");
 
     // this.$store.dispatch("SET_STATE", { query, states });
 

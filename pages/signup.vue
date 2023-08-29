@@ -7,7 +7,7 @@
           <div class="body-flex">
             <div class="content-body">
               <div class="nav-pag">
-                <nuxt-link to="/home" class="home-txt">Home - </nuxt-link
+                <nuxt-link to="/" class="home-txt">Home - </nuxt-link
                 ><nuxt-link to="/signup" class="page-txt">Signup</nuxt-link>
               </div>
               <div class="w-form">
@@ -125,10 +125,7 @@
                         >State of Residence</label
                       >
                       <div class="table-filter part">
-                        <div
-                          @click="showStates = !showStates"
-                          class="tb-filter-head"
-                        >
+                        <div @click="toggleState" class="tb-filter-head">
                           <div>{{ stateDefault }}</div>
                           <i class="material-symbols-outlined orange"
                             >keyboard_arrow_down</i
@@ -165,10 +162,7 @@
                         >LGA of Residence</label
                       >
                       <div class="table-filter part">
-                        <div
-                          @click="showLgas = !showLgas"
-                          class="tb-filter-head"
-                        >
+                        <div @click="toggleLga" class="tb-filter-head">
                           <i
                             v-if="onStateRequest"
                             class="material-symbols-outlined green no spinner"
@@ -223,14 +217,14 @@
                           >
                         </div>
                         <ul
-                          v-show="unitArray"
+                          v-show="units"
                           role="list"
                           class="tb-filter-list"
                           :class="{ active: showUnits }"
                         >
                           <li
                             @click="selectUnit(unit)"
-                            v-for="(unit, int) in unitArray"
+                            v-for="(unit, int) in units"
                             :key="int"
                             class="tb-list"
                           >
@@ -306,7 +300,7 @@ import AlertBox from "../components/AlertBox";
 import CartItems from "../components/CartItems.vue";
 import CompanyAds from "../components/CompanyAds.vue";
 import FooterComponent from "../components/FooterComponent";
-import HomeFooter from "../components/HomeFooter.vue";
+import HomeFooter from "../components/HomeFooter";
 import HorizontalNav from "../components/HorizontalNav";
 import MobileBottomNav from "../components/MobileBottomNav";
 import VerticalNav from "../components/VerticalNav";
@@ -322,6 +316,7 @@ export default {
     AlertBox,
     HomeFooter,
   },
+
   data() {
     return {
       username: "",
@@ -339,6 +334,8 @@ export default {
       isStateSelected: false,
       isLgaSelected: false,
       isUnitSelected: false,
+      referral: "",
+      units: [],
 
       response: "",
       isError: false,
@@ -358,6 +355,7 @@ export default {
       cPasswordError: false,
     };
   },
+
   methods: {
     loadScript() {
       if (!process.server) {
@@ -527,11 +525,22 @@ export default {
       ];
     },
 
+    toggleState() {
+      this.showStates = !this.showStates;
+      this.showLgas = false;
+      this.showUnits = false;
+    },
+
     async selectState(state) {
       this.stateDefault = state.name;
+      this.lgaDefault = "Select LGA";
+      this.unitDefault = "Select Unit";
       this.showStates = false;
       this.isStateSelected = true;
       this.onStateRequest = true;
+      this.showLgas = false;
+      this.isLgaSelected = false;
+      this.isUnitSelected = false;
       this.checkErrorInputs("state", this.stateDefault);
 
       const states = await this.$store.dispatch(
@@ -543,13 +552,21 @@ export default {
       }
     },
 
+    toggleLga() {
+      this.showLgas = !this.showLgas;
+      this.showUnits = false;
+    },
+
     async selectLga(lga) {
       this.lgaDefault = lga.name;
+      this.unitDefault = "Select Unit";
       this.showLgas = false;
       this.isLgaSelected = true;
+      this.isUnitSelected = false;
+      this.showUnits = false;
       this.checkErrorInputs("lga", this.lgaDefault);
-      const units = lga.units;
-      this.$store.dispatch("SET_UNIT", units);
+      this.units = lga.units;
+      // this.$store.dispatch("SET_UNIT", units);
     },
 
     selectUnit(unit) {
@@ -600,10 +617,10 @@ export default {
         const msg = "Thanks for signing up with us, please login to continue.";
         const status = false;
         this.$store.commit("SHOW_ALERT_BOX", { msg, status });
-        this.clearInputs();
-        setTimeout(() => {
-          this.$router.push("/login");
-        }, 5000);
+        // this.clearInputs();
+        // setTimeout(() => {
+        //   this.$router.push("/login");
+        // }, 5000);
       } catch (err) {
         this.callResponse(err.response.data.message, true);
       }
@@ -612,10 +629,6 @@ export default {
   },
 
   computed: {
-    referral() {
-      return this.$store.state.referral;
-    },
-
     stateArray() {
       return this.$store.state.stateArray;
     },
@@ -624,13 +637,17 @@ export default {
       return this.$store.state.lgas;
     },
 
-    unitArray() {
-      return this.$store.state.units;
-    },
-
     user() {
       return this.$store.state.auth.user;
     },
+  },
+
+  mounted() {
+    const storedData = localStorage.getItem("referral");
+
+    if (storedData) {
+      this.referral = storedData;
+    }
   },
 };
 </script>

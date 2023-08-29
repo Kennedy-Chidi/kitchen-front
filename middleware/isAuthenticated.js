@@ -1,14 +1,5 @@
 export default function ({ store, redirect, route }) {
-  const protectedRoutes = [
-    "dashboard",
-    "admin",
-    "index",
-    "about",
-    "contact",
-    "faq",
-    "terms",
-    "blog",
-  ];
+  const protectedRoutes = ["dashboard", "admin"];
   if (store.state.auth.loggedIn) {
     const path = route.name;
     let redirectAdmin = "";
@@ -26,10 +17,6 @@ export default function ({ store, redirect, route }) {
       if (redirectAdmin == "admin") {
         return redirect("/dashboard/profile");
       }
-    }
-
-    if (route.name == "dashboard") {
-      return redirect("/");
     }
   }
 

@@ -10,6 +10,11 @@ export const state = () => ({
   promotionLength: 0,
   promotions: [],
 
+  selectedEmails: [],
+  isEmailChecked: false,
+  emailLength: 0,
+  emails: [],
+
   notificationLength: 0,
   notifications: [],
   selectedNotifications: [],
@@ -85,6 +90,59 @@ export const mutations = {
     state.notifications = array;
     state.isNotificationChecked = false;
     state.selectedNotifications = [];
+  },
+
+  SET_EMAILS(state, data) {
+    state.emailLength = data.length;
+    let array = [];
+    data.results.forEach((el) => {
+      el.checked = false;
+      array.push(el);
+    });
+    state.emails = array;
+    state.isEmailChecked = false;
+    state.selectedEmails = [];
+  },
+
+  CHECK_ALL_EMAILS(state) {
+    const newArray = [];
+    state.isEmailChecked = !state.isEmailChecked;
+    if (state.isEmailChecked) {
+      state.emails.forEach((el) => {
+        el.checked = true;
+        newArray.push(el);
+      });
+      state.selectedEmails = state.emails;
+    } else {
+      state.emails.forEach((el) => {
+        el.checked = false;
+        newArray.push(el);
+      });
+      state.selectedEmails = [];
+    }
+
+    state.emails = newArray;
+  },
+
+  TOGGLE_EMAIL(state, int) {
+    state.emails[int].checked = !state.emails[int].checked;
+
+    const email = state.emails[int];
+    const exists = state.selectedEmails.some((obj) => obj._id === email._id);
+    if (!exists) {
+      state.selectedEmails.push(email);
+      if (state.selectedEmails.length == state.emails.length) {
+        state.isEmailChecked = true;
+      }
+    } else {
+      state.selectedEmails = state.selectedEmails.filter(
+        (obj) => obj._id !== email._id
+      );
+      if (state.selectedEmails.length == 0) {
+        state.isEmailChecked = false;
+        state.selectedEmails = [];
+      }
+    }
   },
 
   SET_PROMOTIONS(state, data) {
@@ -661,6 +719,37 @@ export const actions = {
     }
   },
 
+  async GET_EMAILS({ commit }, query) {
+    try {
+      const result = await this.$axios.get(`/emails/${query}`);
+      commit("SET_EMAILS", result.data.data);
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  },
+
+  async CREATE_EMAIL({ commit }, payload) {
+    const { form, query } = payload;
+    try {
+      const response = await this.$axios.post(`/emails/${query}`, form);
+      commit("SET_EMAILS", result.data.data);
+      return response;
+    } catch (err) {
+      return err;
+    }
+  },
+
+  async UPDATE_EMAIL({ commit }, payload) {
+    const { form, query, id } = payload;
+    try {
+      const response = await this.$axios.patch(`/emails/${id}/${query}`, form);
+      commit("SET_EMAILS", result.data.data);
+      return response;
+    } catch (err) {
+      return err;
+    }
+  },
+
   async UPDATE_NOTIFICATION({ commit }, payload) {
     const { query, form, id } = payload;
     try {
@@ -859,6 +948,7 @@ export const actions = {
       commit("SET_TRANSACTIONS", response.data.transactions);
       commit("SET_ORDERS", response.data.orders);
       commit("SET_COMPANY", response.data.companies);
+      commit("SET_EMAILS", response.data.emails);
 
       // commit("SET_PROMOTIONS", response.data.promotions);
       // commit("SET_SALES", response.data.sales);
@@ -889,6 +979,8 @@ export const actions = {
       commit("SET_TRANSACTIONS", response.data.transactions);
       commit("SET_ORDERS", response.data.orders);
       commit("SET_COMPANY", response.data.companies);
+      commit("SET_EMAILS", response.data.emails);
+
       // commit("SET_PROMOTIONS", response.data.promotions);
       // commit("SET_SALES", response.data.sales);
     } catch (err) {
