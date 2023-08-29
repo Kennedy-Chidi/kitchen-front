@@ -204,7 +204,7 @@
                         >Please select a unit</label
                       >
                       <label v-show="!unitError" for="phone-4" class="label"
-                        >State of Residence</label
+                        >Unit of Residence</label
                       >
                       <div class="table-filter part">
                         <div
@@ -325,6 +325,7 @@ export default {
       password: "",
       cPassword: "",
       isChecked: false,
+
       showStates: false,
       showLgas: false,
       showUnits: false,

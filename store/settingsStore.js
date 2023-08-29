@@ -15,6 +15,11 @@ export const state = () => ({
   emailLength: 0,
   emails: [],
 
+  selectedBanners: [],
+  isBannerChecked: false,
+  bannerLength: 0,
+  banners: [],
+
   notificationLength: 0,
   notifications: [],
   selectedNotifications: [],
@@ -155,6 +160,59 @@ export const mutations = {
     state.promotions = array;
     state.isPromotionChecked = false;
     state.selectedPromotions = [];
+  },
+
+  SET_BANNERS(state, data) {
+    state.bannersLength = data.length;
+    let array = [];
+    data.results.forEach((el) => {
+      el.checked = false;
+      array.push(el);
+    });
+    state.bannerss = array;
+    state.isBannerChecked = false;
+    state.selectedBanners = [];
+  },
+
+  TOGGLE_BANNER(state, int) {
+    state.banners[int].checked = !state.banners[int].checked;
+
+    const email = state.banners[int];
+    const exists = state.selectedBanners.some((obj) => obj._id === email._id);
+    if (!exists) {
+      state.selectedBanners.push(email);
+      if (state.selectedBanners.length == state.emails.length) {
+        state.isBannerChecked = true;
+      }
+    } else {
+      state.selectedBanners = state.selectedBanners.filter(
+        (obj) => obj._id !== email._id
+      );
+      if (state.selectedBanners.length == 0) {
+        state.isBannerChecked = false;
+        state.selectedBanners = [];
+      }
+    }
+  },
+
+  CHECK_ALL_BANNERS(state) {
+    const newArray = [];
+    state.isBannerChecked = !state.isBannerChecked;
+    if (state.isBannerChecked) {
+      state.banners.forEach((el) => {
+        el.checked = true;
+        newArray.push(el);
+      });
+      state.selectedBanners = state.banners;
+    } else {
+      state.banners.forEach((el) => {
+        el.checked = false;
+        newArray.push(el);
+      });
+      state.selectedBanners = [];
+    }
+
+    state.banners = newArray;
   },
 
   SET_ORDERS(state, data) {
@@ -949,11 +1007,21 @@ export const actions = {
       commit("SET_ORDERS", response.data.orders);
       commit("SET_COMPANY", response.data.companies);
       commit("SET_EMAILS", response.data.emails);
+      commit("SET_BANNERS", response.data.banners);
 
       // commit("SET_PROMOTIONS", response.data.promotions);
       // commit("SET_SALES", response.data.sales);
     } catch (err) {
       console.log(err.response);
+    }
+  },
+
+  async GET_BANNER({ commit }) {
+    try {
+      const result = await this.$axios.get(`/banner/${query}`);
+      commit("SET_BANNER", result.data.data);
+    } catch (err) {
+      console.log(err.response.data.message);
     }
   },
 
@@ -980,6 +1048,7 @@ export const actions = {
       commit("SET_ORDERS", response.data.orders);
       commit("SET_COMPANY", response.data.companies);
       commit("SET_EMAILS", response.data.emails);
+      commit("SET_BANNERS", response.data.banners);
 
       // commit("SET_PROMOTIONS", response.data.promotions);
       // commit("SET_SALES", response.data.sales);
