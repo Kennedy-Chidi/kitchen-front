@@ -25,6 +25,16 @@ export const state = () => ({
   selectedNotifications: [],
   isNotificationChecked: false,
 
+  blogLength: 0,
+  blogs: [],
+  selectedBlogs: [],
+  isBlogChecked: false,
+
+  reviewLength: 0,
+  reviews: [],
+  selectedReviews: [],
+  isReviewsChecked: false,
+
   transactionLength: 0,
   transactions: [],
 
@@ -177,16 +187,16 @@ export const mutations = {
   TOGGLE_BANNER(state, int) {
     state.banners[int].checked = !state.banners[int].checked;
 
-    const email = state.banners[int];
-    const exists = state.selectedBanners.some((obj) => obj._id === email._id);
+    const banner = state.banners[int];
+    const exists = state.selectedBanners.some((obj) => obj._id === banner._id);
     if (!exists) {
-      state.selectedBanners.push(email);
-      if (state.selectedBanners.length == state.emails.length) {
+      state.selectedBanners.push(banner);
+      if (state.selectedBanners.length == state.banners.length) {
         state.isBannerChecked = true;
       }
     } else {
       state.selectedBanners = state.selectedBanners.filter(
-        (obj) => obj._id !== email._id
+        (obj) => obj._id !== banner._id
       );
       if (state.selectedBanners.length == 0) {
         state.isBannerChecked = false;
@@ -742,6 +752,112 @@ export const mutations = {
 
     state.companyArray = newArray;
   },
+
+  SET_BLOGS(state, blogs) {
+    state.blogLength = blogs.length;
+    const items = [];
+    for (let x = 0; x < blogs.results.length; x++) {
+      blogs.results[x].checked = false;
+      items.push(blogs.results[x]);
+    }
+    state.blogs = items;
+    state.selectedBlogs = [];
+    state.isBlogChecked = false;
+  },
+
+  CHECK_ALL_BLOGS(state) {
+    const newArray = [];
+    state.isBlogChecked = !state.isBlogChecked;
+    if (state.isBlogChecked) {
+      state.blogs.forEach((el) => {
+        el.checked = true;
+        newArray.push(el);
+      });
+      state.selectedBlogs = state.blogs;
+    } else {
+      state.blogs.forEach((el) => {
+        el.checked = false;
+        newArray.push(el);
+      });
+      state.selectedBlogs = [];
+    }
+
+    state.blogs = newArray;
+  },
+
+  TOGGLE_BLOG(state, int) {
+    state.blogs[int].checked = !state.blogs[int].checked;
+
+    const blog = state.blogs[int];
+    const exists = state.selectedBlogs.some((obj) => obj._id === blog._id);
+    if (!exists) {
+      state.selectedBlogs.push(blog);
+      if (state.selectedBlogs.length == state.blogs.length) {
+        state.isBlogChecked = true;
+      }
+    } else {
+      state.selectedBlogs = state.selectedBlogs.filter(
+        (obj) => obj._id !== blog._id
+      );
+      if (state.selectedBlogs.length == 0) {
+        state.isBlogChecked = false;
+        state.selectedBlogs = [];
+      }
+    }
+  },
+
+  SET_REVIEWS(state, reviews) {
+    state.reviewLength = reviews.length;
+    const items = [];
+    for (let x = 0; x < reviews.results.length; x++) {
+      reviews.results[x].checked = false;
+      items.push(reviews.results[x]);
+    }
+    state.reviews = items;
+    state.selectedReviews = [];
+    state.isReviewsChecked = false;
+  },
+
+  CHECK_ALL_REVIEWS(state) {
+    const newArray = [];
+    state.isReviewsChecked = !state.isReviewsChecked;
+    if (state.isReviewsChecked) {
+      state.reviews.forEach((el) => {
+        el.checked = true;
+        newArray.push(el);
+      });
+      state.selectedReviews = state.reviews;
+    } else {
+      state.reviews.forEach((el) => {
+        el.checked = false;
+        newArray.push(el);
+      });
+      state.selectedReviews = [];
+    }
+
+    state.reviews = newArray;
+  },
+
+  TOGGLE_REVIEW(state, int) {
+    state.reviews[int].checked = !state.reviews[int].checked;
+
+    const review = state.reviews[int];
+    const exists = state.selectedReviews.some((obj) => obj._id === review._id);
+    if (!exists) {
+      state.selectedReviews.push(review);
+      if (state.selectedReviews.length == state.reviews.length) {
+        state.isReviewsChecked = true;
+      }
+    } else {
+      state.selectedReviews = state.selectedReviews.filter(
+        (obj) => obj._id !== review._id
+      );
+      if (state.selectedReviews.length == 0) {
+        state.isReviewsChecked = false;
+        state.selectedReviews = [];
+      }
+    }
+  },
 };
 
 export const actions = {
@@ -1008,6 +1124,8 @@ export const actions = {
       commit("SET_COMPANY", response.data.companies);
       commit("SET_EMAILS", response.data.emails);
       commit("SET_BANNERS", response.data.banners);
+      commit("SET_BLOGS", response.data.blogs);
+      commit("SET_REVIEWS", response.data.reviews);
 
       // commit("SET_PROMOTIONS", response.data.promotions);
       // commit("SET_SALES", response.data.sales);
@@ -1029,7 +1147,40 @@ export const actions = {
     const { query, form } = payload;
     try {
       const result = await this.$axios.post(`/banner/${query}`, form);
-      commit("SET_BANNER", result.data.data);
+      commit("SET_BANNERS", result.data.data);
+      return result;
+    } catch (err) {
+      return err;
+    }
+  },
+
+  async UPDATE_BANNER({ commit }, payload) {
+    const { id, query, form } = payload;
+    try {
+      const result = await this.$axios.patch(`/banner/${id}/${query}`, form);
+      commit("SET_BANNERS", result.data.data);
+      return result;
+    } catch (err) {
+      return err;
+    }
+  },
+
+  async CREATE_BLOG({ commit }, payload) {
+    const { query, form } = payload;
+    try {
+      const result = await this.$axios.post(`/blogs/${query}`, form);
+      commit("SET_BLOGS", result.data.data);
+      return result;
+    } catch (err) {
+      return err;
+    }
+  },
+
+  async UPDATE_BLOG({ commit }, payload) {
+    const { id, query, form } = payload;
+    try {
+      const result = await this.$axios.patch(`/blogs/${id}/${query}`, form);
+      commit("SET_BLOGS", result.data.data);
       return result;
     } catch (err) {
       return err;
@@ -1060,6 +1211,8 @@ export const actions = {
       commit("SET_COMPANY", response.data.companies);
       commit("SET_EMAILS", response.data.emails);
       commit("SET_BANNERS", response.data.banners);
+      commit("SET_BLOGS", response.data.blogs);
+      commit("SET_REVIEWS", response.data.reviews);
       // commit("SET_PROMOTIONS", response.data.promotions);
       // commit("SET_SALES", response.data.sales);
     } catch (err) {

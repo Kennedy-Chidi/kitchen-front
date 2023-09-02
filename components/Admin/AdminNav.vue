@@ -87,6 +87,12 @@
             </div>
             <div>Customers</div></nuxt-link
           >
+          <nuxt-link to="/admin/reviews" class="flex-link w-inline-block"
+            ><div class="icon-wrap">
+              <i class="material-symbols-outlined green">insert_comment</i>
+            </div>
+            <div>Reviews</div></nuxt-link
+          >
           <nuxt-link to="/admin/staffs" class="flex-link w-inline-block"
             ><div class="icon-wrap">
               <i class="material-symbols-outlined green">group</i>

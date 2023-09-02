@@ -11,15 +11,7 @@
           <div class="body-flex">
             <div class="content-body">
               <div class="w-form">
-                <form
-                  id="email-form-2"
-                  name="email-form-2"
-                  data-name="Email Form 2"
-                  method="get"
-                  class="transaction-table"
-                  data-wf-page-id="64b6be9c94ade9f930694692"
-                  data-wf-element-id="4b82515c-29ee-98f4-f05c-9f2fa7451d4c"
-                >
+                <div class="transaction-table">
                   <div class="table-head admin pro">
                     <div class="sort-range ban">
                       <div class="sort-wrapper">
@@ -68,109 +60,138 @@
                       <div class="c20 ban"><div>Date</div></div>
                       <div class="tb-image ban"><div>Action</div></div>
                     </div>
-                    <div class="table-head-row body">
+                    <div
+                      v-for="(item, int) in items"
+                      :key="int"
+                      class="table-head-row body"
+                    >
                       <div class="tb-sn ban">
                         <div class="inner-label">S/N:</div>
-                        <div>1</div>
-                        <div class="check-box"><div class="check"></div></div>
+                        <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
+                        <div @click="toggleItem(int)" class="check-box">
+                          <div
+                            class="check"
+                            :class="{ active: item.checked }"
+                          ></div>
+                        </div>
                       </div>
                       <div class="tb-image ban">
                         <div class="inner-label">Image:</div>
                         <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b79b7b42421ae3cbdb6ff8_ceo.png"
+                          :src="item.bannerUrl"
                           loading="lazy"
                           sizes="110px"
-                          srcset="
-                            https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b79b7b42421ae3cbdb6ff8_ceo-p-500.png 500w,
-                            https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b79b7b42421ae3cbdb6ff8_ceo-p-800.png 800w,
-                            https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b79b7b42421ae3cbdb6ff8_ceo.png       953w
-                          "
+                          :srcset="`
+                            ${item.bannerUrl} 500w,
+                            ${item.bannerUrl} 800w,
+                            ${item.bannerUrl}       953w
+                          `"
                           alt=""
                           class="item-img"
                         />
                       </div>
                       <div class="c20 ban part">
-                        <div class="inner-label">Intro:</div>
-                        <div>N45,000</div>
+                        <div class="inner-label">Category:</div>
+                        <div>{{ item.category }}</div>
                       </div>
                       <div class="c20 ban part">
-                        <div class="inner-label">Intro:</div>
-                        <div>N45,000</div>
-                      </div>
-                      <div class="c20 ban">
                         <div class="inner-label">Title:</div>
-                        <div>N45,000</div>
+                        <div>{{ item.title }}</div>
                       </div>
                       <div class="c20 ban">
-                        <div class="inner-label">Subtitle:</div>
-                        <div>N45,000</div>
+                        <div class="inner-label">Author:</div>
+                        <div>{{ item.author }}</div>
+                      </div>
+                      <div class="c20 ban">
+                        <div class="inner-label">Date:</div>
+                        <div>{{ formatDate(item.time) }}</div>
                       </div>
                       <div class="tb-image ban act">
-                        <div class="inner-label">Image:</div>
-                        <div class="custom-btn edge"><div>Collected</div></div>
+                        <div class="inner-label">Status:</div>
+                        <div
+                          @click="updateBlogStatus(item)"
+                          class="custom-btn edge"
+                        >
+                          <div v-if="item.status">Approved</div>
+                          <div v-else>Unapproved</div>
+                        </div>
                       </div>
                     </div>
+
                     <div class="pagination table">
                       <div class="page-result">
                         <h3 class="page-result-txt">
-                          Results: 20, Page 1 of 5
+                          Results: {{ resultLength }}, Page {{ currentPage }} of
+                          {{ pages().length }}
                         </h3>
                       </div>
                       <ul role="list" class="pagination-list">
-                        <li class="page">
-                          <img
-                            src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b72debe03037906a74116a_thin-chevron-arrow-left-icon%201.svg"
-                            loading="lazy"
-                            alt=""
-                            class="page-icon"
-                          />
+                        <li
+                          class="page"
+                          v-if="currentPage > 1"
+                          @click="paginate(currentPage - 1)"
+                        >
+                          <i class="material-symbols-outlined orange"
+                            >arrow_back_ios</i
+                          >
                         </li>
-                        <li class="page"><div>1</div></li>
-                        <li class="page active"><div>2</div></li>
-                        <li class="page"><div>3</div></li>
-                        <li class="page">
-                          <img
-                            src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b72deb58cf5ff7bacff87c_thin-chevron-arrow-left-icon%202.svg"
-                            loading="lazy"
-                            alt=""
-                            class="page-icon"
-                          />
+                        <li
+                          v-for="(page, int) in pages().length"
+                          :key="int"
+                          class="page"
+                          @click="paginate(int + 1)"
+                          :class="{ active: int + 1 == currentPage }"
+                        >
+                          <div>{{ int + 1 }}</div>
+                        </li>
+
+                        <li
+                          class="page"
+                          v-if="currentPage != pages().length"
+                          @click="paginate(currentPage + 1)"
+                        >
+                          <i class="material-symbols-outlined orange"
+                            >arrow_forward_ios</i
+                          >
                         </li>
                       </ul>
                     </div>
                   </div>
+
                   <div class="table-head foot">
-                    <div class="check-box all"><div class="check"></div></div>
+                    <div @click="checkAllItem" class="check-box all">
+                      <div
+                        class="check"
+                        :class="{ active: isAllChecked }"
+                      ></div>
+                    </div>
                     <div class="actions-foot">
-                      <img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b92e5ec6f83ddafd16c20a_copy.svg"
-                        loading="lazy"
-                        alt=""
-                        class="action-icons"
-                      /><img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b8e29972782f01aa826a75_edit.svg"
-                        loading="lazy"
-                        alt=""
-                        class="action-icons"
-                      /><img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b84d212e330d5af9503296_delete.svg"
-                        loading="lazy"
-                        alt=""
-                        class="action-icons h"
-                      />
+                      <i
+                        @click="duplicateItem"
+                        class="material-symbols-outlined orange action-icons"
+                        >content_copy</i
+                      >
+
+                      <i
+                        @click="prepareItemEdit"
+                        class="material-symbols-outlined orange action-icons"
+                        >edit</i
+                      >
+
+                      <i class="material-symbols-outlined orange action-icons"
+                        >delete</i
+                      >
                     </div>
                   </div>
+
                   <div class="table-head ban">
                     <div class="each-input part">
-                      <label for="name-15" class="label">Title</label
+                      <label for="name-15" class="label">Category</label
                       ><input
                         type="text"
                         class="custom-input w-input"
-                        maxlength="256"
-                        name="name-14"
-                        data-name="Name 14"
-                        placeholder="Enter First Name"
-                        id="name-14"
+                        v-model="category"
+                        placeholder="Enter Blog Category"
                       />
                     </div>
                     <div class="each-input part">
@@ -178,86 +199,75 @@
                       ><input
                         type="text"
                         class="custom-input w-input"
-                        maxlength="256"
-                        name="name-14"
-                        data-name="Name 14"
-                        placeholder="Enter First Name"
-                        id="name-14"
+                        v-model="title"
+                        placeholder="Enter Blog Title"
                       />
                     </div>
                     <div class="each-input part">
-                      <label for="name-15" class="label">Title</label
+                      <label for="name-15" class="label">Author</label
                       ><input
                         type="text"
                         class="custom-input w-input"
-                        maxlength="256"
-                        name="name-14"
-                        data-name="Name 14"
-                        placeholder="Enter First Name"
-                        id="name-14"
+                        v-model="author"
+                        placeholder="Enter Blog Author"
                       />
                     </div>
                     <div class="each-input part">
-                      <label for="name-15" class="label">Title</label
+                      <label for="name-15" class="label">Type</label
                       ><input
                         type="text"
                         class="custom-input w-input"
-                        maxlength="256"
-                        name="name-14"
-                        data-name="Name 14"
-                        placeholder="Enter First Name"
-                        id="name-14"
+                        v-model="blogType"
+                        placeholder="Enter Blog Type"
                       />
                     </div>
                     <div class="each-input part">
-                      <label for="name-15" class="label">Title</label
+                      <label for="name-15" class="label">Date</label
                       ><input
-                        type="text"
+                        type="date"
                         class="custom-input w-input"
-                        maxlength="256"
-                        name="name-14"
-                        data-name="Name 14"
-                        placeholder="Enter First Name"
-                        id="name-14"
+                        v-model="date"
                       />
                     </div>
                     <div class="each-input full">
                       <label for="field-6" class="label"
                         >Essence of Application</label
-                      ><textarea
-                        placeholder="Example Text"
-                        maxlength="5000"
-                        id="field-5"
-                        name="field-5"
-                        data-name="Field 5"
-                        class="custom-input txt high w-input"
-                      ></textarea>
+                      >
+                      <client-only placeholder="loading..."
+                        ><ckeditor-nuxt
+                          class="search-flex full w-input"
+                          v-model="content"
+                          :config="editorConfig"
+                        />
+                      </client-only>
                     </div>
                     <div class="btn-holder">
-                      <div class="custom-btn edge color">
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b799b47c0010e65ffca458_loader-icon%201.svg"
-                          loading="lazy"
-                          alt=""
-                          class="btn-icon spinner"
+                      <div v-if="onRequest" class="custom-btn edge color">
+                        <i class="material-symbols-outlined white spinner"
+                          >motion_photos_on</i
+                        >
+                        <div>Processing</div>
+                      </div>
+                      <label for="banner" v-else class="custom-btn edge">
+                        <i class="material-symbols-outlined white"
+                          >upload_file</i
+                        >
+                        <div>Select Banner</div>
+                        <input
+                          @change="setImage"
+                          type="file"
+                          class="hidden"
+                          id="banner"
                         />
-                        <div>Processingg</div>
-                      </div>
-                      <div class="custom-btn edge color">
-                        <div>Submit Application</div>
-                      </div>
+                      </label>
+                      <label
+                        v-if="!onRequest"
+                        @click="processBlog"
+                        class="custom-btn edge"
+                      >
+                        <div>Submit</div>
+                      </label>
                     </div>
-                    <label for="field-6" class="response error"
-                      >Sorry, something went wrong</label
-                    >
-                  </div>
-                </form>
-                <div class="w-form-done">
-                  <div>Thank you! Your submission has been received!</div>
-                </div>
-                <div class="w-form-fail">
-                  <div>
-                    Oops! Something went wrong while submitting the form.
                   </div>
                 </div>
               </div>
@@ -282,9 +292,7 @@ import VerticalNav from "../../components/VerticalNav.vue";
 export default {
   data() {
     return {
-      blogTypes: ["News", "Services"],
-      showBlogTypeList: false,
-      blogType: "Select Type",
+      blogType: "",
       category: "",
       title: "",
       subtitle: "",
@@ -308,8 +316,7 @@ export default {
 
       sort: "-time",
       field: "",
-      limit: 3,
-      resultLength: "",
+      limit: 10,
       currentPage: 1,
       pages: function () {
         let array = [];
@@ -379,40 +386,63 @@ export default {
       this.author = "";
     },
 
-    startDelete(id) {
-      this.deleteId = id;
-      this.overlayMsg = "Are you sure you want to delete this blog?";
-      this.showOverlay = true;
+    showAlertBox(msg, status) {
+      this.$store.commit("settingsStore/SHOW_ALERT_BOX", { msg, status });
     },
 
-    closeOverlay() {
-      this.showOverlay = false;
-      this.overlayMsg = "";
-      this.deleteBlog();
+    toggleItem(int) {
+      this.$store.commit("settingsStore/TOGGLE_BLOG", int);
     },
 
-    prepareBlog(blog) {
-      this.editingId = blog._id;
+    checkAllItem() {
+      this.$store.commit("settingsStore/CHECK_ALL_BLOGS");
+    },
+
+    checkResponse(result, msg, status) {
+      this.onRequest = false;
+      if (result.status == 200) {
+        this.clearInputs();
+        this.showAlertBox(msg, status);
+      } else {
+        this.showAlertBox(result.response.data.message, true);
+      }
+    },
+
+    copyItem(item) {
+      this.banner = item.banner;
+      this.blogType = item.blogType;
+      this.title = item.title;
+      this.subtitle = item.subtitle;
+      this.content = item.content;
+      this.author = item.author;
+      this.category = item.category;
+      this.date = item.time;
+    },
+
+    prepareItemEdit() {
+      if (this.selectedItems.length == 0) {
+        this.showAlertBox("Please select a blog to edit", true);
+        return;
+      }
+      const item = JSON.parse(
+        JSON.stringify(this.selectedItems[this.selectedItems.length - 1])
+      );
+      this.editingId = item._id;
       this.editingState = true;
-      this.banner = blog.banner;
-      this.blogType = blog.blogType;
-      this.title = blog.title;
-      this.subtitle = blog.subtitle;
-      this.content = blog.content;
-      this.author = blog.author;
-      this.category = blog.category;
-      this.time = blog.time;
+      this.copyItem(item);
     },
 
-    duplicateBlog(blog) {
-      this.banner = blog.banner;
-      this.blogType = blog.blogType;
-      this.title = blog.title;
-      this.subtitle = blog.subtitle;
-      this.content = blog.content;
-      this.author = blog.author;
-      this.category = blog.category;
-      this.time = blog.time;
+    duplicateItem() {
+      if (this.selectedItems.length == 0) {
+        this.showAlertBox("Please select a blog to duplicate", true);
+        return;
+      }
+      const item = JSON.parse(
+        JSON.stringify(this.selectedItems[this.selectedItems.length - 1])
+      );
+      this.editingId = "";
+      this.editingState = false;
+      this.copyItem(item);
     },
 
     sortResult() {
@@ -425,6 +455,25 @@ export default {
       this.getBlog();
     },
 
+    async updateBlogStatus(blog) {
+      const item = JSON.parse(JSON.stringify(blog));
+      const query = `?limit=${this.limit}&page=${this.currentPage}&sort=${this.sort}`;
+      const status = !item.status;
+
+      const form = {
+        status: status,
+      };
+      const payload = {
+        id: item._id,
+        query,
+        form,
+      };
+      const result = await this.$store.dispatch(
+        "settingsStore/UPDATE_BLOG",
+        payload
+      );
+    },
+
     processBlog() {
       this.onRequest = true;
       const form = new FormData();
@@ -434,10 +483,12 @@ export default {
       form.append("content", this.content);
       form.append("category", this.category);
       form.append("author", this.author);
-
+      form.append("blogType", this.blogType);
       form.append(
         "time",
-        this.date == "" ? new Date().getTime() : new Date(this.date).getTime()
+        this.date == "" || this.date == undefined
+          ? new Date().getTime()
+          : new Date(this.date).getTime()
       );
       if (this.editingState) {
         this.updateBlog(form);
@@ -448,31 +499,27 @@ export default {
 
     async updateBlog(form) {
       const query = `?limit=${this.limit}&page=${this.currentPage}&sort=${this.sort}`;
-      try {
-        const result = await this.$axios.patch(
-          `/blogs/${this.editingId}/${query}`,
-          form
-        );
-        this.clearInputs();
-        this.blogs = result.data.data;
-        this.resultLength = result.data.resultLength;
-        this.showResponseMsg("Blog updated successfully", false);
-      } catch (err) {
-        this.showResponseMsg(err.response.data.message, true);
-      }
+      const payload = {
+        id: this.editingId,
+        query,
+        form,
+      };
+      const result = await this.$store.dispatch(
+        "settingsStore/UPDATE_BLOG",
+        payload
+      );
+      const msg = "The Blog was updated successfully.";
+      this.checkResponse(result, msg, false);
     },
 
     async createBlog(form) {
       const query = `?limit=${this.limit}&page=${this.currentPage}&sort=${this.sort}`;
-      try {
-        const result = await this.$axios.post(`/blogs/${query}`, form);
-        this.clearInputs();
-        this.blogs = result.data.data;
-        this.resultLength = result.data.resultLength;
-        this.showResponseMsg("Blog created successfully", false);
-      } catch (err) {
-        this.showResponseMsg(err.response.data.message, true);
-      }
+      const result = await this.$store.dispatch("settingsStore/CREATE_BLOG", {
+        query,
+        form,
+      });
+      const msg = "The Blog was created successfully.";
+      this.checkResponse(result, msg, false);
     },
 
     async getBlog() {
@@ -500,13 +547,25 @@ export default {
     },
   },
 
-  mounted() {
-    this.getBlog();
-  },
-
   computed: {
     editorConfig() {
       return this.$store.state.editor.editorConfig;
+    },
+
+    items() {
+      return this.$store.state.settingsStore.blogs;
+    },
+
+    selectedItems() {
+      return this.$store.state.settingsStore.selectedBlogs;
+    },
+
+    resultLength() {
+      return this.$store.state.settingsStore.blogLength;
+    },
+
+    isAllChecked() {
+      return this.$store.state.settingsStore.isBlogChecked;
     },
   },
 

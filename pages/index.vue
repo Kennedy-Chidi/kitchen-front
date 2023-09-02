@@ -85,6 +85,8 @@
 
           <div class="hide-dots w-slider-nav w-round"></div>
         </div>
+
+        <!-- -----------HOW IT WORKS------------- -->
         <div class="custom-container-landing">
           <div class="content-body">
             <div class="first-landing-section">
@@ -92,41 +94,41 @@
                 <div class="landing-title">HOW WE WORK</div>
                 <div class="each-how">
                   <img
-                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d19f6c35b16f4e740c24_meal.svg"
+                    src="/images/registration.svg"
                     loading="lazy"
                     alt=""
                     class="how-img"
                   />
                   <div class="subtitle">Signup &amp;Login</div>
                   <div class="how-text">
-                    Choose your favorite meals and order online or by phone.
-                    It&#x27;s easy to customize your order.
+                    Create and your Kitchen Grace account to get started, login
+                    to your Kitchen Grace account to start shopping.
                   </div>
                 </div>
                 <div class="each-how center">
                   <img
-                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d19f6c35b16f4e740c24_meal.svg"
+                    src="/images/cart-line.svg"
                     loading="lazy"
                     alt=""
                     class="how-img"
                   />
-                  <div class="subtitle">Signup &amp;Login</div>
+                  <div class="subtitle">Shop &amp; Order</div>
                   <div class="how-text">
-                    Choose your favorite meals and order online or by phone.
-                    It&#x27;s easy to customize your order.
+                    Search and select the products of your choice, click on the
+                    cart icon to view and approve your order.
                   </div>
                 </div>
                 <div class="each-how">
                   <img
-                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d19f6c35b16f4e740c24_meal.svg"
+                    src="/images/delivery.svg"
                     loading="lazy"
                     alt=""
-                    class="how-img"
+                    class="how-img width"
                   />
-                  <div class="subtitle">Signup &amp;Login</div>
+                  <div class="subtitle">Receive &amp; Pay</div>
                   <div class="how-text">
-                    Choose your favorite meals and order online or by phone.
-                    It&#x27;s easy to customize your order.
+                    We deliver every other in less than 20 minutes, we receive
+                    payments from you on delivery of your ordered products.
                   </div>
                 </div>
               </div>
@@ -153,8 +155,8 @@
                           loading="lazy"
                           alt=""
                           class="combo-img"
-                        /><a href="#" class="combo-link"
-                          >Native Vegetable Salad</a
+                        /><nuxt-link to="/blog" class="combo-link"
+                          >Native Vegetable Salad</nuxt-link
                         >
                       </div>
                     </div>
@@ -165,8 +167,8 @@
                           loading="lazy"
                           alt=""
                           class="combo-img"
-                        /><a href="#" class="combo-link"
-                          >Native Vegetable Salad</a
+                        /><nuxt-link to="/" class="combo-link"
+                          >Native Vegetable Salad</nuxt-link
                         >
                       </div>
                     </div>
@@ -177,8 +179,8 @@
                           loading="lazy"
                           alt=""
                           class="combo-img"
-                        /><a href="#" class="combo-link"
-                          >Native Vegetable Salad</a
+                        /><nuxt-link to="/" class="combo-link"
+                          >Native Vegetable Salad</nuxt-link
                         >
                       </div>
                     </div>
@@ -189,8 +191,8 @@
                           loading="lazy"
                           alt=""
                           class="combo-img"
-                        /><a href="#" class="combo-link"
-                          >Native Vegetable Salad</a
+                        /><nuxt-link to="/" class="combo-link"
+                          >Native Vegetable Salad</nuxt-link
                         >
                       </div>
                     </div>
@@ -207,6 +209,9 @@
             </div>
           </div>
         </div>
+        <!-- X-----------HOW IT WORKS-------------X -->
+
+        <!-- -----------OUR VIDEO------------- -->
         <div class="landing-video">
           <div class="video-cover">
             <img
@@ -221,6 +226,9 @@
             </div>
           </div>
         </div>
+        <!--X -----------OUR VIDEO-------------X -->
+
+        <!-- -----------TESTIMONIAL------------- -->
         <div class="review-section">
           <div class="custom-container-landing">
             <div class="first-landing-section">
@@ -307,6 +315,8 @@
             </div>
           </div>
         </div>
+        <!--X -----------TESTIMONIAL------------- X-->
+
         <div class="landing-blog">
           <div class="custom-container-landing">
             <div
@@ -334,8 +344,8 @@
                       />
                     </div>
                     <div class="each-blog-body">
-                      <a href="#" class="subtitle blog"
-                        >How to maintain a ood diet in your ome</a
+                      <nuxt-link to="/" class="subtitle blog"
+                        >How to maintain a ood diet in your ome</nuxt-link
                       >
                       <div class="each-blog-date">13 Oct, 2023</div>
                       <div>
@@ -346,7 +356,7 @@
                       </div>
                       <div class="each-blog-footer">
                         <div>27 Comments</div>
-                        <a href="#" class="more">Read More</a>
+                        <nuxt-link to="/" class="more">Read More</nuxt-link>
                       </div>
                     </div>
                   </div>
@@ -362,8 +372,8 @@
                       />
                     </div>
                     <div class="each-blog-body">
-                      <a href="#" class="subtitle blog"
-                        >How to maintain a ood diet in your ome</a
+                      <nuxt-link to="/" class="subtitle blog"
+                        >How to maintain a ood diet in your ome</nuxt-link
                       >
                       <div class="each-blog-date">13 Oct, 2023</div>
                       <div>
@@ -374,7 +384,7 @@
                       </div>
                       <div class="each-blog-footer">
                         <div>27 Comments</div>
-                        <a href="#" class="more">Read More</a>
+                        <nuxt-link to="/" class="more">Read More</nuxt-link>
                       </div>
                     </div>
                   </div>
@@ -390,8 +400,8 @@
                       />
                     </div>
                     <div class="each-blog-body">
-                      <a href="#" class="subtitle blog"
-                        >How to maintain a ood diet in your ome</a
+                      <nuxt-link to="/" class="subtitle blog"
+                        >How to maintain a ood diet in your ome</nuxt-link
                       >
                       <div class="each-blog-date">13 Oct, 2023</div>
                       <div>
@@ -402,7 +412,7 @@
                       </div>
                       <div class="each-blog-footer">
                         <div>27 Comments</div>
-                        <a href="#" class="more">Read More</a>
+                        <nuxt-link to="/" class="more">Read More</nuxt-link>
                       </div>
                     </div>
                   </div>
@@ -418,8 +428,8 @@
                       />
                     </div>
                     <div class="each-blog-body">
-                      <a href="#" class="subtitle"
-                        >How to maintain a ood diet in your ome</a
+                      <nuxt-link to="/" class="subtitle"
+                        >How to maintain a ood diet in your ome</nuxt-link
                       >
                       <div class="each-blog-date">13 Oct, 2023</div>
                       <div>
@@ -430,7 +440,7 @@
                       </div>
                       <div class="each-blog-footer">
                         <div>27 Comments</div>
-                        <a href="#" class="more">Read More</a>
+                        <nuxt-link to="/" class="more">Read More</nuxt-link>
                       </div>
                     </div>
                   </div>
@@ -446,8 +456,8 @@
                       />
                     </div>
                     <div class="each-blog-body">
-                      <a href="#" class="subtitle"
-                        >How to maintain a ood diet in your ome</a
+                      <nuxt-link to="/" class="subtitle"
+                        >How to maintain a ood diet in your ome</nuxt-link
                       >
                       <div class="each-blog-date">13 Oct, 2023</div>
                       <div>
@@ -458,7 +468,7 @@
                       </div>
                       <div class="each-blog-footer">
                         <div>27 Comments</div>
-                        <a href="#" class="more">Read More</a>
+                        <nuxt-link to="/" class="more">Read More</nuxt-link>
                       </div>
                     </div>
                   </div>
@@ -474,8 +484,8 @@
                       />
                     </div>
                     <div class="each-blog-body">
-                      <a href="#" class="subtitle"
-                        >How to maintain a ood diet in your ome</a
+                      <nuxt-link to="/" class="subtitle"
+                        >How to maintain a ood diet in your ome</nuxt-link
                       >
                       <div class="each-blog-date">13 Oct, 2023</div>
                       <div>
@@ -486,7 +496,7 @@
                       </div>
                       <div class="each-blog-footer">
                         <div>27 Comments</div>
-                        <a href="#" class="more">Read More</a>
+                        <nuxt-link to="/" class="more">Read More</nuxt-link>
                       </div>
                     </div>
                   </div>
@@ -502,8 +512,8 @@
                       />
                     </div>
                     <div class="each-blog-body">
-                      <a href="#" class="subtitle"
-                        >How to maintain a ood diet in your ome</a
+                      <nuxt-link to="/" class="subtitle"
+                        >How to maintain a ood diet in your ome</nuxt-link
                       >
                       <div class="each-blog-date">13 Oct, 2023</div>
                       <div>
@@ -514,7 +524,7 @@
                       </div>
                       <div class="each-blog-footer">
                         <div>27 Comments</div>
-                        <a href="#" class="more">Read More</a>
+                        <nuxt-link to="/" class="more">Read More</nuxt-link>
                       </div>
                     </div>
                   </div>
@@ -530,8 +540,8 @@
                       />
                     </div>
                     <div class="each-blog-body">
-                      <a href="#" class="subtitle"
-                        >How to maintain a ood diet in your ome</a
+                      <nuxt-link to="/" class="subtitle"
+                        >How to maintain a ood diet in your ome</nuxt-link
                       >
                       <div class="each-blog-date">13 Oct, 2023</div>
                       <div>
@@ -542,7 +552,7 @@
                       </div>
                       <div class="each-blog-footer">
                         <div>27 Comments</div>
-                        <a href="#" class="more">Read More</a>
+                        <nuxt-link to="/" class="more">Read More</nuxt-link>
                       </div>
                     </div>
                   </div>
@@ -558,8 +568,8 @@
                       />
                     </div>
                     <div class="each-blog-body">
-                      <a href="#" class="subtitle"
-                        >How to maintain a ood diet in your ome</a
+                      <nuxt-link to="/" class="subtitle"
+                        >How to maintain a ood diet in your ome</nuxt-link
                       >
                       <div class="each-blog-date">13 Oct, 2023</div>
                       <div>
@@ -570,7 +580,7 @@
                       </div>
                       <div class="each-blog-footer">
                         <div>27 Comments</div>
-                        <a href="#" class="more">Read More</a>
+                        <nuxt-link to="/" class="more">Read More</nuxt-link>
                       </div>
                     </div>
                   </div>
@@ -605,17 +615,17 @@
                   reference: People think[...]
                 </div>
                 <div class="app-btns">
-                  <a href="#" class="store-img w-inline-block"
+                  <nuxt-link to="/" class="store-img w-inline-block"
                     ><img
                       src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0e80449e674bb29308901_app-store.png"
                       loading="lazy"
-                      alt="" /></a
-                  ><a href="#" class="store-img w-inline-block"
+                      alt="" /></nuxt-link
+                  ><nuxt-link to="/" class="store-img w-inline-block"
                     ><img
                       src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0e80014f492b3dfe38026_google-play.png"
                       loading="lazy"
                       alt=""
-                  /></a>
+                  /></nuxt-link>
                 </div>
               </div>
             </div>
@@ -639,40 +649,40 @@
             >
               <div class="partner-mask w-slider-mask">
                 <div class="each-partner w-slide">
-                  <a href="#" class="partner-link w-inline-block"
+                  <nuxt-link to="/" class="partner-link w-inline-block"
                     ><img
                       src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0ed64fca9a83bf65e1abd_02.png"
                       loading="lazy"
                       alt=""
                       class="partner-img"
-                  /></a>
+                  /></nuxt-link>
                 </div>
                 <div class="each-partner w-slide">
-                  <a href="#" class="partner-link w-inline-block"
+                  <nuxt-link to="/" class="partner-link w-inline-block"
                     ><img
                       src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0ed667db0bb659bf8c0ea_01.png"
                       loading="lazy"
                       alt=""
                       class="partner-img"
-                  /></a>
+                  /></nuxt-link>
                 </div>
                 <div class="each-partner w-slide">
-                  <a href="#" class="partner-link w-inline-block"
+                  <nuxt-link to="/" class="partner-link w-inline-block"
                     ><img
                       src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0ed64b87cba886ff8a01b_03.png"
                       loading="lazy"
                       alt=""
                       class="partner-img"
-                  /></a>
+                  /></nuxt-link>
                 </div>
                 <div class="each-partner w-slide">
-                  <a href="#" class="partner-link w-inline-block"
+                  <nuxt-link to="/" class="partner-link w-inline-block"
                     ><img
                       src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0ed650838e40e676588b3_04.png"
                       loading="lazy"
                       alt=""
                       class="partner-img"
-                  /></a>
+                  /></nuxt-link>
                 </div>
               </div>
               <div class="left-arrow w-slider-arrow-left">

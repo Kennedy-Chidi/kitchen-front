@@ -331,13 +331,6 @@ export default {
       this.confirmStatus = false;
     },
 
-    returnConfirmation(data) {
-      if (data == "yes") {
-        this.deleteBanner(this.deleteId);
-      }
-      this.confirmStatus = true;
-    },
-
     copyData(data) {
       this.bannerImage = data.bannerImage;
       this.bannerIntro = data.bannerIntro;
@@ -346,14 +339,16 @@ export default {
       this.bannerPage = data.bannerPage;
     },
 
-    duplicateBanner(banner) {
+    duplicateBanner() {
+      const banner = this.selectedBanners[this.selectedBanners.length - 1];
       this.editingId = "";
       this.editingState = false;
       const data = JSON.parse(JSON.stringify(banner));
       this.copyData(data);
     },
 
-    prepareBannerEdit(banner) {
+    prepareBannerEdit() {
+      const banner = this.selectedBanners[this.selectedBanners.length - 1];
       this.editingId = banner._id;
       this.editingState = true;
       const data = JSON.parse(JSON.stringify(banner));
@@ -378,12 +373,6 @@ export default {
     paginate(page) {
       this.currentPage = page;
       this.getBanner();
-    },
-
-    closeOverlay() {
-      this.showOverlay = false;
-      this.overlayMsg = "";
-      this.deleteBanner();
     },
 
     startBannerDelete(id) {
@@ -414,17 +403,13 @@ export default {
 
     async updateBanner(form) {
       const query = `?limit=${this.limit}&page=${this.currentPage}&sort=${this.sort}${this.field}`;
-      try {
-        const result = await this.$axios.patch(
-          `/banner/${this.editingId}/${query}`,
-          form
-        );
-        this.clearInputs();
-        this.banners = result.data.data;
-        this.resultLength = result.data.resultLength;
-      } catch (err) {
-        this.showR;
-      }
+      const id = this.editingId;
+      const result = await this.$store.dispatch("settingsStore/UPDATE_BANNER", {
+        id,
+        query,
+        form,
+      });
+      this.checkResponse(result);
     },
 
     async createBanner(form) {
@@ -459,7 +444,10 @@ export default {
       if (result.status == 200) {
         const msg = `The banner was set successfully`;
         const status = false;
+        this.clearInputs();
         this.showAlertBox(msg, status);
+      } else {
+        this.showAlertBox(result.response, true);
       }
     },
   },
@@ -471,6 +459,10 @@ export default {
 
     banners() {
       return this.$store.state.settingsStore.banners;
+    },
+
+    selectedBanners() {
+      return this.$store.state.settingsStore.selectedBanners;
     },
 
     isAllChecked() {

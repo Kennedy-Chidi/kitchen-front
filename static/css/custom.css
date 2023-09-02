@@ -76,7 +76,7 @@
 }
 
 .nav-inner-list.prod.active {
-  height: 100px;
+  height: 175px;
 }
 
 .nav-inner-list,
@@ -92,6 +92,14 @@
 
 .filter-div {
   width: 50px;
+}
+
+.how-img {
+  width: 60px;
+}
+
+.how-img.width {
+  width: 80px;
 }
 
 .dash-greeting.opac {
