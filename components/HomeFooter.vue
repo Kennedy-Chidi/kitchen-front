@@ -118,10 +118,21 @@ export default {
       }
     },
   },
+
+  computed: {
+    settingInitials() {
+      return this.$store.state.initials;
+    },
+  },
+
   mounted() {
     this.loadScript();
     if (this.$route.query.ref) {
       localStorage.setItem("referral", this.$route.query.ref);
+    }
+
+    if (!this.settingInitials) {
+      this.$store.dispatch("nuxtServerInit");
     }
   },
 };

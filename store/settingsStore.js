@@ -1,9 +1,13 @@
 export const state = () => ({
+  homeBanners: [],
+
   companyArray: [],
   companyLength: 0,
   selectedCompanies: [],
   isCompanyChecked: false,
   initials: false,
+
+  selectedUser: "",
 
   selectedPromotions: [],
   isPromotionChecked: false,
@@ -95,6 +99,10 @@ export const getters = {
 };
 
 export const mutations = {
+  SELECT_USER(state, data) {
+    state.selectedUser = data;
+  },
+
   SET_NOTIFICATIONS(state, data) {
     state.notificationLength = data.length;
     let array = [];
@@ -180,6 +188,7 @@ export const mutations = {
       array.push(el);
     });
     state.banners = array;
+
     state.isBannerChecked = false;
     state.selectedBanners = [];
   },
@@ -1100,40 +1109,6 @@ export const actions = {
     }
   },
 
-  async GET_SETTINGS(commit) {
-    const user = this.$auth.user;
-    let username = "";
-    let status = "";
-    if (user) {
-      username = user.username;
-      status = user.status;
-    }
-
-    try {
-      const response = await this.$axios.get(
-        `/company/all/settings/?username=${username}&status=${status}`
-      );
-      commit("TOGGLE_INITIAL", true);
-      commit("SET_COUNTRIES", response.data.countries);
-      commit("SET_NOTIFICATIONS", response.data.notifications);
-      commit("SET_USERS", response.data.users);
-      commit("SET_STAFFS", response.data.staffs);
-      commit("SET_PRODUCTS", response.data.products);
-      commit("SET_TRANSACTIONS", response.data.transactions);
-      commit("SET_ORDERS", response.data.orders);
-      commit("SET_COMPANY", response.data.companies);
-      commit("SET_EMAILS", response.data.emails);
-      commit("SET_BANNERS", response.data.banners);
-      commit("SET_BLOGS", response.data.blogs);
-      commit("SET_REVIEWS", response.data.reviews);
-
-      // commit("SET_PROMOTIONS", response.data.promotions);
-      // commit("SET_SALES", response.data.sales);
-    } catch (err) {
-      console.log(err.response);
-    }
-  },
-
   async GET_BANNER({ commit }) {
     try {
       const result = await this.$axios.get(`/banner/${query}`);
@@ -1187,6 +1162,54 @@ export const actions = {
     }
   },
 
+  async UPDATE_REVIEW({ commit }, payload) {
+    const { id, query, form } = payload;
+    try {
+      const result = await this.$axios.patch(
+        `/users/update-user/${id}/${query}`,
+        form
+      );
+      commit("SET_REVIEWS", result.data.data);
+      return result;
+    } catch (err) {
+      return err;
+    }
+  },
+
+  async GET_SETTINGS(commit) {
+    const user = this.$auth.user;
+    let username = "";
+    let status = "";
+    if (user) {
+      username = user.username;
+      status = user.status;
+    }
+
+    try {
+      const response = await this.$axios.get(
+        `/company/all/settings/?username=${username}&status=${status}`
+      );
+      commit("TOGGLE_INITIAL", true);
+      commit("SET_COUNTRIES", response.data.countries);
+      commit("SET_NOTIFICATIONS", response.data.notifications);
+      commit("SET_USERS", response.data.users);
+      commit("SET_STAFFS", response.data.staffs);
+      commit("SET_PRODUCTS", response.data.products);
+      commit("SET_TRANSACTIONS", response.data.transactions);
+      commit("SET_ORDERS", response.data.orders);
+      commit("SET_COMPANY", response.data.companies);
+      commit("SET_EMAILS", response.data.emails);
+      commit("SET_BANNERS", response.data.banners);
+      commit("SET_BLOGS", response.data.blogs);
+      commit("SET_REVIEWS", response.data.reviews);
+
+      // commit("SET_PROMOTIONS", response.data.promotions);
+      // commit("SET_SALES", response.data.sales);
+    } catch (err) {
+      console.log(err.response);
+    }
+  },
+
   async nuxtServerInit({ commit }) {
     const user = this.$auth.user;
     let username = "";
@@ -1216,7 +1239,7 @@ export const actions = {
       // commit("SET_PROMOTIONS", response.data.promotions);
       // commit("SET_SALES", response.data.sales);
     } catch (err) {
-      console.log(err.response);
+      console.log(err);
     }
   },
 };

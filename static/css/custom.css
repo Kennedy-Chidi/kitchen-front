@@ -169,12 +169,37 @@ label.response.error {
   cursor: pointer;
 }
 
+.video-display {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.w-video iframe,
+.w-video object,
+.w-video embed {
+  width: 95%;
+  max-width: 400px;
+  border: none;
+  max-height: 350px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
 .check-box {
   min-width: 15px;
 }
 
 .custom-btn.edge {
   align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.custom-btn.edge.width {
+  max-width: 150px;
 }
 
 .material-symbols-outlined.white {

@@ -111,7 +111,7 @@ export default {
 
     async logout() {
       await this.$auth.logout();
-      this.$router.push("/home");
+      this.$router.push("/");
       this.closeNav();
     },
   },

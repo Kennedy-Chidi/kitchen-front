@@ -213,6 +213,15 @@
                       />
                     </div>
                     <div class="each-input part">
+                      <label for="name-15" class="label">Subtitle</label
+                      ><input
+                        type="text"
+                        class="custom-input w-input"
+                        v-model="subtitle"
+                        placeholder="Enter Blog Subtitle"
+                      />
+                    </div>
+                    <div class="each-input part">
                       <label for="name-15" class="label">Type</label
                       ><input
                         type="text"
@@ -282,7 +291,7 @@
 </template>
 
 <script>
-import AlertBox from "../../components/AlertBox.vue";
+import AlertBox from "../../components/AlertBox";
 import AlertConfirmation from "../../components/AlertConfirmation.vue";
 import CompanyAds from "../../components/CompanyAds.vue";
 import FooterComponent from "../../components/FooterComponent.vue";

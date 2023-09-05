@@ -1,4 +1,14 @@
 export const state = () => ({
+  banners: [],
+  reviews: [],
+  blogTutorials: [],
+  blogTutorialLength: 0,
+
+  blogs: [],
+  blogLength: 0,
+
+  selectedBlog: "",
+
   alertMsg: "",
   alertStatus: false,
   isLoading: false,
@@ -19,20 +29,6 @@ export const state = () => ({
   notificationNum: 0,
   isPasswordChanged: false,
   expandNav: false,
-
-  // navState: false,
-  // dashboardNavState: false,
-  // fileURL: "",
-  // referral: "",
-  // confirmMsg: "",
-  // confirmState: true,
-  // showDashboardNav: false,
-  // productArray: [],
-  // purchaseProperties: {
-  //   totalQuantity: 0,
-  //   totalAmount: 0,
-  //   categories: [],
-  // },
 });
 
 export const getters = {
@@ -133,78 +129,27 @@ export const mutations = {
     state.notifications = 0;
   },
 
-  // TOGGLE_NAV(state) {
-  //   state.dashboardNavState = !state.dashboardNavState;
-  // },
-  // HIDE_DASHBOARD_NAV(state) {
-  //   state.dashboardNavState = false;
-  // },
-  // HIDE_NAV(state) {
-  //   state.adminNavState = false;
-  // },
-  // SET_REFERRAL(state, referral) {
-  //   state.referral = referral;
-  // },
-  // SET_URL(state, URL) {
-  //   state.fileURL = URL;
-  // },
-  // ADD_TO_CART(state, data) {
-  //   const existingItem = state.products.find(
-  //     (item) => item.productName === data.productName
-  //   );
-  //   if (existingItem) {
-  //     existingItem.quantity++;
-  //   } else {
-  //     const product = {
-  //       productSellingPrice: data.productSellingPrice,
-  //       productName: data.productName,
-  //       productId: data._id,
-  //       productImageUrl: data.productImageUrl,
-  //       quantity: 1,
-  //     };
-  //     state.products.push(product);
-  //   }
-  //   state.purchaseProperties.totalQuantity++;
-  //   state.purchaseProperties.totalAmount += data.productSellingPrice;
-  //   data.productCategories.forEach((el) => {
-  //     state.purchaseProperties.categories.push(el);
-  //   });
-  // },
-  // REMOVE_FROM_CART(state, data) {
-  //   for (let i = 0; i < state.products.length; i++) {
-  //     if (state.products[i].productName == data.productName) {
-  //       if (state.products[i].quantity > 1) {
-  //         state.products[i].quantity--;
-  //       } else {
-  //         state.products.splice(i, 1);
-  //       }
-  //       state.purchaseProperties.totalQuantity--;
-  //       state.purchaseProperties.totalAmount -= data.productSellingPrice;
-  //       const list = state.purchaseProperties.categories;
-  //       data.productCategories = Array.isArray(data.productCategories)
-  //         ? data.productCategories
-  //         : [data.productCategories];
-  //       data.productCategories.forEach((el) => {
-  //         for (let i = 0; i < list.length; i++) {
-  //           if (el == list[i]) {
-  //             list.splice(i, 1);
-  //           }
-  //         }
-  //       });
-  //     }
-  //   }
-  // },
-  // CLEAR_CART(state) {
-  //   state.products = [];
-  //   state.purchaseProperties.totalQuantity = 0;
-  //   state.purchaseProperties.totalAmount = 0;
-  // },
-  // TOGGLE_DASHBOARD_NAV(state) {
-  //   state.showDashboardNav = !state.showDashboardNav;
-  // },
-  // INCREASE_NOTIFICATION(state) {
-  //   state.notifications++;
-  // },
+  SELECT_BLOG(state, data) {
+    state.selectedBlog = data;
+  },
+
+  SET_BANNERS(state, data) {
+    state.banners = data.results;
+  },
+
+  SET_REVIEWS(state, data) {
+    state.reviews = data.results;
+  },
+
+  SET_BLOG_TUTORIALS(state, blogs) {
+    state.blogTutorialLength = blogs.length;
+    state.blogTutorials = blogs.results;
+  },
+
+  SET_BLOGS(state, blogs) {
+    state.blogsLength = blogs.length;
+    state.blogs = blogs.results;
+  },
 };
 
 export const actions = {
@@ -259,7 +204,11 @@ export const actions = {
     try {
       const query = `?limit=40&country=Nigeria&sort=name`;
       const response = await this.$axios.get(`/places/state/${query}`);
-      commit("SET_STATES", response.data.data);
+      commit("SET_STATES", response.data.states);
+      commit("SET_BANNERS", response.data.banners);
+      commit("SET_BLOG_TUTORIALS", response.data.blogTutorials);
+      commit("SET_REVIEWS", response.data.reviews);
+      commit("SET_BLOGS", response.data.homeBlogs);
       return response;
     } catch (error) {
       return error;

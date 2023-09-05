@@ -104,7 +104,7 @@
                     >
                       <div class="tb-sn user">
                         <div class="inner-label">S/N:</div>
-                        <div>{{ int + 1 }}</div>
+                        <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
                         <div @click="toggleUser(int)" class="check-box">
                           <div
                             class="check"
@@ -135,7 +135,9 @@
                       <div class="c20 name">
                         <div class="inner-label">Username:</div>
                         <div>
-                          <a href="#" class="user-link">{{ user.username }}</a>
+                          <span @click="selectUser(user)" class="user-link">{{
+                            user.username
+                          }}</span>
                         </div>
                       </div>
                       <div class="c30 phone">
@@ -147,9 +149,9 @@
                         <div class="inner-label">Status</div>
                         <div
                           @click="updateCommentStatus(user)"
-                          class="custom-btn edge"
+                          class="custom-btn edge width"
                         >
-                          <div v-if="user.comentStatus">Approved</div>
+                          <div v-if="user.commentStatus">Approved</div>
                           <div v-else>Unapproved</div>
                         </div>
                       </div>
@@ -187,49 +189,16 @@
                     </div>
                   </div>
 
-                  <div class="table-head foot">
+                  <!-- <div class="table-head foot">
                     <div @click="checkAll" class="check-box all">
                       <div
                         class="check"
                         :class="{ active: isAllChecked }"
                       ></div>
                     </div>
-                    <div class="table-filter foot">
-                      <div class="tb-filter-head">
-                        <div>Select Email</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b81c16b31d7eadba21fa56_down.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon left"
-                        />
-                      </div>
-                      <ul role="list" class="tb-filter-list">
-                        <li class="tb-list"><div>Orders</div></li>
-                        <li class="tb-list"><div>Sales</div></li>
-                        <li class="tb-list"><div>Purchases</div></li>
-                        <li class="tb-list"><div>Expenses</div></li>
-                      </ul>
-                    </div>
-                    <div class="table-filter">
-                      <div class="tb-filter-head">
-                        <div>Select SMS</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b81c16b31d7eadba21fa56_down.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon left"
-                        />
-                      </div>
-                      <ul role="list" class="tb-filter-list">
-                        <li class="tb-list"><div>Orders</div></li>
-                        <li class="tb-list"><div>Sales</div></li>
-                        <li class="tb-list"><div>Purchases</div></li>
-                        <li class="tb-list"><div>Expenses</div></li>
-                      </ul>
-                    </div>
-                    <div class="table-filter">
-                      <div class="tb-filter-head"><div>Make Staff</div></div>
+
+                    <div @click="approveMany" class="table-filter">
+                      <div class="tb-filter-head"><div>Approve</div></div>
                     </div>
                     <div class="actions-foot">
                       <img
@@ -249,7 +218,7 @@
                         class="action-icons h"
                       />
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -338,6 +307,11 @@ export default {
       this.showSMS = false;
     },
 
+    selectUser(user) {
+      this.$store.commit("settingsStore/SELECT_USER", user);
+      this.$router.push("/admin/user-profile");
+    },
+
     selectSMS(sms) {
       this.showSMS = false;
       this.showEmails = false;
@@ -370,9 +344,18 @@ export default {
       }
     },
 
-    updateCommentStatus(data) {
-      const user = JSON.parse(JSON.stringify(data));
-      const query = `limit=${this.limit}&page=${this.currentPage}&status=User&sort=${this.sort}&hasCommented=true`;
+    approveMany() {},
+
+    async updateCommentStatus(data) {
+      const user = await JSON.parse(JSON.stringify(data));
+      const query = `?limit=${this.limit}&page=${this.currentPage}&status=User&sort=${this.sort}&hasCommented=true`;
+      const status = !user.commentStatus;
+      const form = { commentStatus: status };
+      const result = await this.$store.dispatch("settingsStore/UPDATE_REVIEW", {
+        id: user._id,
+        query,
+        form,
+      });
     },
 
     async fetchItems(e) {

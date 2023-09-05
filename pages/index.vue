@@ -27,54 +27,30 @@
           data-infinite="true"
         >
           <div class="landing-mask w-slider-mask">
-            <div class="landing-slide w-slide">
+            <div
+              v-for="banner in banners"
+              :key="banner._id"
+              class="landing-slide w-slide"
+            >
               <img
-                src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0c92b1fa08c9e33e7c86b_home-banner1.jpg"
+                :src="banner.bannerImageUrl"
                 loading="lazy"
                 sizes="100vw"
-                srcset="
-                  https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0c92b1fa08c9e33e7c86b_home-banner1-p-500.jpg   500w,
-                  https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0c92b1fa08c9e33e7c86b_home-banner1-p-800.jpg   800w,
-                  https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0c92b1fa08c9e33e7c86b_home-banner1-p-1080.jpg 1080w,
-                  https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0c92b1fa08c9e33e7c86b_home-banner1.jpg        1539w
-                "
+                :srcset="`
+                  ${banner.bannerImageUrl}   500w,
+                  ${banner.bannerImageUrl}   800w,
+                  ${banner.bannerImageUrl} 1080w,
+                  ${banner.bannerImageUrl}        1539w`"
                 alt=""
                 class="responsive-img"
               />
               <div class="landing-hero-overlay">
                 <div class="custom-container-landing">
                   <div class="landing-content">
-                    <h1 class="light-heading">Top Deal</h1>
-                    <h1 class="hero-name">Kitchen Grace</h1>
+                    <h1 class="light-heading">{{ banner.bannerTitle }}</h1>
+                    <h1 class="hero-name">{{ banner.bannerSubtitle }}</h1>
                     <h1 class="landing-subtitle">
-                      Get 10% Bonus for your referrals
-                    </h1>
-                    <div class="custom-btn"><div>Start Shopping</div></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="landing-slide w-slide">
-              <img
-                src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0cb5afca9a83bf6445359_home-banner2.jpg"
-                loading="lazy"
-                sizes="100vw"
-                srcset="
-                  https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0cb5afca9a83bf6445359_home-banner2-p-500.jpg   500w,
-                  https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0cb5afca9a83bf6445359_home-banner2-p-800.jpg   800w,
-                  https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0cb5afca9a83bf6445359_home-banner2-p-1080.jpg 1080w,
-                  https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0cb5afca9a83bf6445359_home-banner2.jpg        1539w
-                "
-                alt=""
-                class="responsive-img"
-              />
-              <div class="landing-hero-overlay">
-                <div class="custom-container-landing">
-                  <div class="landing-content">
-                    <h1 class="light-heading">Top Deal</h1>
-                    <h1 class="hero-name">Kitchen Grace</h1>
-                    <h1 class="hero-subtitle">
-                      Get 10% Bonus for your referrals
+                      {{ banner.bannerIntro }}
                     </h1>
                     <div class="custom-btn"><div>Start Shopping</div></div>
                   </div>
@@ -84,6 +60,27 @@
           </div>
 
           <div class="hide-dots w-slider-nav w-round"></div>
+        </div>
+
+        <div
+          @click.self="showVideo = !showVideo"
+          class="alert-body video-display"
+          :class="{ active: showVideo }"
+          v-if="showVideo"
+        >
+          <div
+            style="padding-top: 56.17021276595745%"
+            class="video-product w-video w-embed"
+            @click.self="showVideo = !showVideo"
+          >
+            <iframe
+              class="embedly-embed"
+              src="//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FXALBGkjkUPQ%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DXALBGkjkUPQ&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FXALBGkjkUPQ%2Fhqdefault.jpg&key=96f1f04c5f4143bcb0f2e68c87d65feb&type=text%2Fhtml&schema=youtube"
+              scrolling="no"
+              allowfullscreen
+              title="Imagine for 1 Minute"
+            ></iframe>
+          </div>
         </div>
 
         <!-- -----------HOW IT WORKS------------- -->
@@ -148,52 +145,20 @@
                   data-infinite="true"
                 >
                   <div class="combo-mask w-slider-mask">
-                    <div class="each-combo w-slide">
+                    <div
+                      v-for="item in blogTutorials"
+                      :key="item._id"
+                      class="each-combo w-slide"
+                    >
                       <div class="combo-container">
                         <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d52a6e4ab5692411f6e2_meal.jpeg"
+                          :src="item.bannerUrl"
                           loading="lazy"
                           alt=""
                           class="combo-img"
-                        /><nuxt-link to="/blog" class="combo-link"
-                          >Native Vegetable Salad</nuxt-link
-                        >
-                      </div>
-                    </div>
-                    <div class="each-combo w-slide">
-                      <div class="combo-container">
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d71b6c35b16f4e77d1e6_meal3.jpeg"
-                          loading="lazy"
-                          alt=""
-                          class="combo-img"
-                        /><nuxt-link to="/" class="combo-link"
-                          >Native Vegetable Salad</nuxt-link
-                        >
-                      </div>
-                    </div>
-                    <div class="each-combo w-slide">
-                      <div class="combo-container">
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d71d34258b929f630928_meal4.jpeg"
-                          loading="lazy"
-                          alt=""
-                          class="combo-img"
-                        /><nuxt-link to="/" class="combo-link"
-                          >Native Vegetable Salad</nuxt-link
-                        >
-                      </div>
-                    </div>
-                    <div class="each-combo w-slide">
-                      <div class="combo-container">
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d71b4ada8a57fab05a2b_meal2.jpeg"
-                          loading="lazy"
-                          alt=""
-                          class="combo-img"
-                        /><nuxt-link to="/" class="combo-link"
-                          >Native Vegetable Salad</nuxt-link
-                        >
+                        /><nuxt-link to="/blog" class="combo-link">{{
+                          item.title
+                        }}</nuxt-link>
                       </div>
                     </div>
                   </div>
@@ -215,6 +180,7 @@
         <div class="landing-video">
           <div class="video-cover">
             <img
+              @click="showVideo = !showVideo"
               src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d9e44e16c7caba98acc8_play-btn.svg"
               loading="lazy"
               alt=""
@@ -253,49 +219,29 @@
                     data-infinite="true"
                   >
                     <div class="combo-mask w-slider-mask">
-                      <div class="each-review w-slide">
+                      <div
+                        v-for="review in reviews"
+                        :key="review._id"
+                        class="each-review w-slide"
+                      >
                         <div class="review-img">
                           <img
-                            src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d71b4ada8a57fab05a2b_meal2.jpeg"
+                            :src="review.profilePictureUrl"
                             loading="lazy"
                             alt=""
                             class="responsive-img"
                           />
                         </div>
                         <div class="app-text">
-                          Our faithful services has attracted many positive
-                          reviews from our wonderful customers around te world
-                          Our faithful services has attracted many positive
-                          reviews from our wonderful customers around te world
+                          {{ review.comment }}
                         </div>
-                        <div class="review-name">Kenny James</div>
-                        <div class="review-name state">Nigeria</div>
-                      </div>
-                      <div class="each-review w-slide">
-                        <div class="review-img">
-                          <img
-                            src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d52a6e4ab5692411f6e2_meal.jpeg"
-                            loading="lazy"
-                            alt=""
-                            class="responsive-img"
-                          />
+                        <div class="review-name">{{ review.username }}</div>
+                        <div class="review-name state">
+                          {{ review.country }}
                         </div>
-                        <div class="app-text">
-                          Our faithful services has attracted many positive
-                          reviews from our wonderful customers around te world
-                          Our faithful services has attracted many positive
-                          reviews from our wonderful customers around te world
-                        </div>
-                        <div class="review-name">Kenny James</div>
-                        <div class="review-name state">Nigeria</div>
                       </div>
                     </div>
-                    <div class="left-arrow-2 w-slider-arrow-left">
-                      <div class="w-icon-slider-left"></div>
-                    </div>
-                    <div class="right-arrow-2 w-slider-arrow-right">
-                      <div class="w-icon-slider-right"></div>
-                    </div>
+
                     <div class="slide-nav w-slider-nav w-round w-num"></div>
                   </div>
                   <img
@@ -317,6 +263,7 @@
         </div>
         <!--X -----------TESTIMONIAL------------- X-->
 
+        <!---------------BLOG POST----------------->
         <div class="landing-blog">
           <div class="custom-container-landing">
             <div
@@ -333,269 +280,45 @@
               data-infinite="true"
             >
               <div class="landing-mask w-slider-mask">
-                <div class="each-blog w-slide">
+                <div
+                  v-for="blog in blogs"
+                  :key="blog._id"
+                  class="each-blog w-slide"
+                >
                   <div class="each-blog-flex">
                     <div class="landing-blog-holder">
                       <img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d71d34258b929f630928_meal4.jpeg"
+                        :src="blog.bannerUrl"
                         loading="lazy"
                         alt=""
                         class="responsive-img"
                       />
                     </div>
                     <div class="each-blog-body">
-                      <nuxt-link to="/" class="subtitle blog"
-                        >How to maintain a ood diet in your ome</nuxt-link
-                      >
-                      <div class="each-blog-date">13 Oct, 2023</div>
-                      <div>
-                        Headings Header one Header two Header three Header four
-                        Header five Header six Blockquotes Single line
-                        blockquote: Stay hungry. Stay foolish. Multi line
-                        blockquote with a cite reference: People think[...]
+                      <nuxt-link to="/" class="subtitle blog">{{
+                        blog.title
+                      }}</nuxt-link>
+                      <div class="each-blog-date">
+                        {{ formatDate(blog.time) }}
                       </div>
+                      <div
+                        v-html="`${blog.content.substring(0, 150)}[...]`"
+                      ></div>
                       <div class="each-blog-footer">
-                        <div>27 Comments</div>
-                        <nuxt-link to="/" class="more">Read More</nuxt-link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="each-blog w-slide">
-                  <div class="each-blog-flex">
-                    <div class="landing-blog-holder">
-                      <img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d71b4ada8a57fab05a2b_meal2.jpeg"
-                        loading="lazy"
-                        alt=""
-                        class="responsive-img"
-                      />
-                    </div>
-                    <div class="each-blog-body">
-                      <nuxt-link to="/" class="subtitle blog"
-                        >How to maintain a ood diet in your ome</nuxt-link
-                      >
-                      <div class="each-blog-date">13 Oct, 2023</div>
-                      <div>
-                        Headings Header one Header two Header three Header four
-                        Header five Header six Blockquotes Single line
-                        blockquote: Stay hungry. Stay foolish. Multi line
-                        blockquote with a cite reference: People think[...]
-                      </div>
-                      <div class="each-blog-footer">
-                        <div>27 Comments</div>
-                        <nuxt-link to="/" class="more">Read More</nuxt-link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="each-blog w-slide">
-                  <div class="each-blog-flex">
-                    <div class="landing-blog-holder">
-                      <img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d52a6e4ab5692411f6e2_meal.jpeg"
-                        loading="lazy"
-                        alt=""
-                        class="responsive-img"
-                      />
-                    </div>
-                    <div class="each-blog-body">
-                      <nuxt-link to="/" class="subtitle blog"
-                        >How to maintain a ood diet in your ome</nuxt-link
-                      >
-                      <div class="each-blog-date">13 Oct, 2023</div>
-                      <div>
-                        Headings Header one Header two Header three Header four
-                        Header five Header six Blockquotes Single line
-                        blockquote: Stay hungry. Stay foolish. Multi line
-                        blockquote with a cite reference: People think[...]
-                      </div>
-                      <div class="each-blog-footer">
-                        <div>27 Comments</div>
-                        <nuxt-link to="/" class="more">Read More</nuxt-link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="each-blog w-slide">
-                  <div class="each-blog-flex">
-                    <div class="landing-blog-holder">
-                      <img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d52a6e4ab5692411f6e2_meal.jpeg"
-                        loading="lazy"
-                        alt=""
-                        class="responsive-img"
-                      />
-                    </div>
-                    <div class="each-blog-body">
-                      <nuxt-link to="/" class="subtitle"
-                        >How to maintain a ood diet in your ome</nuxt-link
-                      >
-                      <div class="each-blog-date">13 Oct, 2023</div>
-                      <div>
-                        Headings Header one Header two Header three Header four
-                        Header five Header six Blockquotes Single line
-                        blockquote: Stay hungry. Stay foolish. Multi line
-                        blockquote with a cite reference: People think[...]
-                      </div>
-                      <div class="each-blog-footer">
-                        <div>27 Comments</div>
-                        <nuxt-link to="/" class="more">Read More</nuxt-link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="each-blog w-slide">
-                  <div class="each-blog-flex">
-                    <div class="landing-blog-holder">
-                      <img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d52a6e4ab5692411f6e2_meal.jpeg"
-                        loading="lazy"
-                        alt=""
-                        class="responsive-img"
-                      />
-                    </div>
-                    <div class="each-blog-body">
-                      <nuxt-link to="/" class="subtitle"
-                        >How to maintain a ood diet in your ome</nuxt-link
-                      >
-                      <div class="each-blog-date">13 Oct, 2023</div>
-                      <div>
-                        Headings Header one Header two Header three Header four
-                        Header five Header six Blockquotes Single line
-                        blockquote: Stay hungry. Stay foolish. Multi line
-                        blockquote with a cite reference: People think[...]
-                      </div>
-                      <div class="each-blog-footer">
-                        <div>27 Comments</div>
-                        <nuxt-link to="/" class="more">Read More</nuxt-link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="each-blog w-slide">
-                  <div class="each-blog-flex">
-                    <div class="landing-blog-holder">
-                      <img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d52a6e4ab5692411f6e2_meal.jpeg"
-                        loading="lazy"
-                        alt=""
-                        class="responsive-img"
-                      />
-                    </div>
-                    <div class="each-blog-body">
-                      <nuxt-link to="/" class="subtitle"
-                        >How to maintain a ood diet in your ome</nuxt-link
-                      >
-                      <div class="each-blog-date">13 Oct, 2023</div>
-                      <div>
-                        Headings Header one Header two Header three Header four
-                        Header five Header six Blockquotes Single line
-                        blockquote: Stay hungry. Stay foolish. Multi line
-                        blockquote with a cite reference: People think[...]
-                      </div>
-                      <div class="each-blog-footer">
-                        <div>27 Comments</div>
-                        <nuxt-link to="/" class="more">Read More</nuxt-link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="each-blog w-slide">
-                  <div class="each-blog-flex">
-                    <div class="landing-blog-holder">
-                      <img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d52a6e4ab5692411f6e2_meal.jpeg"
-                        loading="lazy"
-                        alt=""
-                        class="responsive-img"
-                      />
-                    </div>
-                    <div class="each-blog-body">
-                      <nuxt-link to="/" class="subtitle"
-                        >How to maintain a ood diet in your ome</nuxt-link
-                      >
-                      <div class="each-blog-date">13 Oct, 2023</div>
-                      <div>
-                        Headings Header one Header two Header three Header four
-                        Header five Header six Blockquotes Single line
-                        blockquote: Stay hungry. Stay foolish. Multi line
-                        blockquote with a cite reference: People think[...]
-                      </div>
-                      <div class="each-blog-footer">
-                        <div>27 Comments</div>
-                        <nuxt-link to="/" class="more">Read More</nuxt-link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="each-blog w-slide">
-                  <div class="each-blog-flex">
-                    <div class="landing-blog-holder">
-                      <img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d71d34258b929f630928_meal4.jpeg"
-                        loading="lazy"
-                        alt=""
-                        class="responsive-img"
-                      />
-                    </div>
-                    <div class="each-blog-body">
-                      <nuxt-link to="/" class="subtitle"
-                        >How to maintain a ood diet in your ome</nuxt-link
-                      >
-                      <div class="each-blog-date">13 Oct, 2023</div>
-                      <div>
-                        Headings Header one Header two Header three Header four
-                        Header five Header six Blockquotes Single line
-                        blockquote: Stay hungry. Stay foolish. Multi line
-                        blockquote with a cite reference: People think[...]
-                      </div>
-                      <div class="each-blog-footer">
-                        <div>27 Comments</div>
-                        <nuxt-link to="/" class="more">Read More</nuxt-link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="each-blog w-slide">
-                  <div class="each-blog-flex">
-                    <div class="landing-blog-holder">
-                      <img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0d71b4ada8a57fab05a2b_meal2.jpeg"
-                        loading="lazy"
-                        alt=""
-                        class="responsive-img"
-                      />
-                    </div>
-                    <div class="each-blog-body">
-                      <nuxt-link to="/" class="subtitle"
-                        >How to maintain a ood diet in your ome</nuxt-link
-                      >
-                      <div class="each-blog-date">13 Oct, 2023</div>
-                      <div>
-                        Headings Header one Header two Header three Header four
-                        Header five Header six Blockquotes Single line
-                        blockquote: Stay hungry. Stay foolish. Multi line
-                        blockquote with a cite reference: People think[...]
-                      </div>
-                      <div class="each-blog-footer">
-                        <div>27 Comments</div>
-                        <nuxt-link to="/" class="more">Read More</nuxt-link>
+                        <!-- <div>27 Comments</div> -->
+                        <span @click="selectBlog(blog)" class="more"
+                          >Read More</span
+                        >
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="left-arrow w-slider-arrow-left">
-                <div class="w-icon-slider-left"></div>
-              </div>
-              <div class="right-arrow w-slider-arrow-right">
-                <div class="w-icon-slider-right"></div>
-              </div>
-              <div class="hide-dots w-slider-nav w-round"></div>
             </div>
           </div>
         </div>
+        <!--X -----------BLOG POST------------- X-->
+
         <div class="app-section">
           <div class="custom-container-landing">
             <div class="app-flex">
@@ -703,6 +426,59 @@
 <script>
 import HomeFooter from "../components/HomeFooter";
 export default {
+  data() {
+    return {
+      showVideo: false,
+    };
+  },
+  methods: {
+    formatDate(data) {
+      if (data == null || data == undefined) {
+        return "N/A";
+      }
+      const date = new Date(data).getTime(); // Note that month is zero-indexed in JavaScript
+      const options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        suffix: (day) => {
+          if (day === 1 || day === 21 || day === 31) {
+            return "st";
+          } else if (day === 2 || day === 22) {
+            return "nd";
+          } else if (day === 3 || day === 23) {
+            return "rd";
+          } else {
+            return "th";
+          }
+        },
+      };
+
+      return new Intl.DateTimeFormat("en-US", options).format(date);
+    },
+
+    selectBlog(blog) {
+      this.$store.commit("SELECT_BLOG", blog);
+      this.$router.push("/blog-details");
+    },
+  },
+  computed: {
+    banners() {
+      return this.$store.state.banners;
+    },
+
+    reviews() {
+      return this.$store.state.reviews;
+    },
+
+    blogTutorials() {
+      return this.$store.state.blogTutorials;
+    },
+
+    blogs() {
+      return this.$store.state.blogs;
+    },
+  },
   components: { HomeFooter },
 };
 </script>

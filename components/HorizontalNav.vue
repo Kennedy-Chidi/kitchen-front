@@ -235,7 +235,7 @@ export default {
       const query = `limit=30&page=1`;
       this.$store.dispatch("productStore/GET_PRODUCTS", query);
       await this.$auth.logout();
-      this.$router.push("/home");
+      this.$router.push("/");
       this.$store.commit("CLOSE_NAV", query);
     },
   },
