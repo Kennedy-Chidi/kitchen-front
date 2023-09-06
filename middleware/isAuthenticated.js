@@ -1,5 +1,8 @@
 export default function ({ store, redirect, route }) {
   const protectedRoutes = ["dashboard", "admin"];
+  if (route.name == "blog-details" && store.state.selectedBlog == "") {
+    return redirect("/blog");
+  }
   if (store.state.auth.loggedIn) {
     const path = route.name;
     let redirectAdmin = "";

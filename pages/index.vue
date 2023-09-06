@@ -13,6 +13,8 @@
           </div>
         </div>
         <landing-nav />
+
+        <!-- -----------HEROE------------- -->
         <div
           data-delay="8000"
           data-animation="slide"
@@ -61,6 +63,7 @@
 
           <div class="hide-dots w-slider-nav w-round"></div>
         </div>
+        <!--X -----------HEROE-------------X -->
 
         <div
           @click.self="showVideo = !showVideo"
@@ -156,9 +159,9 @@
                           loading="lazy"
                           alt=""
                           class="combo-img"
-                        /><nuxt-link to="/blog" class="combo-link">{{
+                        /><span @click="selectBlog(item)" class="combo-link">{{
                           item.title
-                        }}</nuxt-link>
+                        }}</span>
                       </div>
                     </div>
                   </div>
@@ -295,9 +298,9 @@
                       />
                     </div>
                     <div class="each-blog-body">
-                      <nuxt-link to="/" class="subtitle blog">{{
+                      <span @click="selectBlog(blog)" class="subtitle blog">{{
                         blog.title
-                      }}</nuxt-link>
+                      }}</span>
                       <div class="each-blog-date">
                         {{ formatDate(blog.time) }}
                       </div>

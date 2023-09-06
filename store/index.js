@@ -1,4 +1,5 @@
 export const state = () => ({
+  initials: false,
   banners: [],
   reviews: [],
   blogTutorials: [],
@@ -42,6 +43,10 @@ export const getters = {
 };
 
 export const mutations = {
+  SET_INITIALS(state) {
+    state.initials = true;
+  },
+
   HIDE_CONFIRM_BOX(state) {
     state.showConfirmBox = false;
     state.confirmId = "";
@@ -204,6 +209,7 @@ export const actions = {
     try {
       const query = `?limit=40&country=Nigeria&sort=name`;
       const response = await this.$axios.get(`/places/state/${query}`);
+      commit("SET_INITIALS");
       commit("SET_STATES", response.data.states);
       commit("SET_BANNERS", response.data.banners);
       commit("SET_BLOG_TUTORIALS", response.data.blogTutorials);

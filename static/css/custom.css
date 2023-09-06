@@ -169,10 +169,27 @@ label.response.error {
   cursor: pointer;
 }
 
+span.more,
+span.blog,
+span.combo-link,
+span.aside-title {
+  cursor: pointer;
+}
+
 .video-display {
   display: flex;
   align-items: center;
   padding: 0 10px;
+}
+
+@media screen and (max-width: 479px) {
+  .comment-actions.post {
+    flex-wrap: wrap;
+  }
+
+  /* .comment-action.post {
+    width: 100%;
+  } */
 }
 
 .w-video iframe,
