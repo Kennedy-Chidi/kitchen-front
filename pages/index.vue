@@ -322,11 +322,12 @@
         </div>
         <!--X -----------BLOG POST------------- X-->
 
+        <!-- -----------COMING SOON------------- -->
         <div class="app-section">
           <div class="custom-container-landing">
             <div class="app-flex">
               <img
-                src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0e804b931a8080bb3f829_mobile-phone-big.png"
+                src="/images/phone-big.png"
                 loading="lazy"
                 alt=""
                 class="app-img"
@@ -335,28 +336,28 @@
                 <div class="coming">Mobile App Coming Soon...</div>
                 <div class="app-how">Download. Order. Receive</div>
                 <div class="app-text">
-                  Headings Header one Header two Header three Header four Header
-                  five Header six Blockquotes Single line blockquote: Stay
-                  hungry. Stay foolish. Multi line blockquote with a cite
-                  reference: People think[...]
+                  While we are sorry for any inconvenience making orders from
+                  our web platform might cause, we also wish to annouce to you
+                  that our mobile app will soon be available in both Play Store
+                  and App Store. Please bear with us... Thansk, Kitchen Grace.
                 </div>
                 <div class="app-btns">
                   <nuxt-link to="/" class="store-img w-inline-block"
                     ><img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0e80449e674bb29308901_app-store.png"
+                      src="/images/app-store.png"
                       loading="lazy"
                       alt="" /></nuxt-link
                   ><nuxt-link to="/" class="store-img w-inline-block"
-                    ><img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0e80014f492b3dfe38026_google-play.png"
-                      loading="lazy"
-                      alt=""
+                    ><img src="/images/google-play.png" loading="lazy" alt=""
                   /></nuxt-link>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <!--X -----------COMING SOON------------- X-->
+
+        <!-- -----------PARTNER------------- -->
         <div class="partner-section">
           <div class="landing-title">Our Partners</div>
           <div class="custom-container-landing">
@@ -374,37 +375,14 @@
               data-infinite="true"
             >
               <div class="partner-mask w-slider-mask">
-                <div class="each-partner w-slide">
+                <div
+                  v-for="partner in partners"
+                  :key="partner._id"
+                  class="each-partner w-slide"
+                >
                   <nuxt-link to="/" class="partner-link w-inline-block"
                     ><img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0ed64fca9a83bf65e1abd_02.png"
-                      loading="lazy"
-                      alt=""
-                      class="partner-img"
-                  /></nuxt-link>
-                </div>
-                <div class="each-partner w-slide">
-                  <nuxt-link to="/" class="partner-link w-inline-block"
-                    ><img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0ed667db0bb659bf8c0ea_01.png"
-                      loading="lazy"
-                      alt=""
-                      class="partner-img"
-                  /></nuxt-link>
-                </div>
-                <div class="each-partner w-slide">
-                  <nuxt-link to="/" class="partner-link w-inline-block"
-                    ><img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0ed64b87cba886ff8a01b_03.png"
-                      loading="lazy"
-                      alt=""
-                      class="partner-img"
-                  /></nuxt-link>
-                </div>
-                <div class="each-partner w-slide">
-                  <nuxt-link to="/" class="partner-link w-inline-block"
-                    ><img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64e0ed650838e40e676588b3_04.png"
+                      :src="partner.imageUrl"
                       loading="lazy"
                       alt=""
                       class="partner-img"
@@ -421,6 +399,8 @@
             </div>
           </div>
         </div>
+        <!--X -----------PARTNER------------- X-->
+
         <home-footer />
       </div>
     </div>
@@ -480,6 +460,10 @@ export default {
 
     blogs() {
       return this.$store.state.blogs;
+    },
+
+    partners() {
+      return this.$store.state.partners;
     },
   },
   components: { HomeFooter },

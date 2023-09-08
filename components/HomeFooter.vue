@@ -3,13 +3,13 @@
     <div class="custom-container-landing foot">
       <div class="home-footer-flex">
         <div class="each-footer">
-          <a href="#" class="brand w-inline-block"
+          <nuxt-link to="/" class="brand w-inline-block"
             ><img
               src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6c1ec16b2737439b284fc_logo.png"
               loading="lazy"
               alt=""
               class="logo"
-          /></a>
+          /></nuxt-link>
           <div class="company-det">
             <img
               src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b73e374c7f046a3ee2a3d3_map-pin-point-icon%201.svg"
@@ -18,7 +18,7 @@
               class="icon h"
             />
             <div class="company-det-text">
-              No. 7 Prof Nnamdi St Prefab, Owerri Imo State
+              {{ company.contact[0] }}
             </div>
           </div>
           <div class="company-det">
@@ -28,7 +28,7 @@
               alt=""
               class="icon sm"
             />
-            <div class="company-det-text">support@kitchengrace.io</div>
+            <div class="company-det-text">{{ company.systemEmail }}</div>
           </div>
           <div class="company-det">
             <img
@@ -37,7 +37,7 @@
               alt=""
               class="icon sm"
             />
-            <div class="company-det-text bg">+2348068131738</div>
+            <div class="company-det-text bg">{{ company.contact[2] }}</div>
           </div>
           <div class="company-det">
             <img
@@ -51,41 +51,34 @@
         </div>
         <div class="each-footer">
           <h4 class="footer-title">Quick Links</h4>
-          <a href="#" class="footer-links">About Us</a
-          ><a href="#" class="footer-links">Our Services</a
-          ><a href="#" class="footer-links">Contact Us</a
-          ><a href="#" class="footer-links">Our Blog</a
-          ><a href="#" class="footer-links">Partnership</a
-          ><a href="#" class="footer-links">Terms &amp; Conditions</a>
+          <nuxt-link to="/" class="footer-links">About Us</nuxt-link
+          ><nuxt-link to="/" class="footer-links">Our Services</nuxt-link
+          ><nuxt-link to="/" class="footer-links">Contact Us</nuxt-link
+          ><nuxt-link to="/" class="footer-links">Our Blog</nuxt-link
+          ><nuxt-link to="/" class="footer-links">Partnership</nuxt-link
+          ><nuxt-link to="/" class="footer-links"
+            >Terms &amp; Conditions</nuxt-link
+          >
         </div>
         <div class="each-footer w-form">
-          <div
-            id="email-form"
-            name="email-form"
-            data-name="Email Form"
-            method="get"
-            class="newsletter"
-            data-wf-page-id="64d35787a2302748a33bf967"
-            data-wf-element-id="8846de58-d1b5-7a98-3e6e-3c30b817ccdc"
-          >
+          <div class="newsletter">
             <label for="name">NEWSLETTER</label>
             <div class="newsletter-wrap">
               <input
                 type="email"
                 class="newsletter-input w-input"
-                maxlength="256"
-                name="email-5"
-                data-name="Email 5"
+                v-model="email"
                 placeholder="Enter your email"
-                id="email-5"
               /><img
+                @click="subscribe"
                 src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b742dae09b37f7e2042587_sent-icon%201.svg"
                 loading="lazy"
                 alt=""
                 class="newsletter-img"
               />
             </div>
-            <div class="sub">Write your email and subscribe</div>
+            <div v-if="isError" class="sub">{{ errMessage }}</div>
+            <div v-else class="sub">Write your email and subscribe</div>
           </div>
         </div>
       </div>
@@ -95,7 +88,39 @@
 
 <script>
 export default {
+  data() {
+    return {
+      email: "",
+      onRequest: false,
+      isError: false,
+      errMessage: "",
+    };
+  },
   methods: {
+    validateEmail() {
+      if (
+        this.email == "" ||
+        !this.email ||
+        !/^\S+@\S+\.\S+$/.test(this.email)
+      ) {
+        this.errMessage = "Please enter a valid email";
+        this.isError = true;
+        return;
+      } else {
+        this.errMessage = "";
+        this.isError = false;
+      }
+    },
+
+    subscribe() {
+      this.validateEmail();
+      if (this.isError) {
+        return;
+      }
+
+      console.log("Email is good");
+    },
+
     loadScript() {
       if (!process.server) {
         let el = document.getElementById("script");
@@ -122,6 +147,10 @@ export default {
   computed: {
     settingInitials() {
       return this.$store.state.initials;
+    },
+
+    company() {
+      return this.$store.state.company;
     },
   },
 

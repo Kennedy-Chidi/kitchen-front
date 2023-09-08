@@ -208,6 +208,7 @@ export default {
 
     if (!this.settingInitials) {
       this.$store.dispatch("settingsStore/nuxtServerInit");
+      this.$store.dispatch("pagesStore/nuxtServerInit");
       this.$store.dispatch("nuxtServerInit");
     }
 

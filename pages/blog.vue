@@ -96,7 +96,7 @@
 import AsidePost from "../components/AsidePost";
 import BlogComment from "../components/BlogComment";
 import CompanyAds from "../components/CompanyAds.vue";
-import HomeFooter from "../components/HomeFooter.vue";
+import HomeFooter from "../components/HomeFooter";
 import LandingNav from "../components/LandingNav.vue";
 import VerticalNav from "../components/VerticalNav";
 export default {

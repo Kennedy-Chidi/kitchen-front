@@ -324,6 +324,7 @@
                           v-for="(item, int) in contact"
                           :key="int"
                           class="media-list b"
+                          @click="selectContact(int)"
                         >
                           <div>{{ item }}</div>
                         </span>
@@ -448,7 +449,12 @@ export default {
       referralPercentage: 0,
 
       mediaInput: "",
+      editingMedia: false,
+      editContactIndex: "",
+
       contactInput: "",
+      editingContact: false,
+      editContactIndex: "",
 
       isEditing: false,
       editingId: "",
@@ -500,8 +506,15 @@ export default {
     },
 
     addContact() {
-      this.contact.push(this.contactInput);
-      this.contactInput = "";
+      if (this.editingContact) {
+        this.contact[this.editContactIndex] = this.contactInput;
+        this.editContactIndex = "";
+        this.editingContact = false;
+        this.contactInput = "";
+      } else {
+        this.contact.push(this.contactInput);
+        this.contactInput = "";
+      }
     },
 
     addMedia() {
@@ -524,6 +537,13 @@ export default {
 
     selectAll() {
       this.$store.commit("settingsStore/CHECK_ALL_COMPANY", this.isAllChecked);
+    },
+
+    selectContact(int) {
+      this.editingContact = true;
+      this.editContactIndex = int;
+      const item = JSON.parse(JSON.stringify(this.contact[int]));
+      this.contactInput = item;
     },
 
     async selectCountry(country) {

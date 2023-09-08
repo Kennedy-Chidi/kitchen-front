@@ -5,6 +5,11 @@ export const state = () => ({
   blogTutorials: [],
   blogTutorialLength: 0,
 
+  partners: [],
+  partnersLength: 0,
+
+  company: "",
+
   blogs: [],
   blogLength: 0,
 
@@ -155,16 +160,24 @@ export const mutations = {
     state.blogsLength = blogs.length;
     state.blogs = blogs.results;
   },
+
+  SET_PARTNERS(state, partners) {
+    state.partnersLength = partners.length;
+    state.partners = partners.results;
+  },
+
+  SET_COMPANY(state, company) {
+    state.company = company;
+  },
 };
 
 export const actions = {
   async SET_STATE({ commit }, payload) {
     const { query, states } = payload;
-    commit("SET_STATES", states);
 
     try {
       const response = await this.$axios.get(`/places/state/${query}`);
-      commit("SET_STATES", response.data.data);
+      commit("SET_STATES", response.data.states);
       return response;
     } catch (error) {
       return error;
@@ -215,6 +228,8 @@ export const actions = {
       commit("SET_BLOG_TUTORIALS", response.data.blogTutorials);
       commit("SET_REVIEWS", response.data.reviews);
       commit("SET_BLOGS", response.data.homeBlogs);
+      commit("SET_PARTNERS", response.data.partners);
+      commit("SET_COMPANY", response.data.company);
       return response;
     } catch (error) {
       return error;
