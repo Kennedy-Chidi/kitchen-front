@@ -176,6 +176,10 @@ span.aside-title {
   cursor: pointer;
 }
 
+label.response.error {
+  text-align: center;
+}
+
 .nav-list.landing {
   display: flex;
 }
@@ -186,6 +190,11 @@ span.aside-title {
   padding: 0 10px;
 }
 
+@media screen and (max-width: 991px) {
+  .cart-items-holder.vertical {
+    overflow: auto;
+  }
+}
 @media screen and (max-width: 479px) {
   .comment-actions.post {
     flex-wrap: wrap;

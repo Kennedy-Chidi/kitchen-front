@@ -80,6 +80,12 @@
                         <div>Loging</div>
                       </div>
                     </div>
+                    <label for="field-6" class="response acount"
+                      >Forgotten Password?
+                      <nuxt-link to="/recover-password" class="link"
+                        >Click here</nuxt-link
+                      ></label
+                    >
                     <label
                       v-if="showResponse"
                       for="field-6"

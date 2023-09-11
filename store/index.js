@@ -226,6 +226,27 @@ export const actions = {
     }
   },
 
+  async MESSAGE({ commit }, form) {
+    try {
+      const response = await this.$axios.post(`/users/message`, form);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  },
+
+  async RECOVER_PASSWORD({ commit }, form) {
+    try {
+      const response = await this.$axios.post(
+        `/users/forgotten-password`,
+        form
+      );
+      return response;
+    } catch (error) {
+      return error;
+    }
+  },
+
   async PROCEED_CONFIRMATION({ commit }, payload) {
     const socket = this.$socket;
 

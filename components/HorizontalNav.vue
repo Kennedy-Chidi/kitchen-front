@@ -12,7 +12,8 @@
         /></nuxt-link>
         <ul role="list" class="nav-list">
           <li class="nav-link-flex">
-            <nuxt-link to="/dashboard" class="nav-link">Home</nuxt-link>
+            <nuxt-link to="/" class="nav-link">Home</nuxt-link>
+            <nuxt-link to="/dashboard" class="nav-link">Welcome</nuxt-link>
             <nuxt-link to="/dashboard/products" class="nav-link"
               >Products</nuxt-link
             >
