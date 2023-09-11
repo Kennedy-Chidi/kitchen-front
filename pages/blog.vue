@@ -13,9 +13,12 @@
                   :key="blog._id"
                   class="prod-detail-flex post each"
                 >
-                  <h1 @click="selectBlog(blog)" class="post-title">
+                  <nuxt-link
+                    :to="`blog-details/${blog._id}`"
+                    class="post-title"
+                  >
                     {{ blog.title }}
-                  </h1>
+                  </nuxt-link>
                   <div class="main-product-img banner each">
                     <img
                       :src="blog.bannerUrl"
@@ -97,7 +100,7 @@ import AsidePost from "../components/AsidePost";
 import BlogComment from "../components/BlogComment";
 import CompanyAds from "../components/CompanyAds.vue";
 import HomeFooter from "../components/HomeFooter";
-import LandingNav from "../components/LandingNav.vue";
+import LandingNav from "../components/LandingNav";
 import VerticalNav from "../components/VerticalNav";
 export default {
   components: {
@@ -135,10 +138,10 @@ export default {
       return new Intl.DateTimeFormat("en-US", options).format(date);
     },
 
-    selectBlog(blog) {
-      this.$store.commit("SELECT_BLOG", blog);
-      this.$router.push("/blog-details");
-    },
+    // selectBlog(blog) {
+    //   this.$store.commit("SELECT_BLOG", blog);
+    //   this.$router.push("/blog-details");
+    // },
   },
 
   computed: {

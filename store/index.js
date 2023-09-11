@@ -139,8 +139,19 @@ export const mutations = {
     state.notifications = 0;
   },
 
-  SELECT_BLOG(state, data) {
-    state.selectedBlog = data;
+  SELECT_BLOG(state, id) {
+    for (let i = 0; i < state.blogTutorials.length; i++) {
+      const el = state.blogTutorials[i];
+      if (el._id == id) {
+        state.selectedBlog = el;
+      }
+    }
+    for (let i = 0; i < state.blogs.length; i++) {
+      const el = state.blogs[i];
+      if (el._id == id) {
+        state.selectedBlog = el;
+      }
+    }
   },
 
   SET_BANNERS(state, data) {
@@ -204,6 +215,15 @@ export const actions = {
     // } catch (error) {
     //   return error;
     // }
+  },
+
+  async SUBSCRIBE({ commit }, form) {
+    try {
+      const response = await this.$axios.post(`/users/subscribe`, form);
+      return response;
+    } catch (error) {
+      return error;
+    }
   },
 
   async PROCEED_CONFIRMATION({ commit }, payload) {

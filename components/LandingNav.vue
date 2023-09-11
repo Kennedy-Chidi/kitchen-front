@@ -15,10 +15,18 @@
           loading="lazy"
           alt=""
           class="logo"
-      /></nuxt-link>
+        />
+      </nuxt-link>
+
       <ul role="list" class="nav-list landing">
         <li class="nav-link-flex">
-          <nuxt-link to="/" class="nav-link active">Home</nuxt-link>
+          <nuxt-link to="/" class="nav-link">Home</nuxt-link>
+        </li>
+        <li class="nav-link-flex">
+          <nuxt-link to="/contact" class="nav-link">Contact</nuxt-link>
+        </li>
+        <li class="nav-link-flex">
+          <nuxt-link to="/blog" class="nav-link">Blog</nuxt-link>
         </li>
       </ul>
       <div class="nav-logs left">

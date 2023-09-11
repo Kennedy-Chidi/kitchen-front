@@ -81,11 +81,11 @@
 </template>
 
 <script>
-import AsidePost from "../components/AsidePost";
-import BlogComment from "../components/BlogComment";
-import ClientNavigation from "../components/ClientNavigation.vue";
-import HomeFooter from "../components/HomeFooter.vue";
-import LandingNav from "../components/LandingNav.vue";
+import AsidePost from "../../components/AsidePost";
+import BlogComment from "../../components/BlogComment";
+import ClientNavigation from "../../components/ClientNavigation.vue";
+import HomeFooter from "../../components/HomeFooter.vue";
+import LandingNav from "../../components/LandingNav.vue";
 export default {
   methods: {
     formatDate(data) {
@@ -124,6 +124,16 @@ export default {
     blog() {
       return this.$store.state.selectedBlog;
     },
+  },
+
+  async asyncData({ params, store }) {
+    const id = params.id;
+
+    if (params == null) {
+      this.$router.push("/");
+    } else {
+      await store.commit("SELECT_BLOG", id);
+    }
   },
 };
 </script>

@@ -24,7 +24,14 @@
     </div>
     <div class="name-flex">
       <nuxt-link
+        v-if="user"
         :to="`/dashboard/product-details/${product._id}`"
+        class="product-name pro"
+        >{{ product.productName }}</nuxt-link
+      >
+      <nuxt-link
+        v-else
+        :to="`/product-details/${product._id}`"
         class="product-name pro"
         >{{ product.productName }}</nuxt-link
       >
@@ -35,7 +42,7 @@
         <div class="product-price pro">N{{ product.productSellingPrice }}</div>
       </div>
     </div>
-    <div class="action-holder">
+    <div v-if="user" class="action-holder">
       <div @click="removeFromCart(product)" class="action-btn">
         <div>-</div>
       </div>
@@ -68,6 +75,12 @@ export default {
 
     addToCart(data) {
       this.$store.commit("productStore/ADD_TO_CART", data);
+    },
+  },
+
+  computed: {
+    user() {
+      return this.$store.state.auth.user;
     },
   },
 };

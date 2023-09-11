@@ -176,6 +176,10 @@ span.aside-title {
   cursor: pointer;
 }
 
+.nav-list.landing {
+  display: flex;
+}
+
 .video-display {
   display: flex;
   align-items: center;

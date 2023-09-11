@@ -308,7 +308,9 @@ export const actions = {
     }
   },
 
-  async nuxtServerInit({ commit }, query) {
+  async nuxtServerInit({ commit }) {
+    const query = `?limit=12&page=1&sort=productState`;
+    console.log("Hello");
     try {
       const response = await this.$axios.get(`/products/${query}`);
       commit("SET_PRODUCTS", response.data.data);

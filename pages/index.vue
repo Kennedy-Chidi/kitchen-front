@@ -54,7 +54,9 @@
                     <h1 class="landing-subtitle">
                       {{ banner.bannerIntro }}
                     </h1>
-                    <div class="custom-btn"><div>Start Shopping</div></div>
+                    <div @click="getStarted" class="custom-btn">
+                      <div>Start Shopping</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -85,6 +87,27 @@
             ></iframe>
           </div>
         </div>
+
+        <!-- -----------COMING SOON------------- -->
+        <div class="app-section">
+          <div class="custom-container-landing">
+            <div class="app-flex">
+              <div class="product-flex">
+                <h3 class="section-title pro">Our Products</h3>
+
+                <each-product
+                  v-for="(product, int) in productItems"
+                  :product="product"
+                  :key="int"
+                />
+                <nuxt-link to="/products" class="response big"
+                  >View More</nuxt-link
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--X -----------COMING SOON------------- X-->
 
         <!-- -----------HOW IT WORKS------------- -->
         <div class="custom-container-landing">
@@ -407,6 +430,7 @@
   </div>
 </template>
 <script>
+import EachProduct from "../components/EachProduct.vue";
 import HomeFooter from "../components/HomeFooter";
 export default {
   data() {
@@ -444,8 +468,19 @@ export default {
       this.$store.commit("SELECT_BLOG", blog);
       this.$router.push("/blog-details");
     },
+
+    getStarted() {
+      if (this.user) {
+        this.$router.push("/dashboard/products");
+      } else {
+        this.$router.push("/signup");
+      }
+    },
   },
   computed: {
+    productItems() {
+      return this.$store.state.productStore.products;
+    },
     banners() {
       return this.$store.state.banners;
     },
@@ -465,8 +500,12 @@ export default {
     partners() {
       return this.$store.state.partners;
     },
+
+    user() {
+      return this.$store.state.user;
+    },
   },
-  components: { HomeFooter },
+  components: { HomeFooter, EachProduct },
 };
 </script>
 

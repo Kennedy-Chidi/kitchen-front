@@ -51,12 +51,16 @@
         </div>
         <div class="each-footer">
           <h4 class="footer-title">Quick Links</h4>
-          <nuxt-link to="/" class="footer-links">About Us</nuxt-link
-          ><nuxt-link to="/" class="footer-links">Our Services</nuxt-link
-          ><nuxt-link to="/" class="footer-links">Contact Us</nuxt-link
-          ><nuxt-link to="/" class="footer-links">Our Blog</nuxt-link
-          ><nuxt-link to="/" class="footer-links">Partnership</nuxt-link
-          ><nuxt-link to="/" class="footer-links"
+          <nuxt-link v-if="user" to="/" class="footer-links"
+            >About Us</nuxt-link
+          >
+          <!-- <nuxt-link to="/" class="footer-links">Our Services</nuxt-link
+          > -->
+          <nuxt-link to="/contact" class="footer-links">Contact Us</nuxt-link
+          ><nuxt-link to="/blog" class="footer-links">Our Blog</nuxt-link
+          ><nuxt-link v-if="user" to="/" class="footer-links"
+            >Partnership</nuxt-link
+          ><nuxt-link to="/terms-condtions" class="footer-links"
             >Terms &amp; Conditions</nuxt-link
           >
         </div>
@@ -69,16 +73,25 @@
                 class="newsletter-input w-input"
                 v-model="email"
                 placeholder="Enter your email"
-              /><img
-                @click="subscribe"
-                src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b742dae09b37f7e2042587_sent-icon%201.svg"
-                loading="lazy"
-                alt=""
-                class="newsletter-img"
               />
+              <i
+                v-if="onRequest"
+                class="material-symbols-outlined spinner white"
+                >expand_more</i
+              >
+              <i
+                v-else
+                @click="subscribe"
+                class="material-symbols-outlined white newsletter-img"
+                >send</i
+              >
             </div>
             <div v-if="isError" class="sub">{{ errMessage }}</div>
-            <div v-else class="sub">Write your email and subscribe</div>
+
+            <div v-if="isSuccess" class="sub">{{ succMessage }}</div>
+            <label v-if="!isError && !isSuccess" class="sub error"
+              >Write your email and subscribe</label
+            >
           </div>
         </div>
       </div>
@@ -93,7 +106,9 @@ export default {
       email: "",
       onRequest: false,
       isError: false,
+      isSuccess: false,
       errMessage: "",
+      succMessage: "",
     };
   },
   methods: {
@@ -112,13 +127,25 @@ export default {
       }
     },
 
-    subscribe() {
+    async subscribe() {
       this.validateEmail();
       if (this.isError) {
         return;
       }
+      this.onRequest = true;
 
-      console.log("Email is good");
+      const result = await this.$store.dispatch("SUBSCRIBE", {
+        email: this.email,
+      });
+      if (result.status == 200) {
+        this.onRequest = false;
+        this.succMessage = "Sent successfully";
+        this.isSuccess = true;
+        this.isError = false;
+        this.email = "";
+      } else {
+        this.onRequest = false;
+      }
     },
 
     loadScript() {
@@ -146,11 +173,15 @@ export default {
 
   computed: {
     settingInitials() {
-      return this.$store.state.initials;
+      return this.$store.state.productStore.initials;
     },
 
     company() {
       return this.$store.state.company;
+    },
+
+    user() {
+      return this.$store.state.auth.user;
     },
   },
 
@@ -162,6 +193,7 @@ export default {
 
     if (!this.settingInitials) {
       this.$store.dispatch("nuxtServerInit");
+      this.$store.dispatch("productStore/nuxtServerInit");
     }
   },
 };
