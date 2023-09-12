@@ -17,7 +17,7 @@
               alt=""
               class="icon h"
             />
-            <div class="company-det-text">
+            <div v-if="company" class="company-det-text">
               {{ company.contact[0] }}
             </div>
           </div>
@@ -28,7 +28,9 @@
               alt=""
               class="icon sm"
             />
-            <div class="company-det-text">{{ company.systemEmail }}</div>
+            <div v-if="company" class="company-det-text">
+              {{ company.systemEmail }}
+            </div>
           </div>
           <div class="company-det">
             <img
@@ -37,7 +39,9 @@
               alt=""
               class="icon sm"
             />
-            <div class="company-det-text bg">{{ company.contact[2] }}</div>
+            <div v-if="company" class="company-det-text bg">
+              {{ company.contact[2] }}
+            </div>
           </div>
           <div class="company-det">
             <img
@@ -112,6 +116,27 @@ export default {
     };
   },
   methods: {
+    loadScript() {
+      if (!process.server) {
+        let el = document.getElementById("script");
+
+        if (el != undefined) {
+          document.body.removeChild(el);
+        }
+
+        const script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "/script/script.js";
+        script.async = true;
+        script.id = "script";
+        const app = document.querySelector("#footer");
+        if (app) {
+          app.appendChild(script);
+        } else {
+          console.error("Could not find app node to append script element");
+        }
+      }
+    },
     validateEmail() {
       if (
         this.email == "" ||
@@ -145,28 +170,6 @@ export default {
         this.email = "";
       } else {
         this.onRequest = false;
-      }
-    },
-
-    loadScript() {
-      if (!process.server) {
-        let el = document.getElementById("script");
-
-        if (el != undefined) {
-          document.body.removeChild(el);
-        }
-
-        const script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = "/script/script.js";
-        script.async = true;
-        script.id = "script";
-        const app = document.querySelector("#footer");
-        if (app) {
-          app.appendChild(script);
-        } else {
-          console.error("Could not find app node to append script element");
-        }
       }
     },
   },

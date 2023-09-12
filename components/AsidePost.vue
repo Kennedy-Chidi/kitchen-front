@@ -43,9 +43,18 @@
               />
             </div>
             <div class="each-aside-holder">
-              <span @click="selectBlog(blog)" class="aside-title">{{
-                blog.title
-              }}</span>
+              <nuxt-link
+                v-if="user"
+                :to="`/dashboard/blog-details/${blog._id}`"
+                class="aside-title"
+                >{{ blog.title }}</nuxt-link
+              >
+              <nuxt-link
+                v-else
+                :to="`/blog-details/${blog._id}`"
+                class="aside-title"
+                >{{ blog.title }}</nuxt-link
+              >
               <div class="blog-date">{{ formatDate(blog.time) }}</div>
             </div>
           </div>
@@ -68,9 +77,18 @@
               />
             </div>
             <div class="each-aside-holder">
-              <span @click="selectBlog(blog)" class="aside-title">{{
-                blog.title
-              }}</span>
+              <nuxt-link
+                v-if="user"
+                :to="`/dashboard/blog-details/${blog._id}`"
+                class="aside-title"
+                >{{ blog.title }}</nuxt-link
+              >
+              <nuxt-link
+                v-else
+                :to="`blog-details/${blog._id}`"
+                class="aside-title"
+                >{{ blog.title }}</nuxt-link
+              >
               <div class="blog-date">{{ formatDate(blog.time) }}</div>
             </div>
           </div>
@@ -129,6 +147,10 @@ export default {
 
     blogs() {
       return this.$store.state.blogs;
+    },
+
+    user() {
+      return this.$store.state.auth.user;
     },
   },
 };

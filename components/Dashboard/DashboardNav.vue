@@ -16,13 +16,22 @@
       {{ user.username }}
     </h1>
     <nuxt-link
-      to="/dashboard"
+      to="/"
       class="flex-link w-inline-block"
       :class="{ active: route == 'index' }"
       ><div class="icon-wrap">
         <i class="material-symbols-outlined green">home</i>
       </div>
       <div>Home</div></nuxt-link
+    >
+    <nuxt-link
+      to="/dashboard"
+      class="flex-link w-inline-block"
+      :class="{ active: route == 'dashboard' }"
+      ><div class="icon-wrap">
+        <i class="material-symbols-outlined green">grid_view</i>
+      </div>
+      <div>Dashboard</div></nuxt-link
     >
     <nuxt-link
       to="/dashboard/profile"

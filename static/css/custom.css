@@ -169,6 +169,10 @@ label.response.error {
   cursor: pointer;
 }
 
+.nav-logs {
+  margin-left: auto;
+}
+
 span.more,
 span.blog,
 span.combo-link,

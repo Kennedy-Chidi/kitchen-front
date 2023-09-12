@@ -1,6 +1,7 @@
 <template>
   <div class="grace landing">
     <div class="main-body">
+      <vertical-nav v-if="user" />
       <div class="main-flex">
         <div class="display">
           <div class="custom-container-landing">
@@ -12,7 +13,8 @@
             />
           </div>
         </div>
-        <landing-nav />
+        <horizontal-nav v-if="user" />
+        <landing-nav v-else />
 
         <!-- -----------HEROE------------- -->
         <div
@@ -88,7 +90,7 @@
           </div>
         </div>
 
-        <!-- -----------COMING SOON------------- -->
+        <!-- -----------HOME PRODUCTS------------- -->
         <div class="app-section">
           <div class="custom-container-landing">
             <div class="app-flex">
@@ -107,7 +109,7 @@
             </div>
           </div>
         </div>
-        <!--X -----------COMING SOON------------- X-->
+        <!--X -----------HOME PRODUCTS------------- X-->
 
         <!-- -----------HOW IT WORKS------------- -->
         <div class="custom-container-landing">
@@ -182,18 +184,15 @@
                           loading="lazy"
                           alt=""
                           class="combo-img"
-                        /><span @click="selectBlog(item)" class="combo-link">{{
-                          item.title
-                        }}</span>
+                        /><nuxt-link
+                          :to="`blog-details/${item._id}`"
+                          class="combo-link"
+                          >{{ item.title }}</nuxt-link
+                        >
                       </div>
                     </div>
                   </div>
-                  <div class="left-arrow-2 w-slider-arrow-left">
-                    <div class="w-icon-slider-left"></div>
-                  </div>
-                  <div class="right-arrow-2 w-slider-arrow-right">
-                    <div class="w-icon-slider-right"></div>
-                  </div>
+
                   <div class="slide-nav w-slider-nav w-round w-num"></div>
                 </div>
               </div>
@@ -427,11 +426,15 @@
         <home-footer />
       </div>
     </div>
+    <mobile-bottom-nav v-if="user" />
   </div>
 </template>
 <script>
 import EachProduct from "../components/EachProduct.vue";
 import HomeFooter from "../components/HomeFooter";
+import HorizontalNav from "../components/HorizontalNav.vue";
+import MobileBottomNav from "../components/MobileBottomNav.vue";
+import VerticalNav from "../components/VerticalNav.vue";
 export default {
   data() {
     return {
@@ -482,7 +485,10 @@ export default {
       return this.$store.state.productStore.products;
     },
     banners() {
-      return this.$store.state.banners;
+      const banners = JSON.parse(JSON.stringify(this.$store.state.banners));
+      return banners.filter((el) => {
+        return el.bannerPage == "Home";
+      });
     },
 
     reviews() {
@@ -502,10 +508,16 @@ export default {
     },
 
     user() {
-      return this.$store.state.user;
+      return this.$store.state.auth.user;
     },
   },
-  components: { HomeFooter, EachProduct },
+  components: {
+    HomeFooter,
+    EachProduct,
+    MobileBottomNav,
+    VerticalNav,
+    HorizontalNav,
+  },
 };
 </script>
 

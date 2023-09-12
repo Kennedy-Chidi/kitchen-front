@@ -17,7 +17,7 @@
             <nuxt-link to="/dashboard/products" class="nav-link"
               >Products</nuxt-link
             >
-            <nuxt-link to="/dashboard/about" class="nav-link">About</nuxt-link>
+            <!-- <nuxt-link to="/dashboard/about" class="nav-link">About</nuxt-link> -->
             <nuxt-link to="/dashboard/contact" class="nav-link"
               >Contact</nuxt-link
             >
@@ -113,7 +113,7 @@
                 class="nav-icon cart"
               />
             </div>
-            <ul role="list" class="search-result">
+            <!-- <ul role="list" class="search-result">
               <li class="pro-names">
                 <nuxt-link to="/" class="pro-name">Star Maggi</nuxt-link>
                 <div>N3,500</div>
@@ -142,7 +142,7 @@
                 <nuxt-link to="/" class="pro-name">Star Maggi</nuxt-link>
                 <div>N3,500</div>
               </li>
-            </ul>
+            </ul> -->
           </div>
         </div>
         <h3 class="slogan">...Nourishing Homes</h3>

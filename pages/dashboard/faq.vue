@@ -13,14 +13,15 @@
             <div class="content-body">
               <div class="map-wrap">
                 <img
-                  src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01.jpg"
+                  v-for="banner in banners"
+                  :key="banner._id"
+                  :src="banner.bannerImageUrl"
                   loading="lazy"
                   sizes="(max-width: 479px) 98vw, (max-width: 991px) 96vw, (max-width: 1279px) 94vw, (max-width: 1439px) 91vw, 1200px"
-                  srcset="
-                    https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01-p-500.jpg 500w,
-                    https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01-p-800.jpg 800w,
-                    https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01.jpg       812w
-                  "
+                  :srcset="`
+                    ${banner.bannerImageUrl} 500w,
+                    ${banner.bannerImageUrl} 800w,
+                    ${banner.bannerImageUrl}       812w`"
                   alt=""
                   class="responsive-img"
                 />
@@ -68,10 +69,10 @@
             </div>
           </div>
         </div>
+        <footer-component />
       </div>
     </div>
     <mobile-bottom-nav />
-    <footer-component />
   </div>
 </template>
 
@@ -119,8 +120,14 @@ export default {
       }
     },
   },
-  mounted() {
-    this.loadScript();
+
+  computed: {
+    banners() {
+      const banners = JSON.parse(JSON.stringify(this.$store.state.banners));
+      return banners.filter((el) => {
+        return el.bannerPage == "FAQ";
+      });
+    },
   },
 };
 </script>

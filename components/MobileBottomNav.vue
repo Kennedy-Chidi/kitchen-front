@@ -244,7 +244,10 @@
         </div>
       </div>
       <div v-if="isAuthenticated" class="footer-nav-flex">
-        <nuxt-link to="/products" class="footer-icon-wrap w-inline-block">
+        <nuxt-link
+          to="/dashboard/products"
+          class="footer-icon-wrap w-inline-block"
+        >
           <i class="material-symbols-outlined orange"
             >shopping_bag</i
           > </nuxt-link
