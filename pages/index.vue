@@ -411,12 +411,7 @@
                   /></nuxt-link>
                 </div>
               </div>
-              <div class="left-arrow w-slider-arrow-left">
-                <div class="w-icon-slider-left"></div>
-              </div>
-              <div class="right-arrow w-slider-arrow-right">
-                <div class="w-icon-slider-right"></div>
-              </div>
+
               <div class="hide-dots w-slider-nav w-round"></div>
             </div>
           </div>

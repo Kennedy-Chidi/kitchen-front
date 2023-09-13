@@ -73,6 +73,15 @@
       </div>
       <div>Referrals</div></nuxt-link
     >
+    <nuxt-link
+      to="/admin/product-settings"
+      class="flex-link w-inline-block"
+      :class="{ active: route == 'admin-product-settings' }"
+      ><div class="icon-wrap">
+        <i class="material-symbols-outlined green">local_mall</i>
+      </div>
+      <div>Products</div></nuxt-link
+    >
     <div>
       <span
         :class="{ active: activateUsers }"
@@ -111,50 +120,7 @@
         </li>
       </ul>
     </div>
-    <div>
-      <span
-        :class="{ active: activateProduct }"
-        @click="toggleProduct"
-        class="flex-link w-inline-block"
-        ><div class="icon-wrap">
-          <i
-            class="material-symbols-outlined cart sm"
-            :class="{ green: !activateProduct, white: activateProduct }"
-            >local_mall</i
-          >
-        </div>
-        <div>Products</div>
-        <i
-          class="material-symbols-outlined cart right"
-          :class="{ green: !activateProduct, white: activateProduct }"
-          >keyboard_arrow_down</i
-        >
-      </span>
-      <ul
-        role="list"
-        class="nav-inner-list prod"
-        :class="{ active: isProduct }"
-      >
-        <li>
-          <nuxt-link
-            to="/admin/product-settings"
-            class="flex-link w-inline-block"
-            ><div class="icon-wrap">
-              <i class="material-symbols-outlined cart green sm"
-                >settings_applications</i
-              >
-            </div>
-            <div>Set Product</div></nuxt-link
-          >
-          <nuxt-link to="/admin/stock" class="flex-link w-inline-block"
-            ><div class="icon-wrap">
-              <i class="material-symbols-outlined cart green sm">inventory</i>
-            </div>
-            <div>View Stock</div></nuxt-link
-          >
-        </li>
-      </ul>
-    </div>
+
     <div>
       <span
         :class="{ active: activateTransact }"
@@ -178,15 +144,13 @@
         <li>
           <nuxt-link to="/admin/transactions" class="flex-link w-inline-block"
             ><div class="icon-wrap">
-              <i class="material-symbols-outlined green sm"
-                >add_shopping_cart</i
-              >
+              <i class="material-symbols-outlined green sm">shopping_cart</i>
             </div>
             <div>General</div></nuxt-link
           >
           <nuxt-link to="/admin/sales" class="flex-link w-inline-block"
             ><div class="icon-wrap">
-              <i class="material-symbols-outlined green sm">shopping_cart</i>
+              <i class="material-symbols-outlined green sm">insert_chart</i>
             </div>
             <div>Sales</div></nuxt-link
           >
@@ -201,15 +165,11 @@
 
           <nuxt-link to="/admin/purchase" class="flex-link w-inline-block"
             ><div class="icon-wrap">
-              <img
-                src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6d38612ddf087a955f4de_user.svg"
-                loading="lazy"
-                alt=""
-                class="nav-icon cart"
-              />
+              <i class="material-symbols-outlined green sm">inventory</i>
             </div>
-            <div>Purchase</div></nuxt-link
+            <div>Stock Purchase</div></nuxt-link
           >
+
           <nuxt-link to="/admin/expenses" class="flex-link w-inline-block"
             ><div class="icon-wrap">
               <img

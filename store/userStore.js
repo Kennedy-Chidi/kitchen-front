@@ -11,6 +11,8 @@ export const state = () => ({
 
   transactions: [],
   transactionLength: 0,
+
+  categories: [],
 });
 
 export const getters = {};
@@ -47,6 +49,10 @@ export const mutations = {
   SET_SALES(state, sales) {
     state.sales = sales.results;
     state.saleLength = sales.length;
+  },
+
+  SET_CATEGORIES(state, categories) {
+    state.categories = categories;
   },
 };
 
@@ -135,6 +141,8 @@ export const actions = {
       commit("ON_INITIAL");
       commit("SET_NOTIFICATIONS", response.data.messages);
       commit("SET_PROMOS", response.data.promos);
+      commit("SET_COMPANY", response.data.company);
+      commit("SET_CATEGORIES", response.data.categories);
     } catch (err) {
       // console.log(err?.response?.data);
     }
@@ -156,6 +164,7 @@ export const actions = {
       commit("SET_NOTIFICATIONS", response.data.messages);
       commit("SET_PROMOS", response.data.promos);
       commit("SET_COMPANY", response.data.company);
+      commit("SET_CATEGORIES", response.data.categories);
       // commit("SET_SALES", response.data.sales);
       // commit("SET_SALES", response.data.sales);
     } catch (err) {

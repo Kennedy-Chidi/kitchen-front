@@ -13,6 +13,15 @@
         <div class="custom-container">
           <div class="body-flex">
             <div class="content-body">
+              <div v-if="showCategories" class="product-flex">
+                <h3 class="section-title pro">All {{ category }} Categories</h3>
+                <each-product
+                  v-for="(product, int) in productProperties.catProducts"
+                  :product="product"
+                  :key="int"
+                />
+              </div>
+
               <div class="product-flex">
                 <h3 class="section-title pro">Our Products</h3>
                 <each-product
@@ -253,9 +262,26 @@ export default {
   computed: {
     productProperties() {
       return {
-        products: this.$store.state.productStore.productArray,
+        products: this.$store.state.productStore.productArray.filter((el) => {
+          return !el.isCat;
+        }),
+
+        catProducts: this.$store.state.productStore.productArray.filter(
+          (el) => {
+            return el.isCat == true;
+          }
+        ),
+
         resultLength: this.$store.state.productStore.dataLength,
       };
+    },
+
+    showCategories() {
+      return this.$store.state.productStore.showCatProduct;
+    },
+
+    category() {
+      return this.$store.state.productStore.catProduct;
     },
 
     isAuth() {
@@ -270,6 +296,18 @@ export default {
       }
       return array;
     },
+  },
+
+  async asyncData({ store, route }) {
+    if (route.query.category) {
+      await store.dispatch(
+        "productStore/GET_CATEGORY_PRODUCTS",
+        route.query.category
+      );
+      await store.commit("productStore/SET_CAT_PRODUCT", route.query.category);
+    } else {
+      await store.commit("productStore/HIDE_CAT_PRODUCT", route.query.category);
+    }
   },
 
   components: {

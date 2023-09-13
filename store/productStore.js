@@ -1,4 +1,8 @@
 export const state = () => ({
+  catProducts: [],
+  catProduct: "",
+  showCatProduct: false,
+  catProductsLength: [],
   productArray: [],
   products: [],
   productSettings: [],
@@ -75,9 +79,26 @@ export const mutations = {
     state.productArray = items;
   },
 
+  SET_CATEGORY_PRODUCTS(state, products) {
+    state.catProductsLength = products.length;
+
+    state.productArray = state.productArray.filter(
+      (item) => item.isCat !== true
+    );
+
+    for (let x = 0; x < products.results.length; x++) {
+      products.results[x].isCat = true;
+      products.results[x].check = false;
+      products.results[x].cartNumber = 0;
+      products.results[x].quantity = 0;
+      state.productArray.push(products.results[x]);
+    }
+  },
+
   SET_PRODUCT_SETTINGS(state, products) {
     state.dataLength = products.resultLength;
     const items = [];
+
     for (let x = 0; x < products.data.length; x++) {
       products.data[x].checked = false;
       products.data[x].cartNumber = 0;
@@ -85,6 +106,16 @@ export const mutations = {
       items.push(products.data[x]);
     }
     state.productSettings = items;
+  },
+
+  SET_CAT_PRODUCT(state, category) {
+    state.catProduct = category;
+    state.showCatProduct = true;
+  },
+
+  HIDE_CAT_PRODUCT(state) {
+    state.catProduct = "";
+    state.showCatProduct = false;
   },
 
   SET_OBJECT(state, object) {
@@ -292,6 +323,17 @@ export const actions = {
     try {
       const response = await this.$axios.get(`/products/${query}`);
       commit("SET_PRODUCTS", response.data);
+    } catch (error) {
+      // Handle errors if necessary
+    }
+  },
+
+  async GET_CATEGORY_PRODUCTS({ commit }, data) {
+    try {
+      const response = await this.$axios.get(
+        `/products/?productCategories=${data}`
+      );
+      commit("SET_CATEGORY_PRODUCTS", response.data.data);
     } catch (error) {
       // Handle errors if necessary
     }

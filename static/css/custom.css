@@ -188,6 +188,29 @@ label.response.error {
   display: flex;
 }
 
+label.cats {
+  background: #f6f7f9;
+  padding: 1px 3px;
+  font-size: 13px;
+  border-radius: 5px;
+  position: relative;
+}
+
+label.cats span.cat-close {
+  font-size: 9px;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: -7px;
+  background: #fc9135;
+  color: white;
+}
+
 .video-display {
   display: flex;
   align-items: center;

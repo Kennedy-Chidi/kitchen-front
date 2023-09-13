@@ -227,11 +227,15 @@
                       <label for="name-15" class="label"
                         >Product Categories </label
                       ><label
-                        v-for="cat in productCategories"
-                        :key="cat"
+                        @click.self="editCat(cat, int)"
+                        v-for="(cat, int) in productCategories"
+                        :key="int"
                         for="name-20"
                         class="cats"
-                        >{{ cat }}</label
+                        >{{ cat }}
+                        <span class="cat-close" @click="removeCat(int)"
+                          >X</span
+                        ></label
                       >
                       <input
                         type="text"
@@ -572,7 +576,7 @@ export default {
       showStatePriceList: false,
       isStateSelected: false,
       isCountrySelected: false,
-
+      productCategoryEditIndex: "",
       countryDefault: "Select Country",
       stateDefault: "Select State",
 
@@ -617,8 +621,16 @@ export default {
       this.$store.commit("settingsStore/TOGGLE_PRODUCT", int);
     },
 
+    editCat(category, int) {
+      this.productCategoryEditIndex = int;
+      this.productCategory = category;
+    },
+
+    removeCat(int) {
+      this.productCategories.splice(int, 1);
+    },
+
     selectAll() {
-      this.isAllChecked = !this.isAllChecked;
       this.$store.commit(
         "settingsStore/TOGGLE_ALL_PRODUCTS",
         this.isAllChecked
@@ -782,12 +794,14 @@ export default {
       if (this.productCategory == "") {
         return;
       }
-      this.productCategories.push(this.productCategory);
+      if (this.productCategoryEditIndex == "") {
+        this.productCategories.push(this.productCategory);
+      } else {
+        this.productCategories[this.productCategoryEditIndex] =
+          this.productCategory;
+      }
       this.productCategory = "";
-    },
-
-    removeCategory(int) {
-      this.productCategories.splice(int, 1);
+      this.productCategoryEditIndex = "";
     },
 
     processProduct() {
@@ -919,165 +933,6 @@ export default {
         this.showResponseMsg(result.response.data.message, true);
       }
     },
-
-    // closeEditor() {
-    //   this.clearInputs();
-    //   this.showEditor = false;
-    // },
-
-    // toggleProduct(product) {
-    //   product.checked = !product.checked;
-    //   const index = this.selectedProducts.findIndex(
-    //     (obj) => obj.productName === product.productName
-    //   );
-
-    //   if (index !== -1) {
-    //     this.selectedProducts.splice(index, 1);
-    //   } else {
-    //     this.selectedProducts.push(product);
-    //   }
-
-    //   if (this.selectedProducts.length === 0) {
-    //     this.isAllChecked = false;
-    //   }
-    // },
-
-    // checkAll() {
-    //   this.isAllChecked = !this.isAllChecked;
-    //   if (this.isAllChecked) {
-    //     for (let i = 0; i < this.products.length; i++) {
-    //       this.products[i].checked = true;
-    //     }
-    //     this.selectedProducts = JSON.parse(JSON.stringify(this.products));
-    //   } else {
-    //     for (let i = 0; i < this.products.length; i++) {
-    //       this.products[i].checked = false;
-    //     }
-    //     this.selectedProducts = [];
-    //   }
-    // },
-
-    // getNewProductsLimit() {
-    //   this.limit = this.newLimit;
-    //   this.getProducts();
-    // },
-
-    // startBulkDelete() {
-    //   if (this.isAllChecked) {
-    //     this.overlaySignal = "bulk";
-    //     this.deleteId = "";
-    //     this.showOverlay = true;
-    //     this.overlayMsg = `Are you sure you want to delete the selected products?`;
-    //   }
-    // },
-
-    // startDeleteProduct(id) {
-    //   this.deleteId = id;
-    //   this.overlaySignal = "single";
-    //   this.showOverlay = true;
-    //   this.overlayMsg = `Are you sure you want to delete this product?`;
-    // },
-
-    // closeOverlay() {
-    //   this.showOverlay = false;
-    //   this.overlayMsg = "";
-    //   if (this.deleteId != "" && this.overlaySignal == "single") {
-    //     this.deleteProduct();
-    //   } else {
-    //     this.deleteProducts();
-    //   }
-    // },
-
-    // recheckProducts(data) {
-    //   this.isAllChecked = false;
-    //   for (let i = 0; i < data.length; i++) {
-    //     data[i].checked = false;
-    //   }
-
-    //   return data;
-    // },
-
-    // async fetchItems(e) {
-    //   const data = {
-    //     keyWord: e.target.value,
-    //     limit: this.limit,
-    //     page: this.currentPage,
-    //   };
-    //   this.$socket.emit("fetchItems", data);
-    // },
-
-    // async createProduct(form) {
-    //   const query = `?limit=${this.limit}&page=${this.currentPage}&sort=-dateCreated`;
-    //   try {
-    //     const result = await this.$axios.post(`/products/${query}`, form);
-    //     this.products = this.recheckProducts(result.data.data);
-    //     this.resultLength = result.data.resultLength;
-    //     this.clearInputs();
-    //     this.showResponseMsg("Product created successfully", false);
-    //   } catch (err) {
-    //     this.showResponseMsg(err.response.data.message, true);
-    //   }
-    // },
-
-    // async updateProduct(form) {
-    //   const query = `?limit=${this.limit}&page=${this.currentPage}`;
-    //   try {
-    //     const result = await this.$axios.patch(
-    //       `/products/${this.editId}/${query}`,
-    //       form
-    //     );
-    //     this.products = this.recheckProducts(result.data.data);
-    //     this.resultLength = result.data.resultLength;
-    //     this.clearInputs();
-    //     this.showResponseMsg("Product updated successfully", false);
-    //   } catch (err) {
-    //     this.showResponseMsg(err.response.data.message, true);
-    //   }
-    // },
-
-    // async getProducts() {
-    //   const query = `?limit=${this.limit}&page=${this.currentPage}`;
-    //   try {
-    //     const result = await this.$axios.get(`/products/${query}`);
-    //     this.products = this.recheckProducts(result.data.data);
-    //     this.resultLength = result.data.resultLength;
-    //   } catch (err) {
-    //     this.showResponseMsg(err.response.data.message, true);
-    //   }
-    // },
-
-    // async deleteProduct() {
-    //   this.overlayMsg = "";
-    //   this.showOverlay = false;
-    //   const query = `?limit=${this.limit}&page=${this.currentPage}`;
-    //   try {
-    //     const result = await this.$axios.delete(
-    //       `/products/${this.deleteId}/${query}`
-    //     );
-    //     this.products = this.recheckProducts(result.data.data);
-    //     this.resultLength = result.data.resultLength;
-    //     this.clearInputs();
-    //   } catch (err) {
-    //     this.showResponseMsg(err.response.data.message, true);
-    //   }
-    // },
-
-    // async deleteProducts() {
-    //   this.overlayMsg = "";
-    //   this.showOverlay = false;
-    //   const form = {
-    //     products: this.selectedProducts,
-    //   };
-    //   const query = `?limit=${this.limit}&page=${this.currentPage}`;
-    //   try {
-    //     const result = await this.$axios.patch(`/products/${query}`, form);
-    //     this.products = this.recheckProducts(result.data.data);
-    //     this.resultLength = result.data.resultLength;
-    //     this.clearInputs();
-    //   } catch (err) {
-    //     this.showResponseMsg(err.response.data.message, true);
-    //   }
-    // },
   },
 
   computed: {

@@ -520,6 +520,7 @@ export const mutations = {
     state.productLength = products.length;
     const items = [];
     for (let x = 0; x < products.results.length; x++) {
+      products.results[x].checked = false;
       products.results[x].cartNumber = 0;
       products.results[x].quantity = 0;
       items.push(products.results[x]);

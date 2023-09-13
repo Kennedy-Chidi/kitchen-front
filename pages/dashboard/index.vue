@@ -123,6 +123,7 @@
             </div>
           </div>
           <div class="content-body">
+            <!------------ HERO SECTION ------------->
             <div class="hero-display">
               <div
                 data-delay="6000"
@@ -138,53 +139,30 @@
                 data-infinite="true"
               >
                 <div class="hero-mask w-slider-mask">
-                  <div class="hero-slide w-slide">
+                  <div
+                    v-for="banner in banners"
+                    :key="banner._id"
+                    class="hero-slide w-slide"
+                  >
                     <div class="hero-div">
                       <img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01.jpg"
+                        :src="banner.bannerImageUrl"
                         loading="lazy"
                         sizes="100vw"
-                        srcset="
-                          https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01-p-500.jpg 500w,
-                          https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01-p-800.jpg 800w,
-                          https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01.jpg       812w
-                        "
+                        :srcset="`
+                          ${banner.bannerImageUrl} 500w,
+                          ${banner.bannerImageUrl} 800w,
+                          ${banner.bannerImageUrl}     812w  `"
                         alt=""
                         class="responsive-img"
                       />
                       <div class="hero-content">
-                        <h1 class="light-heading">Top Deal</h1>
-                        <h1 class="hero-name">Kitchen Grace</h1>
+                        <h1 class="light-heading">{{ banner.bannerTitle }}</h1>
+                        <h1 class="hero-name">{{ banner.bannerSubtitle }}</h1>
                         <h1 class="hero-subtitle">
-                          Get 10% Bonus for your referrals
+                          {{ banner.bannerIntro }}
                         </h1>
-                        <div class="custom-btn">
-                          <div>Start Shopping</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="hero-slide w-slide">
-                    <div class="hero-div">
-                      <img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01.jpg"
-                        loading="lazy"
-                        sizes="100vw"
-                        srcset="
-                          https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01-p-500.jpg 500w,
-                          https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01-p-800.jpg 800w,
-                          https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6da14bb6cc78201985f52_slider_bg01.jpg       812w
-                        "
-                        alt=""
-                        class="responsive-img"
-                      />
-                      <div class="hero-content">
-                        <h1 class="light-heading">Welcome to</h1>
-                        <h1 class="hero-name">Kitchen Grace</h1>
-                        <h1 class="hero-subtitle">
-                          Get 10% Bonus for your referrals
-                        </h1>
-                        <div class="custom-btn">
+                        <div @click="goToProduct" class="custom-btn">
                           <div>Start Shopping</div>
                         </div>
                       </div>
@@ -201,91 +179,44 @@
               </div>
               <div class="hero-adds">
                 <img
-                  src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6d7f3aee713bd040bac18_slider_banner02.jpg"
-                  loading="lazy"
-                  alt=""
-                  class="add-img"
-                /><img
-                  src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6d7f3061d808489e05595_slider_banner01.jpg"
+                  v-for="banner in sideBanners"
+                  :key="banner._id"
+                  :src="banner.bannerImageUrl"
                   loading="lazy"
                   alt=""
                   class="add-img"
                 />
               </div>
             </div>
+            <!----X------- HERO SECTION --------X---->
+
+            <!----------- CATEGORY SECTION ------------>
             <div class="categories">
               <div class="category-flex">
                 <h3 class="section-title">Categories</h3>
-                <div class="each-category">
+                <div
+                  v-for="(category, int) in categories"
+                  :key="int"
+                  class="each-category"
+                >
                   <div class="category-img">
                     <img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e36028c62069ce661e52_custard-checkers-paint.jpg"
+                      :src="category.imageUrl"
                       loading="lazy"
                       alt=""
                       class="cat-img"
                     />
                   </div>
-                  <a href="#" class="category-name">Noodles</a>
-                </div>
-                <div class="each-category">
-                  <div class="category-img">
-                    <img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e629293b975a500caca1_gelsha-tin.jpg"
-                      loading="lazy"
-                      alt=""
-                      class="cat-img"
-                    />
-                  </div>
-                  <a href="#" class="category-name">Noodles</a>
-                </div>
-                <div class="each-category">
-                  <div class="category-img">
-                    <img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e36028c62069ce661e52_custard-checkers-paint.jpg"
-                      loading="lazy"
-                      alt=""
-                      class="cat-img"
-                    />
-                  </div>
-                  <a href="#" class="category-name">Noodles</a>
-                </div>
-                <div class="each-category">
-                  <div class="category-img">
-                    <img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e640ae6521a154781d4d_quaker-oat-satchet.webp"
-                      loading="lazy"
-                      sizes="100vw"
-                      srcset="
-                        https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e640ae6521a154781d4d_quaker-oat-satchet-p-500.webp   500w,
-                        https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e640ae6521a154781d4d_quaker-oat-satchet-p-800.webp   800w,
-                        https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e640ae6521a154781d4d_quaker-oat-satchet-p-1080.webp 1080w,
-                        https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e640ae6521a154781d4d_quaker-oat-satchet.webp        1200w
-                      "
-                      alt=""
-                      class="cat-img"
-                    />
-                  </div>
-                  <a href="#" class="category-name">Noodles</a>
-                </div>
-                <div class="each-category">
-                  <div class="category-img">
-                    <img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e63995bfffb09c548fb8_quaker-oat-tin.jpg"
-                      loading="lazy"
-                      sizes="100vw"
-                      srcset="
-                        https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e63995bfffb09c548fb8_quaker-oat-tin-p-500.jpg  500w,
-                        https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e63995bfffb09c548fb8_quaker-oat-tin-p-800.jpg  800w,
-                        https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6e63995bfffb09c548fb8_quaker-oat-tin.jpg       1080w
-                      "
-                      alt=""
-                      class="cat-img"
-                    />
-                  </div>
-                  <a href="#" class="category-name">Noodles</a>
+                  <nuxt-link
+                    :to="`/dashboard/products/?category=${category.category}`"
+                    class="category-name"
+                    >{{ category.category }}</nuxt-link
+                  >
                 </div>
               </div>
             </div>
+            <!----X------- CATEGORY SECTION --------X---->
+
             <div class="product-flex">
               <h3 class="section-title pro">Our Products</h3>
 
@@ -295,6 +226,7 @@
                 :key="int"
               />
             </div>
+
             <nuxt-link to="/products" class="response big">View More</nuxt-link>
             <div class="home-promos">
               <div class="top-promo-flex">
@@ -429,7 +361,7 @@ import AlertBox from "../../components/AlertBox.vue";
 import AlertConfirmation from "../../components/AlertConfirmation.vue";
 import CartItems from "../../components/CartItems.vue";
 import CompanyAds from "../../components/CompanyAds.vue";
-import EachProduct from "../../components/EachProduct.vue";
+import EachProduct from "../../components/EachProduct";
 import FooterComponent from "../../components/FooterComponent";
 import HorizontalNav from "../../components/HorizontalNav";
 import MobileBottomNav from "../../components/MobileBottomNav.vue";
@@ -444,8 +376,28 @@ export default {
     isAuth() {
       return this.$store.state.auth;
     },
+
+    banners() {
+      const banners = JSON.parse(JSON.stringify(this.$store.state.banners));
+      return banners.filter((el) => {
+        return el.bannerPage == "Dashboard";
+      });
+    },
+    sideBanners() {
+      const banners = JSON.parse(JSON.stringify(this.$store.state.banners));
+      return banners.filter((el) => {
+        return el.bannerPage == "DashboardSide";
+      });
+    },
+
+    categories() {
+      return this.$store.state.userStore.categories;
+    },
   },
   methods: {
+    goToProduct() {
+      this.$router.push("/dashboard/products");
+    },
     loadScript() {
       if (!process.server) {
         let el = document.getElementById("script");
