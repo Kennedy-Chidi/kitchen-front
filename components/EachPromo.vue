@@ -13,7 +13,9 @@
         <div class="product-price pro old">
           N{{ formatNumber(product.productSellingPrice) }}
         </div>
-        <a href="#" class="product-name pro">Buy Now</a>
+        <span class="product-name pro"
+          >Buying {{ product.quantity }} Quantiy</span
+        >
         <div class="product-price pro">
           N{{ formatNumber(product.productNewPrice) }}
         </div>

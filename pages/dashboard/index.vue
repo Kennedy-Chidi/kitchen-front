@@ -230,25 +230,8 @@
             <nuxt-link to="/dashboard/products" class="response big"
               >View More</nuxt-link
             >
-            <div class="home-promos">
-              <div class="top-promo-flex">
-                <div class="promo-header-flex">
-                  <h1 class="promo-header">
-                    Running Promos
-                    <span class="promo-lighht">of this week</span>
-                  </h1>
-                  <div>Hurry up and make purchase while the promo is on!</div>
-                </div>
-                <div class="promo-count-flex">
-                  <div class="promo-count-box"><div>00</div></div>
-                  <div class="promo-dots">:</div>
-                  <div class="promo-count-box"><div>00</div></div>
-                  <div class="promo-dots">:</div>
-                  <div class="promo-count-box"><div>00</div></div>
-                  <div class="promo-dots">:</div>
-                  <div class="promo-count-box"><div>00</div></div>
-                </div>
-              </div>
+            <div v-if="promoLength > 0" class="home-promos">
+              <promo-header />
             </div>
             <div class="promo-flex">
               <each-promo
@@ -290,6 +273,7 @@ import FooterComponent from "../../components/FooterComponent";
 import HorizontalNav from "../../components/HorizontalNav";
 import MobileBottomNav from "../../components/MobileBottomNav.vue";
 import ProductDisplay from "../../components/ProductDisplay.vue";
+import PromoHeader from "../../components/PromoHeader.vue";
 import VerticalNav from "../../components/VerticalNav";
 export default {
   computed: {
@@ -307,6 +291,7 @@ export default {
         return el.bannerPage == "Dashboard";
       });
     },
+
     sideBanners() {
       const banners = JSON.parse(JSON.stringify(this.$store.state.banners));
       return banners.filter((el) => {
@@ -316,6 +301,10 @@ export default {
 
     categories() {
       return this.$store.state.userStore.categories;
+    },
+
+    promoLength() {
+      return this.$store.state.userStore.productPromoLength;
     },
 
     promos() {
@@ -363,6 +352,7 @@ export default {
     CompanyAds,
     EachProduct,
     EachPromo,
+    PromoHeader,
   },
 };
 </script>

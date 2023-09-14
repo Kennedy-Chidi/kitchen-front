@@ -196,6 +196,14 @@ label.cats {
   position: relative;
 }
 
+.each-footer.search.w-form {
+  transition: all 0.3s;
+}
+
+.search-result.foot {
+  transition: all 0.3s;
+}
+
 label.cats span.cat-close {
   font-size: 9px;
   height: 10px;

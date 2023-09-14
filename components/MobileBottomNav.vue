@@ -1,26 +1,23 @@
 <template>
   <div class="footer-nav">
-    <div class="each-footer search w-form">
+    <div class="each-footer search w-form" :class="{ active: showSearch }">
       <div class="newsletter search">
         <div class="newsletter-wrap search">
           <input
-            type="email"
+            type="text"
             class="newsletter-input search w-input"
-            maxlength="256"
-            name="email-4"
-            data-name="Email 4"
-            placeholder="Enter your email"
-            id="email-4"
-          /><img
-            src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b74e3c7592131c5ccdfbd8_filter-outline-icon%201.svg"
-            loading="lazy"
-            alt=""
-            class="filter-icon bg"
+            v-model="searchedWord"
+            placeholder="Search for Products"
+            @keyup="fetchItems"
           />
         </div>
       </div>
     </div>
-    <ul role="list" class="search-result foot">
+    <ul
+      role="list"
+      class="search-result foot"
+      :class="{ active: showSearchList }"
+    >
       <li class="pro-names">
         <nuxt-link to="/" class="pro-name">Star Maggi</nuxt-link>
         <div>N3,500</div>
@@ -50,6 +47,7 @@
         <div>N3,500</div>
       </li>
     </ul>
+
     <div class="custom-container hide">
       <div class="filter-div foot">
         <div class="close">X</div>
@@ -265,19 +263,23 @@
           to="/dashboard/notifications"
           class="footer-icon-wrap w-inline-block"
           ><i class="material-symbols-outlined orange">notifications</i>
-          <div class="badge color"><div>9+</div></div></nuxt-link
-        >
+          <div class="badge color" v-if="user.unreadMessages > 0">
+            <div v-if="user.unreadMessages < 10">{{ user.unreadMessages }}</div>
+            <div v-else>9+</div>
+          </div>
+        </nuxt-link>
+
         <nuxt-link
           v-show="!isAuthenticated"
           to="/signup"
           class="footer-icon-wrap w-inline-block"
           ><i class="material-symbols-outlined orange">person_add_alt</i>
         </nuxt-link>
-        <nuxt-link to="/" class="footer-icon-wrap w-inline-block"
-          ><i class="material-symbols-outlined orange">search</i></nuxt-link
-        ><span
-          @click="toggleVerticalNav"
-          class="footer-icon-wrap w-inline-block"
+
+        <span @click="goToProducts" class="footer-icon-wrap w-inline-block"
+          ><i class="material-symbols-outlined orange">search</i></span
+        >
+        <span @click="toggleVerticalNav" class="footer-icon-wrap w-inline-block"
           ><i class="material-symbols-outlined orange">menu</i></span
         >
       </div>
@@ -310,6 +312,7 @@
         >
       </div>
     </div>
+
     <div
       v-show="currentRouteName == 'products'"
       class="icon-wrap nav foot orange"
@@ -326,6 +329,10 @@ export default {
       limit: 30,
       currentPage: 1,
       route: "",
+      showSearch: false,
+      showSearchList: false,
+
+      searchedWord: "",
     };
   },
   methods: {
@@ -347,11 +354,31 @@ export default {
     hideVerticalNav() {
       this.$store.commit("HIDE_NAV");
     },
+
+    goToProducts() {
+      if (this.$route.name == "dashboard-products") {
+        this.showSearch = !this.showSearch;
+      } else {
+        this.$router.push("/dashboard/products");
+      }
+    },
+
+    fetchItems() {
+      if (this.searchedWord.length > 0) {
+        this.showSearchList = true;
+      } else {
+        this.showSearchList = false;
+      }
+    },
   },
 
   computed: {
     cartProperties() {
       return this.$store.state.productStore.purchaseProperties;
+    },
+
+    user() {
+      return this.$store.state.auth.user;
     },
 
     productProperties() {

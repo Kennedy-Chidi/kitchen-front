@@ -51,50 +51,46 @@
         </div>
         <div class="each-footer">
           <h4 class="footer-title">Quick Links</h4>
-          <nuxt-link to="/about" class="footer-links">About Us</nuxt-link
-          ><nuxt-link to="/" class="footer-links">Our Services</nuxt-link
+          <nuxt-link to="/dashboard/products" class="footer-links"
+            >Products</nuxt-link
+          ><nuxt-link to="/dashboard/faq" class="footer-links">FAQ</nuxt-link
           ><nuxt-link to="/contact" class="footer-links">Contact Us</nuxt-link
-          ><nuxt-link to="/blog" class="footer-links">Our Blog</nuxt-link
+          ><nuxt-link to="/dashboard/blog" class="footer-links"
+            >Our Blog</nuxt-link
           ><nuxt-link to="/dashboard/partnership" class="footer-links"
             >Partnership</nuxt-link
-          ><nuxt-link to="/" class="footer-links"
+          ><nuxt-link to="/terms-conditions" class="footer-links"
             >Terms &amp; Conditions</nuxt-link
           >
         </div>
         <div class="each-footer w-form">
-          <form
-            id="email-form"
-            name="email-form"
-            data-name="Email Form"
-            method="get"
-            class="newsletter"
-            data-wf-page-id="64b6be9c94ade9f930694692"
-            data-wf-element-id="8846de58-d1b5-7a98-3e6e-3c30b817ccdc"
-          >
+          <div class="newsletter">
             <label for="name">NEWSLETTER</label>
             <div class="newsletter-wrap">
               <input
                 type="email"
+                v-model="email"
                 class="newsletter-input w-input"
-                maxlength="256"
-                name="email-5"
-                data-name="Email 5"
                 placeholder="Enter your email"
-                id="email-5"
-              /><img
-                src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b742dae09b37f7e2042587_sent-icon%201.svg"
-                loading="lazy"
-                alt=""
-                class="newsletter-img"
               />
+              <i
+                v-if="onRequest"
+                class="material-symbols-outlined spinner white"
+                >expand_more</i
+              >
+              <i
+                v-else
+                @click="subscribe"
+                class="material-symbols-outlined white newsletter-img"
+                >send</i
+              >
             </div>
-            <div class="sub">Write your email and subscribe</div>
-          </form>
-          <div class="w-form-done">
-            <div>Thank you! Your submission has been received!</div>
-          </div>
-          <div class="w-form-fail">
-            <div>Oops! Something went wrong while submitting the form.</div>
+            <div v-if="isError" class="sub">{{ errMessage }}</div>
+
+            <div v-if="isSuccess" class="sub">{{ succMessage }}</div>
+            <div v-if="!isError && !isSuccess" class="sub error">
+              Write your email and subscribe
+            </div>
           </div>
         </div>
       </div>
@@ -108,9 +104,50 @@ export default {
     return {
       limit: 40,
       currentPage: 1,
+      email: "",
+      onRequest: false,
+      isError: false,
+      isSuccess: false,
+      errMessage: "",
+      succMessage: "",
     };
   },
   methods: {
+    validateEmail() {
+      if (
+        this.email == "" ||
+        !this.email ||
+        !/^\S+@\S+\.\S+$/.test(this.email)
+      ) {
+        this.errMessage = "Please enter a valid email";
+        this.isError = true;
+        return;
+      } else {
+        this.errMessage = "";
+        this.isError = false;
+      }
+    },
+
+    async subscribe() {
+      this.validateEmail();
+      if (this.isError) {
+        return;
+      }
+      this.onRequest = true;
+
+      const result = await this.$store.dispatch("SUBSCRIBE", {
+        email: this.email,
+      });
+      if (result.status == 200) {
+        this.onRequest = false;
+        this.succMessage = "Sent successfully";
+        this.isSuccess = true;
+        this.isError = false;
+        this.email = "";
+      } else {
+        this.onRequest = false;
+      }
+    },
     hideAlertBox() {
       this.$store.commit("HIDE_ALERT_BOX");
     },

@@ -102,7 +102,13 @@
                   :product="product"
                   :key="int"
                 />
-                <nuxt-link to="/products" class="response big"
+                <nuxt-link
+                  v-if="user"
+                  to="/dashboard/products"
+                  class="response big"
+                  >View More</nuxt-link
+                >
+                <nuxt-link v-else to="/login" class="response big"
                   >View More</nuxt-link
                 >
               </div>
