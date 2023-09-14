@@ -619,6 +619,9 @@ export default {
   methods: {
     toggleProduct(int) {
       this.$store.commit("settingsStore/TOGGLE_PRODUCT", int);
+      if (this.selectedProducts.length == 0) {
+        this.clearInputs();
+      }
     },
 
     editCat(category, int) {
@@ -687,6 +690,8 @@ export default {
       this.productColor = product.productColor;
       this.productColorCode = product.productColorCode;
       this.productDescription = product.productDescription;
+      this.productDiscount = product.productDiscount;
+      this.productNewPrice = product.productNewPrice;
       this.countryDefault = product.productCountry;
       this.stateDefault = product.productState;
       this.lgaDefault = product.lgaDefault;
@@ -752,6 +757,8 @@ export default {
       this.productColor = "";
       this.productColorCode = "";
       this.productDescription = "";
+      this.productNewPrice = "";
+      this.productDiscount = "";
       this.countryDefault = "Select Country";
       this.stateDefault = "Select State";
       this.productStatePrice = [];
@@ -839,6 +846,8 @@ export default {
       form.append("productBarcode", this.productBarcode);
       form.append("productColorCode", this.productColorCode);
       form.append("productColor", this.productColor);
+      form.append("productDiscount", this.productDiscount);
+      form.append("productNewPrice", this.productNewPrice * 1);
       form.append("productCountry", this.countryDefault);
       form.append("productState", this.stateDefault);
       singular.forEach((el) => {

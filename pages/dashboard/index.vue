@@ -227,7 +227,9 @@
               />
             </div>
 
-            <nuxt-link to="/products" class="response big">View More</nuxt-link>
+            <nuxt-link to="/dashboard/products" class="response big"
+              >View More</nuxt-link
+            >
             <div class="home-promos">
               <div class="top-promo-flex">
                 <div class="promo-header-flex">
@@ -249,90 +251,11 @@
               </div>
             </div>
             <div class="promo-flex">
-              <div class="each-promo">
-                <div class="promo-img">
-                  <img
-                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6ee85c5adf2f23b4de5c8_rice-royal-stallion.png"
-                    loading="lazy"
-                    alt=""
-                  />
-                </div>
-                <div class="promo-footer">
-                  <div class="promo-det">
-                    <a href="#" class="product-name pro sm">Golden Morn</a>
-                    <div class="product-price pro old">N4,000</div>
-                    <a href="#" class="product-name pro">Ester Bonanza</a>
-                    <div class="product-price pro">N4,000</div>
-                  </div>
-                  <div>
-                    <div class="action-btn down"><div>+</div></div>
-                    <div class="action-btn"><div>-</div></div>
-                  </div>
-                </div>
-              </div>
-              <div class="each-promo">
-                <div class="promo-img">
-                  <img
-                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6ee85c5adf2f23b4de5c8_rice-royal-stallion.png"
-                    loading="lazy"
-                    alt=""
-                  />
-                </div>
-                <div class="promo-footer">
-                  <div class="promo-det">
-                    <a href="#" class="product-name pro sm">Golden Morn</a>
-                    <div class="product-price pro old">N4,000</div>
-                    <a href="#" class="product-name pro">Ester Bonanza</a>
-                    <div class="product-price pro">N4,000</div>
-                  </div>
-                  <div>
-                    <div class="action-btn down"><div>+</div></div>
-                    <div class="action-btn"><div>-</div></div>
-                  </div>
-                </div>
-              </div>
-              <div class="each-promo">
-                <div class="promo-img">
-                  <img
-                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6ee85c5adf2f23b4de5c8_rice-royal-stallion.png"
-                    loading="lazy"
-                    alt=""
-                  />
-                </div>
-                <div class="promo-footer">
-                  <div class="promo-det">
-                    <a href="#" class="product-name pro sm">Golden Morn</a>
-                    <div class="product-price pro old">N4,000</div>
-                    <a href="#" class="product-name pro">Ester Bonanza</a>
-                    <div class="product-price pro">N4,000</div>
-                  </div>
-                  <div>
-                    <div class="action-btn down"><div>+</div></div>
-                    <div class="action-btn"><div>-</div></div>
-                  </div>
-                </div>
-              </div>
-              <div class="each-promo">
-                <div class="promo-img">
-                  <img
-                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6ee85c5adf2f23b4de5c8_rice-royal-stallion.png"
-                    loading="lazy"
-                    alt=""
-                  />
-                </div>
-                <div class="promo-footer">
-                  <div class="promo-det">
-                    <a href="#" class="product-name pro sm">Golden Morn</a>
-                    <div class="product-price pro old">N4,000</div>
-                    <a href="#" class="product-name pro">Ester Bonanza</a>
-                    <div class="product-price pro">N4,000</div>
-                  </div>
-                  <div>
-                    <div class="action-btn down"><div>+</div></div>
-                    <div class="action-btn"><div>-</div></div>
-                  </div>
-                </div>
-              </div>
+              <each-promo
+                v-for="(promo, int) in promos"
+                :key="int"
+                :product="promo"
+              />
             </div>
           </div>
           <img
@@ -362,6 +285,7 @@ import AlertConfirmation from "../../components/AlertConfirmation.vue";
 import CartItems from "../../components/CartItems.vue";
 import CompanyAds from "../../components/CompanyAds.vue";
 import EachProduct from "../../components/EachProduct";
+import EachPromo from "../../components/EachPromo.vue";
 import FooterComponent from "../../components/FooterComponent";
 import HorizontalNav from "../../components/HorizontalNav";
 import MobileBottomNav from "../../components/MobileBottomNav.vue";
@@ -392,6 +316,10 @@ export default {
 
     categories() {
       return this.$store.state.userStore.categories;
+    },
+
+    promos() {
+      return this.$store.state.userStore.productPromos;
     },
   },
   methods: {
@@ -434,6 +362,7 @@ export default {
     HorizontalNav,
     CompanyAds,
     EachProduct,
+    EachPromo,
   },
 };
 </script>

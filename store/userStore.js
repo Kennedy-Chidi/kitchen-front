@@ -9,6 +9,9 @@ export const state = () => ({
   promos: [],
   promoLength: 0,
 
+  productPromos: [],
+  productPromoLength: 0,
+
   transactions: [],
   transactionLength: 0,
 
@@ -34,6 +37,20 @@ export const mutations = {
   SET_PROMOS(state, promos) {
     state.promos = promos.results;
     state.promoLength = promos.length;
+  },
+
+  SET_PRODUCT_PROMOS(state, promos) {
+    state.productPromoLength = promos.length;
+
+    const items = [];
+    for (let x = 0; x < promos.results.length; x++) {
+      promos.results[x].check = false;
+      promos.results[x].cartNumber = 0;
+      promos.results[x].quantity = 0;
+      items.push(promos.results[x]);
+    }
+
+    state.productPromos = items;
   },
 
   SET_TRANSACTIONS(state, transactions) {
@@ -143,6 +160,7 @@ export const actions = {
       commit("SET_PROMOS", response.data.promos);
       commit("SET_COMPANY", response.data.company);
       commit("SET_CATEGORIES", response.data.categories);
+      commit("SET_PRODUCT_PROMOS", response.data.productPromos);
     } catch (err) {
       // console.log(err?.response?.data);
     }
@@ -165,6 +183,7 @@ export const actions = {
       commit("SET_PROMOS", response.data.promos);
       commit("SET_COMPANY", response.data.company);
       commit("SET_CATEGORIES", response.data.categories);
+      commit("SET_PRODUCT_PROMOS", response.data.productPromos);
       // commit("SET_SALES", response.data.sales);
       // commit("SET_SALES", response.data.sales);
     } catch (err) {
