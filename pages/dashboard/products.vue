@@ -98,7 +98,8 @@
 
               <div class="pagination">
                 <div class="page-result">
-                  <h3 class="page-result-txt">Results: 20, Page 1 of 5</h3>
+                  Results: {{ productProperties.resultLength }}, Page
+                  {{ currentPage }} of {{ pages().length }}
                 </div>
                 <ul role="list" class="pagination-list">
                   <li class="page">
@@ -162,6 +163,14 @@ export default {
       sort: "",
       limit: 30,
       currentPage: 1,
+      pages() {
+        let array = [];
+        let x = Math.ceil(this.productProperties.resultLength / this.limit);
+        for (let i = 0; i < x; i++) {
+          array.push("i");
+        }
+        return array;
+      },
     };
   },
 
@@ -200,15 +209,6 @@ export default {
 
     isAuth() {
       return this.$store.state.auth;
-    },
-
-    pages() {
-      let array = [];
-      let x = Math.ceil(this.productProperties.resultLength / this.limit);
-      for (let i = 0; i < x; i++) {
-        array.push("i");
-      }
-      return array;
     },
   },
 
