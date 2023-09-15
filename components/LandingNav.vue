@@ -20,7 +20,7 @@
 
       <ul role="list" class="nav-list landing">
         <li class="nav-link-flex">
-          <nuxt-link to="/" class="nav-link">Home New</nuxt-link>
+          <nuxt-link to="/" class="nav-link">Home</nuxt-link>
         </li>
         <li v-show="isAuthenticated" class="nav-link-flex">
           <nuxt-link to="/dashboard" class="nav-link">Welcome</nuxt-link>
@@ -33,9 +33,16 @@
           <nuxt-link to="/blog" class="nav-link">Blog</nuxt-link>
         </li>
       </ul>
-      <div v-show="!isAuthenticated" class="nav-logs left">
-        <nuxt-link to="/login" class="nav-link btn landing">Login</nuxt-link
-        ><nuxt-link to="/signup" class="nav-link btn landing color"
+      <div class="nav-logs left">
+        <nuxt-link
+          v-show="!isAuthenticated"
+          to="/login"
+          class="nav-link btn landing"
+          >Login</nuxt-link
+        ><nuxt-link
+          v-show="user != null && user.status == 'Staff'"
+          to="/signup"
+          class="nav-link btn landing color"
           >Signup</nuxt-link
         >
       </div>
