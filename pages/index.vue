@@ -424,10 +424,10 @@
         </div>
         <!--X -----------PARTNER------------- X-->
 
-        <home-footer />
+        <!-- <home-footer /> -->
       </div>
     </div>
-    <mobile-bottom-nav v-if="user" />
+    <!-- <mobile-bottom-nav v-if="user" /> -->
   </div>
 </template>
 <script>
