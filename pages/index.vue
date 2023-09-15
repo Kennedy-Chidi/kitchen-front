@@ -1,7 +1,7 @@
 <template>
   <div class="grace landing">
     <div class="main-body">
-      <vertical-nav v-if="user != null" />
+      <vertical-nav v-show="user != null" />
       <div class="main-flex">
         <div class="display">
           <div class="custom-container-landing">
