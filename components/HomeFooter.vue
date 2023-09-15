@@ -17,7 +17,7 @@
               alt=""
               class="icon h"
             />
-            <div v-if="company != null" class="company-det-text">
+            <div v-show="company != null" class="company-det-text">
               {{ company.contact[0] }}
             </div>
           </div>
@@ -28,7 +28,7 @@
               alt=""
               class="icon sm"
             />
-            <div v-if="company != null" class="company-det-text">
+            <div v-show="company != null" class="company-det-text">
               {{ company.systemEmail }}
             </div>
           </div>
@@ -39,7 +39,7 @@
               alt=""
               class="icon sm"
             />
-            <div v-if="company != null" class="company-det-text bg">
+            <div v-show="company != null" class="company-det-text bg">
               {{ company.contact[2] }}
             </div>
           </div>
@@ -60,7 +60,7 @@
           > -->
           <nuxt-link to="/contact" class="footer-links">Contact Us</nuxt-link
           ><nuxt-link to="/blog" class="footer-links">Our Blog</nuxt-link
-          ><nuxt-link v-if="user != null" to="/" class="footer-links"
+          ><nuxt-link v-show="user != null" to="/" class="footer-links"
             >Partnership</nuxt-link
           ><nuxt-link to="/terms-condtions" class="footer-links"
             >Terms &amp; Conditions</nuxt-link
