@@ -91,7 +91,7 @@
         </div>
 
         <!-- -----------HOME PRODUCTS------------- -->
-        <!-- <div class="app-section">
+        <div class="app-section">
           <div class="custom-container-landing">
             <div class="app-flex">
               <div class="product-flex">
@@ -103,7 +103,7 @@
                   :key="int"
                 />
                 <nuxt-link
-                  v-if="user"
+                  v-if="user != null"
                   to="/dashboard/products"
                   class="response big"
                   >View More</nuxt-link
@@ -114,7 +114,7 @@
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
         <!--X -----------HOME PRODUCTS------------- X-->
 
         <!-- -----------HOW IT WORKS------------- -->
@@ -424,18 +424,18 @@
         </div>
         <!--X -----------PARTNER------------- X-->
 
-        <!-- <home-footer /> -->
+        <home-footer />
       </div>
     </div>
-    <!-- <mobile-bottom-nav v-if="user" /> -->
+    <mobile-bottom-nav v-if="user != null" />
   </div>
 </template>
 <script>
-// import EachProduct from "../components/EachProduct.vue";
-// import HomeFooter from "../components/HomeFooter";
-// import HorizontalNav from "../components/HorizontalNav.vue";
-// import MobileBottomNav from "../components/MobileBottomNav.vue";
-// import VerticalNav from "../components/VerticalNav.vue";
+import EachProduct from "../components/EachProduct.vue";
+import HomeFooter from "../components/HomeFooter";
+import HorizontalNav from "../components/HorizontalNav.vue";
+import MobileBottomNav from "../components/MobileBottomNav.vue";
+import VerticalNav from "../components/VerticalNav.vue";
 export default {
   data() {
     return {
@@ -513,11 +513,11 @@ export default {
     },
   },
   components: {
-    // HomeFooter,
-    // EachProduct,
-    // MobileBottomNav,
-    // VerticalNav,
-    // HorizontalNav,
+    HomeFooter,
+    EachProduct,
+    MobileBottomNav,
+    VerticalNav,
+    HorizontalNav,
   },
 };
 </script>
