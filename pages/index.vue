@@ -13,8 +13,8 @@
             />
           </div>
         </div>
-        <!-- <horizontal-nav v-if="user != null" />
-        <landing-nav v-else /> -->
+        <horizontal-nav v-show="user != null" />
+        <landing-nav v-show="user == null" />
 
         <!-- -----------HEROE------------- -->
         <div
@@ -427,7 +427,7 @@
         <home-footer />
       </div>
     </div>
-    <!-- <mobile-bottom-nav v-if="user != null" /> -->
+    <mobile-bottom-nav v-show="user != null" />
   </div>
 </template>
 <script>

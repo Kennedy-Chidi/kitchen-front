@@ -70,6 +70,20 @@
             <i class="material-symbols-outlined green sm">add_shopping_cart</i>
           </div>
 
+          <div
+            @click="showCartItems"
+            v-show="staffCartProducts"
+            class="icon-wrap nav"
+          >
+            <div class="badge">
+              <div v-if="staffCartProducts.length < 10">
+                {{ staffCartProperties.totalQuantity }}
+              </div>
+              <div v-else>9+</div>
+            </div>
+            <i class="material-symbols-outlined green sm">add_shopping_cart</i>
+          </div>
+
           <nuxt-link
             v-show="!isAuthenticated"
             to="/signup"
@@ -77,11 +91,17 @@
             >Signup</nuxt-link
           >
           <nuxt-link
-            v-show="isAuthenticated && user.status == 'Staff'"
+            v-show="user != null && status == 'Staff'"
             to="/signup"
             class="nav-link btn color log"
             >Signup</nuxt-link
           >
+          <!-- <nuxt-link
+            v-show="user != null && status == 'Staff'"
+            to="/signup"
+            class="nav-link btn color log"
+            >Signup</nuxt-link
+          > -->
           <nuxt-link
             v-show="!isAuthenticated"
             to="/login"
@@ -294,9 +314,11 @@ export default {
 
   computed: {
     cartProducts() {
-      return this.user.status == "Staff"
-        ? this.$store.state.settingsStore.cartProducts
-        : this.$store.state.productStore.cartProducts;
+      return this.$store.state.productStore.cartProducts;
+    },
+
+    staffCartProducts() {
+      return this.$store.state.settingsStore.cartProducts;
     },
 
     notifications() {
@@ -307,10 +329,16 @@ export default {
       return this.$store.getters.getUserInfo;
     },
 
+    status() {
+      return this.$store.getters.getUserInfo.status;
+    },
+
     cartProperties() {
-      return this.user.status == "Staff"
-        ? this.$store.state.settingsStore.purchaseProperties
-        : this.$store.state.productStore.purchaseProperties;
+      return this.$store.state.productStore.purchaseProperties;
+    },
+
+    staffCartProperties() {
+      return this.$store.state.settingsStore.purchaseProperties;
     },
 
     isAuthenticated() {
