@@ -20,7 +20,7 @@
 
       <ul role="list" class="nav-list landing">
         <li class="nav-link-flex">
-          <nuxt-link to="/" class="nav-link">Home</nuxt-link>
+          <nuxt-link to="/" class="nav-link">Home New</nuxt-link>
         </li>
         <li v-show="isAuthenticated" class="nav-link-flex">
           <nuxt-link to="/dashboard" class="nav-link">Welcome</nuxt-link>
