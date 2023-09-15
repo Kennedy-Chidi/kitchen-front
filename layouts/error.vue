@@ -29,7 +29,7 @@
 <script>
 import CompanyAds from "../components/CompanyAds.vue";
 import FooterComponent from "../components/FooterComponent.vue";
-import HorizontalNav from "../components/HorizontalNav.vue";
+import HorizontalNav from "../components/HorizontalNav";
 import MobileBottomNav from "../components/MobileBottomNav.vue";
 
 export default {

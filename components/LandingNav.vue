@@ -22,11 +22,13 @@
         <li class="nav-link-flex">
           <nuxt-link to="/" class="nav-link">Home</nuxt-link>
         </li>
-        <li v-if="user" class="nav-link-flex">
+        <li v-if="isAuthenticated" class="nav-link-flex">
           <nuxt-link to="/dashboard" class="nav-link">Welcome</nuxt-link>
         </li>
-        <li v-if="user" class="nav-link-flex">
-          <nuxt-link to="/dashboard/about" class="nav-link">About</nuxt-link>
+        <li v-if="isAuthenticated" class="nav-link-flex">
+          <nuxt-link to="/dashboard/about" class="nav-link"
+            >About Edited</nuxt-link
+          >
         </li>
         <li class="nav-link-flex">
           <nuxt-link to="/contact" class="nav-link">Contact</nuxt-link>
@@ -35,7 +37,7 @@
           <nuxt-link to="/blog" class="nav-link">Blog</nuxt-link>
         </li>
       </ul>
-      <div v-if="!user" class="nav-logs left">
+      <div v-if="!isAuthenticated" class="nav-logs left">
         <nuxt-link to="/login" class="nav-link btn landing">Login</nuxt-link
         ><nuxt-link to="/signup" class="nav-link btn landing color"
           >Signup</nuxt-link
@@ -49,6 +51,10 @@ export default {
   computed: {
     user() {
       return this.$store.state.auth.user;
+    },
+
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated; // it check if user isAuthenticated
     },
   },
 };
