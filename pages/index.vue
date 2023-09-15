@@ -1,7 +1,7 @@
 <template>
   <div class="grace landing">
     <div class="main-body">
-      <vertical-nav v-if="user != null" />
+      <!-- <vertical-nav v-if="user != null" /> -->
       <div class="main-flex">
         <div class="display">
           <div class="custom-container-landing">
@@ -13,8 +13,8 @@
             />
           </div>
         </div>
-        <horizontal-nav v-if="user != null" />
-        <landing-nav v-else />
+        <!-- <horizontal-nav v-if="user != null" />
+        <landing-nav v-else /> -->
 
         <!-- -----------HEROE------------- -->
         <div
@@ -91,7 +91,7 @@
         </div>
 
         <!-- -----------HOME PRODUCTS------------- -->
-        <div class="app-section">
+        <!-- <div class="app-section">
           <div class="custom-container-landing">
             <div class="app-flex">
               <div class="product-flex">
@@ -114,7 +114,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!--X -----------HOME PRODUCTS------------- X-->
 
         <!-- -----------HOW IT WORKS------------- -->
@@ -427,7 +427,7 @@
         <home-footer />
       </div>
     </div>
-    <mobile-bottom-nav v-if="user != null" />
+    <!-- <mobile-bottom-nav v-if="user != null" /> -->
   </div>
 </template>
 <script>
