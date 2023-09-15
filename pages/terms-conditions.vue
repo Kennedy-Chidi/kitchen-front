@@ -1,10 +1,10 @@
 <template>
   <div class="grace about-page">
-    <cart-items />
-    <alert-box />
-    <alert-confirmation />
+    <cart-items v-if="user" />
+    <alert-box v-if="user" />
+    <alert-confirmation v-if="user" />
     <div class="main-body">
-      <vertical-nav />
+      <vertical-nav v-if="user" />
       <div class="main-flex">
         <company-ads />
         <horizontal-nav />
@@ -148,6 +148,11 @@ export default {
           console.error("Could not find app node to append script element");
         }
       }
+    },
+  },
+  computed: {
+    user() {
+      return this.$store.state.auth.user;
     },
   },
   mounted() {
