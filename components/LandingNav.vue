@@ -22,7 +22,7 @@
         <li class="nav-link-flex">
           <nuxt-link to="/" class="nav-link">Home</nuxt-link>
         </li>
-        <li v-if="user != null" class="nav-link-flex">
+        <li v-show="user != null" class="nav-link-flex">
           <nuxt-link to="/dashboard" class="nav-link">Welcome</nuxt-link>
         </li>
 
@@ -33,15 +33,15 @@
           <nuxt-link to="/blog" class="nav-link">Blog</nuxt-link>
         </li>
       </ul>
-      <div v-if="user == null" class="nav-logs left">
+      <div v-show="user == null" class="nav-logs left">
         <nuxt-link to="/login" class="nav-link btn landing">Login</nuxt-link>
         <nuxt-link to="/signup" class="nav-link btn landing color"
           >Signup</nuxt-link
         >
       </div>
-      <div v-else class="nav-logs left">
+      <div v-show="user != null" class="nav-logs left">
         <nuxt-link
-          v-if="user != null && user.status == 'Staff'"
+          v-show="user != null && user.status == 'Staff'"
           to="/signup"
           class="nav-link btn landing color"
           >Signup</nuxt-link
