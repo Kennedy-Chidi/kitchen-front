@@ -8,8 +8,8 @@
       <vertical-nav v-if="user" />
       <div class="main-flex">
         <company-ads />
-        <horizontal-nav v-if="user" />
-        <landing-nav v-else />
+        <!-- <horizontal-nav v-if="user" /> -->
+        <landing-nav />
         <div
           class=""
           :class="{

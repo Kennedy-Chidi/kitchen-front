@@ -7,7 +7,8 @@
       <vertical-nav v-if="user" />
       <div class="main-flex">
         <company-ads />
-        <horizontal-nav />
+        <landing-nav />
+        <!-- <horizontal-nav /> -->
         <div class="custom-container">
           <div class="body-flex">
             <div class="content-body">
@@ -112,6 +113,7 @@ import CartItems from "../components/CartItems.vue";
 import CompanyAds from "../components/CompanyAds.vue";
 import FooterComponent from "../components/FooterComponent.vue";
 import HorizontalNav from "../components/HorizontalNav";
+import LandingNav from "../components/LandingNav.vue";
 import MobileBottomNav from "../components/MobileBottomNav.vue";
 import VerticalNav from "../components/VerticalNav.vue";
 
@@ -125,6 +127,7 @@ export default {
     HorizontalNav,
     AlertBox,
     AlertConfirmation,
+    LandingNav,
   },
 
   methods: {
