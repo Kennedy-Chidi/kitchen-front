@@ -424,7 +424,7 @@
         </div>
         <!--X -----------PARTNER------------- X-->
 
-        <home-footer />
+        <!-- <home-footer /> -->
       </div>
     </div>
     <!-- <mobile-bottom-nav v-if="user != null" /> -->
