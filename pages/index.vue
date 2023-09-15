@@ -14,7 +14,7 @@
           </div>
         </div>
         <!-- <horizontal-nav v-if="user" /> -->
-        <landing-nav />
+        <!-- <landing-nav /> -->
 
         <!-- -----------HEROE------------- -->
         <div
