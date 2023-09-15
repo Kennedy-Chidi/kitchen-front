@@ -13,7 +13,8 @@
             />
           </div>
         </div>
-        <!-- <horizontal-nav v-show="user != null" /> -->
+        {{ user }}
+        <horizontal-nav v-show="user != null" />
         <landing-nav v-show="user == null" />
 
         <!-- -----------HEROE------------- -->
