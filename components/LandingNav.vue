@@ -35,10 +35,7 @@
       </ul>
       <div v-show="!isAuthenticated" class="nav-logs left">
         <nuxt-link to="/login" class="nav-link btn landing">Login</nuxt-link
-        ><nuxt-link
-          v-show="user.status == 'Staff'"
-          to="/signup"
-          class="nav-link btn landing color"
+        ><nuxt-link to="/signup" class="nav-link btn landing color"
           >Signup</nuxt-link
         >
       </div>
