@@ -41,11 +41,9 @@
                       <input
                         type="text"
                         class="newsletter-input search w-input"
-                        maxlength="256"
-                        name="name-16"
-                        data-name="Name 16"
+                        v-model="searchedWord"
+                        @keyup="fetchItems"
                         placeholder="Search Product"
-                        id="name-16"
                       /><img
                         src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b75aa41127b73bc77763cb_search-line-icon%201.svg"
                         loading="lazy"
@@ -599,6 +597,7 @@ export default {
         }
         return array;
       },
+      searchedWord: "",
       response: "",
       isError: false,
       showResponse: false,
@@ -942,6 +941,26 @@ export default {
         this.showResponseMsg(result.response.data.message, true);
       }
     },
+
+    async fetchItems() {
+      const data = {
+        keyWord: this.searchedWord,
+        limit: this.limit,
+        username: this.user.username,
+      };
+
+      this.$store.dispatch("settingsStore/SEARCH_PRODUCTS", data);
+    },
+  },
+
+  mounted() {
+    const socket = this.$socket;
+
+    socket.on("fetchedItems", (data) => {
+      if (this.user.username == data.username) {
+        this.$store.commit("settingsStore/SET_PRODUCTS", data.products);
+      }
+    });
   },
 
   computed: {
@@ -971,6 +990,10 @@ export default {
 
     states() {
       return this.$store.state.stateArray;
+    },
+
+    user() {
+      return this.$store.state.auth.user;
     },
 
     lgas() {

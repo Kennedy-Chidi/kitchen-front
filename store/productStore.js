@@ -55,16 +55,32 @@ function resetCart(products, userState) {
   userState.productArray = items;
 }
 
+function checkCartProducts(items, state) {
+  let el = items;
+  for (let x = 0; x < el.length; x++) {
+    for (let i = 0; i < state.cartProducts.length; i++) {
+      const elem = state.cartProducts[i];
+      if (el[x].productName == elem.productName) {
+        el[x].quantity = elem.quantity * 1;
+        el[x].cartNumber = elem.cartNumber * 1;
+      }
+    }
+  }
+
+  return el;
+}
+
 export const mutations = {
-  SET_PRODUCTS(state, products) {
+  async SET_PRODUCTS(state, products) {
     state.dataLength = products.length;
     const items = [];
     const homeItems = [];
-    for (let x = 0; x < products.results.length; x++) {
-      products.results[x].check = false;
-      products.results[x].cartNumber = 0;
-      products.results[x].quantity = 0;
-      items.push(products.results[x]);
+    let el = products.results;
+    for (let x = 0; x < el.length; x++) {
+      el[x].check = false;
+      el[x].cartNumber = 0;
+      el[x].quantity = 0;
+      items.push(el[x]);
     }
 
     if (products.results.length >= 10) {
@@ -76,7 +92,8 @@ export const mutations = {
       }
     }
     state.products = homeItems;
-    state.productArray = items;
+
+    state.productArray = checkCartProducts(items, state);
   },
 
   SET_CATEGORY_PRODUCTS(state, products) {
@@ -138,6 +155,12 @@ export const mutations = {
     if (existingItem) {
       existingItem.quantity++;
       existingItem.cartNumber++;
+      for (let i = 0; i < state.productArray.length; i++) {
+        const el = state.productArray[i];
+        if (el.productName == existingItem.productName) {
+          el.quantity = existingItem.quantity;
+        }
+      }
     } else {
       data.quantity = 1;
       state.cartProducts.push(data);
@@ -308,6 +331,12 @@ export const actions = {
       commit("SET_USER_STATE", userState);
       commit("UPDATE_CART", userState.state);
     }
+  },
+
+  async SEARCH_PRODUCTS({ commit }, form) {
+    const socket = this.$socket;
+
+    socket.emit("fetchItems", form);
   },
 
   async GET_OBJECT({ state, dispatch, commit, getters }, id) {

@@ -871,6 +871,12 @@ export const mutations = {
 };
 
 export const actions = {
+  async SEARCH_PRODUCTS({ commit }, form) {
+    const socket = this.$socket;
+
+    socket.emit("fetchItems", form);
+  },
+
   async CREATE_COMPANY({ commit }, form) {
     try {
       const response = await this.$axios.post("/company", form);

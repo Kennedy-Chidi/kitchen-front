@@ -123,111 +123,15 @@
                 </ul>
               </div>
 
-              <div class="home-promos">
-                <div class="top-promo-flex">
-                  <div class="promo-header-flex">
-                    <h1 class="promo-header">
-                      Running Promos
-                      <span class="promo-lighht">of this week</span>
-                    </h1>
-                    <div>Hurry up and make purchase while the promo is on!</div>
-                  </div>
-                  <div class="promo-count-flex">
-                    <div class="promo-count-box"><div>00</div></div>
-                    <div class="promo-dots">:</div>
-                    <div class="promo-count-box"><div>00</div></div>
-                    <div class="promo-dots">:</div>
-                    <div class="promo-count-box"><div>00</div></div>
-                    <div class="promo-dots">:</div>
-                    <div class="promo-count-box"><div>00</div></div>
-                  </div>
-                </div>
+              <div v-if="promoLength > 0" class="home-promos">
+                <promo-header />
               </div>
               <div class="promo-flex">
-                <div class="each-promo">
-                  <div class="promo-img">
-                    <img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6ee85c5adf2f23b4de5c8_rice-royal-stallion.png"
-                      loading="lazy"
-                      alt=""
-                    />
-                  </div>
-                  <div class="promo-footer">
-                    <div class="promo-det">
-                      <a href="#" class="product-name pro sm">Golden Morn</a>
-                      <div class="product-price pro old">N4,000</div>
-                      <a href="#" class="product-name pro">Ester Bonanza</a>
-                      <div class="product-price pro">N4,000</div>
-                    </div>
-                    <div>
-                      <div class="action-btn down"><div>+</div></div>
-                      <div class="action-btn"><div>-</div></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="each-promo">
-                  <div class="promo-img">
-                    <img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6ee85c5adf2f23b4de5c8_rice-royal-stallion.png"
-                      loading="lazy"
-                      alt=""
-                    />
-                  </div>
-                  <div class="promo-footer">
-                    <div class="promo-det">
-                      <a href="#" class="product-name pro sm">Golden Morn</a>
-                      <div class="product-price pro old">N4,000</div>
-                      <a href="#" class="product-name pro">Ester Bonanza</a>
-                      <div class="product-price pro">N4,000</div>
-                    </div>
-                    <div>
-                      <div class="action-btn down"><div>+</div></div>
-                      <div class="action-btn"><div>-</div></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="each-promo">
-                  <div class="promo-img">
-                    <img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6ee85c5adf2f23b4de5c8_rice-royal-stallion.png"
-                      loading="lazy"
-                      alt=""
-                    />
-                  </div>
-                  <div class="promo-footer">
-                    <div class="promo-det">
-                      <a href="#" class="product-name pro sm">Golden Morn</a>
-                      <div class="product-price pro old">N4,000</div>
-                      <a href="#" class="product-name pro">Ester Bonanza</a>
-                      <div class="product-price pro">N4,000</div>
-                    </div>
-                    <div>
-                      <div class="action-btn down"><div>+</div></div>
-                      <div class="action-btn"><div>-</div></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="each-promo">
-                  <div class="promo-img">
-                    <img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6ee85c5adf2f23b4de5c8_rice-royal-stallion.png"
-                      loading="lazy"
-                      alt=""
-                    />
-                  </div>
-                  <div class="promo-footer">
-                    <div class="promo-det">
-                      <a href="#" class="product-name pro sm">Golden Morn</a>
-                      <div class="product-price pro old">N4,000</div>
-                      <a href="#" class="product-name pro">Ester Bonanza</a>
-                      <div class="product-price pro">N4,000</div>
-                    </div>
-                    <div>
-                      <div class="action-btn down"><div>+</div></div>
-                      <div class="action-btn"><div>-</div></div>
-                    </div>
-                  </div>
-                </div>
+                <each-promo
+                  v-for="promo in promos"
+                  :key="promo._id"
+                  :product="promo"
+                />
               </div>
             </div>
           </div>
@@ -250,6 +154,8 @@ import AlertBox from "../../components/AlertBox";
 import AlertConfirmation from "../../components/AlertConfirmation.vue";
 import CompanyAds from "../../components/CompanyAds.vue";
 import EachProduct from "../../components/EachProduct";
+import PromoHeader from "../../components/PromoHeader.vue";
+import EachPromo from "../../components/EachPromo";
 export default {
   data() {
     return {
@@ -278,6 +184,14 @@ export default {
 
     showCategories() {
       return this.$store.state.productStore.showCatProduct;
+    },
+
+    promoLength() {
+      return this.$store.state.userStore.productPromoLength;
+    },
+
+    promos() {
+      return this.$store.state.userStore.productPromos;
     },
 
     category() {
@@ -321,6 +235,8 @@ export default {
     AlertConfirmation,
     CompanyAds,
     EachProduct,
+    PromoHeader,
+    EachPromo,
   },
 };
 </script>

@@ -364,11 +364,19 @@ export default {
     },
 
     fetchItems() {
-      if (this.searchedWord.length > 0) {
-        this.showSearchList = true;
-      } else {
-        this.showSearchList = false;
-      }
+      // if (this.searchedWord.length > 0) {
+      //   this.showSearchList = true;
+      // } else {
+      //   this.showSearchList = false;
+      // }
+
+      const data = {
+        keyWord: this.searchedWord,
+        limit: this.limit,
+        username: this.user.username,
+      };
+
+      this.$store.dispatch("productStore/SEARCH_PRODUCTS", data);
     },
   },
 
@@ -402,6 +410,14 @@ export default {
     if (process.client && window.innerWidth < 991) {
       this.hideVerticalNav();
     }
+
+    const socket = this.$socket;
+    socket.on("fetchedItems", (data) => {
+      if (this.user.username == data.username) {
+        // this.$store.commit("productStore/SET_SEARCHED_PRODUCTS", data.products);
+        this.$store.commit("productStore/SET_PRODUCTS", data.products);
+      }
+    });
   },
 };
 </script>

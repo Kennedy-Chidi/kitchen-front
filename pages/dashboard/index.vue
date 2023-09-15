@@ -268,7 +268,7 @@ import AlertConfirmation from "../../components/AlertConfirmation.vue";
 import CartItems from "../../components/CartItems.vue";
 import CompanyAds from "../../components/CompanyAds.vue";
 import EachProduct from "../../components/EachProduct";
-import EachPromo from "../../components/EachPromo.vue";
+import EachPromo from "../../components/EachPromo";
 import FooterComponent from "../../components/FooterComponent";
 import HorizontalNav from "../../components/HorizontalNav";
 import MobileBottomNav from "../../components/MobileBottomNav.vue";
