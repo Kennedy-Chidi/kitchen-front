@@ -1,20 +1,20 @@
 <template>
   <div class="grace contact">
-    <!-- <cart-items />
-    <alert-confirmation />
-    <alert-box /> -->
+    <cart-items v-if="user != null" />
+    <alert-confirmation v-if="user != null" />
+    <alert-box v-if="user != null" />
 
     <div class="main-body">
-      <vertical-nav v-if="user" />
+      <vertical-nav v-if="user != null" />
       <div class="main-flex">
         <company-ads />
-        <horizontal-nav v-if="user" />
+        <horizontal-nav v-if="user != null" />
         <landing-nav v-else />
         <div
           class=""
           :class="{
-            'custom-container': user,
-            'custom-container-landing': !user,
+            'custom-container': user != null,
+            'custom-container-landing': user == null,
           }"
         >
           <div class="body-flex">
@@ -34,26 +34,26 @@
             </div>
           </div>
         </div>
-        <footer-component v-if="user" />
+        <footer-component v-if="user != null" />
         <home-footer v-else />
       </div>
     </div>
-    <mobile-bottom-nav v-if="user" />
+    <mobile-bottom-nav v-if="user != null" />
   </div>
 </template>
 
 <script>
 import LandingNav from "../components/LandingNav";
-import AlertBox from "./components/AlertBox.vue";
-import AlertConfirmation from "./components/AlertConfirmation.vue";
-import CartItems from "./components/CartItems.vue";
-import CompanyAds from "./components/CompanyAds.vue";
-import FooterComponent from "./components/FooterComponent.vue";
+import AlertBox from "../components/AlertBox.vue";
+import AlertConfirmation from "../components/AlertConfirmation.vue";
+import CartItems from "../components/CartItems.vue";
+import CompanyAds from "../components/CompanyAds.vue";
+import FooterComponent from "../components/FooterComponent.vue";
 import HorizontalNav from "../components/HorizontalNav";
-import MobileBottomNav from "./components/MobileBottomNav.vue";
+import MobileBottomNav from "../components/MobileBottomNav.vue";
 import VerticalNav from "../components/VerticalNav";
-import HomeFooter from "./components/HomeFooter.vue";
-import ContactForm from "./components/ContactForm.vue";
+import HomeFooter from "../components/HomeFooter.vue";
+import ContactForm from "../components/ContactForm.vue";
 
 export default {
   components: {

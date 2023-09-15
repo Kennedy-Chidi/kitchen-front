@@ -1,13 +1,13 @@
 <template>
   <div class="grace about-page">
-    <cart-items v-if="user" />
-    <alert-box v-if="user" />
-    <alert-confirmation v-if="user" />
+    <cart-items v-if="user != null" />
+    <alert-box v-if="user != null" />
+    <alert-confirmation v-if="user != null" />
     <div class="main-body">
-      <vertical-nav v-if="user" />
+      <vertical-nav v-if="user != null" />
       <div class="main-flex">
         <company-ads />
-        <horizontal-nav v-if="user" />
+        <horizontal-nav v-if="user != null" />
         <landing-nav v-else />
 
         <div class="custom-container">
@@ -103,20 +103,20 @@
         <footer-component />
       </div>
     </div>
-    <mobile-bottom-nav v-if="user" />
+    <mobile-bottom-nav v-if="user != null" />
   </div>
 </template>
 
 <script>
-import AlertBox from "./components/AlertBox.vue";
-import AlertConfirmation from "./components/AlertConfirmation.vue";
-import CartItems from "./components/CartItems.vue";
-import CompanyAds from "./components/CompanyAds.vue";
-import FooterComponent from "./components/FooterComponent.vue";
+import AlertBox from "../components/AlertBox.vue";
+import AlertConfirmation from "../components/AlertConfirmation.vue";
+import CartItems from "../components/CartItems.vue";
+import CompanyAds from "../components/CompanyAds.vue";
+import FooterComponent from "../components/FooterComponent.vue";
 import HorizontalNav from "../components/HorizontalNav";
-import LandingNav from "./components/LandingNav.vue";
-import MobileBottomNav from "./components/MobileBottomNav.vue";
-import VerticalNav from "./components/VerticalNav.vue";
+import LandingNav from "../components/LandingNav.vue";
+import MobileBottomNav from "../components/MobileBottomNav.vue";
+import VerticalNav from "../components/VerticalNav.vue";
 
 export default {
   components: {

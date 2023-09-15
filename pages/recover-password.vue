@@ -84,13 +84,13 @@
 
 <script>
 import AlertBox from "../components/AlertBox";
-import AlertConfirmation from "./components/AlertConfirmation.vue";
-import CartItems from "./components/CartItems.vue";
-import CompanyAds from "./components/CompanyAds.vue";
+import AlertConfirmation from "../components/AlertConfirmation.vue";
+import CartItems from "../components/CartItems.vue";
+import CompanyAds from "../components/CompanyAds.vue";
 import FooterComponent from "../components/FooterComponent";
 import HomeFooter from "../components/HomeFooter";
 import HorizontalNav from "../components/HorizontalNav";
-import MobileBottomNav from "./components/MobileBottomNav.vue";
+import MobileBottomNav from "../components/MobileBottomNav.vue";
 import VerticalNav from "../components/VerticalNav";
 export default {
   components: {

@@ -1,8 +1,10 @@
 <template>
   <div class="grace signup">
     <div class="main-body">
+      <vertical-nav v-if="user != null" />
       <div class="main-flex">
-        <landing-nav />
+        <horizontal-nav v-if="user != null" />
+        <landing-nav v-else />
         <div class="custom-container">
           <div class="body-flex">
             <div class="content-body">
@@ -292,13 +294,14 @@
         <home-footer />
       </div>
     </div>
+    <mobile-bottom-nav v-if="user != null" />
   </div>
 </template>
 
 <script>
 import AlertBox from "../components/AlertBox";
-import CartItems from "./components/CartItems.vue";
-import CompanyAds from "./components/CompanyAds.vue";
+import CartItems from "../components/CartItems.vue";
+import CompanyAds from "../components/CompanyAds.vue";
 import FooterComponent from "../components/FooterComponent";
 import HomeFooter from "../components/HomeFooter";
 import HorizontalNav from "../components/HorizontalNav";
