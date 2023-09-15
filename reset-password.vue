@@ -101,8 +101,8 @@
 
 <script>
 import AlertBox from "../components/AlertBox";
-import CartItems from "../components/CartItems.vue";
-import CompanyAds from "../components/CompanyAds.vue";
+import CartItems from "./components/CartItems.vue";
+import CompanyAds from "./components/CompanyAds.vue";
 import FooterComponent from "../components/FooterComponent";
 import HomeFooter from "../components/HomeFooter";
 import HorizontalNav from "../components/HorizontalNav";

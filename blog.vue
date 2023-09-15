@@ -21,10 +21,10 @@
 <script>
 import AsidePost from "../components/AsidePost";
 import BlogComment from "../components/BlogComment";
-import CompanyAds from "../components/CompanyAds.vue";
+import CompanyAds from "./components/CompanyAds.vue";
 import HomeFooter from "../components/HomeFooter";
 import LandingNav from "../components/LandingNav";
-import MainPost from "../components/MainPost.vue";
+import MainPost from "./components/MainPost.vue";
 import VerticalNav from "../components/VerticalNav";
 export default {
   components: {

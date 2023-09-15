@@ -7,8 +7,9 @@
       <vertical-nav v-if="user" />
       <div class="main-flex">
         <company-ads />
-        <landing-nav />
-        <!-- <horizontal-nav /> -->
+        <horizontal-nav v-if="user" />
+        <landing-nav v-else />
+
         <div class="custom-container">
           <div class="body-flex">
             <div class="content-body">
@@ -102,20 +103,20 @@
         <footer-component />
       </div>
     </div>
-    <mobile-bottom-nav />
+    <mobile-bottom-nav v-if="user" />
   </div>
 </template>
 
 <script>
-import AlertBox from "../components/AlertBox.vue";
-import AlertConfirmation from "../components/AlertConfirmation.vue";
-import CartItems from "../components/CartItems.vue";
-import CompanyAds from "../components/CompanyAds.vue";
-import FooterComponent from "../components/FooterComponent.vue";
+import AlertBox from "./components/AlertBox.vue";
+import AlertConfirmation from "./components/AlertConfirmation.vue";
+import CartItems from "./components/CartItems.vue";
+import CompanyAds from "./components/CompanyAds.vue";
+import FooterComponent from "./components/FooterComponent.vue";
 import HorizontalNav from "../components/HorizontalNav";
-import LandingNav from "../components/LandingNav.vue";
-import MobileBottomNav from "../components/MobileBottomNav.vue";
-import VerticalNav from "../components/VerticalNav.vue";
+import LandingNav from "./components/LandingNav.vue";
+import MobileBottomNav from "./components/MobileBottomNav.vue";
+import VerticalNav from "./components/VerticalNav.vue";
 
 export default {
   components: {

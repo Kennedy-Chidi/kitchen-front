@@ -1,7 +1,7 @@
 <template>
   <div class="grace page-not">
     <company-ads />
-    <horizontal-nav />
+    <!-- <horizontal-nav /> -->
     <div class="main-body">
       <div class="custom-container cover">
         <div class="body-flex">
@@ -21,8 +21,8 @@
         </div>
       </div>
     </div>
-    <mobile-bottom-nav />
-    <footer-component />
+    <!-- <mobile-bottom-nav />
+    <footer-component /> -->
   </div>
 </template>
 

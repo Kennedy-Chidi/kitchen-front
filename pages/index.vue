@@ -14,7 +14,7 @@
           </div>
         </div>
         <!-- <horizontal-nav v-if="user" /> -->
-        <landing-nav />
+        <!-- <landing-nav /> -->
 
         <!-- -----------HEROE------------- -->
         <div
@@ -424,18 +424,18 @@
         </div>
         <!--X -----------PARTNER------------- X-->
 
-        <home-footer />
+        <!-- <home-footer /> -->
       </div>
     </div>
     <!-- <mobile-bottom-nav v-if="user" /> -->
   </div>
 </template>
 <script>
-import EachProduct from "../components/EachProduct.vue";
-import HomeFooter from "../components/HomeFooter";
-import HorizontalNav from "../components/HorizontalNav.vue";
-import MobileBottomNav from "../components/MobileBottomNav.vue";
-import VerticalNav from "../components/VerticalNav.vue";
+// import EachProduct from "../components/EachProduct.vue";
+// import HomeFooter from "../components/HomeFooter";
+// import HorizontalNav from "../components/HorizontalNav.vue";
+// import MobileBottomNav from "../components/MobileBottomNav.vue";
+// import VerticalNav from "../components/VerticalNav.vue";
 export default {
   data() {
     return {
@@ -513,11 +513,11 @@ export default {
     },
   },
   components: {
-    HomeFooter,
-    EachProduct,
-    MobileBottomNav,
-    VerticalNav,
-    HorizontalNav,
+    // HomeFooter,
+    // EachProduct,
+    // MobileBottomNav,
+    // VerticalNav,
+    // HorizontalNav,
   },
 };
 </script>

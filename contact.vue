@@ -8,8 +8,8 @@
       <vertical-nav v-if="user" />
       <div class="main-flex">
         <company-ads />
-        <!-- <horizontal-nav v-if="user" /> -->
-        <landing-nav />
+        <horizontal-nav v-if="user" />
+        <landing-nav v-else />
         <div
           class=""
           :class="{
@@ -44,16 +44,16 @@
 
 <script>
 import LandingNav from "../components/LandingNav";
-import AlertBox from "../components/AlertBox.vue";
-import AlertConfirmation from "../components/AlertConfirmation.vue";
-import CartItems from "../components/CartItems.vue";
-import CompanyAds from "../components/CompanyAds.vue";
-import FooterComponent from "../components/FooterComponent.vue";
+import AlertBox from "./components/AlertBox.vue";
+import AlertConfirmation from "./components/AlertConfirmation.vue";
+import CartItems from "./components/CartItems.vue";
+import CompanyAds from "./components/CompanyAds.vue";
+import FooterComponent from "./components/FooterComponent.vue";
 import HorizontalNav from "../components/HorizontalNav";
-import MobileBottomNav from "../components/MobileBottomNav.vue";
+import MobileBottomNav from "./components/MobileBottomNav.vue";
 import VerticalNav from "../components/VerticalNav";
-import HomeFooter from "../components/HomeFooter.vue";
-import ContactForm from "../components/ContactForm.vue";
+import HomeFooter from "./components/HomeFooter.vue";
+import ContactForm from "./components/ContactForm.vue";
 
 export default {
   components: {
