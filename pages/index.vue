@@ -53,7 +53,7 @@
     </div>
     <!--X -----------HEROE-------------X -->
 
-    <!-- <div
+    <div
       @click.self="showVideo = !showVideo"
       class="alert-body video-display"
       :class="{ active: showVideo }"
@@ -72,7 +72,7 @@
           title="Imagine for 1 Minute"
         ></iframe>
       </div>
-    </div> -->
+    </div>
 
     <!-- -----------HOME PRODUCTS------------- -->
     <!-- <div class="app-section">
