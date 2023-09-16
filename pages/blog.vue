@@ -8,7 +8,8 @@
         </div>
       </div>
     </div>
-    <home-footer />
+    <footer-component v-if="user != null" />
+    <home-footer v-else />
   </div>
 </template>
 
@@ -16,6 +17,7 @@
 import AsidePost from "../components/AsidePost";
 import BlogComment from "../components/BlogComment";
 import CompanyAds from "../components/CompanyAds.vue";
+import FooterComponent from "../components/FooterComponent.vue";
 import HomeFooter from "../components/HomeFooter";
 import HorizontalNav from "../components/HorizontalNav.vue";
 import LandingNav from "../components/LandingNav";
@@ -33,6 +35,7 @@ export default {
     MainPost,
     HorizontalNav,
     MobileBottomNav,
+    FooterComponent,
   },
 };
 </script>

@@ -406,12 +406,13 @@
       </div>
     </div>
     <!--X -----------PARTNER------------- X-->
-
-    <home-footer />
+    <footer-component v-if="user != null" />
+    <home-footer v-else />
   </div>
 </template>
 <script>
 import EachProduct from "../components/EachProduct.vue";
+import FooterComponent from "../components/FooterComponent.vue";
 import HomeFooter from "../components/HomeFooter";
 import HorizontalNav from "../components/HorizontalNav.vue";
 import MobileBottomNav from "../components/MobileBottomNav.vue";
@@ -498,6 +499,7 @@ export default {
     MobileBottomNav,
     VerticalNav,
     HorizontalNav,
+    FooterComponent,
   },
 };
 </script>
