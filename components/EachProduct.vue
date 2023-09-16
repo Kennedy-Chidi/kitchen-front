@@ -1,7 +1,7 @@
 <template>
   <div class="each-product">
     <div class="product-img-div">
-      <span v-if="product.isPromo" class="promo-badge">Promo</span
+      <span v-show="product.isPromo" class="promo-badge">Promo</span
       ><img
         :src="product.productImageUrl"
         loading="lazy"
