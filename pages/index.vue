@@ -102,7 +102,7 @@
     <!--X -----------HOME PRODUCTS------------- X-->
 
     <!-- -----------HOW IT WORKS------------- -->
-    <!-- <div class="custom-container-landing">
+    <div class="custom-container-landing">
       <div class="content-body">
         <div class="first-landing-section">
           <div class="how">
@@ -188,11 +188,12 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
+
     <!-- X-----------HOW IT WORKS-------------X -->
 
     <!-- -----------OUR VIDEO------------- -->
-    <!-- <div class="landing-video">
+    <div class="landing-video">
       <div class="video-cover">
         <img
           @click="showVideo = !showVideo"
@@ -206,7 +207,7 @@
           wonderful customers around te
         </div>
       </div>
-    </div> -->
+    </div>
     <!--X -----------OUR VIDEO-------------X -->
 
     <!-- -----------TESTIMONIAL------------- -->
