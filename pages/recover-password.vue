@@ -1,84 +1,79 @@
 <template>
-  <div class="grace signup">
-    <div class="main-body">
-      <div class="main-flex">
-        <company-ads />
-        <landing-nav />
-        <div class="custom-container">
-          <div class="body-flex">
-            <div class="content-body">
-              <div class="w-form">
-                <div class="nav-pag">
-                  <nuxt-link to="/" class="home-txt">Home - </nuxt-link
-                  ><nuxt-link to="/login" class="page-txt"
-                    >Recover Password</nuxt-link
+  <div class="">
+    <div class="custom-container">
+      <div class="body-flex">
+        <div class="content-body">
+          <div class="w-form">
+            <div class="nav-pag">
+              <nuxt-link to="/" class="home-txt">Home - </nuxt-link
+              ><nuxt-link to="/login" class="page-txt"
+                >Recover Password</nuxt-link
+              >
+            </div>
+            <div class="profile-flex signing">
+              <div class="profile-inputs partner">
+                <label for="name-21" class="partnership-title sitgg"
+                  >Password Recovery
+                  <span class="singnn">
+                    You will recieve an email if you are registered</span
+                  ></label
+                >
+                <div class="each-input part">
+                  <label v-show="!emailError" for="name-20" class="label"
+                    >Email</label
                   >
+                  <label
+                    v-show="emailError"
+                    for="name-20"
+                    class="label email response error"
+                    >Please fill in a valid email</label
+                  >
+                  <input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="email"
+                    @focusout="checkErrorInputs('email', email)"
+                    placeholder="Enter Email"
+                  />
                 </div>
-                <div class="profile-flex signing">
-                  <div class="profile-inputs partner">
-                    <label for="name-21" class="partnership-title sitgg"
-                      >Password Recovery
-                      <span class="singnn">
-                        You will recieve an email if you are registered</span
-                      ></label
-                    >
-                    <div class="each-input part">
-                      <label v-show="!emailError" for="name-20" class="label"
-                        >Email</label
-                      >
-                      <label
-                        v-show="emailError"
-                        for="name-20"
-                        class="label email response error"
-                        >Please fill in a valid email</label
-                      >
-                      <input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="email"
-                        @focusout="checkErrorInputs('email', email)"
-                        placeholder="Enter Email"
-                      />
-                    </div>
 
-                    <label for="field-6" class="response acount"
-                      >Don't have An Account ?
-                      <nuxt-link to="/signup" class="link"
-                        >Sign up</nuxt-link
-                      ></label
+                <label for="field-6" class="response acount"
+                  >Don't have An Account ?
+                  <nuxt-link to="/signup" class="link"
+                    >Sign up</nuxt-link
+                  ></label
+                >
+                <div class="btn-holder">
+                  <div v-show="onRequest" class="custom-btn edge color">
+                    <i class="material-symbols-outlined white spinner"
+                      >motion_photos_on</i
                     >
-                    <div class="btn-holder">
-                      <div v-show="onRequest" class="custom-btn edge color">
-                        <i class="material-symbols-outlined white spinner"
-                          >motion_photos_on</i
-                        >
-                        <div>Processing</div>
-                      </div>
-                      <div
-                        @click="processUserData"
-                        v-if="!onRequest"
-                        class="custom-btn edge color"
-                      >
-                        <div>Loging</div>
-                      </div>
-                    </div>
-
-                    <label
-                      v-if="showResponse"
-                      for="field-6"
-                      class="response"
-                      :class="{ error: isError }"
-                      >{{ response }}</label
-                    >
+                    <div>Processing</div>
+                  </div>
+                  <div
+                    @click="processUserData"
+                    v-if="!onRequest"
+                    class="custom-btn edge color"
+                  >
+                    <div>Loging</div>
                   </div>
                 </div>
+
+                <label
+                  v-if="showResponse"
+                  for="field-6"
+                  class="response"
+                  :class="{ error: isError }"
+                  >{{ response }}</label
+                >
               </div>
             </div>
           </div>
         </div>
-        <home-footer />
       </div>
     </div>
+    <footer-component v-if="user != null" />
+    <home-footer v-else />
   </div>
 </template>
 
