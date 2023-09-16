@@ -211,7 +211,7 @@
     <!--X -----------OUR VIDEO-------------X -->
 
     <!-- -----------TESTIMONIAL------------- -->
-    <!-- <div class="review-section">
+    <div class="review-section">
       <div class="custom-container-landing">
         <div class="first-landing-section">
           <div class="how">
@@ -276,11 +276,11 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
     <!--X -----------TESTIMONIAL------------- X-->
 
     <!---------------BLOG POST----------------->
-    <!-- <div class="landing-blog">
+    <div class="landing-blog">
       <div class="custom-container-landing">
         <div
           data-delay="6000"
@@ -330,7 +330,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
     <!--X -----------BLOG POST------------- X-->
 
     <!-- -----------COMING SOON------------- -->
