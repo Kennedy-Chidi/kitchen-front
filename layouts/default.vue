@@ -15,6 +15,9 @@
         </div>
         <landing-nav v-show="user == null" />
         <horizontal-nav v-show="user != null" />
+        <div>
+          <slot />
+        </div>
       </div>
     </div>
     <!-- <mobile-bottom-nav v-show="user != null" /> -->
