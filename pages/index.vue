@@ -279,7 +279,7 @@
     <!--X -----------TESTIMONIAL------------- X-->
 
     <!---------------BLOG POST----------------->
-    <div class="landing-blog">
+    <!-- <div class="landing-blog">
       <div class="custom-container-landing">
         <div
           data-delay="6000"
@@ -318,7 +318,7 @@
                   </div>
                   <div v-html="`${blog.content.substring(0, 150)}[...]`"></div>
                   <div class="each-blog-footer">
-                    <!-- <div>27 Comments</div> -->
+                    <div>27 Comments</div>
                     <span @click="selectBlog(blog)" class="more"
                       >Read More</span
                     >
@@ -329,7 +329,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--X -----------BLOG POST------------- X-->
 
     <!-- -----------COMING SOON------------- -->
