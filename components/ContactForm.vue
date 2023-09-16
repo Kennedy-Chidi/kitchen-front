@@ -9,7 +9,7 @@
             alt=""
             class="logo"
         /></a>
-        <div class="company-det">
+        <div v-if="company" class="company-det">
           <img
             src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b73e374c7f046a3ee2a3d3_map-pin-point-icon%201.svg"
             loading="lazy"
@@ -20,7 +20,7 @@
             {{ company.contact[0] }}
           </div>
         </div>
-        <div class="company-det">
+        <div v-if="company" class="company-det">
           <img
             src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b73e3792eeacec8da6815d_email-icon%201.svg"
             loading="lazy"
