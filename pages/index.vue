@@ -407,7 +407,7 @@
     </div>
     <!--X -----------PARTNER------------- X-->
 
-    <!-- <home-footer /> -->
+    <home-footer />
   </div>
 </template>
 <script>
