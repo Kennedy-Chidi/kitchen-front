@@ -1,541 +1,500 @@
 <template>
-  <div class="grace products-set">
+  <div class="">
     <cart-items />
     <alert-confirmation />
     <alert-box />
-    <div class="main-body">
-      <vertical-nav />
-      <div class="main-flex">
-        <company-ads />
-        <horizontal-nav />
-        <div class="custom-container">
-          <div class="body-flex">
-            <div class="content-body">
-              <div class="w-form">
-                <div class="transaction-table">
-                  <div class="table-head admin pro">
-                    <div class="sort-range ban">
-                      <div @click="sortProductName" class="sort-wrapper">
-                        <div>Name</div>
-                        <img
-                          src="/images/sort-icon.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
+    <div class="custom-container">
+      <div class="body-flex">
+        <div class="content-body">
+          <div class="w-form">
+            <div class="transaction-table">
+              <div class="table-head admin pro">
+                <div class="sort-range ban">
+                  <div @click="sortProductName" class="sort-wrapper">
+                    <div>Name</div>
+                    <img
+                      src="/images/sort-icon.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
+                  </div>
+                  <div @click="sortProductSellingPrice" class="sort-wrapper">
+                    <div>Amount</div>
+                    <img
+                      src="/images/sort-icon.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
+                  </div>
+                </div>
+                <div class="newsletter-wrap pro">
+                  <input
+                    type="text"
+                    class="newsletter-input search w-input"
+                    v-model="searchedWord"
+                    @keyup="fetchItems"
+                    placeholder="Search Product"
+                  /><img
+                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b75aa41127b73bc77763cb_search-line-icon%201.svg"
+                    loading="lazy"
+                    alt=""
+                    class="newsletter-img"
+                  />
+                </div>
+              </div>
+              <div class="table">
+                <div class="table-head-row">
+                  <div class="tb-sn"><div>S/N</div></div>
+                  <div class="tb-image ban"><div>Image</div></div>
+                  <div class="c20 ban"><div>Name</div></div>
+                  <div class="c20 ban"><div>Category</div></div>
+                  <div class="c20 ban"><div>Buyin</div></div>
+                  <div class="c20 ban"><div>Selling</div></div>
+                  <div class="tb-image ban"><div>Status</div></div>
+                </div>
+                <div
+                  v-for="(product, int) in products"
+                  :key="int"
+                  class="table-head-row body"
+                  :class="{ even: int % 2 == 0 }"
+                >
+                  <div class="tb-sn ban">
+                    <div class="inner-label">S/N:</div>
+                    <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
+                    <div @click="toggleProduct(int)" class="check-box">
                       <div
-                        @click="sortProductSellingPrice"
-                        class="sort-wrapper"
-                      >
-                        <div>Amount</div>
-                        <img
-                          src="/images/sort-icon.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
-                    </div>
-                    <div class="newsletter-wrap pro">
-                      <input
-                        type="text"
-                        class="newsletter-input search w-input"
-                        v-model="searchedWord"
-                        @keyup="fetchItems"
-                        placeholder="Search Product"
-                      /><img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b75aa41127b73bc77763cb_search-line-icon%201.svg"
-                        loading="lazy"
-                        alt=""
-                        class="newsletter-img"
-                      />
+                        class="check"
+                        :class="{ active: product.checked }"
+                      ></div>
                     </div>
                   </div>
-                  <div class="table">
-                    <div class="table-head-row">
-                      <div class="tb-sn"><div>S/N</div></div>
-                      <div class="tb-image ban"><div>Image</div></div>
-                      <div class="c20 ban"><div>Name</div></div>
-                      <div class="c20 ban"><div>Category</div></div>
-                      <div class="c20 ban"><div>Buyin</div></div>
-                      <div class="c20 ban"><div>Selling</div></div>
-                      <div class="tb-image ban"><div>Status</div></div>
-                    </div>
-                    <div
-                      v-for="(product, int) in products"
-                      :key="int"
-                      class="table-head-row body"
-                      :class="{ even: int % 2 == 0 }"
-                    >
-                      <div class="tb-sn ban">
-                        <div class="inner-label">S/N:</div>
-                        <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
-                        <div @click="toggleProduct(int)" class="check-box">
-                          <div
-                            class="check"
-                            :class="{ active: product.checked }"
-                          ></div>
-                        </div>
-                      </div>
-                      <div class="tb-image ban">
-                        <div class="inner-label">Image:</div>
-                        <img
-                          :src="product.productImageUrl"
-                          loading="lazy"
-                          sizes="110px"
-                          :srcset="`
+                  <div class="tb-image ban">
+                    <div class="inner-label">Image:</div>
+                    <img
+                      :src="product.productImageUrl"
+                      loading="lazy"
+                      sizes="110px"
+                      :srcset="`
                         ${product.productImageUrl} 500w,
                         ${product.productImageUrl} 800w,
                         ${product.productImageUrl}      953w
                         `"
-                          alt=""
-                          class="item-img prod"
-                        />
-                      </div>
-                      <div class="c20 ban part">
-                        <div class="inner-label">Name:</div>
-                        <div>
-                          <nuxt-link
-                            :to="`/product-details/${product._id}`"
-                            class="user-link"
-                            >{{ product.productName }}</nuxt-link
-                          >
-                        </div>
-                      </div>
-                      <div class="c20 ban part">
-                        <div class="inner-label">Cateory:</div>
-                        <div class="pro-cart">
-                          <div
-                            v-for="cat in product.productCategories"
-                            :key="cat"
-                          >
-                            {{ cat }}<br />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="c20 ban">
-                        <div class="inner-label">Buying:</div>
-                        <div>
-                          <div>{{ product.productBuyingUnit }}</div>
-                          <div>
-                            N{{ formatNumber(product.productBuyingPrice) }}
-                          </div>
-                        </div>
-                      </div>
-                      <div class="c20 ban">
-                        <div class="inner-label">Selling:</div>
-                        <div class="pro-cart">
-                          <div>{{ product.productSellingUnit }}</div>
-                          <div class="new-price">
-                            N{{ formatNumber(product.productSellingPrice) }}
-                          </div>
-                        </div>
-                      </div>
-                      <div class="tb-image ban act">
-                        <div class="inner-label">Status:</div>
-                        <div class="custom-btn edge used">
-                          <div>Collected</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="pagination table">
-                      <div class="page-result">
-                        <h3 class="page-result-txt">
-                          Results: {{ resultLength }}, Page {{ currentPage }} of
-                          {{ pages().length }}
-                        </h3>
-                      </div>
-
-                      <ul
-                        v-if="pages().length > 1"
-                        role="list"
-                        class="pagination-list"
-                      >
-                        <li
-                          v-if="currentPage > 1"
-                          class="page"
-                          @click="paginate(currentPage - 1)"
-                        >
-                          <i class="material-symbols-outlined orange"
-                            >arrow_back_ios</i
-                          >
-                        </li>
-
-                        <li
-                          @click="paginate(int + 1)"
-                          v-for="(page, int) in pages().length"
-                          :key="int"
-                          class="page"
-                          :class="{ active: currentPage == int + 1 }"
-                        >
-                          <div>{{ int + 1 }}</div>
-                        </li>
-
-                        <li
-                          v-if="currentPage < pages().length"
-                          @click="paginate(currentPage + 1)"
-                          class="page"
-                        >
-                          <i class="material-symbols-outlined orange"
-                            >arrow_forward_ios</i
-                          >
-                        </li>
-                      </ul>
-                    </div>
+                      alt=""
+                      class="item-img prod"
+                    />
                   </div>
-                  <div class="table-head foot">
-                    <div class="check-box all" @click="selectAll">
-                      <div
-                        class="check"
-                        :class="{ active: isAllChecked }"
-                      ></div>
-                    </div>
-                    <div class="actions-foot">
-                      <i
-                        @click="duplicateProduct"
-                        class="material-symbols-outlined orange action-icons"
-                        >content_copy</i
-                      >
-
-                      <i
-                        @click="prepareProductEdit"
-                        class="material-symbols-outlined orange action-icons"
-                        >edit</i
-                      >
-
-                      <i class="material-symbols-outlined orange action-icons"
-                        >delete</i
+                  <div class="c20 ban part">
+                    <div class="inner-label">Name:</div>
+                    <div>
+                      <nuxt-link
+                        :to="`/product-details/${product._id}`"
+                        class="user-link"
+                        >{{ product.productName }}</nuxt-link
                       >
                     </div>
                   </div>
-
-                  <div class="table-head ban">
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Product Name</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        placeholder="Enter Product Name"
-                        v-model="productName"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-15" class="label"
-                        >Product Categories </label
-                      ><label
-                        @click.self="editCat(cat, int)"
-                        v-for="(cat, int) in productCategories"
-                        :key="int"
-                        for="name-20"
-                        class="cats"
-                        >{{ cat }}
-                        <span class="cat-close" @click="removeCat(int)"
-                          >X</span
-                        ></label
-                      >
-                      <input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="productCategory"
-                        placeholder="Enter Product Category"
-                        @focusout="addProductCategories"
-                        @keypress.enter="addProductCategories"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Buying Unit</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="productBuyingUnit"
-                        placeholder="Enter Product Buying Unit"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Selling Unit</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="productSellingUnit"
-                        placeholder="Enter Product Selling Unit"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-15" class="label"
-                        >Units Per Purcase</label
-                      ><input
-                        type="number"
-                        class="custom-input w-input"
-                        v-model="productUnitPerPurchase"
-                        placeholder="Enter Unit Per Purchase"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Color</label>
-                      <div class="color-flex">
-                        <input type="color" class="color-input w-input" /><input
-                          type="text"
-                          class="custom-input w-input"
-                          maxlength="256"
-                          name="name-14"
-                          data-name="Name 14"
-                          placeholder="Enter First Name"
-                          id="name-14"
-                        />
+                  <div class="c20 ban part">
+                    <div class="inner-label">Cateory:</div>
+                    <div class="pro-cart">
+                      <div v-for="cat in product.productCategories" :key="cat">
+                        {{ cat }}<br />
                       </div>
                     </div>
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Bar Code</label
-                      ><input
-                        type="number"
-                        class="custom-input w-input"
-                        v-model="productBarcode"
-                        placeholder="Enter Product Barcode"
-                      />
+                  </div>
+                  <div class="c20 ban">
+                    <div class="inner-label">Buying:</div>
+                    <div>
+                      <div>{{ product.productBuyingUnit }}</div>
+                      <div>N{{ formatNumber(product.productBuyingPrice) }}</div>
                     </div>
-
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Buying Price</label
-                      ><input
-                        type="number"
-                        class="custom-input w-input"
-                        v-model="productBuyingPrice"
-                        placeholder="Enter Product Buying Price"
-                      />
-                    </div>
-
-                    <div class="each-input half pad">
-                      <label for="name-15" class="label">Select Country</label>
-                      <div class="table-filter part">
-                        <div
-                          class="tb-filter-head"
-                          @click="showCountryList = !showCountryList"
-                        >
-                          <div>{{ countryDefault }}</div>
-
-                          <i
-                            class="material-symbols-outlined green filter-icon left"
-                            >keyboard_arrow_down</i
-                          >
-                        </div>
-                        <ul
-                          role="list"
-                          class="tb-filter-list"
-                          :class="{ active: showCountryList }"
-                        >
-                          <li
-                            @click="selectCountry(country)"
-                            v-for="country in countries"
-                            :key="country._id"
-                            class="tb-list"
-                          >
-                            <div>{{ country.name }}</div>
-                          </li>
-                        </ul>
+                  </div>
+                  <div class="c20 ban">
+                    <div class="inner-label">Selling:</div>
+                    <div class="pro-cart">
+                      <div>{{ product.productSellingUnit }}</div>
+                      <div class="new-price">
+                        N{{ formatNumber(product.productSellingPrice) }}
                       </div>
                     </div>
-
-                    <div class="each-input half pad">
-                      <label for="name-15" class="label">Select State</label>
-                      <div class="table-filter part">
-                        <div
-                          class="tb-filter-head"
-                          @click="showStateList = !showStateList"
-                        >
-                          <i
-                            v-if="onStateRequest"
-                            class="material-symbols-outlined green no spinner"
-                            >motion_photos_on</i
-                          >
-                          <div v-if="onStateRequest" class="left">
-                            Processing...
-                          </div>
-                          <div v-else>{{ stateDefault }}</div>
-
-                          <i
-                            class="material-symbols-outlined green filter-icon left"
-                            >keyboard_arrow_down</i
-                          >
-                        </div>
-                        <ul
-                          role="list"
-                          class="tb-filter-list"
-                          :class="{ active: showStateList }"
-                        >
-                          <li
-                            @click="selectState(state)"
-                            v-for="state in states"
-                            :key="state._id"
-                            class="tb-list"
-                          >
-                            <div>{{ state.name }}</div>
-                          </li>
-                        </ul>
-                      </div>
+                  </div>
+                  <div class="tb-image ban act">
+                    <div class="inner-label">Status:</div>
+                    <div class="custom-btn edge used">
+                      <div>Collected</div>
                     </div>
-
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Selling Price</label
-                      ><input
-                        type="number"
-                        class="custom-input w-input"
-                        v-model="productSellingPrice"
-                        placeholder="Enter Product Selling Price"
-                      />
-                    </div>
-
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Promo Price</label
-                      ><input
-                        type="number"
-                        class="custom-input w-input"
-                        v-model="productNewPrice"
-                        placeholder="Enter Promo Price"
-                      />
-                    </div>
-
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Promo Discount</label
-                      ><input
-                        type="number"
-                        class="custom-input w-input"
-                        v-model="productDiscount"
-                        placeholder="Enter Promo % Discount"
-                      />
-                    </div>
-
-                    <div class="each-input part">
-                      <div class="date-range">
-                        <div class="each-date">
-                          <label for="field-6" class="label">From</label
-                          ><input
-                            type="text"
-                            class="date-input w-input"
-                            maxlength="256"
-                            name="field-3"
-                            data-name="Field 3"
-                            placeholder="Example Text"
-                            id="field-3"
-                            required=""
-                          />
-                        </div>
-                        <div class="each-date">
-                          <label for="field-6" class="label">To</label
-                          ><input
-                            type="text"
-                            class="date-input w-input"
-                            maxlength="256"
-                            name="field-3"
-                            data-name="Field 3"
-                            placeholder="9:00AM 20/20/2023"
-                            id="field-3"
-                            required=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="each-input full">
-                      <label for="field-6" class="label"
-                        >Product Description</label
-                      >
-                      <client-only placeholder="loading..."
-                        ><ckeditor-nuxt
-                          class="custom-input txt high w-input"
-                          v-model="productDescription"
-                          :config="editorConfig"
-                        />
-                      </client-only>
-                    </div>
-
-                    <div class="btn-holder">
-                      <div v-if="onRequest" class="custom-btn edge">
-                        <i class="material-symbols-outlined white spinner"
-                          >motion_photos_on</i
-                        >
-                        <div>Processing</div>
-                      </div>
-                      <label
-                        v-if="!onRequest"
-                        for="image"
-                        class="custom-btn edge"
-                      >
-                        <input
-                          type="file"
-                          class="hidden w-input"
-                          id="image"
-                          accept="image/*"
-                          @change="setProductImage"
-                        />
-                        <i class="material-symbols-outlined white"
-                          >file_upload</i
-                        >
-
-                        <div>Image</div>
-                      </label>
-                      <label
-                        v-if="!onRequest"
-                        for="images"
-                        class="custom-btn edge"
-                      >
-                        <input
-                          type="file"
-                          class="hidden w-input"
-                          id="images"
-                          accept="image/*"
-                          multiple
-                          @change="setProductImages"
-                        />
-                        <i class="material-symbols-outlined white"
-                          >file_upload</i
-                        >
-
-                        <div>Images</div>
-                      </label>
-                      <label
-                        v-if="!onRequest"
-                        for="video"
-                        class="custom-btn edge"
-                      >
-                        <input
-                          type="file"
-                          class="hidden w-input"
-                          id="video"
-                          @change="setProductVideo"
-                        />
-
-                        <i class="material-symbols-outlined white"
-                          >file_upload</i
-                        >
-                        <div>Video</div>
-                      </label>
-                      <label
-                        v-if="!onRequest"
-                        @click="processProduct"
-                        class="custom-btn edge color"
-                      >
-                        <div>Save Product</div>
-                      </label>
-                    </div>
-
-                    <label
-                      v-if="showResponse"
-                      for="field-6"
-                      class="response error"
-                      >{{ response }}</label
-                    >
                   </div>
                 </div>
+
+                <div class="pagination table">
+                  <div class="page-result">
+                    <h3 class="page-result-txt">
+                      Results: {{ resultLength }}, Page {{ currentPage }} of
+                      {{ pages().length }}
+                    </h3>
+                  </div>
+
+                  <ul
+                    v-if="pages().length > 1"
+                    role="list"
+                    class="pagination-list"
+                  >
+                    <li
+                      v-if="currentPage > 1"
+                      class="page"
+                      @click="paginate(currentPage - 1)"
+                    >
+                      <i class="material-symbols-outlined orange"
+                        >arrow_back_ios</i
+                      >
+                    </li>
+
+                    <li
+                      @click="paginate(int + 1)"
+                      v-for="(page, int) in pages().length"
+                      :key="int"
+                      class="page"
+                      :class="{ active: currentPage == int + 1 }"
+                    >
+                      <div>{{ int + 1 }}</div>
+                    </li>
+
+                    <li
+                      v-if="currentPage < pages().length"
+                      @click="paginate(currentPage + 1)"
+                      class="page"
+                    >
+                      <i class="material-symbols-outlined orange"
+                        >arrow_forward_ios</i
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="table-head foot">
+                <div class="check-box all" @click="selectAll">
+                  <div class="check" :class="{ active: isAllChecked }"></div>
+                </div>
+                <div class="actions-foot">
+                  <i
+                    @click="duplicateProduct"
+                    class="material-symbols-outlined orange action-icons"
+                    >content_copy</i
+                  >
+
+                  <i
+                    @click="prepareProductEdit"
+                    class="material-symbols-outlined orange action-icons"
+                    >edit</i
+                  >
+
+                  <i class="material-symbols-outlined orange action-icons"
+                    >delete</i
+                  >
+                </div>
+              </div>
+
+              <div class="table-head ban">
+                <div class="each-input part">
+                  <label for="name-15" class="label">Product Name</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    placeholder="Enter Product Name"
+                    v-model="productName"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-15" class="label">Product Categories </label
+                  ><label
+                    @click.self="editCat(cat, int)"
+                    v-for="(cat, int) in productCategories"
+                    :key="int"
+                    for="name-20"
+                    class="cats"
+                    >{{ cat }}
+                    <span class="cat-close" @click="removeCat(int)"
+                      >X</span
+                    ></label
+                  >
+                  <input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="productCategory"
+                    placeholder="Enter Product Category"
+                    @focusout="addProductCategories"
+                    @keypress.enter="addProductCategories"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-15" class="label">Buying Unit</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="productBuyingUnit"
+                    placeholder="Enter Product Buying Unit"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-15" class="label">Selling Unit</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="productSellingUnit"
+                    placeholder="Enter Product Selling Unit"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-15" class="label">Units Per Purcase</label
+                  ><input
+                    type="number"
+                    class="custom-input w-input"
+                    v-model="productUnitPerPurchase"
+                    placeholder="Enter Unit Per Purchase"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-15" class="label">Color</label>
+                  <div class="color-flex">
+                    <input type="color" class="color-input w-input" /><input
+                      type="text"
+                      class="custom-input w-input"
+                      maxlength="256"
+                      name="name-14"
+                      data-name="Name 14"
+                      placeholder="Enter First Name"
+                      id="name-14"
+                    />
+                  </div>
+                </div>
+                <div class="each-input part">
+                  <label for="name-15" class="label">Bar Code</label
+                  ><input
+                    type="number"
+                    class="custom-input w-input"
+                    v-model="productBarcode"
+                    placeholder="Enter Product Barcode"
+                  />
+                </div>
+
+                <div class="each-input part">
+                  <label for="name-15" class="label">Buying Price</label
+                  ><input
+                    type="number"
+                    class="custom-input w-input"
+                    v-model="productBuyingPrice"
+                    placeholder="Enter Product Buying Price"
+                  />
+                </div>
+
+                <div class="each-input half pad">
+                  <label for="name-15" class="label">Select Country</label>
+                  <div class="table-filter part">
+                    <div
+                      class="tb-filter-head"
+                      @click="showCountryList = !showCountryList"
+                    >
+                      <div>{{ countryDefault }}</div>
+
+                      <i
+                        class="material-symbols-outlined green filter-icon left"
+                        >keyboard_arrow_down</i
+                      >
+                    </div>
+                    <ul
+                      role="list"
+                      class="tb-filter-list"
+                      :class="{ active: showCountryList }"
+                    >
+                      <li
+                        @click="selectCountry(country)"
+                        v-for="country in countries"
+                        :key="country._id"
+                        class="tb-list"
+                      >
+                        <div>{{ country.name }}</div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="each-input half pad">
+                  <label for="name-15" class="label">Select State</label>
+                  <div class="table-filter part">
+                    <div
+                      class="tb-filter-head"
+                      @click="showStateList = !showStateList"
+                    >
+                      <i
+                        v-if="onStateRequest"
+                        class="material-symbols-outlined green no spinner"
+                        >motion_photos_on</i
+                      >
+                      <div v-if="onStateRequest" class="left">
+                        Processing...
+                      </div>
+                      <div v-else>{{ stateDefault }}</div>
+
+                      <i
+                        class="material-symbols-outlined green filter-icon left"
+                        >keyboard_arrow_down</i
+                      >
+                    </div>
+                    <ul
+                      role="list"
+                      class="tb-filter-list"
+                      :class="{ active: showStateList }"
+                    >
+                      <li
+                        @click="selectState(state)"
+                        v-for="state in states"
+                        :key="state._id"
+                        class="tb-list"
+                      >
+                        <div>{{ state.name }}</div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="each-input part">
+                  <label for="name-15" class="label">Selling Price</label
+                  ><input
+                    type="number"
+                    class="custom-input w-input"
+                    v-model="productSellingPrice"
+                    placeholder="Enter Product Selling Price"
+                  />
+                </div>
+
+                <div class="each-input part">
+                  <label for="name-15" class="label">Promo Price</label
+                  ><input
+                    type="number"
+                    class="custom-input w-input"
+                    v-model="productNewPrice"
+                    placeholder="Enter Promo Price"
+                  />
+                </div>
+
+                <div class="each-input part">
+                  <label for="name-15" class="label">Promo Discount</label
+                  ><input
+                    type="number"
+                    class="custom-input w-input"
+                    v-model="productDiscount"
+                    placeholder="Enter Promo % Discount"
+                  />
+                </div>
+
+                <div class="each-input part">
+                  <div class="date-range">
+                    <div class="each-date">
+                      <label for="field-6" class="label">From</label
+                      ><input
+                        type="text"
+                        class="date-input w-input"
+                        maxlength="256"
+                        name="field-3"
+                        data-name="Field 3"
+                        placeholder="Example Text"
+                        id="field-3"
+                        required=""
+                      />
+                    </div>
+                    <div class="each-date">
+                      <label for="field-6" class="label">To</label
+                      ><input
+                        type="text"
+                        class="date-input w-input"
+                        maxlength="256"
+                        name="field-3"
+                        data-name="Field 3"
+                        placeholder="9:00AM 20/20/2023"
+                        id="field-3"
+                        required=""
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="each-input full">
+                  <label for="field-6" class="label">Product Description</label>
+                  <client-only placeholder="loading..."
+                    ><ckeditor-nuxt
+                      class="custom-input txt high w-input"
+                      v-model="productDescription"
+                      :config="editorConfig"
+                    />
+                  </client-only>
+                </div>
+
+                <div class="btn-holder">
+                  <div v-if="onRequest" class="custom-btn edge">
+                    <i class="material-symbols-outlined white spinner"
+                      >motion_photos_on</i
+                    >
+                    <div>Processing</div>
+                  </div>
+                  <label v-if="!onRequest" for="image" class="custom-btn edge">
+                    <input
+                      type="file"
+                      class="hidden w-input"
+                      id="image"
+                      accept="image/*"
+                      @change="setProductImage"
+                    />
+                    <i class="material-symbols-outlined white">file_upload</i>
+
+                    <div>Image</div>
+                  </label>
+                  <label v-if="!onRequest" for="images" class="custom-btn edge">
+                    <input
+                      type="file"
+                      class="hidden w-input"
+                      id="images"
+                      accept="image/*"
+                      multiple
+                      @change="setProductImages"
+                    />
+                    <i class="material-symbols-outlined white">file_upload</i>
+
+                    <div>Images</div>
+                  </label>
+                  <label v-if="!onRequest" for="video" class="custom-btn edge">
+                    <input
+                      type="file"
+                      class="hidden w-input"
+                      id="video"
+                      @change="setProductVideo"
+                    />
+
+                    <i class="material-symbols-outlined white">file_upload</i>
+                    <div>Video</div>
+                  </label>
+                  <label
+                    v-if="!onRequest"
+                    @click="processProduct"
+                    class="custom-btn edge color"
+                  >
+                    <div>Save Product</div>
+                  </label>
+                </div>
+
+                <label
+                  v-if="showResponse"
+                  for="field-6"
+                  class="response error"
+                  >{{ response }}</label
+                >
               </div>
             </div>
           </div>
         </div>
-        <footer-component />
       </div>
     </div>
-    <mobile-bottom-nav />
+    <footer-component />
   </div>
 </template>
 

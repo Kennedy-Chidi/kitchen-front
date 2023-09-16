@@ -1,426 +1,406 @@
 <template>
-  <div class="grace users">
+  <div class="">
     <alert-box />
     <alert-confirmation />
     <cart-items />
-    <div class="main-body">
-      <vertical-nav />
-      <div class="main-flex">
-        <company-ads />
-        <horizontal-nav />
-        <div class="custom-container">
-          <div class="body-flex">
-            <div class="content-body">
-              <div class="w-form">
-                <div class="transaction-table">
-                  <div class="table-head admin">
-                    <div class="date-range">
-                      <div class="each-date">
-                        <label for="field-4" class="label">From</label
-                        ><input
-                          type="text"
-                          class="date-input w-input"
-                          maxlength="256"
-                          name="field-3"
-                          data-name="Field 3"
-                          placeholder="Example Text"
-                          id="field-3"
-                          required=""
-                        />
-                      </div>
-                      <div class="each-date">
-                        <label for="field-4" class="label">To</label
-                        ><input
-                          type="text"
-                          class="date-input w-input"
-                          maxlength="256"
-                          name="field-3"
-                          data-name="Field 3"
-                          placeholder="9:00AM 20/20/2023"
-                          id="field-3"
-                          required=""
-                        />
-                      </div>
-                    </div>
-                    <div class="table-filter">
-                      <ul role="list" class="tb-filter-list">
-                        <li class="tb-list"><div>Orders</div></li>
-                        <li class="tb-list"><div>Sales</div></li>
-                        <li class="tb-list"><div>Purchases</div></li>
-                        <li class="tb-list"><div>Expenses</div></li>
-                      </ul>
-                    </div>
-                    <div class="sort-range">
-                      <div class="sort-wrapper">
-                        <div>Name</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
-                      <div class="sort-wrapper">
-                        <div>Amount</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
-                    </div>
-                    <div class="newsletter-wrap pro">
-                      <input
-                        type="text"
-                        class="newsletter-input search w-input"
-                        maxlength="256"
-                        name="name-15"
-                        data-name="Name 15"
-                        placeholder="Search Product"
-                        id="name-15"
-                      /><img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b75aa41127b73bc77763cb_search-line-icon%201.svg"
-                        loading="lazy"
-                        alt=""
-                        class="newsletter-img"
-                      />
+    <div class="custom-container">
+      <div class="body-flex">
+        <div class="content-body">
+          <div class="w-form">
+            <div class="transaction-table">
+              <div class="table-head admin">
+                <div class="date-range">
+                  <div class="each-date">
+                    <label for="field-4" class="label">From</label
+                    ><input
+                      type="text"
+                      class="date-input w-input"
+                      maxlength="256"
+                      name="field-3"
+                      data-name="Field 3"
+                      placeholder="Example Text"
+                      id="field-3"
+                      required=""
+                    />
+                  </div>
+                  <div class="each-date">
+                    <label for="field-4" class="label">To</label
+                    ><input
+                      type="text"
+                      class="date-input w-input"
+                      maxlength="256"
+                      name="field-3"
+                      data-name="Field 3"
+                      placeholder="9:00AM 20/20/2023"
+                      id="field-3"
+                      required=""
+                    />
+                  </div>
+                </div>
+                <div class="table-filter">
+                  <ul role="list" class="tb-filter-list">
+                    <li class="tb-list"><div>Orders</div></li>
+                    <li class="tb-list"><div>Sales</div></li>
+                    <li class="tb-list"><div>Purchases</div></li>
+                    <li class="tb-list"><div>Expenses</div></li>
+                  </ul>
+                </div>
+                <div class="sort-range">
+                  <div class="sort-wrapper">
+                    <div>Name</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
+                  </div>
+                  <div class="sort-wrapper">
+                    <div>Amount</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
+                  </div>
+                </div>
+                <div class="newsletter-wrap pro">
+                  <input
+                    type="text"
+                    class="newsletter-input search w-input"
+                    maxlength="256"
+                    name="name-15"
+                    data-name="Name 15"
+                    placeholder="Search Product"
+                    id="name-15"
+                  /><img
+                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b75aa41127b73bc77763cb_search-line-icon%201.svg"
+                    loading="lazy"
+                    alt=""
+                    class="newsletter-img"
+                  />
+                </div>
+              </div>
+
+              <div class="table">
+                <div class="table-head-row">
+                  <div class="tb-sn"><div>S/N</div></div>
+                  <div class="tb-image"><div>Image</div></div>
+                  <div class="c20 phone"><div>Username</div></div>
+                  <div class="c20 phone"><div>Country</div></div>
+                  <div class="c20 times"><div>State</div></div>
+                  <div class="c20 amount"><div>LGA</div></div>
+                  <div class="c20 amount"><div>Unit</div></div>
+                  <div class="c20 amount"><div>Call Line</div></div>
+                </div>
+                <div
+                  v-for="(user, int) in staffArray"
+                  :key="int"
+                  class="table-head-row body"
+                  :class="{ even: int % 2 == 0 }"
+                >
+                  <div class="tb-sn user">
+                    <div class="inner-label">S/N:</div>
+                    <div>{{ int + 1 }}</div>
+                    <div @click="toggleStaff(int)" class="check-box">
+                      <div
+                        class="check"
+                        :class="{ active: user.checked }"
+                      ></div>
                     </div>
                   </div>
-
-                  <div class="table">
-                    <div class="table-head-row">
-                      <div class="tb-sn"><div>S/N</div></div>
-                      <div class="tb-image"><div>Image</div></div>
-                      <div class="c20 phone"><div>Username</div></div>
-                      <div class="c20 phone"><div>Country</div></div>
-                      <div class="c20 times"><div>State</div></div>
-                      <div class="c20 amount"><div>LGA</div></div>
-                      <div class="c20 amount"><div>Unit</div></div>
-                      <div class="c20 amount"><div>Call Line</div></div>
-                    </div>
-                    <div
-                      v-for="(user, int) in staffArray"
-                      :key="int"
-                      class="table-head-row body"
-                      :class="{ even: int % 2 == 0 }"
-                    >
-                      <div class="tb-sn user">
-                        <div class="inner-label">S/N:</div>
-                        <div>{{ int + 1 }}</div>
-                        <div @click="toggleStaff(int)" class="check-box">
-                          <div
-                            class="check"
-                            :class="{ active: user.checked }"
-                          ></div>
-                        </div>
-                      </div>
-                      <div class="tb-image">
-                        <div class="inner-label">Image:</div>
-                        <div class="tb-img">
-                          <img
-                            v-if="user.profilePictureUrl"
-                            :src="user.profilePictureUrl"
-                            loading="lazy"
-                            sizes="(max-width: 1279px) 70px, (max-width: 1439px) 5vw, 70px"
-                            :srcset="`
+                  <div class="tb-image">
+                    <div class="inner-label">Image:</div>
+                    <div class="tb-img">
+                      <img
+                        v-if="user.profilePictureUrl"
+                        :src="user.profilePictureUrl"
+                        loading="lazy"
+                        sizes="(max-width: 1279px) 70px, (max-width: 1439px) 5vw, 70px"
+                        :srcset="`
                             ${user.profilePictureUrl} 500w,
                             ${user.profilePictureUrl} 800w,
                             ${user.profilePictureUrl}       953w`"
-                            alt=""
-                            class="responsive-img"
-                          />
-                          <i v-else class="material-symbols-outlined orange bg"
-                            >person</i
-                          >
-                        </div>
-                      </div>
-                      <div class="c20 phone">
-                        <div class="inner-label">Username:</div>
-                        <div>
-                          <a href="#" class="user-link">{{ user.username }}</a>
-                        </div>
-                      </div>
-                      <div class="c20 phone">
-                        <div class="inner-label">Country:</div>
-                        <div>{{ user.country }}</div>
-                      </div>
-                      <div class="c20 times">
-                        <div class="inner-label">State:</div>
-                        <div>{{ user.state }}</div>
-                      </div>
-                      <div class="c20 amount">
-                        <div class="inner-label">LGA:</div>
-                        <div>{{ user.lga }}</div>
-                      </div>
-                      <div class="c20 amount">
-                        <div class="inner-label">Unit:</div>
-                        <div>{{ user.unit }}</div>
-                      </div>
-                      <div class="c20 amount">
-                        <div class="inner-label">Unit:</div>
-                        <div>{{ user.callLine }}</div>
-                      </div>
-                    </div>
-
-                    <div class="pagination table">
-                      <div class="page-result">
-                        <h3 class="page-result-txt">
-                          Results: {{ length }}, Page {{ currentPage }} of
-                          {{ pages().length }}
-                        </h3>
-                      </div>
-                      <ul
-                        v-if="pages().length > 1"
-                        role="list"
-                        class="pagination-list"
-                      >
-                        <li class="page" @click="paginate(currentPage - 1)">
-                          <i class="material-symbols-outlined orange"
-                            >arrow_back_ios</i
-                          >
-                        </li>
-                        <li
-                          v-for="(item, int) in pages().length"
-                          :key="int"
-                          class="page"
-                          @click="paginate(int + 1)"
-                          :class="{ active: int + 1 == currentPage }"
-                        >
-                          <div>{{ int + 1 }}</div>
-                        </li>
-
-                        <li class="page" @click="paginate(currentPage + 1)">
-                          <i class="material-symbols-outlined orange"
-                            >arrow_forward_ios</i
-                          >
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div class="table-head foot">
-                    <div class="table-filter foot">
-                      <div
-                        @click="showStates = !showStates"
-                        class="tb-filter-head"
-                      >
-                        <div>{{ defaultState }}</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b81c16b31d7eadba21fa56_down.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon left"
-                        />
-                      </div>
-                      <ul
-                        role="list"
-                        class="tb-filter-list"
-                        :class="{ active: showStates }"
-                      >
-                        <li @click="setState('General')" class="tb-list">
-                          <div>General</div>
-                        </li>
-                        <li
-                          @click="setState(state.name)"
-                          v-for="(state, int) in states"
-                          :key="int"
-                          class="tb-list"
-                        >
-                          <div>{{ state.name }}</div>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div class="table-filter foot">
-                      <div
-                        @click="showLGA = !showLGA"
-                        class="tb-filter-head left"
-                      >
-                        <i
-                          v-if="onStateRequest"
-                          class="material-symbols-outlined orange no spinner"
-                          >motion_photos_on</i
-                        >
-                        <div v-if="onStateRequest">Processing...</div>
-                        <div v-else>{{ defaultLga }}</div>
-                        <i class="material-symbols-outlined orange"
-                          >keyboard_arrow_down</i
-                        >
-                      </div>
-                      <ul
-                        role="list"
-                        class="tb-filter-list"
-                        :class="{ active: showLGA && !onStateRequest }"
-                      >
-                        <li @click="setLGA('General', '')" class="tb-list">
-                          <div>General</div>
-                        </li>
-                        <li
-                          @click="setLGA(lga.name, lga.units)"
-                          v-for="(lga, int) in lgas"
-                          :key="int"
-                          class="tb-list"
-                        >
-                          <div>{{ lga.name }}</div>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div class="table-filter foot">
-                      <div
-                        @click="showUnits = !showUnits"
-                        class="tb-filter-head"
-                      >
-                        <div>{{ defaultUnit }}</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b81c16b31d7eadba21fa56_down.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon left"
-                        />
-                      </div>
-                      <ul
-                        role="list"
-                        class="tb-filter-list"
-                        :class="{ active: showUnits }"
-                      >
-                        <li
-                          @click="setUnit(unit)"
-                          v-for="(unit, int) in units"
-                          :key="int"
-                          class="tb-list"
-                        >
-                          <div>{{ unit }}</div>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div class="table-filter foot">
-                      <div
-                        @click="showPositions = !showPositions"
-                        class="tb-filter-head"
-                      >
-                        <div>{{ defaultPosition }}</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b81c16b31d7eadba21fa56_down.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon left"
-                        />
-                      </div>
-                      <ul
-                        role="list"
-                        class="tb-filter-list"
-                        :class="{ active: showPositions }"
-                      >
-                        <li
-                          @click="setPosition(position)"
-                          v-for="(position, int) in positions"
-                          :key="int"
-                          class="tb-list"
-                        >
-                          <div>{{ position.position }}</div>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div @click="makeUser" class="table-filter">
-                      <div class="tb-filter-head"><div>Make User</div></div>
-                    </div>
-                  </div>
-
-                  <div class="table-head foot">
-                    <div @click="checkAll" class="check-box all">
-                      <div
-                        class="check"
-                        :class="{ active: isAllChecked }"
-                      ></div>
-                    </div>
-
-                    <div class="table-filter">
-                      <div class="tb-filter-head">
-                        <div>Select SMS</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b81c16b31d7eadba21fa56_down.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon left"
-                        />
-                      </div>
-                      <ul role="list" class="tb-filter-list">
-                        <li class="tb-list"><div>Orders</div></li>
-                        <li class="tb-list"><div>Sales</div></li>
-                        <li class="tb-list"><div>Purchases</div></li>
-                        <li class="tb-list"><div>Expenses</div></li>
-                      </ul>
-                    </div>
-                    <div @click="makeUser" class="table-filter">
-                      <div class="tb-filter-head"><div>Make User</div></div>
-                    </div>
-                    <div class="actions-foot">
-                      <i
-                        @click="prepareStaffEdit"
-                        class="material-symbols-outlined orange action-icons"
-                        >edit</i
-                      >
-                      <i class="material-symbols-outlined orange action-icons"
-                        >delete</i
-                      >
-                    </div>
-                  </div>
-
-                  <div v-if="showEditor" class="table-head ban">
-                    <div class="each-input center">
-                      <label for="name-15" class="label">Phone Number</label
-                      ><input
-                        type="tel"
-                        class="custom-input w-input"
-                        maxlength="256"
-                        v-model="callLine"
-                        placeholder="Enter Staff Phone Number"
+                        alt=""
+                        class="responsive-img"
                       />
-                    </div>
-
-                    <div class="btn-holder">
-                      <div v-if="onRequest" class="custom-btn edge">
-                        <i class="material-symbols-outlined white spinner"
-                          >motion_photos_on</i
-                        >
-                        <div>Processing</div>
-                      </div>
-                      <div
-                        v-if="!onRequest"
-                        @click="updateStaff"
-                        class="custom-btn edge color"
+                      <i v-else class="material-symbols-outlined orange bg"
+                        >person</i
                       >
-                        <div>Update Staff</div>
-                      </div>
-                      <div
-                        v-if="!onRequest"
-                        @click="showEditor = !showEditor"
-                        class="custom-btn edge color"
-                      >
-                        <div>Close</div>
-                      </div>
                     </div>
-
-                    <label
-                      v-if="showResponse"
-                      for="field-6"
-                      class="response error"
-                      >{{ response }}</label
-                    >
+                  </div>
+                  <div class="c20 phone">
+                    <div class="inner-label">Username:</div>
+                    <div>
+                      <a href="#" class="user-link">{{ user.username }}</a>
+                    </div>
+                  </div>
+                  <div class="c20 phone">
+                    <div class="inner-label">Country:</div>
+                    <div>{{ user.country }}</div>
+                  </div>
+                  <div class="c20 times">
+                    <div class="inner-label">State:</div>
+                    <div>{{ user.state }}</div>
+                  </div>
+                  <div class="c20 amount">
+                    <div class="inner-label">LGA:</div>
+                    <div>{{ user.lga }}</div>
+                  </div>
+                  <div class="c20 amount">
+                    <div class="inner-label">Unit:</div>
+                    <div>{{ user.unit }}</div>
+                  </div>
+                  <div class="c20 amount">
+                    <div class="inner-label">Unit:</div>
+                    <div>{{ user.callLine }}</div>
                   </div>
                 </div>
+
+                <div class="pagination table">
+                  <div class="page-result">
+                    <h3 class="page-result-txt">
+                      Results: {{ length }}, Page {{ currentPage }} of
+                      {{ pages().length }}
+                    </h3>
+                  </div>
+                  <ul
+                    v-if="pages().length > 1"
+                    role="list"
+                    class="pagination-list"
+                  >
+                    <li class="page" @click="paginate(currentPage - 1)">
+                      <i class="material-symbols-outlined orange"
+                        >arrow_back_ios</i
+                      >
+                    </li>
+                    <li
+                      v-for="(item, int) in pages().length"
+                      :key="int"
+                      class="page"
+                      @click="paginate(int + 1)"
+                      :class="{ active: int + 1 == currentPage }"
+                    >
+                      <div>{{ int + 1 }}</div>
+                    </li>
+
+                    <li class="page" @click="paginate(currentPage + 1)">
+                      <i class="material-symbols-outlined orange"
+                        >arrow_forward_ios</i
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="table-head foot">
+                <div class="table-filter foot">
+                  <div @click="showStates = !showStates" class="tb-filter-head">
+                    <div>{{ defaultState }}</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b81c16b31d7eadba21fa56_down.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon left"
+                    />
+                  </div>
+                  <ul
+                    role="list"
+                    class="tb-filter-list"
+                    :class="{ active: showStates }"
+                  >
+                    <li @click="setState('General')" class="tb-list">
+                      <div>General</div>
+                    </li>
+                    <li
+                      @click="setState(state.name)"
+                      v-for="(state, int) in states"
+                      :key="int"
+                      class="tb-list"
+                    >
+                      <div>{{ state.name }}</div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="table-filter foot">
+                  <div @click="showLGA = !showLGA" class="tb-filter-head left">
+                    <i
+                      v-if="onStateRequest"
+                      class="material-symbols-outlined orange no spinner"
+                      >motion_photos_on</i
+                    >
+                    <div v-if="onStateRequest">Processing...</div>
+                    <div v-else>{{ defaultLga }}</div>
+                    <i class="material-symbols-outlined orange"
+                      >keyboard_arrow_down</i
+                    >
+                  </div>
+                  <ul
+                    role="list"
+                    class="tb-filter-list"
+                    :class="{ active: showLGA && !onStateRequest }"
+                  >
+                    <li @click="setLGA('General', '')" class="tb-list">
+                      <div>General</div>
+                    </li>
+                    <li
+                      @click="setLGA(lga.name, lga.units)"
+                      v-for="(lga, int) in lgas"
+                      :key="int"
+                      class="tb-list"
+                    >
+                      <div>{{ lga.name }}</div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="table-filter foot">
+                  <div @click="showUnits = !showUnits" class="tb-filter-head">
+                    <div>{{ defaultUnit }}</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b81c16b31d7eadba21fa56_down.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon left"
+                    />
+                  </div>
+                  <ul
+                    role="list"
+                    class="tb-filter-list"
+                    :class="{ active: showUnits }"
+                  >
+                    <li
+                      @click="setUnit(unit)"
+                      v-for="(unit, int) in units"
+                      :key="int"
+                      class="tb-list"
+                    >
+                      <div>{{ unit }}</div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="table-filter foot">
+                  <div
+                    @click="showPositions = !showPositions"
+                    class="tb-filter-head"
+                  >
+                    <div>{{ defaultPosition }}</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b81c16b31d7eadba21fa56_down.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon left"
+                    />
+                  </div>
+                  <ul
+                    role="list"
+                    class="tb-filter-list"
+                    :class="{ active: showPositions }"
+                  >
+                    <li
+                      @click="setPosition(position)"
+                      v-for="(position, int) in positions"
+                      :key="int"
+                      class="tb-list"
+                    >
+                      <div>{{ position.position }}</div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div @click="makeUser" class="table-filter">
+                  <div class="tb-filter-head"><div>Make User</div></div>
+                </div>
+              </div>
+
+              <div class="table-head foot">
+                <div @click="checkAll" class="check-box all">
+                  <div class="check" :class="{ active: isAllChecked }"></div>
+                </div>
+
+                <div class="table-filter">
+                  <div class="tb-filter-head">
+                    <div>Select SMS</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b81c16b31d7eadba21fa56_down.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon left"
+                    />
+                  </div>
+                  <ul role="list" class="tb-filter-list">
+                    <li class="tb-list"><div>Orders</div></li>
+                    <li class="tb-list"><div>Sales</div></li>
+                    <li class="tb-list"><div>Purchases</div></li>
+                    <li class="tb-list"><div>Expenses</div></li>
+                  </ul>
+                </div>
+                <div @click="makeUser" class="table-filter">
+                  <div class="tb-filter-head"><div>Make User</div></div>
+                </div>
+                <div class="actions-foot">
+                  <i
+                    @click="prepareStaffEdit"
+                    class="material-symbols-outlined orange action-icons"
+                    >edit</i
+                  >
+                  <i class="material-symbols-outlined orange action-icons"
+                    >delete</i
+                  >
+                </div>
+              </div>
+
+              <div v-if="showEditor" class="table-head ban">
+                <div class="each-input center">
+                  <label for="name-15" class="label">Phone Number</label
+                  ><input
+                    type="tel"
+                    class="custom-input w-input"
+                    maxlength="256"
+                    v-model="callLine"
+                    placeholder="Enter Staff Phone Number"
+                  />
+                </div>
+
+                <div class="btn-holder">
+                  <div v-if="onRequest" class="custom-btn edge">
+                    <i class="material-symbols-outlined white spinner"
+                      >motion_photos_on</i
+                    >
+                    <div>Processing</div>
+                  </div>
+                  <div
+                    v-if="!onRequest"
+                    @click="updateStaff"
+                    class="custom-btn edge color"
+                  >
+                    <div>Update Staff</div>
+                  </div>
+                  <div
+                    v-if="!onRequest"
+                    @click="showEditor = !showEditor"
+                    class="custom-btn edge color"
+                  >
+                    <div>Close</div>
+                  </div>
+                </div>
+
+                <label
+                  v-if="showResponse"
+                  for="field-6"
+                  class="response error"
+                  >{{ response }}</label
+                >
               </div>
             </div>
           </div>
         </div>
-        <footer-component />
       </div>
     </div>
-    <mobile-bottom-nav />
+    <footer-component />
   </div>
 </template>
 

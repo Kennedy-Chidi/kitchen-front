@@ -1,326 +1,309 @@
 <template>
-  <div class="grace email">
+  <div class="">
     <alert-box />
 
-    <div class="main-body">
-      <vertical-nav />
-      <div class="main-flex">
-        <company-ads />
-        <horizontal-nav />
-        <div class="custom-container">
-          <div class="body-flex">
-            <div class="content-body">
-              <div class="w-form">
-                <div class="transaction-table">
-                  <div class="table-head admin pro">
-                    <div class="sort-range ban">
-                      <div class="sort-wrapper">
-                        <div>Name</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
-                      <div class="sort-wrapper">
-                        <div>Amount</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
+    <div class="custom-container">
+      <div class="body-flex">
+        <div class="content-body">
+          <div class="w-form">
+            <div class="transaction-table">
+              <div class="table-head admin pro">
+                <div class="sort-range ban">
+                  <div class="sort-wrapper">
+                    <div>Name</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
+                  </div>
+                  <div class="sort-wrapper">
+                    <div>Amount</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="table">
+                <div class="table-head-row">
+                  <div class="tb-sn"><div>S/N</div></div>
+                  <div class="tb-image ban"><div>Image</div></div>
+                  <div class="tb-image ban"><div>Greeting</div></div>
+                  <div class="tb-image ban"><div>Template</div></div>
+                  <div class="c20 ban"><div>Title</div></div>
+                  <div class="c20 ban"><div>Content</div></div>
+                </div>
+                <div
+                  v-for="(email, int) in emailArray"
+                  :key="int"
+                  class="table-head-row body"
+                  :class="{ even: int % 2 == 0 }"
+                >
+                  <div class="tb-sn ban">
+                    <div class="inner-label">S/N:</div>
+                    <div>{{ int + 1 }}</div>
+                    <div @click="toggleEmail(int)" class="check-box">
+                      <div
+                        class="check"
+                        :class="{ active: email.checked }"
+                      ></div>
                     </div>
                   </div>
-                  <div class="table">
-                    <div class="table-head-row">
-                      <div class="tb-sn"><div>S/N</div></div>
-                      <div class="tb-image ban"><div>Image</div></div>
-                      <div class="tb-image ban"><div>Greeting</div></div>
-                      <div class="tb-image ban"><div>Template</div></div>
-                      <div class="c20 ban"><div>Title</div></div>
-                      <div class="c20 ban"><div>Content</div></div>
-                    </div>
-                    <div
-                      v-for="(email, int) in emailArray"
-                      :key="int"
-                      class="table-head-row body"
-                      :class="{ even: int % 2 == 0 }"
-                    >
-                      <div class="tb-sn ban">
-                        <div class="inner-label">S/N:</div>
-                        <div>{{ int + 1 }}</div>
-                        <div @click="toggleEmail(int)" class="check-box">
-                          <div
-                            class="check"
-                            :class="{ active: email.checked }"
-                          ></div>
-                        </div>
-                      </div>
-                      <div class="tb-image ban">
-                        <div class="inner-label">Image:</div>
-                        <img
-                          :src="email.bannerUrl"
-                          loading="lazy"
-                          sizes="110px"
-                          :srcset="`
+                  <div class="tb-image ban">
+                    <div class="inner-label">Image:</div>
+                    <img
+                      :src="email.bannerUrl"
+                      loading="lazy"
+                      sizes="110px"
+                      :srcset="`
                           ${email.bannerUrl} 500w,
                           ${email.bannerUrl} 800w,
                           ${email.bannerUrl} 953w`"
-                          alt=""
-                          class="item-img"
-                        />
-                      </div>
-                      <div class="tb-image ban full">
-                        <div class="inner-label">Greeting:</div>
-                        <div>{{ email.greeting }}</div>
-                      </div>
-                      <div class="tb-image ban full">
-                        <div class="inner-label">Template:</div>
-                        <div>{{ email.template }}</div>
-                      </div>
-                      <div class="c20 ban part full">
-                        <div class="inner-label">Title:</div>
-                        <div>{{ email.title }}</div>
-                      </div>
-                      <div class="c20 full">
-                        <div class="inner-label">Content:</div>
-                        <div
-                          v-if="email.content"
-                          class="pro-cart"
-                          v-html="`${email.content.substring(130, 0)}...`"
-                        ></div>
-                      </div>
-                    </div>
-
-                    <div class="pagination table">
-                      <div class="page-result">
-                        <h3 class="page-result-txt">
-                          Results: {{ resultLength }}, Page {{ currentPage }} of
-                          {{ pages().length }}
-                        </h3>
-                      </div>
-                      <ul role="list" class="pagination-list">
-                        <li
-                          class="page"
-                          v-if="currentPage > 1"
-                          @click="paginate(currentPage - 1)"
-                        >
-                          <i class="material-symbols-outlined orange"
-                            >arrow_back_ios</i
-                          >
-                        </li>
-                        <li
-                          v-for="(page, int) in pages().length"
-                          :key="int"
-                          class="page"
-                          @click="paginate(int + 1)"
-                          :class="{ active: int + 1 == currentPage }"
-                        >
-                          <div>{{ int + 1 }}</div>
-                        </li>
-
-                        <li
-                          class="page"
-                          v-if="currentPage != pages().length"
-                          @click="paginate(currentPage + 1)"
-                        >
-                          <i class="material-symbols-outlined orange"
-                            >arrow_forward_ios</i
-                          >
-                        </li>
-                      </ul>
-                    </div>
+                      alt=""
+                      class="item-img"
+                    />
                   </div>
-                  <div class="table-head foot">
-                    <div @click="checkAllEmails" class="check-box all">
-                      <div
-                        class="check"
-                        :class="{ active: isAllChecked }"
-                      ></div>
-                    </div>
-                    <div class="actions-foot">
-                      <i
-                        @click="duplicateEmail"
-                        class="material-symbols-outlined orange action-icons"
-                        >content_copy</i
-                      >
-
-                      <i
-                        @click="editEmail"
-                        class="material-symbols-outlined orange action-icons"
-                        >edit</i
-                      >
-
-                      <i class="material-symbols-outlined orange action-icons"
-                        >delete</i
-                      >
-                    </div>
+                  <div class="tb-image ban full">
+                    <div class="inner-label">Greeting:</div>
+                    <div>{{ email.greeting }}</div>
                   </div>
-                  <div class="table-head ban">
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Greeting</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="greeting"
-                        placeholder="Enter Email Greeting"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Title</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        maxlength="256"
-                        v-model="title"
-                        placeholder="Enter Email Title"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Template</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="template"
-                        placeholder="Enter Email Template"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Warning</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="warning"
-                        placeholder="Enter Email Warning"
-                      />
-                    </div>
-
-                    <div class="each-input part">
-                      <div class="color-in-flex">
-                        <div class="color-flex widt">
-                          <label for="name-15" class="label colo">Title</label>
-
-                          <input
-                            v-model="headerBgColor"
-                            type="color"
-                            class="color-input w-input"
-                          />
-                        </div>
-                        <div class="color-flex widt">
-                          <label for="name-15" class="label colo">Title</label>
-
-                          <input
-                            v-model="bodyBgColor"
-                            type="color"
-                            class="color-input w-input"
-                          />
-                        </div>
-                        <div class="color-flex widt">
-                          <label for="name-15" class="label colo">Title</label>
-                          <input
-                            v-model="bodyTxtColor"
-                            type="color"
-                            class="color-input w-input"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="each-input part">
-                      <div class="color-in-flex">
-                        <div class="color-flex widt">
-                          <label for="name-15" class="label colo">Title</label>
-
-                          <input type="color" class="color-input w-input" />
-                          <input
-                            type="text"
-                            class="custom-input w-input color-in"
-                            maxlength="256"
-                            name="name-14"
-                            data-name="Name 14"
-                            placeholder="Enter First Name"
-                            id="name-14"
-                          />
-                        </div>
-                        <div class="color-flex widt">
-                          <label for="name-15" class="label colo">Title</label>
-
-                          <input type="color" class="color-input w-input" />
-                          <input
-                            type="text"
-                            class="custom-input w-input color-in"
-                            maxlength="256"
-                            name="name-14"
-                            data-name="Name 14"
-                            placeholder="Enter First Name"
-                            id="name-14"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="each-input full">
-                      <label for="field-6" class="label">Email Content</label>
-                      <client-only placeholder="loading..."
-                        ><ckeditor-nuxt
-                          class="search-flex full w-input"
-                          v-model="content"
-                          :config="editorConfig"
-                        />
-                      </client-only>
-                    </div>
-
-                    <div class="btn-holder">
-                      <div v-if="onRequest" class="custom-btn edge">
-                        <i class="material-symbols-outlined white spinner"
-                          >motion_photos_on</i
-                        >
-                        <div>Processing</div>
-                      </div>
-
-                      <label
-                        for="banner"
-                        v-if="!onRequest"
-                        class="custom-btn edge"
-                      >
-                        <input
-                          @change="setEmailBanner"
-                          type="file"
-                          class="hidden"
-                          id="banner"
-                        />
-                        <i class="material-symbols-outlined white"
-                          >file_upload</i
-                        >
-                        <div>Email Banner</div>
-                      </label>
-
-                      <label
-                        @click="processEmail"
-                        v-if="!onRequest"
-                        class="custom-btn edge color"
-                      >
-                        <div>Submit</div>
-                      </label>
-                    </div>
-                    <label
-                      v-if="showResponse"
-                      for="field-6"
-                      class="response error"
-                      >{{ response }}</label
-                    >
+                  <div class="tb-image ban full">
+                    <div class="inner-label">Template:</div>
+                    <div>{{ email.template }}</div>
+                  </div>
+                  <div class="c20 ban part full">
+                    <div class="inner-label">Title:</div>
+                    <div>{{ email.title }}</div>
+                  </div>
+                  <div class="c20 full">
+                    <div class="inner-label">Content:</div>
+                    <div
+                      v-if="email.content"
+                      class="pro-cart"
+                      v-html="`${email.content.substring(130, 0)}...`"
+                    ></div>
                   </div>
                 </div>
+
+                <div class="pagination table">
+                  <div class="page-result">
+                    <h3 class="page-result-txt">
+                      Results: {{ resultLength }}, Page {{ currentPage }} of
+                      {{ pages().length }}
+                    </h3>
+                  </div>
+                  <ul role="list" class="pagination-list">
+                    <li
+                      class="page"
+                      v-if="currentPage > 1"
+                      @click="paginate(currentPage - 1)"
+                    >
+                      <i class="material-symbols-outlined orange"
+                        >arrow_back_ios</i
+                      >
+                    </li>
+                    <li
+                      v-for="(page, int) in pages().length"
+                      :key="int"
+                      class="page"
+                      @click="paginate(int + 1)"
+                      :class="{ active: int + 1 == currentPage }"
+                    >
+                      <div>{{ int + 1 }}</div>
+                    </li>
+
+                    <li
+                      class="page"
+                      v-if="currentPage != pages().length"
+                      @click="paginate(currentPage + 1)"
+                    >
+                      <i class="material-symbols-outlined orange"
+                        >arrow_forward_ios</i
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="table-head foot">
+                <div @click="checkAllEmails" class="check-box all">
+                  <div class="check" :class="{ active: isAllChecked }"></div>
+                </div>
+                <div class="actions-foot">
+                  <i
+                    @click="duplicateEmail"
+                    class="material-symbols-outlined orange action-icons"
+                    >content_copy</i
+                  >
+
+                  <i
+                    @click="editEmail"
+                    class="material-symbols-outlined orange action-icons"
+                    >edit</i
+                  >
+
+                  <i class="material-symbols-outlined orange action-icons"
+                    >delete</i
+                  >
+                </div>
+              </div>
+              <div class="table-head ban">
+                <div class="each-input part">
+                  <label for="name-15" class="label">Greeting</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="greeting"
+                    placeholder="Enter Email Greeting"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-15" class="label">Title</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    maxlength="256"
+                    v-model="title"
+                    placeholder="Enter Email Title"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-15" class="label">Template</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="template"
+                    placeholder="Enter Email Template"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-15" class="label">Warning</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="warning"
+                    placeholder="Enter Email Warning"
+                  />
+                </div>
+
+                <div class="each-input part">
+                  <div class="color-in-flex">
+                    <div class="color-flex widt">
+                      <label for="name-15" class="label colo">Title</label>
+
+                      <input
+                        v-model="headerBgColor"
+                        type="color"
+                        class="color-input w-input"
+                      />
+                    </div>
+                    <div class="color-flex widt">
+                      <label for="name-15" class="label colo">Title</label>
+
+                      <input
+                        v-model="bodyBgColor"
+                        type="color"
+                        class="color-input w-input"
+                      />
+                    </div>
+                    <div class="color-flex widt">
+                      <label for="name-15" class="label colo">Title</label>
+                      <input
+                        v-model="bodyTxtColor"
+                        type="color"
+                        class="color-input w-input"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="each-input part">
+                  <div class="color-in-flex">
+                    <div class="color-flex widt">
+                      <label for="name-15" class="label colo">Title</label>
+
+                      <input type="color" class="color-input w-input" />
+                      <input
+                        type="text"
+                        class="custom-input w-input color-in"
+                        maxlength="256"
+                        name="name-14"
+                        data-name="Name 14"
+                        placeholder="Enter First Name"
+                        id="name-14"
+                      />
+                    </div>
+                    <div class="color-flex widt">
+                      <label for="name-15" class="label colo">Title</label>
+
+                      <input type="color" class="color-input w-input" />
+                      <input
+                        type="text"
+                        class="custom-input w-input color-in"
+                        maxlength="256"
+                        name="name-14"
+                        data-name="Name 14"
+                        placeholder="Enter First Name"
+                        id="name-14"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="each-input full">
+                  <label for="field-6" class="label">Email Content</label>
+                  <client-only placeholder="loading..."
+                    ><ckeditor-nuxt
+                      class="search-flex full w-input"
+                      v-model="content"
+                      :config="editorConfig"
+                    />
+                  </client-only>
+                </div>
+
+                <div class="btn-holder">
+                  <div v-if="onRequest" class="custom-btn edge">
+                    <i class="material-symbols-outlined white spinner"
+                      >motion_photos_on</i
+                    >
+                    <div>Processing</div>
+                  </div>
+
+                  <label for="banner" v-if="!onRequest" class="custom-btn edge">
+                    <input
+                      @change="setEmailBanner"
+                      type="file"
+                      class="hidden"
+                      id="banner"
+                    />
+                    <i class="material-symbols-outlined white">file_upload</i>
+                    <div>Email Banner</div>
+                  </label>
+
+                  <label
+                    @click="processEmail"
+                    v-if="!onRequest"
+                    class="custom-btn edge color"
+                  >
+                    <div>Submit</div>
+                  </label>
+                </div>
+                <label
+                  v-if="showResponse"
+                  for="field-6"
+                  class="response error"
+                  >{{ response }}</label
+                >
               </div>
             </div>
           </div>
         </div>
-        <footer-component />
       </div>
     </div>
-    <mobile-bottom-nav />
+    <footer-component />
   </div>
 </template>
 

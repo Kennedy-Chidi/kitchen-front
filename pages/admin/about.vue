@@ -1,119 +1,109 @@
 <template>
-  <div class="grace about">
+  <div class="">
     <alert-box />
     <alert-confirmation />
-    <div class="main-body">
-      <vertical-nav />
-      <div class="main-flex">
-        <company-ads />
-        <horizontal-nav />
-        <div class="custom-container">
-          <div class="body-flex">
-            <div class="content-body">
-              <div class="w-form">
-                <form
-                  id="email-form-2"
-                  name="email-form-2"
-                  data-name="Email Form 2"
-                  method="get"
-                  class="transaction-table"
-                  data-wf-page-id="64b6be9c94ade9f930694692"
-                  data-wf-element-id="daac88a8-82be-bb13-da88-00ed758a8ac6"
-                >
-                  <div class="table-head ban">
-                    <div class="about-flex">
-                      <div class="video-holder">
-                        <div
-                          style="padding-top: 56.17021276595745%"
-                          class="w-video w-embed"
-                        >
-                          <iframe
-                            class="embedly-embed"
-                            src="//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FXALBGkjkUPQ%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DXALBGkjkUPQ&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FXALBGkjkUPQ%2Fhqdefault.jpg&key=96f1f04c5f4143bcb0f2e68c87d65feb&type=text%2Fhtml&schema=youtube"
-                            scrolling="no"
-                            allowfullscreen
-                            title="Imagine for 1 Minute"
-                          ></iframe>
-                        </div>
-                      </div>
-                      <div class="video-holder">
-                        <div
-                          style="padding-top: 56.17021276595745%"
-                          class="w-video w-embed"
-                        >
-                          <iframe
-                            class="embedly-embed"
-                            src="//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FXALBGkjkUPQ%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DXALBGkjkUPQ&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FXALBGkjkUPQ%2Fhqdefault.jpg&key=96f1f04c5f4143bcb0f2e68c87d65feb&type=text%2Fhtml&schema=youtube"
-                            scrolling="no"
-                            allowfullscreen
-                            title="Imagine for 1 Minute"
-                          ></iframe>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="each-input full">
-                      <label for="field-6" class="label"
-                        >Essence of Application</label
-                      ><textarea
-                        placeholder="Example Text"
-                        maxlength="5000"
-                        id="field-5"
-                        name="field-5"
-                        data-name="Field 5"
-                        class="custom-input txt high w-input"
-                      ></textarea>
-                    </div>
-                    <div class="btn-holder">
-                      <div class="custom-btn edge color">
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b799b47c0010e65ffca458_loader-icon%201.svg"
-                          loading="lazy"
-                          alt=""
-                          class="btn-icon spinner"
-                        />
-                        <div>Processingg</div>
-                      </div>
-                      <div class="custom-btn edge color">
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b799b47c0010e65ffca458_loader-icon%201.svg"
-                          loading="lazy"
-                          alt=""
-                          class="btn-icon spinner"
-                        />
-                        <div>Image</div>
-                      </div>
-                      <div class="custom-btn edge color">
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b799b47c0010e65ffca458_loader-icon%201.svg"
-                          loading="lazy"
-                          alt=""
-                          class="btn-icon spinner"
-                        />
-                        <div>Video</div>
-                      </div>
-                      <div class="custom-btn edge color"><div>Save</div></div>
-                    </div>
-                    <label for="field-6" class="response error"
-                      >Sorry, something went wrong</label
+    <div class="custom-container">
+      <div class="body-flex">
+        <div class="content-body">
+          <div class="w-form">
+            <form
+              id="email-form-2"
+              name="email-form-2"
+              data-name="Email Form 2"
+              method="get"
+              class="transaction-table"
+              data-wf-page-id="64b6be9c94ade9f930694692"
+              data-wf-element-id="daac88a8-82be-bb13-da88-00ed758a8ac6"
+            >
+              <div class="table-head ban">
+                <div class="about-flex">
+                  <div class="video-holder">
+                    <div
+                      style="padding-top: 56.17021276595745%"
+                      class="w-video w-embed"
                     >
+                      <iframe
+                        class="embedly-embed"
+                        src="//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FXALBGkjkUPQ%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DXALBGkjkUPQ&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FXALBGkjkUPQ%2Fhqdefault.jpg&key=96f1f04c5f4143bcb0f2e68c87d65feb&type=text%2Fhtml&schema=youtube"
+                        scrolling="no"
+                        allowfullscreen
+                        title="Imagine for 1 Minute"
+                      ></iframe>
+                    </div>
                   </div>
-                </form>
-                <div class="w-form-done">
-                  <div>Thank you! Your submission has been received!</div>
-                </div>
-                <div class="w-form-fail">
-                  <div>
-                    Oops! Something went wrong while submitting the form.
+                  <div class="video-holder">
+                    <div
+                      style="padding-top: 56.17021276595745%"
+                      class="w-video w-embed"
+                    >
+                      <iframe
+                        class="embedly-embed"
+                        src="//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FXALBGkjkUPQ%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DXALBGkjkUPQ&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FXALBGkjkUPQ%2Fhqdefault.jpg&key=96f1f04c5f4143bcb0f2e68c87d65feb&type=text%2Fhtml&schema=youtube"
+                        scrolling="no"
+                        allowfullscreen
+                        title="Imagine for 1 Minute"
+                      ></iframe>
+                    </div>
                   </div>
                 </div>
+                <div class="each-input full">
+                  <label for="field-6" class="label"
+                    >Essence of Application</label
+                  ><textarea
+                    placeholder="Example Text"
+                    maxlength="5000"
+                    id="field-5"
+                    name="field-5"
+                    data-name="Field 5"
+                    class="custom-input txt high w-input"
+                  ></textarea>
+                </div>
+                <div class="btn-holder">
+                  <div class="custom-btn edge color">
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b799b47c0010e65ffca458_loader-icon%201.svg"
+                      loading="lazy"
+                      alt=""
+                      class="btn-icon spinner"
+                    />
+                    <div>Processingg</div>
+                  </div>
+                  <div class="custom-btn edge color">
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b799b47c0010e65ffca458_loader-icon%201.svg"
+                      loading="lazy"
+                      alt=""
+                      class="btn-icon spinner"
+                    />
+                    <div>Image</div>
+                  </div>
+                  <div class="custom-btn edge color">
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b799b47c0010e65ffca458_loader-icon%201.svg"
+                      loading="lazy"
+                      alt=""
+                      class="btn-icon spinner"
+                    />
+                    <div>Video</div>
+                  </div>
+                  <div class="custom-btn edge color"><div>Save</div></div>
+                </div>
+                <label for="field-6" class="response error"
+                  >Sorry, something went wrong</label
+                >
               </div>
+            </form>
+            <div class="w-form-done">
+              <div>Thank you! Your submission has been received!</div>
+            </div>
+            <div class="w-form-fail">
+              <div>Oops! Something went wrong while submitting the form.</div>
             </div>
           </div>
         </div>
-        <footer-component />
       </div>
     </div>
-    <mobile-bottom-nav />
+    <footer-component />
   </div>
 </template>
 

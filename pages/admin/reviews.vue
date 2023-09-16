@@ -1,195 +1,190 @@
 <template>
-  <div class="grace users">
+  <div class="">
     <alert-box />
     <alert-confirmation />
     <cart-items />
-    <div class="main-body">
-      <vertical-nav />
-      <div class="main-flex">
-        <company-ads />
-        <horizontal-nav />
-        <div class="custom-container">
-          <div class="body-flex">
-            <div class="content-body">
-              <div class="w-form">
-                <div class="transaction-table">
-                  <div class="table-head admin">
-                    <div class="date-range">
-                      <div class="each-date">
-                        <label for="field-4" class="label">From</label
-                        ><input
-                          type="text"
-                          class="date-input w-input"
-                          maxlength="256"
-                          name="field-3"
-                          data-name="Field 3"
-                          placeholder="Example Text"
-                          id="field-3"
-                          required=""
-                        />
-                      </div>
-                      <div class="each-date">
-                        <label for="field-4" class="label">To</label
-                        ><input
-                          type="text"
-                          class="date-input w-input"
-                          maxlength="256"
-                          name="field-3"
-                          data-name="Field 3"
-                          placeholder="9:00AM 20/20/2023"
-                          id="field-3"
-                          required=""
-                        />
-                      </div>
-                    </div>
-                    <div class="table-filter">
-                      <ul role="list" class="tb-filter-list">
-                        <li class="tb-list"><div>Orders</div></li>
-                        <li class="tb-list"><div>Sales</div></li>
-                        <li class="tb-list"><div>Purchases</div></li>
-                        <li class="tb-list"><div>Expenses</div></li>
-                      </ul>
-                    </div>
-                    <div class="sort-range">
-                      <div class="sort-wrapper">
-                        <div>Name</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
-                      <div class="sort-wrapper">
-                        <div>Amount</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
-                    </div>
-                    <div class="newsletter-wrap pro">
-                      <input
-                        type="text"
-                        class="newsletter-input search w-input"
-                        maxlength="256"
-                        name="name-15"
-                        data-name="Name 15"
-                        placeholder="Search Product"
-                        id="name-15"
-                      /><img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b75aa41127b73bc77763cb_search-line-icon%201.svg"
-                        loading="lazy"
-                        alt=""
-                        class="newsletter-img"
-                      />
+    <div class="custom-container">
+      <div class="body-flex">
+        <div class="content-body">
+          <div class="w-form">
+            <div class="transaction-table">
+              <div class="table-head admin">
+                <div class="date-range">
+                  <div class="each-date">
+                    <label for="field-4" class="label">From</label
+                    ><input
+                      type="text"
+                      class="date-input w-input"
+                      maxlength="256"
+                      name="field-3"
+                      data-name="Field 3"
+                      placeholder="Example Text"
+                      id="field-3"
+                      required=""
+                    />
+                  </div>
+                  <div class="each-date">
+                    <label for="field-4" class="label">To</label
+                    ><input
+                      type="text"
+                      class="date-input w-input"
+                      maxlength="256"
+                      name="field-3"
+                      data-name="Field 3"
+                      placeholder="9:00AM 20/20/2023"
+                      id="field-3"
+                      required=""
+                    />
+                  </div>
+                </div>
+                <div class="table-filter">
+                  <ul role="list" class="tb-filter-list">
+                    <li class="tb-list"><div>Orders</div></li>
+                    <li class="tb-list"><div>Sales</div></li>
+                    <li class="tb-list"><div>Purchases</div></li>
+                    <li class="tb-list"><div>Expenses</div></li>
+                  </ul>
+                </div>
+                <div class="sort-range">
+                  <div class="sort-wrapper">
+                    <div>Name</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
+                  </div>
+                  <div class="sort-wrapper">
+                    <div>Amount</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
+                  </div>
+                </div>
+                <div class="newsletter-wrap pro">
+                  <input
+                    type="text"
+                    class="newsletter-input search w-input"
+                    maxlength="256"
+                    name="name-15"
+                    data-name="Name 15"
+                    placeholder="Search Product"
+                    id="name-15"
+                  /><img
+                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b75aa41127b73bc77763cb_search-line-icon%201.svg"
+                    loading="lazy"
+                    alt=""
+                    class="newsletter-img"
+                  />
+                </div>
+              </div>
+
+              <div class="table">
+                <div class="table-head-row">
+                  <div class="tb-sn"><div>S/N</div></div>
+                  <div class="tb-image"><div>Image</div></div>
+                  <div class="c20 name"><div>Username</div></div>
+                  <div class="c30 phone"><div>Comment</div></div>
+                  <div class="c20 amount"><div>Status</div></div>
+                </div>
+                <div
+                  v-for="(user, int) in reviews"
+                  :key="int"
+                  class="table-head-row body"
+                  :class="{ even: int % 2 == 0 }"
+                >
+                  <div class="tb-sn user">
+                    <div class="inner-label">S/N:</div>
+                    <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
+                    <div @click="toggleUser(int)" class="check-box">
+                      <div
+                        class="check"
+                        :class="{ active: user.checked }"
+                      ></div>
                     </div>
                   </div>
-
-                  <div class="table">
-                    <div class="table-head-row">
-                      <div class="tb-sn"><div>S/N</div></div>
-                      <div class="tb-image"><div>Image</div></div>
-                      <div class="c20 name"><div>Username</div></div>
-                      <div class="c30 phone"><div>Comment</div></div>
-                      <div class="c20 amount"><div>Status</div></div>
-                    </div>
-                    <div
-                      v-for="(user, int) in reviews"
-                      :key="int"
-                      class="table-head-row body"
-                      :class="{ even: int % 2 == 0 }"
-                    >
-                      <div class="tb-sn user">
-                        <div class="inner-label">S/N:</div>
-                        <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
-                        <div @click="toggleUser(int)" class="check-box">
-                          <div
-                            class="check"
-                            :class="{ active: user.checked }"
-                          ></div>
-                        </div>
-                      </div>
-                      <div class="tb-image">
-                        <div class="inner-label">Image:</div>
-                        <div class="tb-img">
-                          <img
-                            v-if="user.profilePictureUrl"
-                            :src="user.profilePictureUrl"
-                            loading="lazy"
-                            sizes="(max-width: 1279px) 70px, (max-width: 1439px) 5vw, 70px"
-                            :srcset="`
+                  <div class="tb-image">
+                    <div class="inner-label">Image:</div>
+                    <div class="tb-img">
+                      <img
+                        v-if="user.profilePictureUrl"
+                        :src="user.profilePictureUrl"
+                        loading="lazy"
+                        sizes="(max-width: 1279px) 70px, (max-width: 1439px) 5vw, 70px"
+                        :srcset="`
                             ${user.profilePictureUrl} 500w,
                             ${user.profilePictureUrl} 800w,
                             ${user.profilePictureUrl}       953w`"
-                            alt=""
-                            class="responsive-img"
-                          />
-                          <i v-else class="material-symbols-outlined orange bg"
-                            >person</i
-                          >
-                        </div>
-                      </div>
-                      <div class="c20 name">
-                        <div class="inner-label">Username:</div>
-                        <div>
-                          <span @click="selectUser(user)" class="user-link">{{
-                            user.username
-                          }}</span>
-                        </div>
-                      </div>
-                      <div class="c30 phone">
-                        <div class="inner-label">Comment:</div>
-                        <div>{{ user.comment }}</div>
-                      </div>
-
-                      <div class="c20 amount">
-                        <div class="inner-label">Status</div>
-                        <div
-                          @click="updateCommentStatus(user)"
-                          class="custom-btn edge width"
-                        >
-                          <div v-if="user.commentStatus">Approved</div>
-                          <div v-else>Unapproved</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="pagination table">
-                      <div class="page-result">
-                        <h3 class="page-result-txt">
-                          Results: {{ resultLength }}, Page {{ currentPage }} of
-                          {{ pages().length }}
-                        </h3>
-                      </div>
-
-                      <ul role="list" class="pagination-list">
-                        <li class="page">
-                          <i class="material-symbols-outlined orange"
-                            >arrow_back_ios</i
-                          >
-                        </li>
-                        <li
-                          v-for="(item, int) in pages().length"
-                          :key="int"
-                          class="page"
-                          :class="{ active: int + 1 == currentPage }"
-                        >
-                          <div>{{ int + 1 }}</div>
-                        </li>
-
-                        <li class="page">
-                          <i class="material-symbols-outlined orange"
-                            >arrow_forward_ios</i
-                          >
-                        </li>
-                      </ul>
+                        alt=""
+                        class="responsive-img"
+                      />
+                      <i v-else class="material-symbols-outlined orange bg"
+                        >person</i
+                      >
                     </div>
                   </div>
+                  <div class="c20 name">
+                    <div class="inner-label">Username:</div>
+                    <div>
+                      <span @click="selectUser(user)" class="user-link">{{
+                        user.username
+                      }}</span>
+                    </div>
+                  </div>
+                  <div class="c30 phone">
+                    <div class="inner-label">Comment:</div>
+                    <div>{{ user.comment }}</div>
+                  </div>
 
-                  <!-- <div class="table-head foot">
+                  <div class="c20 amount">
+                    <div class="inner-label">Status</div>
+                    <div
+                      @click="updateCommentStatus(user)"
+                      class="custom-btn edge width"
+                    >
+                      <div v-if="user.commentStatus">Approved</div>
+                      <div v-else>Unapproved</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pagination table">
+                  <div class="page-result">
+                    <h3 class="page-result-txt">
+                      Results: {{ resultLength }}, Page {{ currentPage }} of
+                      {{ pages().length }}
+                    </h3>
+                  </div>
+
+                  <ul role="list" class="pagination-list">
+                    <li class="page">
+                      <i class="material-symbols-outlined orange"
+                        >arrow_back_ios</i
+                      >
+                    </li>
+                    <li
+                      v-for="(item, int) in pages().length"
+                      :key="int"
+                      class="page"
+                      :class="{ active: int + 1 == currentPage }"
+                    >
+                      <div>{{ int + 1 }}</div>
+                    </li>
+
+                    <li class="page">
+                      <i class="material-symbols-outlined orange"
+                        >arrow_forward_ios</i
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- <div class="table-head foot">
                     <div @click="checkAll" class="check-box all">
                       <div
                         class="check"
@@ -219,15 +214,12 @@
                       />
                     </div>
                   </div> -->
-                </div>
-              </div>
             </div>
           </div>
         </div>
-        <footer-component />
       </div>
     </div>
-    <mobile-bottom-nav />
+    <footer-component />
   </div>
 </template>
 

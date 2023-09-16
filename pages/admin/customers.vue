@@ -1,262 +1,251 @@
 <template>
-  <div class="grace users">
+  <div class="">
     <alert-box />
     <alert-confirmation />
     <cart-items />
-    <div class="main-body">
-      <vertical-nav />
-      <div class="main-flex">
-        <company-ads />
-        <horizontal-nav />
-        <div class="custom-container">
-          <div class="body-flex">
-            <div class="content-body">
-              <div class="w-form">
-                <div class="transaction-table">
-                  <div class="table-head admin">
-                    <div class="date-range">
-                      <div class="each-date">
-                        <label for="field-4" class="label">From</label
-                        ><input
-                          type="text"
-                          class="date-input w-input"
-                          maxlength="256"
-                          name="field-3"
-                          data-name="Field 3"
-                          placeholder="Example Text"
-                          id="field-3"
-                          required=""
-                        />
-                      </div>
-                      <div class="each-date">
-                        <label for="field-4" class="label">To</label
-                        ><input
-                          type="text"
-                          class="date-input w-input"
-                          maxlength="256"
-                          name="field-3"
-                          data-name="Field 3"
-                          placeholder="9:00AM 20/20/2023"
-                          id="field-3"
-                          required=""
-                        />
-                      </div>
-                    </div>
-                    <div class="table-filter">
-                      <ul role="list" class="tb-filter-list">
-                        <li class="tb-list"><div>Orders</div></li>
-                        <li class="tb-list"><div>Sales</div></li>
-                        <li class="tb-list"><div>Purchases</div></li>
-                        <li class="tb-list"><div>Expenses</div></li>
-                      </ul>
-                    </div>
-                    <div class="sort-range">
-                      <div class="sort-wrapper">
-                        <div>Name</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
-                      <div class="sort-wrapper">
-                        <div>Amount</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
-                    </div>
-                    <div class="newsletter-wrap pro">
-                      <input
-                        type="text"
-                        class="newsletter-input search w-input"
-                        maxlength="256"
-                        name="name-15"
-                        data-name="Name 15"
-                        placeholder="Search Product"
-                        id="name-15"
-                      /><img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b75aa41127b73bc77763cb_search-line-icon%201.svg"
-                        loading="lazy"
-                        alt=""
-                        class="newsletter-img"
-                      />
+    <div class="custom-container">
+      <div class="body-flex">
+        <div class="content-body">
+          <div class="w-form">
+            <div class="transaction-table">
+              <div class="table-head admin">
+                <div class="date-range">
+                  <div class="each-date">
+                    <label for="field-4" class="label">From</label
+                    ><input
+                      type="text"
+                      class="date-input w-input"
+                      maxlength="256"
+                      name="field-3"
+                      data-name="Field 3"
+                      placeholder="Example Text"
+                      id="field-3"
+                      required=""
+                    />
+                  </div>
+                  <div class="each-date">
+                    <label for="field-4" class="label">To</label
+                    ><input
+                      type="text"
+                      class="date-input w-input"
+                      maxlength="256"
+                      name="field-3"
+                      data-name="Field 3"
+                      placeholder="9:00AM 20/20/2023"
+                      id="field-3"
+                      required=""
+                    />
+                  </div>
+                </div>
+                <div class="table-filter">
+                  <ul role="list" class="tb-filter-list">
+                    <li class="tb-list"><div>Orders</div></li>
+                    <li class="tb-list"><div>Sales</div></li>
+                    <li class="tb-list"><div>Purchases</div></li>
+                    <li class="tb-list"><div>Expenses</div></li>
+                  </ul>
+                </div>
+                <div class="sort-range">
+                  <div class="sort-wrapper">
+                    <div>Name</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
+                  </div>
+                  <div class="sort-wrapper">
+                    <div>Amount</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
+                  </div>
+                </div>
+                <div class="newsletter-wrap pro">
+                  <input
+                    type="text"
+                    class="newsletter-input search w-input"
+                    maxlength="256"
+                    name="name-15"
+                    data-name="Name 15"
+                    placeholder="Search Product"
+                    id="name-15"
+                  /><img
+                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b75aa41127b73bc77763cb_search-line-icon%201.svg"
+                    loading="lazy"
+                    alt=""
+                    class="newsletter-img"
+                  />
+                </div>
+              </div>
+
+              <div class="table">
+                <div class="table-head-row">
+                  <div class="tb-sn"><div>S/N</div></div>
+                  <div class="tb-image"><div>Image</div></div>
+                  <div class="c30 name"><div>Username</div></div>
+                  <div class="c20 phone"><div>Phone Number</div></div>
+                  <div class="c20 times"><div>Purchases</div></div>
+                  <div class="c20 amount"><div>Amount</div></div>
+                </div>
+                <div
+                  v-for="(user, int) in usersArray"
+                  :key="int"
+                  class="table-head-row body"
+                  :class="{ even: int % 2 == 0 }"
+                >
+                  <div class="tb-sn user">
+                    <div class="inner-label">S/N:</div>
+                    <div>{{ int + 1 }}</div>
+                    <div @click="toggleUser(int)" class="check-box">
+                      <div
+                        class="check"
+                        :class="{ active: user.checked }"
+                      ></div>
                     </div>
                   </div>
-
-                  <div class="table">
-                    <div class="table-head-row">
-                      <div class="tb-sn"><div>S/N</div></div>
-                      <div class="tb-image"><div>Image</div></div>
-                      <div class="c30 name"><div>Username</div></div>
-                      <div class="c20 phone"><div>Phone Number</div></div>
-                      <div class="c20 times"><div>Purchases</div></div>
-                      <div class="c20 amount"><div>Amount</div></div>
-                    </div>
-                    <div
-                      v-for="(user, int) in usersArray"
-                      :key="int"
-                      class="table-head-row body"
-                      :class="{ even: int % 2 == 0 }"
-                    >
-                      <div class="tb-sn user">
-                        <div class="inner-label">S/N:</div>
-                        <div>{{ int + 1 }}</div>
-                        <div @click="toggleUser(int)" class="check-box">
-                          <div
-                            class="check"
-                            :class="{ active: user.checked }"
-                          ></div>
-                        </div>
-                      </div>
-                      <div class="tb-image">
-                        <div class="inner-label">Image:</div>
-                        <div class="tb-img">
-                          <img
-                            v-if="user.profilePictureUrl"
-                            :src="user.profilePictureUrl"
-                            loading="lazy"
-                            sizes="(max-width: 1279px) 70px, (max-width: 1439px) 5vw, 70px"
-                            :srcset="`
+                  <div class="tb-image">
+                    <div class="inner-label">Image:</div>
+                    <div class="tb-img">
+                      <img
+                        v-if="user.profilePictureUrl"
+                        :src="user.profilePictureUrl"
+                        loading="lazy"
+                        sizes="(max-width: 1279px) 70px, (max-width: 1439px) 5vw, 70px"
+                        :srcset="`
                             ${user.profilePictureUrl} 500w,
                             ${user.profilePictureUrl} 800w,
                             ${user.profilePictureUrl}       953w`"
-                            alt=""
-                            class="responsive-img"
-                          />
-                          <i v-else class="material-symbols-outlined orange bg"
-                            >person</i
-                          >
-                        </div>
-                      </div>
-                      <div class="c30 name">
-                        <div class="inner-label">Username:</div>
-                        <div>
-                          <a href="#" class="user-link">{{ user.username }}</a>
-                        </div>
-                      </div>
-                      <div class="c20 phone">
-                        <div class="inner-label">Phone:</div>
-                        <div>{{ user.phoneNumber1 }}</div>
-                      </div>
-                      <div class="c20 times">
-                        <div class="inner-label">Purchases:</div>
-                        <div>57 Times</div>
-                      </div>
-                      <div class="c20 amount">
-                        <div class="inner-label">Amount</div>
-                        <div>N790,000</div>
-                      </div>
-                    </div>
-
-                    <div class="pagination table">
-                      <div class="page-result">
-                        <h3 class="page-result-txt">
-                          Results: {{ length }}, Page {{ currentPage }} of
-                          {{ pages().length }}
-                        </h3>
-                      </div>
-
-                      <ul role="list" class="pagination-list">
-                        <li class="page">
-                          <i class="material-symbols-outlined orange"
-                            >arrow_back_ios</i
-                          >
-                        </li>
-                        <li
-                          v-for="(item, int) in pages().length"
-                          :key="int"
-                          class="page"
-                          :class="{ active: int + 1 == currentPage }"
-                        >
-                          <div>{{ int + 1 }}</div>
-                        </li>
-
-                        <li class="page">
-                          <i class="material-symbols-outlined orange"
-                            >arrow_forward_ios</i
-                          >
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div class="table-head foot">
-                    <div @click="checkAll" class="check-box all">
-                      <div
-                        class="check"
-                        :class="{ active: isAllChecked }"
-                      ></div>
-                    </div>
-                    <div class="table-filter foot">
-                      <div class="tb-filter-head">
-                        <div>Select Email</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b81c16b31d7eadba21fa56_down.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon left"
-                        />
-                      </div>
-                      <ul role="list" class="tb-filter-list">
-                        <li class="tb-list"><div>Orders</div></li>
-                        <li class="tb-list"><div>Sales</div></li>
-                        <li class="tb-list"><div>Purchases</div></li>
-                        <li class="tb-list"><div>Expenses</div></li>
-                      </ul>
-                    </div>
-                    <div class="table-filter">
-                      <div class="tb-filter-head">
-                        <div>Select SMS</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b81c16b31d7eadba21fa56_down.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon left"
-                        />
-                      </div>
-                      <ul role="list" class="tb-filter-list">
-                        <li class="tb-list"><div>Orders</div></li>
-                        <li class="tb-list"><div>Sales</div></li>
-                        <li class="tb-list"><div>Purchases</div></li>
-                        <li class="tb-list"><div>Expenses</div></li>
-                      </ul>
-                    </div>
-                    <div @click="makeStaff" class="table-filter">
-                      <div class="tb-filter-head"><div>Make Staff</div></div>
-                    </div>
-                    <div class="actions-foot">
-                      <img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b84c6a55d515bb243eebf8_envelope-line-icon%202.svg"
-                        loading="lazy"
                         alt=""
-                        class="action-icons"
-                      /><img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b84c6a5ba79f864dd5bd3a_sms-icon%201.svg"
-                        loading="lazy"
-                        alt=""
-                        class="action-icons"
-                      /><img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b84d212e330d5af9503296_delete.svg"
-                        loading="lazy"
-                        alt=""
-                        class="action-icons h"
+                        class="responsive-img"
                       />
+                      <i v-else class="material-symbols-outlined orange bg"
+                        >person</i
+                      >
                     </div>
                   </div>
+                  <div class="c30 name">
+                    <div class="inner-label">Username:</div>
+                    <div>
+                      <a href="#" class="user-link">{{ user.username }}</a>
+                    </div>
+                  </div>
+                  <div class="c20 phone">
+                    <div class="inner-label">Phone:</div>
+                    <div>{{ user.phoneNumber1 }}</div>
+                  </div>
+                  <div class="c20 times">
+                    <div class="inner-label">Purchases:</div>
+                    <div>57 Times</div>
+                  </div>
+                  <div class="c20 amount">
+                    <div class="inner-label">Amount</div>
+                    <div>N790,000</div>
+                  </div>
+                </div>
+
+                <div class="pagination table">
+                  <div class="page-result">
+                    <h3 class="page-result-txt">
+                      Results: {{ length }}, Page {{ currentPage }} of
+                      {{ pages().length }}
+                    </h3>
+                  </div>
+
+                  <ul role="list" class="pagination-list">
+                    <li class="page">
+                      <i class="material-symbols-outlined orange"
+                        >arrow_back_ios</i
+                      >
+                    </li>
+                    <li
+                      v-for="(item, int) in pages().length"
+                      :key="int"
+                      class="page"
+                      :class="{ active: int + 1 == currentPage }"
+                    >
+                      <div>{{ int + 1 }}</div>
+                    </li>
+
+                    <li class="page">
+                      <i class="material-symbols-outlined orange"
+                        >arrow_forward_ios</i
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="table-head foot">
+                <div @click="checkAll" class="check-box all">
+                  <div class="check" :class="{ active: isAllChecked }"></div>
+                </div>
+                <div class="table-filter foot">
+                  <div class="tb-filter-head">
+                    <div>Select Email</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b81c16b31d7eadba21fa56_down.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon left"
+                    />
+                  </div>
+                  <ul role="list" class="tb-filter-list">
+                    <li class="tb-list"><div>Orders</div></li>
+                    <li class="tb-list"><div>Sales</div></li>
+                    <li class="tb-list"><div>Purchases</div></li>
+                    <li class="tb-list"><div>Expenses</div></li>
+                  </ul>
+                </div>
+                <div class="table-filter">
+                  <div class="tb-filter-head">
+                    <div>Select SMS</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b81c16b31d7eadba21fa56_down.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon left"
+                    />
+                  </div>
+                  <ul role="list" class="tb-filter-list">
+                    <li class="tb-list"><div>Orders</div></li>
+                    <li class="tb-list"><div>Sales</div></li>
+                    <li class="tb-list"><div>Purchases</div></li>
+                    <li class="tb-list"><div>Expenses</div></li>
+                  </ul>
+                </div>
+                <div @click="makeStaff" class="table-filter">
+                  <div class="tb-filter-head"><div>Make Staff</div></div>
+                </div>
+                <div class="actions-foot">
+                  <img
+                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b84c6a55d515bb243eebf8_envelope-line-icon%202.svg"
+                    loading="lazy"
+                    alt=""
+                    class="action-icons"
+                  /><img
+                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b84c6a5ba79f864dd5bd3a_sms-icon%201.svg"
+                    loading="lazy"
+                    alt=""
+                    class="action-icons"
+                  /><img
+                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b84d212e330d5af9503296_delete.svg"
+                    loading="lazy"
+                    alt=""
+                    class="action-icons h"
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <footer-component />
       </div>
     </div>
-    <mobile-bottom-nav />
+    <footer-component />
   </div>
 </template>
 

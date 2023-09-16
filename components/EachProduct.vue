@@ -82,6 +82,10 @@ export default {
     user() {
       return this.$store.state.auth.user;
     },
+
+    cartProducts() {
+      return this.$store.state.productStore.cartProducts;
+    },
   },
 };
 </script>

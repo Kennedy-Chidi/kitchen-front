@@ -1,317 +1,295 @@
 <template>
-  <div class="grace gift-promotion">
+  <div class="">
     <cart-items />
     <alert-box />
     <alert-confirmation />
-    <div class="main-body">
-      <vertical-nav />
-
-      <div class="main-flex">
-        <company-ads />
-        <horizontal-nav />
-        <div class="custom-container">
-          <div class="body-flex">
-            <div class="content-body">
-              <div class="w-form">
-                <div class="transaction-table">
-                  <div class="table-head admin pro">
-                    <div class="sort-range ban">
-                      <div class="sort-wrapper">
-                        <div>Name</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
-                      <div class="sort-wrapper">
-                        <div>Amount</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
+    <div class="custom-container">
+      <div class="body-flex">
+        <div class="content-body">
+          <div class="w-form">
+            <div class="transaction-table">
+              <div class="table-head admin pro">
+                <div class="sort-range ban">
+                  <div class="sort-wrapper">
+                    <div>Name</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
+                  </div>
+                  <div class="sort-wrapper">
+                    <div>Amount</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="table">
+                <div class="table-head-row">
+                  <div class="tb-sn"><div>S/N</div></div>
+                  <div class="tb-image ban"><div>Image</div></div>
+                  <div class="c20 ban"><div>Promo Name</div></div>
+                  <div class="c20 ban"><div>Target</div></div>
+                  <div class="c20 ban"><div>Duration</div></div>
+                  <div class="c20 ban"><div>Gift</div></div>
+                  <div class="tb-image ban"><div>Status</div></div>
+                </div>
+                <div
+                  v-for="(promo, int) in promotions"
+                  :key="int"
+                  class="table-head-row body"
+                  :class="{ even: int % 2 == 0 }"
+                >
+                  <div class="tb-sn ban">
+                    <div class="inner-label">S/N:</div>
+                    <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
+                    <div @click="togglePromo(int)" class="check-box">
+                      <div
+                        class="check"
+                        :class="{ active: promo.checked }"
+                      ></div>
                     </div>
                   </div>
-                  <div class="table">
-                    <div class="table-head-row">
-                      <div class="tb-sn"><div>S/N</div></div>
-                      <div class="tb-image ban"><div>Image</div></div>
-                      <div class="c20 ban"><div>Promo Name</div></div>
-                      <div class="c20 ban"><div>Target</div></div>
-                      <div class="c20 ban"><div>Duration</div></div>
-                      <div class="c20 ban"><div>Gift</div></div>
-                      <div class="tb-image ban"><div>Status</div></div>
-                    </div>
-                    <div
-                      v-for="(promo, int) in promotions"
-                      :key="int"
-                      class="table-head-row body"
-                      :class="{ even: int % 2 == 0 }"
-                    >
-                      <div class="tb-sn ban">
-                        <div class="inner-label">S/N:</div>
-                        <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
-                        <div @click="togglePromo(int)" class="check-box">
-                          <div
-                            class="check"
-                            :class="{ active: promo.checked }"
-                          ></div>
-                        </div>
-                      </div>
-                      <div class="tb-image ban">
-                        <div class="inner-label">Image:</div>
-                        <img
-                          v-if="promo.promoBannerUrl"
-                          :src="promo.promoBannerUrl"
-                          loading="lazy"
-                          sizes="110px"
-                          :srcset="`
+                  <div class="tb-image ban">
+                    <div class="inner-label">Image:</div>
+                    <img
+                      v-if="promo.promoBannerUrl"
+                      :src="promo.promoBannerUrl"
+                      loading="lazy"
+                      sizes="110px"
+                      :srcset="`
                             ${promo.promoBannerUrl} 500w,
                             ${promo.promoBannerUrl} 800w,
                             ${promo.promoBannerUrl}      953w
                           `"
-                          alt=""
-                          class="item-img"
-                        />
-                        <img
-                          v-else
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b79b7b42421ae3cbdb6ff8_ceo.png"
-                          loading="lazy"
-                          sizes="110px"
-                          srcset="
-                            https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b79b7b42421ae3cbdb6ff8_ceo-p-500.png 500w,
-                            https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b79b7b42421ae3cbdb6ff8_ceo-p-800.png 800w,
-                            https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b79b7b42421ae3cbdb6ff8_ceo.png       953w
-                          "
-                          alt=""
-                          class="item-img"
-                        />
-                      </div>
-                      <div class="c20 ban part">
-                        <div class="inner-label">Promo Name:</div>
-                        <div>{{ promo.promoName }}</div>
-                      </div>
-                      <div class="c20 ban part">
-                        <div class="inner-label">Promo Target:</div>
-                        <div class="pro-cart">
-                          <div>N{{ formatNumber(promo.promoTarget) }}</div>
-                        </div>
-                      </div>
-                      <div class="c20 ban">
-                        <div class="inner-label">Duration:</div>
-                        <div>
-                          <div class="date">
-                            {{ formatDate(promo.promoStart) }}
-                          </div>
-                          <div>{{ formatDate(promo.promoEnd) }}</div>
-                        </div>
-                      </div>
-
-                      <div class="c20 ban">
-                        <div class="inner-label">Promo Gift:</div>
-                        <div>
-                          <div
-                            v-for="(item, index) in promo.promoGifts"
-                            :key="index"
-                            class="new-price"
-                          >
-                            {{ item }}
-                          </div>
-                        </div>
-                      </div>
-                      <div class="tb-image ban act">
-                        <div class="inner-label">Status:</div>
-                        <div class="custom-btn edge used">
-                          <div>Collected</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="pagination table">
-                      <div class="page-result">
-                        <h3 class="page-result-txt">
-                          Results: {{ resultLength }}, Page {{ currentPage }} of
-                          {{ pages().length }}
-                        </h3>
-                      </div>
-
-                      <ul
-                        v-if="pages().length > 1"
-                        role="list"
-                        class="pagination-list"
-                      >
-                        <li v-if="currentPage > 1" class="page">
-                          <i class="material-symbols-outlined orange"
-                            >arrow_back_ios</i
-                          >
-                        </li>
-                        <li
-                          v-for="(item, int) in pages().length"
-                          :key="int"
-                          class="page"
-                          :class="{ active: int + 1 == currentPage }"
-                        >
-                          <div>{{ int + 1 }}</div>
-                        </li>
-
-                        <li v-if="currentPage < pages().length" class="page">
-                          <i class="material-symbols-outlined orange"
-                            >arrow_forward_ios</i
-                          >
-                        </li>
-                      </ul>
+                      alt=""
+                      class="item-img"
+                    />
+                    <img
+                      v-else
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b79b7b42421ae3cbdb6ff8_ceo.png"
+                      loading="lazy"
+                      sizes="110px"
+                      srcset="
+                        https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b79b7b42421ae3cbdb6ff8_ceo-p-500.png 500w,
+                        https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b79b7b42421ae3cbdb6ff8_ceo-p-800.png 800w,
+                        https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b79b7b42421ae3cbdb6ff8_ceo.png       953w
+                      "
+                      alt=""
+                      class="item-img"
+                    />
+                  </div>
+                  <div class="c20 ban part">
+                    <div class="inner-label">Promo Name:</div>
+                    <div>{{ promo.promoName }}</div>
+                  </div>
+                  <div class="c20 ban part">
+                    <div class="inner-label">Promo Target:</div>
+                    <div class="pro-cart">
+                      <div>N{{ formatNumber(promo.promoTarget) }}</div>
                     </div>
                   </div>
-                  <div class="table-head foot">
-                    <div @click="checkAll" class="check-box all">
+                  <div class="c20 ban">
+                    <div class="inner-label">Duration:</div>
+                    <div>
+                      <div class="date">
+                        {{ formatDate(promo.promoStart) }}
+                      </div>
+                      <div>{{ formatDate(promo.promoEnd) }}</div>
+                    </div>
+                  </div>
+
+                  <div class="c20 ban">
+                    <div class="inner-label">Promo Gift:</div>
+                    <div>
                       <div
-                        class="check"
-                        :class="{ active: isAllChecked }"
-                      ></div>
-                    </div>
-
-                    <div class="actions-foot">
-                      <i
-                        @click="
-                          duplicatePromo(
-                            selectedPromo[selectedPromo.length - 1]
-                          )
-                        "
-                        class="material-symbols-outlined orange action-icons"
-                        >content_copy</i
+                        v-for="(item, index) in promo.promoGifts"
+                        :key="index"
+                        class="new-price"
                       >
-
-                      <i
-                        @click="
-                          editPromo(selectedPromo[selectedPromo.length - 1])
-                        "
-                        class="material-symbols-outlined orange action-icons"
-                        >edit</i
-                      >
-
-                      <i class="material-symbols-outlined orange action-icons"
-                        >delete</i
-                      >
+                        {{ item }}
+                      </div>
                     </div>
                   </div>
-
-                  <div class="table-head ban">
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Promo Name</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="promoName"
-                        placeholder="Enter Promo Name"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="amount-2" class="label">Target</label
-                      ><input
-                        type="number"
-                        class="custom-input w-input"
-                        maxlength="256"
-                        v-model="promoTarget"
-                        placeholder="Enter Promo Target"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <div class="date-range">
-                        <div class="each-date">
-                          <label for="field-6" class="label">From</label
-                          ><input
-                            type="date"
-                            class="date-input w-input"
-                            v-model="promoStart"
-                            placeholder="Example Text"
-                          />
-                        </div>
-                        <div class="each-date">
-                          <label for="field-6" class="label">To</label
-                          ><input
-                            type="date"
-                            class="date-input w-input"
-                            v-model="promoEnd"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="each-input part">
-                      <div
-                        v-for="(item, int) in promoGifts"
-                        :key="int"
-                        class="media-list b"
-                      >
-                        <div>{{ item }}</div>
-                      </div>
-
-                      <label for="name-15" class="label">Gift</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        maxlength="256"
-                        @keydown.enter="addPromoGift"
-                        v-model="promoGift"
-                        placeholder="Enter Promo Gift"
-                      />
-                    </div>
-                    <div class="each-input full">
-                      <label for="field-6" class="label">Promo Details</label>
-                      <client-only placeholder="loading..."
-                        ><ckeditor-nuxt
-                          class="custom-input txt high w-input"
-                          v-model="promoDescription"
-                          :config="editorConfig"
-                        />
-                      </client-only>
-                    </div>
-                    <div class="btn-holder">
-                      <div v-if="onRequest" class="custom-btn edge">
-                        <i class="material-symbols-outlined white spinner"
-                          >motion_photos_on</i
-                        >
-                        <div>Processing</div>
-                      </div>
-                      <label
-                        v-if="!onRequest"
-                        for="image"
-                        class="custom-btn edge"
-                      >
-                        <input
-                          type="file"
-                          class="hidden w-input"
-                          id="image"
-                          accept="image/*"
-                          @change="setPromoBanner"
-                        />
-                        <i class="material-symbols-outlined white"
-                          >file_upload</i
-                        >
-                        <div>Promo Banner</div>
-                      </label>
-
-                      <label
-                        v-if="!onRequest"
-                        @click="processPromo"
-                        class="custom-btn edge color"
-                      >
-                        <div>Save Promo</div>
-                      </label>
+                  <div class="tb-image ban act">
+                    <div class="inner-label">Status:</div>
+                    <div class="custom-btn edge used">
+                      <div>Collected</div>
                     </div>
                   </div>
+                </div>
+
+                <div class="pagination table">
+                  <div class="page-result">
+                    <h3 class="page-result-txt">
+                      Results: {{ resultLength }}, Page {{ currentPage }} of
+                      {{ pages().length }}
+                    </h3>
+                  </div>
+
+                  <ul
+                    v-if="pages().length > 1"
+                    role="list"
+                    class="pagination-list"
+                  >
+                    <li v-if="currentPage > 1" class="page">
+                      <i class="material-symbols-outlined orange"
+                        >arrow_back_ios</i
+                      >
+                    </li>
+                    <li
+                      v-for="(item, int) in pages().length"
+                      :key="int"
+                      class="page"
+                      :class="{ active: int + 1 == currentPage }"
+                    >
+                      <div>{{ int + 1 }}</div>
+                    </li>
+
+                    <li v-if="currentPage < pages().length" class="page">
+                      <i class="material-symbols-outlined orange"
+                        >arrow_forward_ios</i
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="table-head foot">
+                <div @click="checkAll" class="check-box all">
+                  <div class="check" :class="{ active: isAllChecked }"></div>
+                </div>
+
+                <div class="actions-foot">
+                  <i
+                    @click="
+                      duplicatePromo(selectedPromo[selectedPromo.length - 1])
+                    "
+                    class="material-symbols-outlined orange action-icons"
+                    >content_copy</i
+                  >
+
+                  <i
+                    @click="editPromo(selectedPromo[selectedPromo.length - 1])"
+                    class="material-symbols-outlined orange action-icons"
+                    >edit</i
+                  >
+
+                  <i class="material-symbols-outlined orange action-icons"
+                    >delete</i
+                  >
+                </div>
+              </div>
+
+              <div class="table-head ban">
+                <div class="each-input part">
+                  <label for="name-15" class="label">Promo Name</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="promoName"
+                    placeholder="Enter Promo Name"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="amount-2" class="label">Target</label
+                  ><input
+                    type="number"
+                    class="custom-input w-input"
+                    maxlength="256"
+                    v-model="promoTarget"
+                    placeholder="Enter Promo Target"
+                  />
+                </div>
+                <div class="each-input part">
+                  <div class="date-range">
+                    <div class="each-date">
+                      <label for="field-6" class="label">From</label
+                      ><input
+                        type="date"
+                        class="date-input w-input"
+                        v-model="promoStart"
+                        placeholder="Example Text"
+                      />
+                    </div>
+                    <div class="each-date">
+                      <label for="field-6" class="label">To</label
+                      ><input
+                        type="date"
+                        class="date-input w-input"
+                        v-model="promoEnd"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="each-input part">
+                  <div
+                    v-for="(item, int) in promoGifts"
+                    :key="int"
+                    class="media-list b"
+                  >
+                    <div>{{ item }}</div>
+                  </div>
+
+                  <label for="name-15" class="label">Gift</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    maxlength="256"
+                    @keydown.enter="addPromoGift"
+                    v-model="promoGift"
+                    placeholder="Enter Promo Gift"
+                  />
+                </div>
+                <div class="each-input full">
+                  <label for="field-6" class="label">Promo Details</label>
+                  <client-only placeholder="loading..."
+                    ><ckeditor-nuxt
+                      class="custom-input txt high w-input"
+                      v-model="promoDescription"
+                      :config="editorConfig"
+                    />
+                  </client-only>
+                </div>
+                <div class="btn-holder">
+                  <div v-if="onRequest" class="custom-btn edge">
+                    <i class="material-symbols-outlined white spinner"
+                      >motion_photos_on</i
+                    >
+                    <div>Processing</div>
+                  </div>
+                  <label v-if="!onRequest" for="image" class="custom-btn edge">
+                    <input
+                      type="file"
+                      class="hidden w-input"
+                      id="image"
+                      accept="image/*"
+                      @change="setPromoBanner"
+                    />
+                    <i class="material-symbols-outlined white">file_upload</i>
+                    <div>Promo Banner</div>
+                  </label>
+
+                  <label
+                    v-if="!onRequest"
+                    @click="processPromo"
+                    class="custom-btn edge color"
+                  >
+                    <div>Save Promo</div>
+                  </label>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <footer-component />
       </div>
     </div>
-    <mobile-bottom-nav />
+    <footer-component />
   </div>
 </template>
 

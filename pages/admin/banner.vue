@@ -1,237 +1,224 @@
 <template>
-  <div class="grace banner">
+  <div class="">
     <alert-box />
     <alert-confirmation />
-    <div class="main-body">
-      <vertical-nav />
-      <div class="main-flex">
-        <company-ads />
-        <horizontal-nav />
-        <div class="custom-container">
-          <div class="body-flex">
-            <div class="content-body">
-              <div class="w-form">
-                <div class="transaction-table">
-                  <div class="table-head admin pro">
-                    <div class="sort-range ban">
-                      <div class="sort-wrapper">
-                        <div>Name</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
-                      <div class="sort-wrapper">
-                        <div>Amount</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
+    <div class="custom-container">
+      <div class="body-flex">
+        <div class="content-body">
+          <div class="w-form">
+            <div class="transaction-table">
+              <div class="table-head admin pro">
+                <div class="sort-range ban">
+                  <div class="sort-wrapper">
+                    <div>Name</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
+                  </div>
+                  <div class="sort-wrapper">
+                    <div>Amount</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="table">
+                <div class="table-head-row">
+                  <div class="tb-sn"><div>S/N</div></div>
+                  <div class="tb-image ban"><div>Image</div></div>
+                  <div class="c30 ban"><div>Page</div></div>
+                  <div class="c20 ban"><div>Intro</div></div>
+                  <div class="c20 ban"><div>Title</div></div>
+                  <div class="c20 ban"><div>Subtitle</div></div>
+                </div>
+
+                <div
+                  v-for="(banner, int) in banners"
+                  :key="int"
+                  class="table-head-row body"
+                >
+                  <div class="tb-sn ban">
+                    <div class="inner-label">S/N:</div>
+                    <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
+                    <div @click="toggleBanner(int)" class="check-box">
+                      <div
+                        class="check"
+                        :class="{ active: banner.checked }"
+                      ></div>
                     </div>
                   </div>
-                  <div class="table">
-                    <div class="table-head-row">
-                      <div class="tb-sn"><div>S/N</div></div>
-                      <div class="tb-image ban"><div>Image</div></div>
-                      <div class="c30 ban"><div>Page</div></div>
-                      <div class="c20 ban"><div>Intro</div></div>
-                      <div class="c20 ban"><div>Title</div></div>
-                      <div class="c20 ban"><div>Subtitle</div></div>
-                    </div>
-
-                    <div
-                      v-for="(banner, int) in banners"
-                      :key="int"
-                      class="table-head-row body"
-                    >
-                      <div class="tb-sn ban">
-                        <div class="inner-label">S/N:</div>
-                        <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
-                        <div @click="toggleBanner(int)" class="check-box">
-                          <div
-                            class="check"
-                            :class="{ active: banner.checked }"
-                          ></div>
-                        </div>
-                      </div>
-                      <div class="tb-image ban">
-                        <div class="inner-label">Image:</div>
-                        <img
-                          :src="banner.bannerImageUrl"
-                          loading="lazy"
-                          sizes="110px"
-                          :srcset="`
+                  <div class="tb-image ban">
+                    <div class="inner-label">Image:</div>
+                    <img
+                      :src="banner.bannerImageUrl"
+                      loading="lazy"
+                      sizes="110px"
+                      :srcset="`
                             ${banner.bannerImageUrl} 500w,
                             ${banner.bannerImageUrl} 800w,
                             ${banner.bannerImageUrl}       953w
                           `"
-                          alt=""
-                          class="item-img"
-                        />
-                      </div>
-                      <div class="c30 ban">
-                        <div class="inner-label">Page:</div>
-                        <div>{{ banner.bannerPage }}</div>
-                      </div>
-                      <div class="c20 ban">
-                        <div class="inner-label">Intro:</div>
-                        <div>{{ banner.bannerIntro }}</div>
-                      </div>
-                      <div class="c20 ban">
-                        <div class="inner-label">Title:</div>
-                        <div>{{ banner.bannerTitle }}</div>
-                      </div>
-                      <div class="c20 ban">
-                        <div class="inner-label">Subtitle:</div>
-                        <div>{{ banner.bannerSubtitle }}</div>
-                      </div>
-                    </div>
-
-                    <div class="pagination table">
-                      <div class="page-result">
-                        <h3 class="page-result-txt">
-                          Results: {{ resultLength }}, Page {{ currentPage }} of
-                          {{ pages().length }}
-                        </h3>
-                      </div>
-                      <ul role="list" class="pagination-list">
-                        <li
-                          class="page"
-                          v-if="currentPage > 1"
-                          @click="paginate(currentPage - 1)"
-                        >
-                          <i class="material-symbols-outlined orange"
-                            >arrow_back_ios</i
-                          >
-                        </li>
-                        <li
-                          v-for="(page, int) in pages().length"
-                          :key="int"
-                          class="page"
-                          @click="paginate(int + 1)"
-                          :class="{ active: int + 1 == currentPage }"
-                        >
-                          <div>{{ int + 1 }}</div>
-                        </li>
-
-                        <li
-                          class="page"
-                          v-if="currentPage != pages().length"
-                          @click="paginate(currentPage + 1)"
-                        >
-                          <i class="material-symbols-outlined orange"
-                            >arrow_forward_ios</i
-                          >
-                        </li>
-                      </ul>
-                    </div>
+                      alt=""
+                      class="item-img"
+                    />
                   </div>
-
-                  <div class="table-head foot">
-                    <div @click="checkAllBanner" class="check-box all">
-                      <div
-                        class="check"
-                        :class="{ active: isAllChecked }"
-                      ></div>
-                    </div>
-                    <div class="actions-foot">
-                      <i
-                        @click="duplicateBanner"
-                        class="material-symbols-outlined orange action-icons"
-                        >content_copy</i
-                      >
-
-                      <i
-                        @click="prepareBannerEdit"
-                        class="material-symbols-outlined orange action-icons"
-                        >edit</i
-                      >
-
-                      <i class="material-symbols-outlined orange action-icons"
-                        >delete</i
-                      >
-                    </div>
+                  <div class="c30 ban">
+                    <div class="inner-label">Page:</div>
+                    <div>{{ banner.bannerPage }}</div>
                   </div>
-
-                  <div class="table-head ban">
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Title</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="bannerTitle"
-                        placeholder="Enter Banner Title"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Subtitle</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="bannerSubtitle"
-                        placeholder="Enter Banner Subtitle"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Intro</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="bannerIntro"
-                        placeholder="Enter Banner Intro"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Page</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="bannerPage"
-                        placeholder="Enter Banner Page"
-                      />
-                    </div>
-                    <div class="btn-holder">
-                      <div v-if="onRequest" class="custom-btn edge color">
-                        <i class="material-symbols-outlined white spinner"
-                          >motion_photos_on</i
-                        >
-                        <div>Processing</div>
-                      </div>
-                      <label for="banner" v-else class="custom-btn edge">
-                        <i class="material-symbols-outlined white"
-                          >upload_file</i
-                        >
-                        <div>Select Banner</div>
-                        <input
-                          @change="setBanner"
-                          type="file"
-                          class="hidden"
-                          id="banner"
-                        />
-                      </label>
-                      <label
-                        v-if="!onRequest"
-                        @click="processBanner"
-                        class="custom-btn edge"
-                      >
-                        <div>Submit</div>
-                      </label>
-                    </div>
+                  <div class="c20 ban">
+                    <div class="inner-label">Intro:</div>
+                    <div>{{ banner.bannerIntro }}</div>
                   </div>
+                  <div class="c20 ban">
+                    <div class="inner-label">Title:</div>
+                    <div>{{ banner.bannerTitle }}</div>
+                  </div>
+                  <div class="c20 ban">
+                    <div class="inner-label">Subtitle:</div>
+                    <div>{{ banner.bannerSubtitle }}</div>
+                  </div>
+                </div>
+
+                <div class="pagination table">
+                  <div class="page-result">
+                    <h3 class="page-result-txt">
+                      Results: {{ resultLength }}, Page {{ currentPage }} of
+                      {{ pages().length }}
+                    </h3>
+                  </div>
+                  <ul role="list" class="pagination-list">
+                    <li
+                      class="page"
+                      v-if="currentPage > 1"
+                      @click="paginate(currentPage - 1)"
+                    >
+                      <i class="material-symbols-outlined orange"
+                        >arrow_back_ios</i
+                      >
+                    </li>
+                    <li
+                      v-for="(page, int) in pages().length"
+                      :key="int"
+                      class="page"
+                      @click="paginate(int + 1)"
+                      :class="{ active: int + 1 == currentPage }"
+                    >
+                      <div>{{ int + 1 }}</div>
+                    </li>
+
+                    <li
+                      class="page"
+                      v-if="currentPage != pages().length"
+                      @click="paginate(currentPage + 1)"
+                    >
+                      <i class="material-symbols-outlined orange"
+                        >arrow_forward_ios</i
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="table-head foot">
+                <div @click="checkAllBanner" class="check-box all">
+                  <div class="check" :class="{ active: isAllChecked }"></div>
+                </div>
+                <div class="actions-foot">
+                  <i
+                    @click="duplicateBanner"
+                    class="material-symbols-outlined orange action-icons"
+                    >content_copy</i
+                  >
+
+                  <i
+                    @click="prepareBannerEdit"
+                    class="material-symbols-outlined orange action-icons"
+                    >edit</i
+                  >
+
+                  <i class="material-symbols-outlined orange action-icons"
+                    >delete</i
+                  >
+                </div>
+              </div>
+
+              <div class="table-head ban">
+                <div class="each-input part">
+                  <label for="name-15" class="label">Title</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="bannerTitle"
+                    placeholder="Enter Banner Title"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-15" class="label">Subtitle</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="bannerSubtitle"
+                    placeholder="Enter Banner Subtitle"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-15" class="label">Intro</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="bannerIntro"
+                    placeholder="Enter Banner Intro"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-15" class="label">Page</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="bannerPage"
+                    placeholder="Enter Banner Page"
+                  />
+                </div>
+                <div class="btn-holder">
+                  <div v-if="onRequest" class="custom-btn edge color">
+                    <i class="material-symbols-outlined white spinner"
+                      >motion_photos_on</i
+                    >
+                    <div>Processing</div>
+                  </div>
+                  <label for="banner" v-else class="custom-btn edge">
+                    <i class="material-symbols-outlined white">upload_file</i>
+                    <div>Select Banner</div>
+                    <input
+                      @change="setBanner"
+                      type="file"
+                      class="hidden"
+                      id="banner"
+                    />
+                  </label>
+                  <label
+                    v-if="!onRequest"
+                    @click="processBanner"
+                    class="custom-btn edge"
+                  >
+                    <div>Submit</div>
+                  </label>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <footer-component />
       </div>
     </div>
-    <mobile-bottom-nav />
+    <footer-component />
   </div>
 </template>
 

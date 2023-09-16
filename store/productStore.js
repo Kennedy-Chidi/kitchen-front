@@ -155,16 +155,17 @@ export const mutations = {
     if (existingItem) {
       existingItem.quantity++;
       existingItem.cartNumber++;
-      for (let i = 0; i < state.productArray.length; i++) {
-        const el = state.productArray[i];
-        if (el.productName == existingItem.productName) {
-          el.quantity = existingItem.quantity;
-        }
-      }
     } else {
       data.quantity = 1;
       state.cartProducts.push(data);
       state.productArray[index] = data;
+    }
+
+    for (let i = 0; i < state.productArray.length; i++) {
+      const el = state.productArray[i];
+      if (el.productName == data.productName) {
+        el.quantity = data.quantity;
+      }
     }
 
     state.purchaseProperties.totalQuantity++;
@@ -187,16 +188,22 @@ export const mutations = {
 
     for (let i = 0; i < state.cartProducts.length; i++) {
       if (state.cartProducts[i].productName == data.productName) {
-        if (state.cartProducts[i].quantity > 1) {
+        if (state.cartProducts[i].quantity > 0) {
           state.cartProducts[i].quantity--;
-          state.productArray[index] = state.cartProducts[i];
+          for (let x = 0; x < state.productArray.length; x++) {
+            const element = state.productArray[x];
+
+            if (element.productName == data.productName) {
+              element.quantity = data.quantity;
+            }
+          }
+          state.purchaseProperties.totalQuantity--;
+          state.purchaseProperties.totalAmount -= data.productSellingPrice;
         } else {
           state.cartProducts[i].quantity = 0;
           state.productArray[index] = state.cartProducts[i];
           state.cartProducts.splice(i, 1);
         }
-        state.purchaseProperties.totalQuantity--;
-        state.purchaseProperties.totalAmount -= data.productSellingPrice;
 
         const list = state.purchaseProperties.categories;
 

@@ -166,19 +166,19 @@ export default {
 
   computed: {
     cartProducts() {
-      return this.user.status == "Staff"
+      return this.user != null && this.user.status == "Staff"
         ? this.$store.state.settingsStore.cartProducts
         : this.$store.state.productStore.cartProducts;
     },
 
     showCart() {
-      return this.user.status == "Staff"
+      return this.user != null && this.user.status == "Staff"
         ? this.$store.state.settingsStore.isShowingCart
         : this.$store.state.productStore.isShowingCart;
     },
 
     cartProperties() {
-      return this.user.status == "Staff"
+      return this.user != null && this.user.status == "Staff"
         ? this.$store.state.settingsStore.purchaseProperties
         : this.$store.state.productStore.purchaseProperties;
     },

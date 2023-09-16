@@ -1,5 +1,6 @@
 <template>
   <div class="grace landing">
+    <cart-items />
     <div class="main-body">
       <vertical-nav v-if="user" />
       <div class="main-flex">
@@ -24,6 +25,7 @@
   </div>
 </template>
 <script>
+import CartItems from "../components/CartItems.vue";
 import EachProduct from "../components/EachProduct.vue";
 import HomeFooter from "../components/HomeFooter";
 import HorizontalNav from "../components/HorizontalNav.vue";
@@ -41,6 +43,7 @@ export default {
     MobileBottomNav,
     VerticalNav,
     HorizontalNav,
+    CartItems,
   },
 };
 </script>

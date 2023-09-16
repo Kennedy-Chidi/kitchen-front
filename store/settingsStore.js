@@ -39,6 +39,11 @@ export const state = () => ({
   selectedReviews: [],
   isReviewsChecked: false,
 
+  faqLength: 0,
+  faq: [],
+  selectedFAQ: [],
+  isFAQChecked: false,
+
   transactionLength: 0,
   transactions: [],
 
@@ -868,6 +873,59 @@ export const mutations = {
       }
     }
   },
+
+  CHECK_ALL_FAQ(state) {
+    const newArray = [];
+    state.isFAQChecked = !state.isFAQChecked;
+    if (state.isFAQChecked) {
+      state.faq.forEach((el) => {
+        el.checked = true;
+        newArray.push(el);
+      });
+      state.selectedFAQ = state.faq;
+    } else {
+      state.faq.forEach((el) => {
+        el.checked = false;
+        newArray.push(el);
+      });
+      state.selectedFAQ = [];
+    }
+
+    state.faq = newArray;
+  },
+
+  TOGGLE_FAQ(state, int) {
+    state.faq[int].checked = !state.faq[int].checked;
+
+    const faqItem = state.faq[int];
+    const exists = state.selectedFAQ.some((obj) => obj._id === faqItem._id);
+    if (!exists) {
+      state.selectedFAQ.push(faqItem);
+      if (state.selectedFAQ.length == state.faq.length) {
+        state.isFAQChecked = true;
+      }
+    } else {
+      state.selectedFAQ = state.selectedFAQ.filter(
+        (obj) => obj._id !== faqItem._id
+      );
+      if (state.selectedFAQ.length == 0) {
+        state.isFAQChecked = false;
+        state.selectedFAQ = [];
+      }
+    }
+  },
+
+  SET_FAQ(state, faq) {
+    state.faqLength = faq.length;
+    const items = [];
+    for (let x = 0; x < faq.results.length; x++) {
+      faq.results[x].checked = false;
+      items.push(faq.results[x]);
+    }
+    state.faq = items;
+    state.selectedFAQ = [];
+    state.isFAQChecked = false;
+  },
 };
 
 export const actions = {
@@ -1217,6 +1275,29 @@ export const actions = {
     }
   },
 
+  async CREATE_FAQ({ commit }, payload) {
+    const { query, form } = payload;
+
+    try {
+      const result = await this.$axios.post(`/faq/${query}`, form);
+      commit("SET_FAQ", result.data.data);
+      return result;
+    } catch (err) {
+      return err;
+    }
+  },
+
+  async UPDATE_FAQ({ commit }, payload) {
+    const { id, query, form } = payload;
+    try {
+      const result = await this.$axios.patch(`/faq/${id}/${query}`, form);
+      commit("SET_FAQ", result.data.data);
+      return result;
+    } catch (err) {
+      return err;
+    }
+  },
+
   async nuxtServerInit({ commit }) {
     const user = this.$auth.user;
     let username = "";
@@ -1243,6 +1324,7 @@ export const actions = {
       commit("SET_BANNERS", response.data.banners);
       commit("SET_BLOGS", response.data.blogs);
       commit("SET_REVIEWS", response.data.reviews);
+      commit("SET_FAQ", response.data.faq);
       // commit("SET_PROMOTIONS", response.data.promotions);
       // commit("SET_SALES", response.data.sales);
     } catch (err) {

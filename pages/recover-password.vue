@@ -185,8 +185,8 @@ export default {
   },
 
   computed: {
-    isAuthenticated() {
-      return this.$store.getters.isAuthenticated; // it check if user isAuthenticated
+    user() {
+      return this.$store.state.auth.user;
     },
   },
 };

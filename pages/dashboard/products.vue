@@ -1,7 +1,6 @@
 <template>
   <div class="grace products">
     <alert-box />
-    <cart-items />
     <alert-confirmation />
     <product-display />
 
@@ -24,71 +23,6 @@
               :product="product"
               :key="int"
             />
-
-            <div class="filter-div prod">
-              <div class="close">X</div>
-              <div class="each-filter">
-                <div class="filter-title">Categories</div>
-                <div class="category-filter-flex">
-                  <div class="each-category-text">All</div>
-                  <div class="each-category-text">Noodles</div>
-                  <div class="each-category-text">Fish</div>
-                  <div class="each-category-text">Rice</div>
-                  <div class="each-category-text active">Breakfast</div>
-                </div>
-              </div>
-              <div class="each-filter">
-                <div class="filter-title">Sort Product</div>
-                <div class="category-filter-flex">
-                  <div class="each-sort pro"><div>Reset</div></div>
-                  <div class="each-sort pro">
-                    <div>Name</div>
-                    <img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                      loading="lazy"
-                      width="20"
-                      alt=""
-                      class="sort-icon"
-                    />
-                  </div>
-                  <div class="each-sort pro">
-                    <div>Price</div>
-                    <img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                      loading="lazy"
-                      width="20"
-                      alt=""
-                      class="sort-icon"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="each-filter">
-                <div class="filter-title">Price Range</div>
-                <div class="category-filter-flex range">
-                  <div class="each-sort">
-                    <div>Reset</div>
-                    <img
-                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                      loading="lazy"
-                      width="20"
-                      alt=""
-                      class="sort-icon"
-                    />
-                  </div>
-                  <div class="range-holder">
-                    <div class="each-range">
-                      <div class="range-price">N20,000</div>
-                      <div>Min</div>
-                    </div>
-                    <div class="each-range">
-                      <div class="range-price">N20,000</div>
-                      <div>Max</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
           <div class="pagination">
@@ -96,25 +30,23 @@
               Results: {{ productProperties.resultLength }}, Page
               {{ currentPage }} of {{ pages().length }}
             </div>
-            <ul role="list" class="pagination-list">
-              <li class="page">
-                <img
-                  src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b72debe03037906a74116a_thin-chevron-arrow-left-icon%201.svg"
-                  loading="lazy"
-                  alt=""
-                  class="page-icon"
-                />
+            <ul v-if="pages().length > 1" role="list" class="pagination-list">
+              <li v-if="currentPage > 1" class="page">
+                <i class="material-symbols-outlined orange">arrow_back_ios</i>
               </li>
-              <li class="page"><div>1</div></li>
-              <li class="page active"><div>2</div></li>
-              <li class="page"><div>3</div></li>
-              <li class="page">
-                <img
-                  src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b72deb58cf5ff7bacff87c_thin-chevron-arrow-left-icon%202.svg"
-                  loading="lazy"
-                  alt=""
-                  class="page-icon"
-                />
+              <li
+                v-for="(item, int) in pages().length"
+                :key="int"
+                class="page"
+                :class="{ active: int + 1 == currentPage }"
+              >
+                <div>{{ int + 1 }}</div>
+              </li>
+
+              <li v-if="currentPage < pages().length" class="page">
+                <i class="material-symbols-outlined orange"
+                  >arrow_forward_ios</i
+                >
               </li>
             </ul>
           </div>

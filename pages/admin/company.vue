@@ -1,414 +1,398 @@
 <template>
-  <div class="grace company">
+  <div class="">
     <alert-box />
     <alert-confirmation />
-    <div class="main-body">
-      <vertical-nav />
-      <div class="main-flex">
-        <company-ads />
-        <horizontal-nav />
-        <div class="custom-container">
-          <div class="body-flex">
-            <div class="content-body">
-              <div class="w-form">
-                <div class="transaction-table">
-                  <div class="table-head admin pro">
-                    <div class="sort-range ban">
-                      <div class="sort-wrapper">
-                        <div>Name</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
-                      <div class="sort-wrapper">
-                        <div>Amount</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
-                    </div>
-                    <div class="newsletter-wrap pro">
-                      <input
-                        type="text"
-                        class="newsletter-input search w-input"
-                        maxlength="256"
-                        name="name-16"
-                        data-name="Name 16"
-                        placeholder="Search Product"
-                        id="name-16"
-                      /><img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b75aa41127b73bc77763cb_search-line-icon%201.svg"
-                        loading="lazy"
-                        alt=""
-                        class="newsletter-img"
-                      />
-                    </div>
+    <div class="custom-container">
+      <div class="body-flex">
+        <div class="content-body">
+          <div class="w-form">
+            <div class="transaction-table">
+              <div class="table-head admin pro">
+                <div class="sort-range ban">
+                  <div class="sort-wrapper">
+                    <div>Name</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
                   </div>
-
-                  <div class="table">
-                    <div class="table-head-row">
-                      <div class="tb-sn"><div>S/N</div></div>
-                      <div class="tb-image ban"><div>Account</div></div>
-                      <div class="c20 ban"><div>Country</div></div>
-                      <div class="c20 ban"><div>State</div></div>
-                      <div class="c20 ban"><div>System Email</div></div>
-                      <div class="c20 ban"><div>Referral</div></div>
-                      <div class="tb-image ban"><div>Phone Number</div></div>
-                    </div>
-                    <div
-                      v-for="(company, int) in companyArray"
-                      :key="company._id"
-                      class="table-head-row body"
-                    >
-                      <div class="tb-sn ban">
-                        <div class="inner-label">S/N:</div>
-                        <div>{{ int + 1 }}</div>
-                        <div @click="toggleCompanyCheck(int)" class="check-box">
-                          <div
-                            class="check"
-                            :class="{ active: company.checked }"
-                          ></div>
-                        </div>
-                      </div>
-                      <div class="tb-image ban">
-                        <div class="inner-label">Account:</div>
-                        <div>
-                          <div>{{ company.bankName }}</div>
-                          <div>{{ company.bankAccountNumber }}</div>
-                        </div>
-                      </div>
-                      <div class="c20 ban part">
-                        <div class="inner-label">Country:</div>
-                        <div>{{ company.country }}</div>
-                      </div>
-                      <div class="c20 ban part">
-                        <div class="inner-label">State:</div>
-                        <div>{{ company.state }}</div>
-                      </div>
-                      <div class="c20 ban">
-                        <div class="inner-label">Email:</div>
-                        <div>{{ company.systemEmail }}</div>
-                      </div>
-                      <div class="c20 ban">
-                        <div class="inner-label">Referral:</div>
-                        <div class="pro-cart">
-                          <div>{{ company.referralPercentage }}</div>
-                        </div>
-                      </div>
-                      <div v-if="company.contact[2]" class="tb-image ban act">
-                        <div class="inner-label">Phone:</div>
-                        <div>{{ company.contact[2].text }}</div>
-                      </div>
-                    </div>
-
-                    <div class="pagination table">
-                      <div class="page-result">
-                        <h3 class="page-result-txt">
-                          Results: 20, Page 1 of 5
-                        </h3>
-                      </div>
-                      <ul role="list" class="pagination-list">
-                        <li class="page">
-                          <img
-                            src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b72debe03037906a74116a_thin-chevron-arrow-left-icon%201.svg"
-                            loading="lazy"
-                            alt=""
-                            class="page-icon"
-                          />
-                        </li>
-                        <li class="page"><div>1</div></li>
-                        <li class="page active"><div>2</div></li>
-                        <li class="page"><div>3</div></li>
-                        <li class="page">
-                          <img
-                            src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b72deb58cf5ff7bacff87c_thin-chevron-arrow-left-icon%202.svg"
-                            loading="lazy"
-                            alt=""
-                            class="page-icon"
-                          />
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div class="table-head foot">
-                    <div @click="selectAll" class="check-box all">
-                      <div
-                        class="check"
-                        :class="{ active: isAllChecked }"
-                      ></div>
-                    </div>
-                    <div class="actions-foot">
-                      <i
-                        @click="duplicateCompany()"
-                        class="material-symbols-outlined orange action-icons"
-                        >content_copy</i
-                      >
-                      <i
-                        @click="prepareEditCompany()"
-                        class="material-symbols-outlined orange action-icons"
-                        >edit</i
-                      >
-                      <i class="material-symbols-outlined orange action-icons"
-                        >delete</i
-                      >
-                    </div>
-                  </div>
-
-                  <div class="table-head ban">
-                    <div class="each-input part">
-                      <label for="name-18" class="label">Company Name</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="companyName"
-                        placeholder="Enter Company Name"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-18" class="label">Company Domain</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="companyDomain"
-                        placeholder="Enter Company Domain"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-18" class="label">System Email</label>
-                      <input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="systemEmail"
-                        placeholder="Enter Company Email"
-                      />
-                    </div>
-                    <div class="each-input half pad">
-                      <label for="name-18" class="label">Select Country</label>
-                      <div class="table-filter part">
-                        <div
-                          class="tb-filter-head"
-                          @click="showCountryList = !showCountryList"
-                        >
-                          <div>{{ countryDefault }}</div>
-                          <i class="material-symbols-outlined orange right"
-                            >expand_more</i
-                          >
-                        </div>
-                        <ul
-                          role="list"
-                          class="tb-filter-list"
-                          :class="{ active: showCountryList }"
-                        >
-                          <li
-                            @click="selectCountry(country)"
-                            v-for="country in countries"
-                            :key="country._id"
-                            class="tb-list"
-                          >
-                            <div>{{ country.name }}</div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="each-input half pad">
-                      <label for="name-18" class="label">Select State</label>
-                      <div class="table-filter part">
-                        <div
-                          class="tb-filter-head"
-                          @click="showStateList = !showStateList"
-                        >
-                          <div>{{ stateDefault }}</div>
-                          <i class="material-symbols-outlined orange right"
-                            >expand_more</i
-                          >
-                        </div>
-                        <ul
-                          role="list"
-                          class="tb-filter-list"
-                          :class="{ active: showStateList }"
-                        >
-                          <li
-                            @click="selectState(state)"
-                            v-for="state in states"
-                            :key="state._id"
-                            class="tb-list"
-                          >
-                            <div>{{ state.name }}</div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-18" class="label">Bank Name</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        placeholder="Enter Bank Account Name"
-                        v-model="bankName"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-18" class="label">Account Name</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="bankAccountName"
-                        placeholder="Enter Bank Account Name"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-18" class="label">Account No.</label
-                      ><input
-                        type="number"
-                        class="custom-input w-input"
-                        v-model="bankAccountNumber"
-                        placeholder="Enter First Name"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-18" class="label">Receipt No.</label
-                      ><input
-                        type="number"
-                        class="custom-input w-input"
-                        v-model="invoiceNumber"
-                        placeholder="Enter Invoice Number"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-18" class="label"
-                        >Referral Percentage</label
-                      ><input
-                        type="number"
-                        class="custom-input w-input"
-                        v-model="referralPercentage"
-                        placeholder="Enter Referral Percentage"
-                      />
-                    </div>
-
-                    <div class="each-input part">
-                      <label for="name-18" class="label"
-                        >Social Media Links</label
-                      >
-
-                      <div class="flex-span">
-                        <span
-                          v-for="(item, int) in media"
-                          :key="int"
-                          class="media-list b"
-                        >
-                          <div>{{ item }}</div>
-                        </span>
-                      </div>
-                      <div class="color-flex">
-                        <input
-                          type="text"
-                          class="custom-input w-input"
-                          v-model="mediaInput"
-                          placeholder="Enter Social Media Links"
-                          @keypress.enter="addMedia"
-                        />
-                      </div>
-                    </div>
-
-                    <div class="each-input part">
-                      <label for="name-18" class="label">Contact Info</label>
-                      <div class="flex-span">
-                        <span
-                          v-for="(item, int) in contact"
-                          :key="int"
-                          class="media-list b"
-                          @click="selectContact(int)"
-                        >
-                          <div>{{ item }}</div>
-                        </span>
-                      </div>
-
-                      <div class="color-flex">
-                        <input
-                          type="text"
-                          class="custom-input w-input"
-                          v-model="contactInput"
-                          placeholder="Enter Social Contact"
-                          @keypress.enter="addContact"
-                        />
-                      </div>
-                    </div>
-
-                    <div class="each-input full">
-                      <div
-                        v-for="(announcement, int) in announcements"
-                        :key="int"
-                        class="media-list b"
-                      >
-                        <div>{{ announcement }}</div>
-                        <img
-                          src="/images/edit-icon.svg"
-                          loading="lazy"
-                          alt=""
-                          class="media-icon"
-                        /><img
-                          src="/images/delete-icon.svg"
-                          loading="lazy"
-                          alt=""
-                          class="media-icon h"
-                        />
-                      </div>
-                      <textarea
-                        placeholder="Example Text"
-                        maxlength="5000"
-                        v-model="announcement"
-                        class="custom-input txt high w-input"
-                      ></textarea>
-                    </div>
-                    <div class="btn-holder">
-                      <div v-if="onRequest" class="custom-btn edge">
-                        <i class="material-symbols-outlined spinner white"
-                          >expand_more</i
-                        >
-                        <div>Processing</div>
-                      </div>
-
-                      <div
-                        v-if="!onRequest"
-                        class="custom-btn edge color"
-                        @click="addAnnouncement"
-                      >
-                        <div>Add Announcement</div>
-                      </div>
-
-                      <div
-                        v-if="!onRequest"
-                        class="custom-btn edge color"
-                        @click="processData"
-                      >
-                        <div>Save Changes</div>
-                      </div>
-                    </div>
-
-                    <label
-                      v-if="showResponse"
-                      for="field-6"
-                      class="response"
-                      :class="{ error: isError }"
-                      >{{ response }}</label
-                    >
+                  <div class="sort-wrapper">
+                    <div>Amount</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
                   </div>
                 </div>
+                <div class="newsletter-wrap pro">
+                  <input
+                    type="text"
+                    class="newsletter-input search w-input"
+                    maxlength="256"
+                    name="name-16"
+                    data-name="Name 16"
+                    placeholder="Search Product"
+                    id="name-16"
+                  /><img
+                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b75aa41127b73bc77763cb_search-line-icon%201.svg"
+                    loading="lazy"
+                    alt=""
+                    class="newsletter-img"
+                  />
+                </div>
+              </div>
+
+              <div class="table">
+                <div class="table-head-row">
+                  <div class="tb-sn"><div>S/N</div></div>
+                  <div class="tb-image ban"><div>Account</div></div>
+                  <div class="c20 ban"><div>Country</div></div>
+                  <div class="c20 ban"><div>State</div></div>
+                  <div class="c20 ban"><div>System Email</div></div>
+                  <div class="c20 ban"><div>Referral</div></div>
+                  <div class="tb-image ban"><div>Phone Number</div></div>
+                </div>
+                <div
+                  v-for="(company, int) in companyArray"
+                  :key="company._id"
+                  class="table-head-row body"
+                >
+                  <div class="tb-sn ban">
+                    <div class="inner-label">S/N:</div>
+                    <div>{{ int + 1 }}</div>
+                    <div @click="toggleCompanyCheck(int)" class="check-box">
+                      <div
+                        class="check"
+                        :class="{ active: company.checked }"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="tb-image ban">
+                    <div class="inner-label">Account:</div>
+                    <div>
+                      <div>{{ company.bankName }}</div>
+                      <div>{{ company.bankAccountNumber }}</div>
+                    </div>
+                  </div>
+                  <div class="c20 ban part">
+                    <div class="inner-label">Country:</div>
+                    <div>{{ company.country }}</div>
+                  </div>
+                  <div class="c20 ban part">
+                    <div class="inner-label">State:</div>
+                    <div>{{ company.state }}</div>
+                  </div>
+                  <div class="c20 ban">
+                    <div class="inner-label">Email:</div>
+                    <div>{{ company.systemEmail }}</div>
+                  </div>
+                  <div class="c20 ban">
+                    <div class="inner-label">Referral:</div>
+                    <div class="pro-cart">
+                      <div>{{ company.referralPercentage }}</div>
+                    </div>
+                  </div>
+                  <div v-if="company.contact[2]" class="tb-image ban act">
+                    <div class="inner-label">Phone:</div>
+                    <div>{{ company.contact[2].text }}</div>
+                  </div>
+                </div>
+
+                <div class="pagination table">
+                  <div class="page-result">
+                    <h3 class="page-result-txt">Results: 20, Page 1 of 5</h3>
+                  </div>
+                  <ul role="list" class="pagination-list">
+                    <li class="page">
+                      <img
+                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b72debe03037906a74116a_thin-chevron-arrow-left-icon%201.svg"
+                        loading="lazy"
+                        alt=""
+                        class="page-icon"
+                      />
+                    </li>
+                    <li class="page"><div>1</div></li>
+                    <li class="page active"><div>2</div></li>
+                    <li class="page"><div>3</div></li>
+                    <li class="page">
+                      <img
+                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b72deb58cf5ff7bacff87c_thin-chevron-arrow-left-icon%202.svg"
+                        loading="lazy"
+                        alt=""
+                        class="page-icon"
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="table-head foot">
+                <div @click="selectAll" class="check-box all">
+                  <div class="check" :class="{ active: isAllChecked }"></div>
+                </div>
+                <div class="actions-foot">
+                  <i
+                    @click="duplicateCompany()"
+                    class="material-symbols-outlined orange action-icons"
+                    >content_copy</i
+                  >
+                  <i
+                    @click="prepareEditCompany()"
+                    class="material-symbols-outlined orange action-icons"
+                    >edit</i
+                  >
+                  <i class="material-symbols-outlined orange action-icons"
+                    >delete</i
+                  >
+                </div>
+              </div>
+
+              <div class="table-head ban">
+                <div class="each-input part">
+                  <label for="name-18" class="label">Company Name</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="companyName"
+                    placeholder="Enter Company Name"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-18" class="label">Company Domain</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="companyDomain"
+                    placeholder="Enter Company Domain"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-18" class="label">System Email</label>
+                  <input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="systemEmail"
+                    placeholder="Enter Company Email"
+                  />
+                </div>
+                <div class="each-input half pad">
+                  <label for="name-18" class="label">Select Country</label>
+                  <div class="table-filter part">
+                    <div
+                      class="tb-filter-head"
+                      @click="showCountryList = !showCountryList"
+                    >
+                      <div>{{ countryDefault }}</div>
+                      <i class="material-symbols-outlined orange right"
+                        >expand_more</i
+                      >
+                    </div>
+                    <ul
+                      role="list"
+                      class="tb-filter-list"
+                      :class="{ active: showCountryList }"
+                    >
+                      <li
+                        @click="selectCountry(country)"
+                        v-for="country in countries"
+                        :key="country._id"
+                        class="tb-list"
+                      >
+                        <div>{{ country.name }}</div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="each-input half pad">
+                  <label for="name-18" class="label">Select State</label>
+                  <div class="table-filter part">
+                    <div
+                      class="tb-filter-head"
+                      @click="showStateList = !showStateList"
+                    >
+                      <div>{{ stateDefault }}</div>
+                      <i class="material-symbols-outlined orange right"
+                        >expand_more</i
+                      >
+                    </div>
+                    <ul
+                      role="list"
+                      class="tb-filter-list"
+                      :class="{ active: showStateList }"
+                    >
+                      <li
+                        @click="selectState(state)"
+                        v-for="state in states"
+                        :key="state._id"
+                        class="tb-list"
+                      >
+                        <div>{{ state.name }}</div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="each-input part">
+                  <label for="name-18" class="label">Bank Name</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    placeholder="Enter Bank Account Name"
+                    v-model="bankName"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-18" class="label">Account Name</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="bankAccountName"
+                    placeholder="Enter Bank Account Name"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-18" class="label">Account No.</label
+                  ><input
+                    type="number"
+                    class="custom-input w-input"
+                    v-model="bankAccountNumber"
+                    placeholder="Enter First Name"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-18" class="label">Receipt No.</label
+                  ><input
+                    type="number"
+                    class="custom-input w-input"
+                    v-model="invoiceNumber"
+                    placeholder="Enter Invoice Number"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-18" class="label">Referral Percentage</label
+                  ><input
+                    type="number"
+                    class="custom-input w-input"
+                    v-model="referralPercentage"
+                    placeholder="Enter Referral Percentage"
+                  />
+                </div>
+
+                <div class="each-input part">
+                  <label for="name-18" class="label">Social Media Links</label>
+
+                  <div class="flex-span">
+                    <span
+                      v-for="(item, int) in media"
+                      :key="int"
+                      class="media-list b"
+                    >
+                      <div>{{ item }}</div>
+                    </span>
+                  </div>
+                  <div class="color-flex">
+                    <input
+                      type="text"
+                      class="custom-input w-input"
+                      v-model="mediaInput"
+                      placeholder="Enter Social Media Links"
+                      @keypress.enter="addMedia"
+                    />
+                  </div>
+                </div>
+
+                <div class="each-input part">
+                  <label for="name-18" class="label">Contact Info</label>
+                  <div class="flex-span">
+                    <span
+                      v-for="(item, int) in contact"
+                      :key="int"
+                      class="media-list b"
+                      @click="selectContact(int)"
+                    >
+                      <div>{{ item }}</div>
+                    </span>
+                  </div>
+
+                  <div class="color-flex">
+                    <input
+                      type="text"
+                      class="custom-input w-input"
+                      v-model="contactInput"
+                      placeholder="Enter Social Contact"
+                      @keypress.enter="addContact"
+                    />
+                  </div>
+                </div>
+
+                <div class="each-input full">
+                  <div
+                    v-for="(announcement, int) in announcements"
+                    :key="int"
+                    class="media-list b"
+                  >
+                    <div>{{ announcement }}</div>
+                    <img
+                      src="/images/edit-icon.svg"
+                      loading="lazy"
+                      alt=""
+                      class="media-icon"
+                    /><img
+                      src="/images/delete-icon.svg"
+                      loading="lazy"
+                      alt=""
+                      class="media-icon h"
+                    />
+                  </div>
+                  <textarea
+                    placeholder="Example Text"
+                    maxlength="5000"
+                    v-model="announcement"
+                    class="custom-input txt high w-input"
+                  ></textarea>
+                </div>
+                <div class="btn-holder">
+                  <div v-if="onRequest" class="custom-btn edge">
+                    <i class="material-symbols-outlined spinner white"
+                      >expand_more</i
+                    >
+                    <div>Processing</div>
+                  </div>
+
+                  <div
+                    v-if="!onRequest"
+                    class="custom-btn edge color"
+                    @click="addAnnouncement"
+                  >
+                    <div>Add Announcement</div>
+                  </div>
+
+                  <div
+                    v-if="!onRequest"
+                    class="custom-btn edge color"
+                    @click="processData"
+                  >
+                    <div>Save Changes</div>
+                  </div>
+                </div>
+
+                <label
+                  v-if="showResponse"
+                  for="field-6"
+                  class="response"
+                  :class="{ error: isError }"
+                  >{{ response }}</label
+                >
               </div>
             </div>
           </div>
         </div>
-        <footer-component />
       </div>
     </div>
-    <mobile-bottom-nav />
+    <footer-component />
   </div>
 </template>
 

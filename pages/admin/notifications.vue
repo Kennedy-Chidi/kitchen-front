@@ -1,208 +1,200 @@
 <template>
-  <div class="grace notificate">
+  <div class="">
     <alert-box />
     <alert-confirmation />
-    <div class="main-body">
-      <vertical-nav />
-      <div class="main-flex">
-        <company-ads />
-        <horizontal-nav />
-        <div class="custom-container">
-          <div class="body-flex">
-            <div class="content-body">
-              <div class="w-form">
-                <div class="transaction-table">
-                  <div class="table-head admin pro">
-                    <div class="sort-range ban">
-                      <div class="sort-wrapper">
-                        <div>Name</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
-                      <div class="sort-wrapper">
-                        <div>Amount</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
-                    </div>
+    <div class="custom-container">
+      <div class="body-flex">
+        <div class="content-body">
+          <div class="w-form">
+            <div class="transaction-table">
+              <div class="table-head admin pro">
+                <div class="sort-range ban">
+                  <div class="sort-wrapper">
+                    <div>Name</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
                   </div>
-                  <div class="table">
-                    <div class="table-head-row">
-                      <div class="tb-sn"><div>S/N</div></div>
-                      <div class="tb-image ban"><div>Template</div></div>
-                      <div class="c20 ban"><div>Title</div></div>
-                      <div class="c20 email"><div>Content</div></div>
-                    </div>
-                    <div
-                      class="table-head-row body"
-                      v-for="(note, int) in notificationArray"
-                      :key="note._id"
-                      :class="{ even: int % 2 == 0 }"
-                    >
-                      <div class="tb-sn ban">
-                        <div class="inner-label">S/N:</div>
-                        <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
-                        <div @click="toggleCheck(int)" class="check-box">
-                          <div
-                            class="check"
-                            :class="{ active: note.checked }"
-                          ></div>
-                        </div>
-                      </div>
-                      <div class="tb-image ban">
-                        <div class="inner-label">Template:</div>
-                        <div>{{ note.name }}</div>
-                      </div>
-                      <div class="c20 ban part full">
-                        <div class="inner-label">Title:</div>
-                        <div>{{ note.title }}</div>
-                      </div>
-                      <div class="c20 email">
-                        <div class="inner-label">Content:</div>
-                        <div
-                          v-if="note.content"
-                          class="pro-cart"
-                          v-html="`${note.content.substring(0, 150)}...`"
-                        ></div>
-                      </div>
-                    </div>
-                    <div v-if="pages().length > 1" class="pagination table">
-                      <div class="page-result">
-                        <h3 class="page-result-txt">
-                          Results: {{ resultLength }}, Page {{ currentPage }} of
-                          {{ pages().length }}
-                        </h3>
-                      </div>
-                      <ul
-                        v-if="pages().length > 1"
-                        role="list"
-                        class="pagination-list"
-                      >
-                        <li
-                          class="page"
-                          v-if="currentPage > 1"
-                          @click="paginate(currentPage - 1)"
-                        >
-                          <i class="material-symbols-outlined orange"
-                            >arrow_back_ios</i
-                          >
-                        </li>
-                        <li
-                          v-for="(page, int) in pages().length"
-                          :key="int"
-                          class="page"
-                          @click="paginate(int + 1)"
-                          :class="{ active: int + 1 == currentPage }"
-                        >
-                          <div>{{ int + 1 }}</div>
-                        </li>
-
-                        <li
-                          class="page"
-                          v-if="currentPage != pages().length"
-                          @click="paginate(currentPage + 1)"
-                        >
-                          <i class="material-symbols-outlined orange"
-                            >arrow_forward_ios</i
-                          >
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="table-head foot">
-                    <div @click="checkAll" class="check-box all">
-                      <div class="check" :class="{ active: isChecked }"></div>
-                    </div>
-                    <div class="actions-foot">
-                      <i
-                        @click="
-                          prepareNotificationCopy(selected[selected.length - 1])
-                        "
-                        class="material-symbols-outlined orange action-icons"
-                        >content_copy</i
-                      >
-
-                      <i
-                        @click="
-                          prepareNotificationEdit(selected[selected.length - 1])
-                        "
-                        class="material-symbols-outlined orange action-icons"
-                        >edit</i
-                      >
-
-                      <i class="material-symbols-outlined orange action-icons"
-                        >delete</i
-                      >
-                    </div>
-                  </div>
-                  <div class="table-head ban">
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Name</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="name"
-                        placeholder="Enter Name of Notification"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Title</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="title"
-                        placeholder="Enter Title of Notification"
-                      />
-                    </div>
-                    <div class="each-input full">
-                      <label for="field-6" class="label"
-                        >Essence of Application</label
-                      >
-                      <client-only placeholder="loading..."
-                        ><ckeditor-nuxt
-                          class="custom-input txt high w-input"
-                          v-model="content"
-                          :config="editorConfig"
-                        />
-                      </client-only>
-                    </div>
-                    <div class="btn-holder">
-                      <div v-if="onRequest" class="custom-btn edge">
-                        <i class="material-symbols-outlined white spinner"
-                          >motion_photos_on</i
-                        >
-                        <div>Processing</div>
-                      </div>
-
-                      <div
-                        @click="processNotification"
-                        v-else
-                        class="custom-btn edge color"
-                      >
-                        <div>Submit</div>
-                      </div>
-                    </div>
-                    <label for="field-6" class="response error"
-                      >Sorry, something went wrong</label
-                    >
+                  <div class="sort-wrapper">
+                    <div>Amount</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
                   </div>
                 </div>
+              </div>
+              <div class="table">
+                <div class="table-head-row">
+                  <div class="tb-sn"><div>S/N</div></div>
+                  <div class="tb-image ban"><div>Template</div></div>
+                  <div class="c20 ban"><div>Title</div></div>
+                  <div class="c20 email"><div>Content</div></div>
+                </div>
+                <div
+                  class="table-head-row body"
+                  v-for="(note, int) in notificationArray"
+                  :key="note._id"
+                  :class="{ even: int % 2 == 0 }"
+                >
+                  <div class="tb-sn ban">
+                    <div class="inner-label">S/N:</div>
+                    <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
+                    <div @click="toggleCheck(int)" class="check-box">
+                      <div
+                        class="check"
+                        :class="{ active: note.checked }"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="tb-image ban">
+                    <div class="inner-label">Template:</div>
+                    <div>{{ note.name }}</div>
+                  </div>
+                  <div class="c20 ban part full">
+                    <div class="inner-label">Title:</div>
+                    <div>{{ note.title }}</div>
+                  </div>
+                  <div class="c20 email">
+                    <div class="inner-label">Content:</div>
+                    <div
+                      v-if="note.content"
+                      class="pro-cart"
+                      v-html="`${note.content.substring(0, 150)}...`"
+                    ></div>
+                  </div>
+                </div>
+                <div v-if="pages().length > 1" class="pagination table">
+                  <div class="page-result">
+                    <h3 class="page-result-txt">
+                      Results: {{ resultLength }}, Page {{ currentPage }} of
+                      {{ pages().length }}
+                    </h3>
+                  </div>
+                  <ul
+                    v-if="pages().length > 1"
+                    role="list"
+                    class="pagination-list"
+                  >
+                    <li
+                      class="page"
+                      v-if="currentPage > 1"
+                      @click="paginate(currentPage - 1)"
+                    >
+                      <i class="material-symbols-outlined orange"
+                        >arrow_back_ios</i
+                      >
+                    </li>
+                    <li
+                      v-for="(page, int) in pages().length"
+                      :key="int"
+                      class="page"
+                      @click="paginate(int + 1)"
+                      :class="{ active: int + 1 == currentPage }"
+                    >
+                      <div>{{ int + 1 }}</div>
+                    </li>
+
+                    <li
+                      class="page"
+                      v-if="currentPage != pages().length"
+                      @click="paginate(currentPage + 1)"
+                    >
+                      <i class="material-symbols-outlined orange"
+                        >arrow_forward_ios</i
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="table-head foot">
+                <div @click="checkAll" class="check-box all">
+                  <div class="check" :class="{ active: isChecked }"></div>
+                </div>
+                <div class="actions-foot">
+                  <i
+                    @click="
+                      prepareNotificationCopy(selected[selected.length - 1])
+                    "
+                    class="material-symbols-outlined orange action-icons"
+                    >content_copy</i
+                  >
+
+                  <i
+                    @click="
+                      prepareNotificationEdit(selected[selected.length - 1])
+                    "
+                    class="material-symbols-outlined orange action-icons"
+                    >edit</i
+                  >
+
+                  <i class="material-symbols-outlined orange action-icons"
+                    >delete</i
+                  >
+                </div>
+              </div>
+              <div class="table-head ban">
+                <div class="each-input part">
+                  <label for="name-15" class="label">Name</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="name"
+                    placeholder="Enter Name of Notification"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-15" class="label">Title</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="title"
+                    placeholder="Enter Title of Notification"
+                  />
+                </div>
+                <div class="each-input full">
+                  <label for="field-6" class="label"
+                    >Essence of Application</label
+                  >
+                  <client-only placeholder="loading..."
+                    ><ckeditor-nuxt
+                      class="custom-input txt high w-input"
+                      v-model="content"
+                      :config="editorConfig"
+                    />
+                  </client-only>
+                </div>
+                <div class="btn-holder">
+                  <div v-if="onRequest" class="custom-btn edge">
+                    <i class="material-symbols-outlined white spinner"
+                      >motion_photos_on</i
+                    >
+                    <div>Processing</div>
+                  </div>
+
+                  <div
+                    @click="processNotification"
+                    v-else
+                    class="custom-btn edge color"
+                  >
+                    <div>Submit</div>
+                  </div>
+                </div>
+                <label for="field-6" class="response error"
+                  >Sorry, something went wrong</label
+                >
               </div>
             </div>
           </div>
         </div>
-        <footer-component />
       </div>
     </div>
-    <mobile-bottom-nav />
+    <footer-component />
   </div>
 </template>
 

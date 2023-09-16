@@ -122,6 +122,10 @@ export default {
     blog() {
       return this.$store.state.selectedBlog;
     },
+
+    user() {
+      return this.$store.state.auth.user;
+    },
   },
 
   async asyncData({ params, store }) {

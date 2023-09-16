@@ -37,6 +37,11 @@ export default {
     MobileBottomNav,
     FooterComponent,
   },
+  computed: {
+    user() {
+      return this.$store.state.auth.user;
+    },
+  },
 };
 </script>
 

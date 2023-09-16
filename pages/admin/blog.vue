@@ -1,292 +1,279 @@
 <template>
-  <div class="grace blog">
+  <div class="g">
     <alert-box />
     <alert-confirmation />
-    <div class="main-body">
-      <vertical-nav />
-      <div class="main-flex">
-        <company-ads />
-        <horizontal-nav />
-        <div class="custom-container">
-          <div class="body-flex">
-            <div class="content-body">
-              <div class="w-form">
-                <div class="transaction-table">
-                  <div class="table-head admin pro">
-                    <div class="sort-range ban">
-                      <div class="sort-wrapper">
-                        <div>Name</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
-                      <div class="sort-wrapper">
-                        <div>Amount</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
-                    </div>
-                    <div class="newsletter-wrap pro">
-                      <input
-                        type="text"
-                        class="newsletter-input search w-input"
-                        maxlength="256"
-                        name="name-17"
-                        data-name="Name 17"
-                        placeholder="Search Product"
-                        id="name-17"
-                      /><img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b75aa41127b73bc77763cb_search-line-icon%201.svg"
-                        loading="lazy"
-                        alt=""
-                        class="newsletter-img"
-                      />
+    <div class="custom-container">
+      <div class="body-flex">
+        <div class="content-body">
+          <div class="w-form">
+            <div class="transaction-table">
+              <div class="table-head admin pro">
+                <div class="sort-range ban">
+                  <div class="sort-wrapper">
+                    <div>Name</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
+                  </div>
+                  <div class="sort-wrapper">
+                    <div>Amount</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
+                  </div>
+                </div>
+                <div class="newsletter-wrap pro">
+                  <input
+                    type="text"
+                    class="newsletter-input search w-input"
+                    maxlength="256"
+                    name="name-17"
+                    data-name="Name 17"
+                    placeholder="Search Product"
+                    id="name-17"
+                  /><img
+                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b75aa41127b73bc77763cb_search-line-icon%201.svg"
+                    loading="lazy"
+                    alt=""
+                    class="newsletter-img"
+                  />
+                </div>
+              </div>
+              <div class="table">
+                <div class="table-head-row">
+                  <div class="tb-sn"><div>S/N</div></div>
+                  <div class="tb-image ban"><div>Image</div></div>
+                  <div class="c20 ban"><div>Category</div></div>
+                  <div class="c20 ban"><div>Title</div></div>
+                  <div class="c20 ban"><div>Author</div></div>
+                  <div class="c20 ban"><div>Date</div></div>
+                  <div class="tb-image ban"><div>Action</div></div>
+                </div>
+                <div
+                  v-for="(item, int) in items"
+                  :key="int"
+                  class="table-head-row body"
+                >
+                  <div class="tb-sn ban">
+                    <div class="inner-label">S/N:</div>
+                    <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
+                    <div @click="toggleItem(int)" class="check-box">
+                      <div
+                        class="check"
+                        :class="{ active: item.checked }"
+                      ></div>
                     </div>
                   </div>
-                  <div class="table">
-                    <div class="table-head-row">
-                      <div class="tb-sn"><div>S/N</div></div>
-                      <div class="tb-image ban"><div>Image</div></div>
-                      <div class="c20 ban"><div>Category</div></div>
-                      <div class="c20 ban"><div>Title</div></div>
-                      <div class="c20 ban"><div>Author</div></div>
-                      <div class="c20 ban"><div>Date</div></div>
-                      <div class="tb-image ban"><div>Action</div></div>
-                    </div>
-                    <div
-                      v-for="(item, int) in items"
-                      :key="int"
-                      class="table-head-row body"
-                    >
-                      <div class="tb-sn ban">
-                        <div class="inner-label">S/N:</div>
-                        <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
-                        <div @click="toggleItem(int)" class="check-box">
-                          <div
-                            class="check"
-                            :class="{ active: item.checked }"
-                          ></div>
-                        </div>
-                      </div>
-                      <div class="tb-image ban">
-                        <div class="inner-label">Image:</div>
-                        <img
-                          :src="item.bannerUrl"
-                          loading="lazy"
-                          sizes="110px"
-                          :srcset="`
+                  <div class="tb-image ban">
+                    <div class="inner-label">Image:</div>
+                    <img
+                      :src="item.bannerUrl"
+                      loading="lazy"
+                      sizes="110px"
+                      :srcset="`
                             ${item.bannerUrl} 500w,
                             ${item.bannerUrl} 800w,
                             ${item.bannerUrl}       953w
                           `"
-                          alt=""
-                          class="item-img"
-                        />
-                      </div>
-                      <div class="c20 ban part">
-                        <div class="inner-label">Category:</div>
-                        <div>{{ item.category }}</div>
-                      </div>
-                      <div class="c20 ban part">
-                        <div class="inner-label">Title:</div>
-                        <div>{{ item.title }}</div>
-                      </div>
-                      <div class="c20 ban">
-                        <div class="inner-label">Author:</div>
-                        <div>{{ item.author }}</div>
-                      </div>
-                      <div class="c20 ban">
-                        <div class="inner-label">Date:</div>
-                        <div>{{ formatDate(item.time) }}</div>
-                      </div>
-                      <div class="tb-image ban act">
-                        <div class="inner-label">Status:</div>
-                        <div
-                          @click="updateBlogStatus(item)"
-                          class="custom-btn edge"
-                        >
-                          <div v-if="item.status">Approved</div>
-                          <div v-else>Unapproved</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="pagination table">
-                      <div class="page-result">
-                        <h3 class="page-result-txt">
-                          Results: {{ resultLength }}, Page {{ currentPage }} of
-                          {{ pages().length }}
-                        </h3>
-                      </div>
-                      <ul role="list" class="pagination-list">
-                        <li
-                          class="page"
-                          v-if="currentPage > 1"
-                          @click="paginate(currentPage - 1)"
-                        >
-                          <i class="material-symbols-outlined orange"
-                            >arrow_back_ios</i
-                          >
-                        </li>
-                        <li
-                          v-for="(page, int) in pages().length"
-                          :key="int"
-                          class="page"
-                          @click="paginate(int + 1)"
-                          :class="{ active: int + 1 == currentPage }"
-                        >
-                          <div>{{ int + 1 }}</div>
-                        </li>
-
-                        <li
-                          class="page"
-                          v-if="currentPage != pages().length"
-                          @click="paginate(currentPage + 1)"
-                        >
-                          <i class="material-symbols-outlined orange"
-                            >arrow_forward_ios</i
-                          >
-                        </li>
-                      </ul>
+                      alt=""
+                      class="item-img"
+                    />
+                  </div>
+                  <div class="c20 ban part">
+                    <div class="inner-label">Category:</div>
+                    <div>{{ item.category }}</div>
+                  </div>
+                  <div class="c20 ban part">
+                    <div class="inner-label">Title:</div>
+                    <div>{{ item.title }}</div>
+                  </div>
+                  <div class="c20 ban">
+                    <div class="inner-label">Author:</div>
+                    <div>{{ item.author }}</div>
+                  </div>
+                  <div class="c20 ban">
+                    <div class="inner-label">Date:</div>
+                    <div>{{ formatDate(item.time) }}</div>
+                  </div>
+                  <div class="tb-image ban act">
+                    <div class="inner-label">Status:</div>
+                    <div
+                      @click="updateBlogStatus(item)"
+                      class="custom-btn edge"
+                    >
+                      <div v-if="item.status">Approved</div>
+                      <div v-else>Unapproved</div>
                     </div>
                   </div>
+                </div>
 
-                  <div class="table-head foot">
-                    <div @click="checkAllItem" class="check-box all">
-                      <div
-                        class="check"
-                        :class="{ active: isAllChecked }"
-                      ></div>
-                    </div>
-                    <div class="actions-foot">
-                      <i
-                        @click="duplicateItem"
-                        class="material-symbols-outlined orange action-icons"
-                        >content_copy</i
-                      >
-
-                      <i
-                        @click="prepareItemEdit"
-                        class="material-symbols-outlined orange action-icons"
-                        >edit</i
-                      >
-
-                      <i class="material-symbols-outlined orange action-icons"
-                        >delete</i
-                      >
-                    </div>
+                <div class="pagination table">
+                  <div class="page-result">
+                    <h3 class="page-result-txt">
+                      Results: {{ resultLength }}, Page {{ currentPage }} of
+                      {{ pages().length }}
+                    </h3>
                   </div>
+                  <ul role="list" class="pagination-list">
+                    <li
+                      class="page"
+                      v-if="currentPage > 1"
+                      @click="paginate(currentPage - 1)"
+                    >
+                      <i class="material-symbols-outlined orange"
+                        >arrow_back_ios</i
+                      >
+                    </li>
+                    <li
+                      v-for="(page, int) in pages().length"
+                      :key="int"
+                      class="page"
+                      @click="paginate(int + 1)"
+                      :class="{ active: int + 1 == currentPage }"
+                    >
+                      <div>{{ int + 1 }}</div>
+                    </li>
 
-                  <div class="table-head ban">
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Category</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="category"
-                        placeholder="Enter Blog Category"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Title</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="title"
-                        placeholder="Enter Blog Title"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Author</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="author"
-                        placeholder="Enter Blog Author"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Subtitle</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="subtitle"
-                        placeholder="Enter Blog Subtitle"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Type</label
-                      ><input
-                        type="text"
-                        class="custom-input w-input"
-                        v-model="blogType"
-                        placeholder="Enter Blog Type"
-                      />
-                    </div>
-                    <div class="each-input part">
-                      <label for="name-15" class="label">Date</label
-                      ><input
-                        type="date"
-                        class="custom-input w-input"
-                        v-model="date"
-                      />
-                    </div>
-                    <div class="each-input full">
-                      <label for="field-6" class="label"
-                        >Essence of Application</label
+                    <li
+                      class="page"
+                      v-if="currentPage != pages().length"
+                      @click="paginate(currentPage + 1)"
+                    >
+                      <i class="material-symbols-outlined orange"
+                        >arrow_forward_ios</i
                       >
-                      <client-only placeholder="loading..."
-                        ><ckeditor-nuxt
-                          class="search-flex full w-input"
-                          v-model="content"
-                          :config="editorConfig"
-                        />
-                      </client-only>
-                    </div>
-                    <div class="btn-holder">
-                      <div v-if="onRequest" class="custom-btn edge color">
-                        <i class="material-symbols-outlined white spinner"
-                          >motion_photos_on</i
-                        >
-                        <div>Processing</div>
-                      </div>
-                      <label for="banner" v-else class="custom-btn edge">
-                        <i class="material-symbols-outlined white"
-                          >upload_file</i
-                        >
-                        <div>Select Banner</div>
-                        <input
-                          @change="setImage"
-                          type="file"
-                          class="hidden"
-                          id="banner"
-                        />
-                      </label>
-                      <label
-                        v-if="!onRequest"
-                        @click="processBlog"
-                        class="custom-btn edge"
-                      >
-                        <div>Submit</div>
-                      </label>
-                    </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="table-head foot">
+                <div @click="checkAllItem" class="check-box all">
+                  <div class="check" :class="{ active: isAllChecked }"></div>
+                </div>
+                <div class="actions-foot">
+                  <i
+                    @click="duplicateItem"
+                    class="material-symbols-outlined orange action-icons"
+                    >content_copy</i
+                  >
+
+                  <i
+                    @click="prepareItemEdit"
+                    class="material-symbols-outlined orange action-icons"
+                    >edit</i
+                  >
+
+                  <i class="material-symbols-outlined orange action-icons"
+                    >delete</i
+                  >
+                </div>
+              </div>
+
+              <div class="table-head ban">
+                <div class="each-input part">
+                  <label for="name-15" class="label">Category</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="category"
+                    placeholder="Enter Blog Category"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-15" class="label">Title</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="title"
+                    placeholder="Enter Blog Title"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-15" class="label">Author</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="author"
+                    placeholder="Enter Blog Author"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-15" class="label">Subtitle</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="subtitle"
+                    placeholder="Enter Blog Subtitle"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-15" class="label">Type</label
+                  ><input
+                    type="text"
+                    class="custom-input w-input"
+                    v-model="blogType"
+                    placeholder="Enter Blog Type"
+                  />
+                </div>
+                <div class="each-input part">
+                  <label for="name-15" class="label">Date</label
+                  ><input
+                    type="date"
+                    class="custom-input w-input"
+                    v-model="date"
+                  />
+                </div>
+                <div class="each-input full">
+                  <label for="field-6" class="label"
+                    >Essence of Application</label
+                  >
+                  <client-only placeholder="loading..."
+                    ><ckeditor-nuxt
+                      class="search-flex full w-input"
+                      v-model="content"
+                      :config="editorConfig"
+                    />
+                  </client-only>
+                </div>
+                <div class="btn-holder">
+                  <div v-if="onRequest" class="custom-btn edge color">
+                    <i class="material-symbols-outlined white spinner"
+                      >motion_photos_on</i
+                    >
+                    <div>Processing</div>
                   </div>
+                  <label for="banner" v-else class="custom-btn edge">
+                    <i class="material-symbols-outlined white">upload_file</i>
+                    <div>Select Banner</div>
+                    <input
+                      @change="setImage"
+                      type="file"
+                      class="hidden"
+                      id="banner"
+                    />
+                  </label>
+                  <label
+                    v-if="!onRequest"
+                    @click="processBlog"
+                    class="custom-btn edge"
+                  >
+                    <div>Submit</div>
+                  </label>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <footer-component />
       </div>
     </div>
-    <mobile-bottom-nav />
+    <footer-component />
   </div>
 </template>
 
