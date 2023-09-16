@@ -13,8 +13,7 @@
             />
           </div>
         </div>
-        {{ user }}
-        <horizontal-nav v-show="user != null" />
+        <horizontal-nav v-if="$auth.loggedIn" />
         <landing-nav v-show="user == null" />
 
         <!-- -----------HEROE------------- -->
