@@ -75,7 +75,7 @@
     </div>
 
     <!-- -----------HOME PRODUCTS------------- -->
-    <div class="app-section">
+    <!-- <div class="app-section">
       <div class="custom-container-landing">
         <div class="app-flex">
           <div class="product-flex">
@@ -98,7 +98,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--X -----------HOME PRODUCTS------------- X-->
 
     <!-- -----------HOW IT WORKS------------- -->
@@ -406,7 +406,7 @@
     </div>
     <!--X -----------PARTNER------------- X-->
 
-    <!-- <home-footer /> -->
+    <home-footer />
   </div>
 </template>
 <script>
