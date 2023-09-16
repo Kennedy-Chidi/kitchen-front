@@ -76,16 +76,10 @@ export default {
     },
   },
 
-  beforeMount() {
-    if (this.$auth.loggedIn) {
-      this.user = true;
-    }
-  },
-
   computed: {
-    // user() {
-    //   return this.$store.state.auth.user;
-    // },
+    user() {
+      return this.$store.state.auth.user;
+    },
   },
   components: {
     HomeFooter,
