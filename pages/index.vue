@@ -75,30 +75,30 @@
     </div>
 
     <!-- -----------HOME PRODUCTS------------- -->
-    <!-- <div class="app-section">
-          <div class="custom-container-landing">
-            <div class="app-flex">
-              <div class="product-flex">
-                <h3 class="section-title pro">Our Products</h3>
+    <div class="app-section">
+      <div class="custom-container-landing">
+        <div class="app-flex">
+          <div class="product-flex">
+            <h3 class="section-title pro">Our Products</h3>
 
-                <each-product
-                  v-for="(product, int) in productItems"
-                  :product="product"
-                  :key="int"
-                />
-                <nuxt-link
-                  v-if="user != null"
-                  to="/dashboard/products"
-                  class="response big"
-                  >View More</nuxt-link
-                >
-                <nuxt-link v-else to="/login" class="response big"
-                  >View More</nuxt-link
-                >
-              </div>
-            </div>
+            <each-product
+              v-for="(product, int) in productItems"
+              :product="product"
+              :key="int"
+            />
+            <nuxt-link
+              v-show="user != null"
+              to="/dashboard/products"
+              class="response big"
+              >View More</nuxt-link
+            >
+            <nuxt-link v-show="user == null" to="/login" class="response big"
+              >View More</nuxt-link
+            >
           </div>
-        </div> -->
+        </div>
+      </div>
+    </div>
     <!--X -----------HOME PRODUCTS------------- X-->
 
     <!-- -----------HOW IT WORKS------------- -->
@@ -406,7 +406,7 @@
     </div>
     <!--X -----------PARTNER------------- X-->
 
-    <!-- <home-footer /> -->
+    <home-footer />
   </div>
 </template>
 <script>
