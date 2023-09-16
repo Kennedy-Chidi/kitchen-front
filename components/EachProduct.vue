@@ -24,25 +24,25 @@
     </div>
     <div class="name-flex">
       <nuxt-link
-        v-if="user"
+        v-show="user != null"
         :to="`/dashboard/product-details/${product._id}`"
         class="product-name pro"
         >{{ product.productName }}</nuxt-link
       >
       <nuxt-link
-        v-else
+        v-show="user == null"
         :to="`/product-details/${product._id}`"
         class="product-name pro"
         >{{ product.productName }}</nuxt-link
       >
       <div class="price-flex" :class="{ center: !product.oldPrice }">
-        <div class="product-price pro old" v-if="product.oldPrice">
+        <div class="product-price pro old" v-show="product.oldPrice">
           N{{ formatNumber(product.oldPrice) }}
         </div>
         <div class="product-price pro">N{{ product.productSellingPrice }}</div>
       </div>
     </div>
-    <div v-if="user" class="action-holder">
+    <div v-show="user" class="action-holder">
       <div @click="removeFromCart(product)" class="action-btn">
         <div>-</div>
       </div>
