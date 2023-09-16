@@ -14,7 +14,6 @@
           </div>
         </div>
         <landing-nav />
-        <!-- <horizontal-nav v-show="user != null" /> -->
         <main>
           <nuxt />
         </main>
@@ -30,52 +29,6 @@ import HorizontalNav from "../components/HorizontalNav.vue";
 import MobileBottomNav from "../components/MobileBottomNav.vue";
 import VerticalNav from "../components/VerticalNav.vue";
 export default {
-  data() {
-    return {
-      showVideo: false,
-      user: false,
-    };
-  },
-  methods: {
-    formatDate(data) {
-      if (data == null || data == undefined) {
-        return "N/A";
-      }
-      const date = new Date(data).getTime(); // Note that month is zero-indexed in JavaScript
-      const options = {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        suffix: (day) => {
-          if (day === 1 || day === 21 || day === 31) {
-            return "st";
-          } else if (day === 2 || day === 22) {
-            return "nd";
-          } else if (day === 3 || day === 23) {
-            return "rd";
-          } else {
-            return "th";
-          }
-        },
-      };
-
-      return new Intl.DateTimeFormat("en-US", options).format(date);
-    },
-
-    selectBlog(blog) {
-      this.$store.commit("SELECT_BLOG", blog);
-      this.$router.push("/blog-details");
-    },
-
-    getStarted() {
-      if (this.user) {
-        this.$router.push("/dashboard/products");
-      } else {
-        this.$router.push("/signup");
-      }
-    },
-  },
-
   computed: {
     user() {
       return this.$store.state.auth.user;
