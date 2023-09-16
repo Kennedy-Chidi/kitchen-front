@@ -53,7 +53,7 @@
     </div>
     <!--X -----------HEROE-------------X -->
 
-    <div
+    <!-- <div
       @click.self="showVideo = !showVideo"
       class="alert-body video-display"
       :class="{ active: showVideo }"
@@ -72,7 +72,7 @@
           title="Imagine for 1 Minute"
         ></iframe>
       </div>
-    </div>
+    </div> -->
 
     <!-- -----------HOME PRODUCTS------------- -->
     <!-- <div class="app-section">
@@ -102,7 +102,7 @@
     <!--X -----------HOME PRODUCTS------------- X-->
 
     <!-- -----------HOW IT WORKS------------- -->
-    <div class="custom-container-landing">
+    <!-- <div class="custom-container-landing">
       <div class="content-body">
         <div class="first-landing-section">
           <div class="how">
@@ -188,11 +188,11 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- X-----------HOW IT WORKS-------------X -->
 
     <!-- -----------OUR VIDEO------------- -->
-    <div class="landing-video">
+    <!-- <div class="landing-video">
       <div class="video-cover">
         <img
           @click="showVideo = !showVideo"
@@ -206,11 +206,11 @@
           wonderful customers around te
         </div>
       </div>
-    </div>
+    </div> -->
     <!--X -----------OUR VIDEO-------------X -->
 
     <!-- -----------TESTIMONIAL------------- -->
-    <div class="review-section">
+    <!-- <div class="review-section">
       <div class="custom-container-landing">
         <div class="first-landing-section">
           <div class="how">
@@ -275,7 +275,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--X -----------TESTIMONIAL------------- X-->
 
     <!---------------BLOG POST----------------->
@@ -333,7 +333,7 @@
     <!--X -----------BLOG POST------------- X-->
 
     <!-- -----------COMING SOON------------- -->
-    <div class="app-section">
+    <!-- <div class="app-section">
       <div class="custom-container-landing">
         <div class="app-flex">
           <img
@@ -364,11 +364,11 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--X -----------COMING SOON------------- X-->
 
     <!-- -----------PARTNER------------- -->
-    <div class="partner-section">
+    <!-- <div class="partner-section">
       <div class="landing-title">Our Partners</div>
       <div class="custom-container-landing">
         <div
@@ -403,7 +403,7 @@
           <div class="hide-dots w-slider-nav w-round"></div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--X -----------PARTNER------------- X-->
 
     <!-- <home-footer /> -->
