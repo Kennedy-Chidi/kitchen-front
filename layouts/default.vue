@@ -13,7 +13,7 @@
             />
           </div>
         </div>
-        <landing-nav v-show="user === null" />
+        <landing-nav v-if="user" />
         <!-- <horizontal-nav v-show="user != null" /> -->
         <main>
           <nuxt />
@@ -33,6 +33,7 @@ export default {
   data() {
     return {
       showVideo: false,
+      user: false,
     };
   },
   methods: {
@@ -75,10 +76,16 @@ export default {
     },
   },
 
+  beforeMount() {
+    if (this.$auth.loggedIn) {
+      this.user = true;
+    }
+  },
+
   computed: {
-    user() {
-      return this.$store.state.auth.user;
-    },
+    // user() {
+    //   return this.$store.state.auth.user;
+    // },
   },
   components: {
     HomeFooter,
