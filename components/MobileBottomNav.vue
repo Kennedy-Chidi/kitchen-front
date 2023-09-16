@@ -1,6 +1,6 @@
 <template>
   <div class="footer-nav">
-    <!-- <div class="each-footer search w-form" :class="{ active: showSearch }">
+    <div class="each-footer search w-form" :class="{ active: showSearch }">
       <div class="newsletter search">
         <div class="newsletter-wrap search">
           <input
@@ -318,7 +318,7 @@
       class="icon-wrap nav foot orange"
     >
       <i class="material-symbols-outlined white sm">filter_alt</i>
-    </div> -->
+    </div>
   </div>
 </template>
 

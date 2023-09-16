@@ -1,7 +1,7 @@
 <template>
   <div class="grace landing">
     <div class="main-body">
-      <vertical-nav v-show="user != null" />
+      <vertical-nav v-if="user" />
       <div class="main-flex">
         <div class="display">
           <div class="custom-container-landing">
@@ -19,7 +19,7 @@
         </main>
       </div>
     </div>
-    <mobile-bottom-nav v-show="user != null" />
+    <mobile-bottom-nav v-if="user" />
   </div>
 </template>
 <script>
