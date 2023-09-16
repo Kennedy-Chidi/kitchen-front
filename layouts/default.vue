@@ -13,7 +13,7 @@
             />
           </div>
         </div>
-        <landing-nav v-if="user" />
+        <landing-nav v-show="user" />
         <!-- <horizontal-nav v-show="user != null" /> -->
         <main>
           <nuxt />
