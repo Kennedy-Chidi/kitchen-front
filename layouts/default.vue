@@ -1,7 +1,7 @@
 <template>
   <div class="grace landing">
     <div class="main-body">
-      <!-- <vertical-nav v-show="user != null" /> -->
+      <vertical-nav v-show="user != null" />
       <div class="main-flex">
         <div class="display">
           <div class="custom-container-landing">
@@ -13,7 +13,7 @@
             />
           </div>
         </div>
-        <landing-nav v-show="user" />
+        <landing-nav />
         <!-- <horizontal-nav v-show="user != null" /> -->
         <main>
           <nuxt />
