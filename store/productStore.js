@@ -383,6 +383,7 @@ export const actions = {
     const query = `?limit=12&page=1&sort=productState`;
     try {
       const response = await this.$axios.get(`/products/${query}`);
+      console.log(response);
       commit("SET_PRODUCTS", response.data.data);
       commit("TOGGLE_INITIALS");
     } catch (err) {

@@ -334,7 +334,7 @@
     <!--X -----------BLOG POST------------- X-->
 
     <!-- -----------COMING SOON------------- -->
-    <!-- <div class="app-section">
+    <div class="app-section">
       <div class="custom-container-landing">
         <div class="app-flex">
           <img
@@ -365,11 +365,11 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
     <!--X -----------COMING SOON------------- X-->
 
     <!-- -----------PARTNER------------- -->
-    <!-- <div class="partner-section">
+    <div class="partner-section">
       <div class="landing-title">Our Partners</div>
       <div class="custom-container-landing">
         <div
@@ -404,7 +404,7 @@
           <div class="hide-dots w-slider-nav w-round"></div>
         </div>
       </div>
-    </div> -->
+    </div>
     <!--X -----------PARTNER------------- X-->
 
     <!-- <home-footer /> -->
