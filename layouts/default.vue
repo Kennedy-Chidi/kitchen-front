@@ -19,7 +19,7 @@
         </main>
       </div>
     </div>
-    <!-- <mobile-bottom-nav v-show="user != null" /> -->
+    <mobile-bottom-nav v-show="user != null" />
   </div>
 </template>
 <script>
