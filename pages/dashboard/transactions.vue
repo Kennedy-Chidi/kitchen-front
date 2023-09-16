@@ -1,180 +1,172 @@
 <template>
-  <div class="grace transactions user">
+  <div class="">
     <alert-box />
     <alert-confirmation />
     <cart-items />
-    <div class="main-body">
-      <vertical-nav />
-      <div class="main-flex">
-        <company-ads />
-        <horizontal-nav />
-        <div class="custom-container">
-          <div class="body-flex">
-            <div class="content-body">
-              <div class="nav-pag">
-                <nuxt-link to="/" class="home-txt">Home - </nuxt-link
-                ><nuxt-link to="/dashboard/transactions" class="page-txt"
-                  >Transactions</nuxt-link
-                >
+    <div class="custom-container">
+      <div class="body-flex">
+        <div class="content-body">
+          <div class="nav-pag">
+            <nuxt-link to="/" class="home-txt">Home - </nuxt-link
+            ><nuxt-link to="/dashboard/transactions" class="page-txt"
+              >Transactions</nuxt-link
+            >
+          </div>
+          <div class="w-form">
+            <div class="transaction-table">
+              <div v-if="transactionProp.length == 0" class="nothing-div">
+                <img
+                  src="/images/not-found.svg"
+                  loading="lazy"
+                  alt=""
+                  class="nothing-img"
+                />
+                <div class="not-found">Sorry No Transactions Found</div>
               </div>
-              <div class="w-form">
-                <div class="transaction-table">
-                  <div v-if="transactionProp.length == 0" class="nothing-div">
+              <div v-else class="table-head">
+                <div class="date-range">
+                  <div class="each-date">
+                    <label for="field-3" class="label">From</label
+                    ><input
+                      type="text"
+                      class="date-input w-input"
+                      maxlength="256"
+                      name="field-3"
+                      data-name="Field 3"
+                      placeholder="Example Text"
+                      id="field-3"
+                      required=""
+                    />
+                  </div>
+                  <div class="each-date">
+                    <label for="field-3" class="label">To</label
+                    ><input
+                      type="text"
+                      class="date-input w-input"
+                      maxlength="256"
+                      name="field-3"
+                      data-name="Field 3"
+                      placeholder="9:00AM 20/20/2023"
+                      id="field-3"
+                      required=""
+                    />
+                  </div>
+                </div>
+                <div class="sort-range">
+                  <div class="sort-wrapper">
+                    <div>Price</div>
                     <img
-                      src="/images/not-found.svg"
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
                       loading="lazy"
                       alt=""
-                      class="nothing-img"
+                      class="filter-icon"
                     />
-                    <div class="not-found">Sorry No Transactions Found</div>
                   </div>
-                  <div v-else class="table-head">
-                    <div class="date-range">
-                      <div class="each-date">
-                        <label for="field-3" class="label">From</label
-                        ><input
-                          type="text"
-                          class="date-input w-input"
-                          maxlength="256"
-                          name="field-3"
-                          data-name="Field 3"
-                          placeholder="Example Text"
-                          id="field-3"
-                          required=""
-                        />
-                      </div>
-                      <div class="each-date">
-                        <label for="field-3" class="label">To</label
-                        ><input
-                          type="text"
-                          class="date-input w-input"
-                          maxlength="256"
-                          name="field-3"
-                          data-name="Field 3"
-                          placeholder="9:00AM 20/20/2023"
-                          id="field-3"
-                          required=""
-                        />
-                      </div>
-                    </div>
-                    <div class="sort-range">
-                      <div class="sort-wrapper">
-                        <div>Price</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
-                      <div class="sort-wrapper">
-                        <div>Date</div>
-                        <img
-                          src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
-                          loading="lazy"
-                          alt=""
-                          class="filter-icon"
-                        />
-                      </div>
-                    </div>
+                  <div class="sort-wrapper">
+                    <div>Date</div>
+                    <img
+                      src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b751d192eeacec8dbc3538_sort.svg"
+                      loading="lazy"
+                      alt=""
+                      class="filter-icon"
+                    />
                   </div>
-                  <div v-if="transactionProp.length > 0" class="table">
-                    <div class="table-head-row">
-                      <div class="tb-sn"><div>S/N</div></div>
-                      <div class="c30"><div>Description</div></div>
-                      <div class="c20"><div>Amount</div></div>
-                      <div class="c20"><div>Date</div></div>
-                      <div class="c20"><div>Receipt</div></div>
-                    </div>
+                </div>
+              </div>
+              <div v-if="transactionProp.length > 0" class="table">
+                <div class="table-head-row">
+                  <div class="tb-sn"><div>S/N</div></div>
+                  <div class="c30"><div>Description</div></div>
+                  <div class="c20"><div>Amount</div></div>
+                  <div class="c20"><div>Date</div></div>
+                  <div class="c20"><div>Receipt</div></div>
+                </div>
 
-                    <div
-                      v-for="(item, int) in transactionProp.transactions"
-                      :key="int"
-                      class="table-head-row body"
-                      :class="{ even: int % 2 == 0 }"
+                <div
+                  v-for="(item, int) in transactionProp.transactions"
+                  :key="int"
+                  class="table-head-row body"
+                  :class="{ even: int % 2 == 0 }"
+                >
+                  <div class="tb-sn">
+                    <div class="inner-label">S/N:</div>
+                    <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
+                  </div>
+                  <div class="c30">
+                    <div class="inner-label">Description</div>
+                    <div>
+                      <div
+                        v-for="(des, index) in item.description"
+                        :key="index"
+                      >
+                        {{ des.quantity }} {{ des.productName }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="c20">
+                    <div class="inner-label">Amount:</div>
+                    <div>N{{ formatNumber(item.totalAmount) }}</div>
+                  </div>
+                  <div class="c20">
+                    <div class="inner-label">Time:</div>
+                    <div>
+                      {{ formartTime(item.time) }}, <br />{{
+                        formatDate(item.time)
+                      }}
+                    </div>
+                  </div>
+                  <div class="c20">
+                    <div class="inner-label">Payment:</div>
+                    <div class="receipt">Receipt</div>
+                  </div>
+                </div>
+
+                <div class="pagination table">
+                  <div class="page-result">
+                    <h3 class="page-result-txt">
+                      Results: {{ transactionProp.length }}, Page
+                      {{ currentPage }} of {{ pages().length }}
+                    </h3>
+                  </div>
+
+                  <ul role="list" class="pagination-list">
+                    <li
+                      v-if="currentPage > 1"
+                      @click="paginate(currentPage - 1)"
+                      class="page"
                     >
-                      <div class="tb-sn">
-                        <div class="inner-label">S/N:</div>
-                        <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
-                      </div>
-                      <div class="c30">
-                        <div class="inner-label">Description</div>
-                        <div>
-                          <div
-                            v-for="(des, index) in item.description"
-                            :key="index"
-                          >
-                            {{ des.quantity }} {{ des.productName }}
-                          </div>
-                        </div>
-                      </div>
-                      <div class="c20">
-                        <div class="inner-label">Amount:</div>
-                        <div>N{{ formatNumber(item.totalAmount) }}</div>
-                      </div>
-                      <div class="c20">
-                        <div class="inner-label">Time:</div>
-                        <div>
-                          {{ formartTime(item.time) }}, <br />{{
-                            formatDate(item.time)
-                          }}
-                        </div>
-                      </div>
-                      <div class="c20">
-                        <div class="inner-label">Payment:</div>
-                        <div class="receipt">Receipt</div>
-                      </div>
-                    </div>
+                      <i class="material-symbols-outlined orange"
+                        >arrow_back_ios</i
+                      >
+                    </li>
+                    <li
+                      v-for="(page, int) in pages().length"
+                      :key="int"
+                      class="page"
+                      @click="paginate(int + 1)"
+                      :class="{ active: int + 1 == currentPage }"
+                    >
+                      <div>{{ int + 1 }}</div>
+                    </li>
 
-                    <div class="pagination table">
-                      <div class="page-result">
-                        <h3 class="page-result-txt">
-                          Results: {{ transactionProp.length }}, Page
-                          {{ currentPage }} of {{ pages().length }}
-                        </h3>
-                      </div>
-
-                      <ul role="list" class="pagination-list">
-                        <li
-                          v-if="currentPage > 1"
-                          @click="paginate(currentPage - 1)"
-                          class="page"
-                        >
-                          <i class="material-symbols-outlined orange"
-                            >arrow_back_ios</i
-                          >
-                        </li>
-                        <li
-                          v-for="(page, int) in pages().length"
-                          :key="int"
-                          class="page"
-                          @click="paginate(int + 1)"
-                          :class="{ active: int + 1 == currentPage }"
-                        >
-                          <div>{{ int + 1 }}</div>
-                        </li>
-
-                        <li
-                          v-if="currentPage != pages().length"
-                          @click="paginate(currentPage + 1)"
-                          class="page"
-                        >
-                          <i class="material-symbols-outlined orange"
-                            >arrow_forward_ios</i
-                          >
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+                    <li
+                      v-if="currentPage != pages().length"
+                      @click="paginate(currentPage + 1)"
+                      class="page"
+                    >
+                      <i class="material-symbols-outlined orange"
+                        >arrow_forward_ios</i
+                      >
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <footer-component />
       </div>
     </div>
-    <mobile-bottom-nav />
+    <footer-component />
   </div>
 </template>
 

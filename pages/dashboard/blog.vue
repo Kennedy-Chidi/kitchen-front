@@ -1,25 +1,17 @@
 <template>
-  <div class="grace blog-page">
+  <div class="">
     <cart-items />
     <alert-box />
     <alert-confirmation />
-    <div class="main-body">
-      <vertical-nav />
-      <div class="main-flex">
-        <company-ads />
-        <horizontal-nav />
-        <div class="custom-container">
-          <div class="body-flex">
-            <div class="content-body blog-post">
-              <main-post />
-              <aside-post />
-            </div>
-          </div>
+    <div class="custom-container">
+      <div class="body-flex">
+        <div class="content-body blog-post">
+          <main-post />
+          <aside-post />
         </div>
-        <footer-component />
       </div>
     </div>
-    <mobile-bottom-nav />
+    <footer-component />
   </div>
 </template>
 

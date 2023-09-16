@@ -1,135 +1,126 @@
 <template>
   <div>
-    <div class="grace promotions">
+    <div class="">
       <alert-box />
       <alert-confirmation />
       <cart-items />
-      <div class="main-body">
-        <vertical-nav />
-        <div class="main-flex">
-          <company-ads />
-          <horizontal-nav />
-          <div class="custom-container">
-            <div class="body-flex">
-              <div class="content-body">
-                <div class="nav-pag">
-                  <nuxt-link to="/" class="home-txt">Home - </nuxt-link
-                  ><nuxt-link to="/dashboard/promotions" class="page-txt"
-                    >Promotions</nuxt-link
+      <div class="custom-container">
+        <div class="body-flex">
+          <div class="content-body">
+            <div class="nav-pag">
+              <nuxt-link to="/" class="home-txt">Home - </nuxt-link
+              ><nuxt-link to="/dashboard/promotions" class="page-txt"
+                >Promotions</nuxt-link
+              >
+            </div>
+            <div class="w-form">
+              <div class="transaction-table">
+                <copy-referral />
+                <div class="table">
+                  <div class="table-head-row">
+                    <div class="tb-sn"><div>S/N</div></div>
+                    <div class="c30 spend"><div>Promo Name</div></div>
+                    <div class="c20 promo"><div>Spent</div></div>
+                    <div class="c20 promo"><div>Target</div></div>
+                    <div class="c20 promo"><div>Gift</div></div>
+                    <div class="c20 time promo"><div>Duration</div></div>
+                    <div class="c20 promo stat"><div>Status</div></div>
+                  </div>
+                  <div
+                    v-for="(promo, int) in promotions"
+                    :key="int"
+                    class="table-head-row body"
                   >
-                </div>
-                <div class="w-form">
-                  <div class="transaction-table">
-                    <copy-referral />
-                    <div class="table">
-                      <div class="table-head-row">
-                        <div class="tb-sn"><div>S/N</div></div>
-                        <div class="c30 spend"><div>Promo Name</div></div>
-                        <div class="c20 promo"><div>Spent</div></div>
-                        <div class="c20 promo"><div>Target</div></div>
-                        <div class="c20 promo"><div>Gift</div></div>
-                        <div class="c20 time promo"><div>Duration</div></div>
-                        <div class="c20 promo stat"><div>Status</div></div>
-                      </div>
-                      <div
-                        v-for="(promo, int) in promotions"
-                        :key="int"
-                        class="table-head-row body"
-                      >
-                        <div class="tb-sn spend">
-                          <div class="inner-label">S/N:</div>
-                          <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
-                        </div>
-                        <div class="c30 spend">
-                          <div class="inner-label">Name:</div>
-                          <div>{{ promo.promoName }}</div>
-                        </div>
-                        <div class="c20 promo">
-                          <div class="inner-label">Spent:</div>
-                          <div>N{{ formatNumber(promo.promoAmount) }}</div>
-                        </div>
-                        <div class="c20 promo">
-                          <div class="inner-label">Target:</div>
-                          <div>N{{ formatNumber(promo.promoTarget) }}</div>
-                        </div>
-                        <div class="c20 promo">
-                          <div class="inner-label">Gift:</div>
-                          <div>
-                            <div
-                              v-for="(item, index) in promo.promoGifts"
-                              :key="index"
-                            >
-                              {{ item }}
-                            </div>
-                          </div>
-                        </div>
-                        <div class="c20 time promo">
-                          <div class="inner-label">Time:</div>
-                          <div>{{ formatDate(promo.promoStart) }} to</div>
-                          <div class="end">
-                            {{ formatDate(promo.promoEnd) }}
-                          </div>
-                        </div>
-                        <div class="c20 promo stat">
-                          <div class="inner-label">Status:</div>
-                          <div class="custom-btn edge bonus">
-                            <div>
-                              {{
-                                (
-                                  (promo.promoAmount * 100) /
-                                  promo.promoTarget
-                                ).toFixed(2)
-                              }}%
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="pagination table">
-                        <div class="page-result">
-                          <h3 class="page-result-txt">
-                            Results: {{ resultLength }}, Page
-                            {{ currentPage }} of
-                            {{ pages().length }}
-                          </h3>
-                        </div>
-
-                        <ul
-                          v-if="pages().length > 1"
-                          role="list"
-                          class="pagination-list"
+                    <div class="tb-sn spend">
+                      <div class="inner-label">S/N:</div>
+                      <div>{{ (currentPage - 1) * limit + int + 1 }}</div>
+                    </div>
+                    <div class="c30 spend">
+                      <div class="inner-label">Name:</div>
+                      <div>{{ promo.promoName }}</div>
+                    </div>
+                    <div class="c20 promo">
+                      <div class="inner-label">Spent:</div>
+                      <div>N{{ formatNumber(promo.promoAmount) }}</div>
+                    </div>
+                    <div class="c20 promo">
+                      <div class="inner-label">Target:</div>
+                      <div>N{{ formatNumber(promo.promoTarget) }}</div>
+                    </div>
+                    <div class="c20 promo">
+                      <div class="inner-label">Gift:</div>
+                      <div>
+                        <div
+                          v-for="(item, index) in promo.promoGifts"
+                          :key="index"
                         >
-                          <li v-if="currentPage > 1" class="page">
-                            <i class="material-symbols-outlined orange"
-                              >arrow_back_ios</i
-                            >
-                          </li>
-                          <li
-                            v-for="(item, int) in pages().length"
-                            :key="int"
-                            class="page"
-                            :class="{ active: int + 1 == currentPage }"
-                          >
-                            <div>{{ int + 1 }}</div>
-                          </li>
-
-                          <li v-if="currentPage < pages().length" class="page">
-                            <i class="material-symbols-outlined orange"
-                              >arrow_forward_ios</i
-                            >
-                          </li>
-                        </ul>
+                          {{ item }}
+                        </div>
                       </div>
                     </div>
+                    <div class="c20 time promo">
+                      <div class="inner-label">Time:</div>
+                      <div>{{ formatDate(promo.promoStart) }} to</div>
+                      <div class="end">
+                        {{ formatDate(promo.promoEnd) }}
+                      </div>
+                    </div>
+                    <div class="c20 promo stat">
+                      <div class="inner-label">Status:</div>
+                      <div class="custom-btn edge bonus">
+                        <div>
+                          {{
+                            (
+                              (promo.promoAmount * 100) /
+                              promo.promoTarget
+                            ).toFixed(2)
+                          }}%
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pagination table">
+                    <div class="page-result">
+                      <h3 class="page-result-txt">
+                        Results: {{ resultLength }}, Page {{ currentPage }} of
+                        {{ pages().length }}
+                      </h3>
+                    </div>
+
+                    <ul
+                      v-if="pages().length > 1"
+                      role="list"
+                      class="pagination-list"
+                    >
+                      <li v-if="currentPage > 1" class="page">
+                        <i class="material-symbols-outlined orange"
+                          >arrow_back_ios</i
+                        >
+                      </li>
+                      <li
+                        v-for="(item, int) in pages().length"
+                        :key="int"
+                        class="page"
+                        :class="{ active: int + 1 == currentPage }"
+                      >
+                        <div>{{ int + 1 }}</div>
+                      </li>
+
+                      <li v-if="currentPage < pages().length" class="page">
+                        <i class="material-symbols-outlined orange"
+                          >arrow_forward_ios</i
+                        >
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <footer-component />
         </div>
       </div>
-      <mobile-bottom-nav />
+      <footer-component />
     </div>
   </div>
 </template>

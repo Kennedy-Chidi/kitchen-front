@@ -13,7 +13,8 @@
             />
           </div>
         </div>
-        <landing-nav />
+        <horizontal-nav v-if="user" />
+        <landing-nav v-else />
         <main>
           <nuxt />
         </main>

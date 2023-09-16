@@ -1,97 +1,89 @@
 <template>
-  <div class="grace">
+  <div class="">
     <alert-box />
     <alert-confirmation />
     <cart-items />
-    <div class="main-body">
-      <vertical-nav />
-      <div class="main-flex">
-        <company-ads />
-        <horizontal-nav />
-        <div class="custom-container">
-          <div class="body-flex">
-            <div class="content-body">
-              <div class="nav-pag">
-                <nuxt-link to="/" class="home-txt">Home - </nuxt-link
-                ><nuxt-link to="/dashboard/notifications" class="page-txt"
-                  >Notifications</nuxt-link
+    <div class="custom-container">
+      <div class="body-flex">
+        <div class="content-body">
+          <div class="nav-pag">
+            <nuxt-link to="/" class="home-txt">Home - </nuxt-link
+            ><nuxt-link to="/dashboard/notifications" class="page-txt"
+              >Notifications</nuxt-link
+            >
+          </div>
+          <div class="w-form">
+            <div class="transaction-table">
+              <div class="table notify">
+                <div
+                  v-for="notice in notices"
+                  :key="notice._id"
+                  class="each-notification"
                 >
-              </div>
-              <div class="w-form">
-                <div class="transaction-table">
-                  <div class="table notify">
+                  <img
+                    src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6c1ec16b2737439b284fc_logo.png"
+                    loading="lazy"
+                    alt=""
+                    class="notification-logo"
+                  />
+                  <div>
+                    <div class="note-title">{{ notice.title }}</div>
+                    <div class="notification-time">
+                      {{ formartTime(notice.time) }}
+                      {{ formatDate(notice.time) }}
+                    </div>
                     <div
-                      v-for="notice in notices"
-                      :key="notice._id"
-                      class="each-notification"
-                    >
-                      <img
-                        src="https://uploads-ssl.webflow.com/64b6be9c94ade9f93069468e/64b6c1ec16b2737439b284fc_logo.png"
-                        loading="lazy"
-                        alt=""
-                        class="notification-logo"
-                      />
-                      <div>
-                        <div class="note-title">{{ notice.title }}</div>
-                        <div class="notification-time">
-                          {{ formartTime(notice.time) }}
-                          {{ formatDate(notice.time) }}
-                        </div>
-                        <div
-                          class="notification-body"
-                          v-html="notice.content"
-                        ></div>
-                      </div>
-                    </div>
-
-                    <div class="pagination table">
-                      <div class="page-result">
-                        <h3 class="page-result-txt">
-                          Results: {{ resultLength }}, Page {{ currentPage }} of
-                          {{ pages().length }}
-                        </h3>
-                      </div>
-                      <ul role="list" class="pagination-list">
-                        <li
-                          class="page"
-                          v-if="currentPage > 1"
-                          @click="paginate(currentPage - 1)"
-                        >
-                          <i class="material-symbols-outlined orange"
-                            >arrow_back_ios</i
-                          >
-                        </li>
-                        <li
-                          v-for="(page, int) in pages().length"
-                          :key="int"
-                          class="page"
-                          @click="paginate(int + 1)"
-                          :class="{ active: int + 1 == currentPage }"
-                        >
-                          <div>{{ int + 1 }}</div>
-                        </li>
-
-                        <li
-                          class="page"
-                          v-if="currentPage != pages().length"
-                          @click="paginate(currentPage + 1)"
-                        >
-                          <i class="material-symbols-outlined orange"
-                            >arrow_forward_ios</i
-                          >
-                        </li>
-                      </ul>
-                    </div>
+                      class="notification-body"
+                      v-html="notice.content"
+                    ></div>
                   </div>
+                </div>
+
+                <div class="pagination table">
+                  <div class="page-result">
+                    <h3 class="page-result-txt">
+                      Results: {{ resultLength }}, Page {{ currentPage }} of
+                      {{ pages().length }}
+                    </h3>
+                  </div>
+                  <ul role="list" class="pagination-list">
+                    <li
+                      class="page"
+                      v-if="currentPage > 1"
+                      @click="paginate(currentPage - 1)"
+                    >
+                      <i class="material-symbols-outlined orange"
+                        >arrow_back_ios</i
+                      >
+                    </li>
+                    <li
+                      v-for="(page, int) in pages().length"
+                      :key="int"
+                      class="page"
+                      @click="paginate(int + 1)"
+                      :class="{ active: int + 1 == currentPage }"
+                    >
+                      <div>{{ int + 1 }}</div>
+                    </li>
+
+                    <li
+                      class="page"
+                      v-if="currentPage != pages().length"
+                      @click="paginate(currentPage + 1)"
+                    >
+                      <i class="material-symbols-outlined orange"
+                        >arrow_forward_ios</i
+                      >
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <footer-component />
       </div>
     </div>
-    <mobile-bottom-nav />
+    <footer-component />
   </div>
 </template>
 

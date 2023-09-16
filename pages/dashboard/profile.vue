@@ -1,70 +1,62 @@
 <template>
-  <div class="grace profile">
+  <div class="">
     <cart-items />
     <alert-box />
     <alert-confirmation />
-    <div class="main-body">
-      <vertical-nav />
-      <div class="main-flex">
-        <company-ads />
-        <horizontal-nav />
-        <div class="custom-container">
-          <div class="body-flex">
-            <div class="content-body">
-              <div class="nav-pag">
-                <nuxt-link to="/" class="home-txt">Home - </nuxt-link
-                ><nuxt-link to="/dashboard/profile" class="page-txt"
-                  >Profile</nuxt-link
-                >
-              </div>
-              <profile-setting />
-              <div class="w-form">
-                <div class="profile-flex">
-                  <label for="name-14" class="partnership-title"
-                    >Make a Review</label
+    <div class="custom-container">
+      <div class="body-flex">
+        <div class="content-body">
+          <div class="nav-pag">
+            <nuxt-link to="/" class="home-txt">Home - </nuxt-link
+            ><nuxt-link to="/dashboard/profile" class="page-txt"
+              >Profile</nuxt-link
+            >
+          </div>
+          <profile-setting />
+          <div class="w-form">
+            <div class="profile-flex">
+              <label for="name-14" class="partnership-title"
+                >Make a Review</label
+              >
+              <div class="profile-inputs rate">
+                <review-rating />
+                <div class="each-input half">
+                  <label for="field-6" class="label"
+                    >Report to us here if you are unsatisfied by our goods,
+                    services or staff</label
                   >
-                  <div class="profile-inputs rate">
-                    <review-rating />
-                    <div class="each-input half">
-                      <label for="field-6" class="label"
-                        >Report to us here if you are unsatisfied by our goods,
-                        services or staff</label
+                  <textarea
+                    placeholder="Write us your report"
+                    maxlength="5000"
+                    v-model="report"
+                    class="custom-input txt high w-input report"
+                  ></textarea>
+                  <div class="btn-holder">
+                    <div v-if="onRequest" class="custom-btn edge">
+                      <i class="material-symbols-outlined white spinner"
+                        >motion_photos_on</i
                       >
-                      <textarea
-                        placeholder="Write us your report"
-                        maxlength="5000"
-                        v-model="report"
-                        class="custom-input txt high w-input report"
-                      ></textarea>
-                      <div class="btn-holder">
-                        <div v-if="onRequest" class="custom-btn edge">
-                          <i class="material-symbols-outlined white spinner"
-                            >motion_photos_on</i
-                          >
-                          <div>Processing</div>
-                        </div>
-                        <div v-if="!onRequest" class="custom-btn edge color">
-                          <div>Submit</div>
-                        </div>
-
-                        <label
-                          v-if="showResponse"
-                          for="field-6"
-                          class="response error"
-                          >{{ response }}</label
-                        >
-                      </div>
+                      <div>Processing</div>
                     </div>
+                    <div v-if="!onRequest" class="custom-btn edge color">
+                      <div>Submit</div>
+                    </div>
+
+                    <label
+                      v-if="showResponse"
+                      for="field-6"
+                      class="response error"
+                      >{{ response }}</label
+                    >
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <footer-component />
       </div>
     </div>
-    <mobile-bottom-nav />
+    <footer-component />
   </div>
 </template>
 

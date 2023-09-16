@@ -3,76 +3,68 @@
     <cart-items />
     <alert-box />
     <alert-confirmation />
-    <div class="main-body">
-      <vertical-nav />
-      <div class="main-flex">
-        <company-ads />
-        <horizontal-nav />
-        <div class="custom-container">
-          <div class="body-flex">
-            <div class="content-body">
-              <div class="map-wrap">
-                <img
-                  v-for="banner in banners"
-                  :key="banner._id"
-                  :src="banner.bannerImageUrl"
-                  loading="lazy"
-                  sizes="(max-width: 479px) 98vw, (max-width: 991px) 96vw, (max-width: 1279px) 94vw, (max-width: 1439px) 91vw, 1200px"
-                  :srcset="`
+    <div class="custom-container">
+      <div class="body-flex">
+        <div class="content-body">
+          <div class="map-wrap">
+            <img
+              v-for="banner in banners"
+              :key="banner._id"
+              :src="banner.bannerImageUrl"
+              loading="lazy"
+              sizes="(max-width: 479px) 98vw, (max-width: 991px) 96vw, (max-width: 1279px) 94vw, (max-width: 1439px) 91vw, 1200px"
+              :srcset="`
                     ${banner.bannerImageUrl} 500w,
                     ${banner.bannerImageUrl} 800w,
                     ${banner.bannerImageUrl}       812w`"
-                  alt=""
-                  class="responsive-img"
-                />
-              </div>
-              <div class="faq-body">
-                <div class="each-question-section">
-                  <h1 class="section-title quest">About Company</h1>
-                  <div class="each-question">
-                    <div class="question">Who is Kitchen Grace?</div>
-                    <div class="answer">
-                      This is some text inside of a div block. Tis is ane
-                      andownr to the equestionandeverynquestion should be here
-                      and we are testinginftheyarecorrectand it is ggood
-                    </div>
-                  </div>
-                  <div class="each-question">
-                    <div class="question">Who is Kitchen Grace?</div>
-                    <div class="answer">
-                      This is some text inside of a div block. Tis is ane
-                      andownr to the equestionandeverynquestion should be here
-                      and we are testinginftheyarecorrectand it is ggood
-                    </div>
-                  </div>
+              alt=""
+              class="responsive-img"
+            />
+          </div>
+          <div class="faq-body">
+            <div class="each-question-section">
+              <h1 class="section-title quest">About Company</h1>
+              <div class="each-question">
+                <div class="question">Who is Kitchen Grace?</div>
+                <div class="answer">
+                  This is some text inside of a div block. Tis is ane andownr to
+                  the equestionandeverynquestion should be here and we are
+                  testinginftheyarecorrectand it is ggood
                 </div>
-                <div class="each-question-section">
-                  <h1 class="section-title quest">About Company</h1>
-                  <div class="each-question">
-                    <div class="question active">Who is Kitchen Grace?</div>
-                    <div class="answer">
-                      This is some text inside of a div block. Tis is ane
-                      andownr to the equestionandeverynquestion should be here
-                      and we are testinginftheyarecorrectand it is ggood
-                    </div>
-                  </div>
-                  <div class="each-question">
-                    <div class="question">Who is Kitchen Grace?</div>
-                    <div class="answer">
-                      This is some text inside of a div block. Tis is ane
-                      andownr to the equestionandeverynquestion should be here
-                      and we are testinginftheyarecorrectand it is ggood
-                    </div>
-                  </div>
+              </div>
+              <div class="each-question">
+                <div class="question">Who is Kitchen Grace?</div>
+                <div class="answer">
+                  This is some text inside of a div block. Tis is ane andownr to
+                  the equestionandeverynquestion should be here and we are
+                  testinginftheyarecorrectand it is ggood
+                </div>
+              </div>
+            </div>
+            <div class="each-question-section">
+              <h1 class="section-title quest">About Company</h1>
+              <div class="each-question">
+                <div class="question active">Who is Kitchen Grace?</div>
+                <div class="answer">
+                  This is some text inside of a div block. Tis is ane andownr to
+                  the equestionandeverynquestion should be here and we are
+                  testinginftheyarecorrectand it is ggood
+                </div>
+              </div>
+              <div class="each-question">
+                <div class="question">Who is Kitchen Grace?</div>
+                <div class="answer">
+                  This is some text inside of a div block. Tis is ane andownr to
+                  the equestionandeverynquestion should be here and we are
+                  testinginftheyarecorrectand it is ggood
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <footer-component />
       </div>
     </div>
-    <mobile-bottom-nav />
+    <footer-component />
   </div>
 </template>
 
